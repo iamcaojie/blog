@@ -1,0 +1,106 @@
+body {
+    background:rgb(230,230,230);
+    padding-top: 70px;
+}
+.container{ 
+/* text-align:center; */
+} 
+h1{
+    /* padding-left:50%; */
+    font-size:20px;
+    text-align:center;
+}
+h2{
+    /* margin-top: 4px; */
+    font-size:16px;
+    border-bottom: 2px solid #f15694;
+    display: inline;
+}
+.row{
+    /* background:#30B9EE; */
+    /* width:800px; */
+    /* height:auto; */
+    /* border:solid 1px red; */
+}
+.col-md-9{
+    /* width:850px; */
+    margin:2px;
+}
+.col-md-4{
+    /* 不写宽度外边距当做容器使用，会自动对齐匹配 */
+    height: 220px;
+    /* background:rgb(40,146,155); */
+    /* border:solid 1px red; */
+    /* clear:both; */
+}
+.img_pach{
+    width: 100%;
+    height: 78%;
+    margin:auto;
+}
+img{
+    margin:auto;
+}
+
+.col-md-3{
+    /* background:rgb(40,144,100); */
+    margin-bottom: 10px;
+    /* height:450px; */
+    /* border:solid 1px red; */
+}
+
+.contents{
+    /* width:80%; */
+    height:350px;
+    /* border:solid 1px red; */
+    border-radius: 9px;
+    margin-left:20px;
+    margin-right:20px;
+    background:white;
+    box-shadow: 0 4px 8px 0 rgba(7,17,27,.05);
+}
+.contents-title{
+    height:35px;
+    padding-top:10px;
+    margin:0px 10px;
+    /* border:solid 1px red; */
+}
+.contents-text{
+    height:200px;
+    margin-top:15px;
+    padding-left:1px;
+    padding-right:10px;
+    font-size:14px;
+    /* border:solid 1px red; */
+    /* background:green; */
+}
+ul{
+    padding-left:20px;
+}
+.more{
+    float: right;
+    display: inline;
+    /* margin-top: 4px; */
+}
+.article-title{
+    /* font-size:16px; */
+}
+.article-date{
+    float: right;
+}
+footer{
+    /* background:#2e2c2d; */
+    clear:both; 
+    text-align:center;
+}
+
+#foot{
+    width:100%;
+    height:50px;
+    border:solid 1px red;
+    /* background:grey; */
+}
+
+#copyright{
+    /* color:white; */
+}
