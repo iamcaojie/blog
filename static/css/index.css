@@ -41,7 +41,9 @@ h2{
 img{
     margin:auto;
 }
-
+.topic-contents{
+    padding-left: 10px;
+}
 .col-md-3{
     /* background:rgb(40,144,100); */
     margin-bottom: 10px;
@@ -87,6 +89,27 @@ ul{
 }
 .article-date{
     float: right;
+}
+#Sidebar{
+    width: 40px;
+    height: 120px;
+    bottom: 100px;
+    right: 2%;
+    position: fixed;
+    cursor: pointer;
+    z-index: 999999;
+}
+#git{
+    height: 40px;
+    background:gray;
+}
+#wechat{
+    height: 40px;
+    background:blue;
+}
+#toTop{
+    height: 40px;
+    background:green;
 }
 footer{
     /* background:#2e2c2d; */
