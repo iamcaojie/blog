@@ -20,7 +20,7 @@ h2{
     /* background:#30B9EE; */
     /* width:800px; */
     /* height:auto; */
-    /* border:solid 1px red; */
+    border:solid 1px red;
 }
 .col-md-9{
     /* width:850px; */
@@ -28,9 +28,9 @@ h2{
 }
 .col-md-4{
     /* 不写宽度外边距当做容器使用，会自动对齐匹配 */
-    height: 220px;
+    /* height: 220px; */
     /* background:rgb(40,146,155); */
-    /* border:solid 1px red; */
+    border:solid 1px red;
     /* clear:both; */
 }
 .img_pach{
@@ -44,11 +44,11 @@ img{
 .topic-contents{
     padding-left: 10px;
 }
-.col-md-3{
+.col-md-4{
     /* background:rgb(40,144,100); */
     margin-bottom: 10px;
     /* height:450px; */
-    /* border:solid 1px red; */
+    border:solid 1px red;
 }
 
 .contents{
@@ -56,8 +56,7 @@ img{
     height:350px;
     /* border:solid 1px red; */
     border-radius: 9px;
-    margin-left:20px;
-    margin-right:20px;
+    margin:0 20px;
     background:white;
     box-shadow: 0 4px 8px 0 rgba(7,17,27,.05);
 }
@@ -70,8 +69,7 @@ img{
 .contents-text{
     height:200px;
     margin-top:15px;
-    padding-left:1px;
-    padding-right:10px;
+    padding:0 10px 0 1px;
     font-size:14px;
     /* border:solid 1px red; */
     /* background:green; */
@@ -93,7 +91,7 @@ ul{
 #Sidebar{
     width: 40px;
     height: 120px;
-    bottom: 100px;
+    bottom: 90px;
     right: 2%;
     position: fixed;
     cursor: pointer;
