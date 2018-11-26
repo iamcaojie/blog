@@ -3,6 +3,11 @@
     <head>
         <title>我的博客</title>
         <meta charset="utf-8">
+        <meta name="author" content="caojie">
+        <meta name="description" content="个人博客" />
+        <meta name="keywords" content="个人博客" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="renderer" content="webkit" />
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <link href="/static/css/Normalize.css" rel="stylesheet"></link>
         <link href="/static/layui/css/layui.css" rel="stylesheet"></link>
@@ -45,7 +50,7 @@
                   </ul>
                 </li>
               </ul>
-              <form class="navbar-form navbar-left" action="index.php/search" method="get">
+              <form class="navbar-form navbar-left" action="search" method="get">
                 <div class="form-group">
                   <input type="text" id="search_text" name="search" class="form-control" placeholder="搜索博客内容">
                 </div>
@@ -57,7 +62,7 @@
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">相关链接<span class="caret"></span></a>
                   <ul class="dropdown-menu">
-                    <li><a href="#">Git</a></li>
+                    <li><a href="https://github.com/iamcaojie">Git</a></li>
                     <li><a href="#">Weibo</a></li>
                     <li><a href="#">Weixin</a></li>
                     <li role="separator" class="divider"></li>
@@ -75,7 +80,7 @@
                 <!-- <h1>轮播页面</h1> -->
                 <div class="col-sm-12 col-md-12">
                     <img src="/static/img/img.jpg" style="max-width:70%"></img>
-                    <div style="display:inline;width:20px;height:20px;"></div>
+                    <div id="introduction"></div>
                 </div>
             </div>
             <!-- 展示栏 -->
@@ -196,10 +201,19 @@
             </div>
             <!-- 侧边悬浮栏 -->
             <div id="Sidebar">
+                <div id="Sidebar-box">
+                    <div id="git-box"></div>
+                    <div id="wechat-box">
+                        <img src="/static/img/wechat.png"/>
+                    </div>
+                </div>
+                <div id="Sidebar-display">
                 <div id="git"></div>
                 <div id="wechat"></div>
-                <div id="toTop"><img src=""/></div>
+                <div id="toTop"></div>
+               </div>
             </div>
+
         </div>
         
         <!-- 页面底栏 -->

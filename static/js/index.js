@@ -9,7 +9,7 @@ var layer = layui.layer
 $(document).ready(function(){ 
     // 注册链接拦截
     $("#sign").click(function(){
-        layer.msg('还在coding中,暂未开放');
+        layer.msg('coding中,暂未开放');
         return false;
     });
     // 检查搜索框
@@ -22,4 +22,4 @@ $(document).ready(function(){
     });
 });
 
-console.log("hello,小老弟，欢迎提交bug或建议，联系方式QQ10804842")
+console.log("欢迎提交bug或建议，联系方式QQ10804842")

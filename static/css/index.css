@@ -33,6 +33,12 @@ h2{
     border:solid 1px red;
     /* clear:both; */
 }
+#introduction{
+    float:right;
+    width:27%;
+    height:auto;
+    border:solid 1px red;
+}
 .img_pach{
     width: 100%;
     height: 78%;
@@ -89,25 +95,49 @@ ul{
     float: right;
 }
 #Sidebar{
-    width: 40px;
+    width: 162px;
     height: 120px;
-    bottom: 90px;
+    bottom: 80px;
     right: 2%;
+    /* border:solid 1px red; */
     position: fixed;
     cursor: pointer;
-    z-index: 999999;
+    z-index: 10;
+}
+#Sidebar-box{
+    float:left;
+    
+}
+#Sidebar-display{
+    width:40px;
+    height:120px;
+    float:right;
+}
+#Sidebar-display div{
+    width:40px;
+    height: 40px;
 }
 #git{
-    height: 40px;
     background:gray;
 }
 #wechat{
-    height: 40px;
     background:blue;
 }
 #toTop{
-    height: 40px;
+    /* height: 40px; */
     background:green;
+}
+#wechat-box{
+    width: 120px;
+    height: 120px;
+    /* bottom: 90px; */
+    /* right: 11%; */
+    /* position: fixed; */
+    z-index: 10;
+}
+#Sidebar img{
+    width:100%;
+    height:100%;
 }
 footer{
     /* background:#2e2c2d; */
