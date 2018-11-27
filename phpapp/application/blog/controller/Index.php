@@ -2,7 +2,8 @@
 namespace app\blog\controller;
 
 use think\View;
-use \think\Request;
+use think\Request;
+use think\Db;
 
 class Index
 {
@@ -14,6 +15,18 @@ class Index
     
     public function hello($name,$age)
     {
+        $request = Request::instance();
+        // echo ''.$request-> has('name','post');
+        // echo Request::instance()-> has('name','post');
+        // echo ''.$request-> has('name','get');
+        // echo Request::instance()-> has('name','get');
+        echo $request->param('name');
+        echo '访问ip地址：' . $request->ip() . '<br/>';
+        $info = Request::instance()->header();
+        echo $info['accept'].'<br/>';
+        echo $info['accept-encoding'].'<br/>';
+        echo $info['user-agent'].'<br/>';
+        if (Request::instance()->isGet()) echo "当前为 GET 请求";
         return 'Hello,name:'.$name.' age:'.$age;
     }    
 
@@ -41,6 +54,9 @@ class Index
         return 'index page';
         // 继承 \think\Controller类
         // return $this->fetch('index');
-        
+    }
+    public function dbtest()
+    {
+        Db::query('select * from think_user where id=?',[8]);
     }
 }

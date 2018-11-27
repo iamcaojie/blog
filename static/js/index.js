@@ -6,7 +6,7 @@ var layer = layui.layer
 });
 
 // jQuery特效
-$(document).ready(function(){ 
+$(function(){ 
     // 注册链接拦截
     $("#sign").click(function(){
         layer.msg('coding中,暂未开放');
