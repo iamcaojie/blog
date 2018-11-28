@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <title>登录页面</title>
+        <meta charset="utf-8">
+        <meta name="author" content="caojie">
+        <meta name="description" content="个人博客" />
+        <meta name="keywords" content="个人博客" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="renderer" content="webkit" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <link href="/static/css/Normalize.css" rel="stylesheet"></link>
+        <link href="/static/layui/css/layui.css" rel="stylesheet"></link>
+        <link href="/static/css/bootstrap.css" rel="stylesheet"></link>
+        <link href="/static/css/font-awesome.css" rel="stylesheet"></link>
+        <link href="/static/css/login.css" rel="stylesheet"></link>
+    </head>
+    <body>
+        <noscript>抱歉，你的浏览器不支持 JavaScript，访问可能出现错误!</noscript>
+        <div id="login-box">
+            <form class="form" action="" method="post">
+                <div>请输入登录信息</div>
+                <div>
+                    <label><span>账号：</span></label> 
+                    <input type="text" name="username" class=""/>
+                </div>
+                <div>
+                    <div></div>
+                    <label><span>密码：</span></label> 
+                    <input type="password" name="password" class=""/>
+                </div>
+                    <button type="submit" class="login" >登录</button> 
+            </form>
+            <div>
+                <a href="http://localhost">返回首页</a>
+            </div>
+        </div>
+        <script src="/static/js/jquery3.3.1.js"></script>
+        <script src="/static/js/bootstrap.js"></script>
+        <script src="/static/layui/layui.js"></script>
+        <script src="/static/js/login.js"></script>
+        <!-- <script src="/static/js/canvas-particle.js"></script> -->
+        <script src="/static/js/toTop.js"></script>
+           <script type="text/javascript">
+                window.onload = function(){
+                        //配置
+                        var config = {
+                                vx: 4,//点x轴速度,正为右，负为左
+                                vy:  4,//点y轴速度
+                                height: 2,//点高宽，其实为正方形，所以不宜太大
+                                width: 2,
+                                count: 240,//点个数
+                                color: "0,183,283",//点颜色
+                                stroke: "120,246,252",//线条颜色
+                                dist: 2000,//点吸附距离
+                                e_dist: 10000,//鼠标吸附加速距离
+                                max_conn: 10//点到点最大连接数
+                        }
+                        //调用
+                        CanvasParticle(config);
+                };
+         
+</script>
+<!-- <canvas width="1263" height="1000px;" style="position: absolute; top: 0px; left: 0px;z-index:0"></canvas> -->
+    </body>
+</html>

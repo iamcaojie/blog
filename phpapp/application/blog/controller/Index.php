@@ -3,7 +3,6 @@ namespace app\blog\controller;
 
 use think\View;
 use think\Request;
-use think\Db;
 
 class Index
 {
@@ -54,9 +53,5 @@ class Index
         return 'index page';
         // 继承 \think\Controller类
         // return $this->fetch('index');
-    }
-    public function dbtest()
-    {
-        Db::query('select * from think_user where id=?',[8]);
     }
 }
