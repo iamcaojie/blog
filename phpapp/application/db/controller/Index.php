@@ -9,6 +9,7 @@ class Index
     public function index()
     {
         print_r(Db::query('select * from think_user where id=?',[8]));
-        print_r(Db::table('think_user')->where('id',2)->find());
+        
+        // print_r(Db::table('think_user')->where('id',2)->find());
     }
 }

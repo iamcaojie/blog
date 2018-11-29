@@ -1,0 +1,251 @@
+@charset"utf-8";
+body {
+    background:rgb(230,230,230);
+    padding-top: 70px;
+}
+
+/* 
+单一选择器无法覆盖原始bootstrap样式 
+重写部分导航栏样式
+*/
+.navbar-default .navbar-brand{
+    color:rgb(176,58,91);
+}
+@media (max-width: 768px){
+    .navbar-default .navbar-brand{
+        color:rgb(176,58,91);
+        font-weight:bold;
+    }
+}
+.navbar-default .navbar-brand:hover,.navbar-default .navbar-nav > li > a:hover,.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus{
+    color:white;
+    background:rgb(176,58,91);
+    transition-duration: 0.2s;
+    -webkit-transition-duration: 0.2s;
+}
+
+.search-form{
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    border:1px solid rgb(176,58,91);
+}
+.search-btn{
+    color:white;
+    border:1px solid rgb(176,58,91);
+    background:rgb(176,58,91);
+}
+.search-btn:hover{
+    color:white;
+    border:1px solid rgb(176,58,91);
+    background:rgb(176,58,91);
+}
+
+/* 平板状态挡住轮播图 */
+@media (max-width: 1014px) and (min-width: 768px){
+    #sign{display:none;}
+}
+@media (max-width: 1014px) and (min-width: 768px){
+    #sign{display:none;}
+}
+
+
+
+/* 全局a标签样式 */
+a{
+    color:rgb(176,58,91);
+}
+a:hover{
+    color:rgb(176,58,91);
+    text-decoration:none;
+    
+}
+/* 图标字体样式 */
+i{
+    color:rgb(176,58,91);
+}
+/* 全局标题样式 */
+h1{
+    font-size:20px;
+    text-align:center;
+}
+h2{
+
+    font-size:16px;
+    border-bottom: 2px solid rgb(176,58,91);
+    display: inline;
+}
+
+.row{
+    border:solid 1px rgb(176,58,91);
+}
+
+.col-md-9{
+    /* width:850px; */
+    margin:2px;
+}
+.col-md-4{
+    /* 不写宽度外边距当做容器使用，会自动对齐匹配 */
+    /* height: 220px; */
+    /* background:rgb(40,146,155); */
+    border:solid 1px rgb(176,58,91);
+    /* clear:both; */
+}
+#carousel img{
+    max-width:70%
+}
+@media (max-width: 768px){
+    #carousel img{
+    max-width:100%;
+    }
+}
+#introduction{
+    float:right;
+    width:27%;
+    height:auto;
+    border:solid 1px rgb(176,58,91);
+}
+@media (max-width: 800px){
+    #introduction {
+        background-color: lightgreen;
+        border:solid 10px rgb(176,58,91);
+        display:none;
+    }
+}
+.img_pach{
+    width: 100%;
+    height: 78%;
+    margin:auto;
+}
+img{
+    margin:auto;
+}
+.topic-contents{
+    padding-left: 10px;
+}
+.col-md-4{
+    /* background:rgb(40,144,100); */
+    margin-bottom: 10px;
+    /* height:450px; */
+    border:solid 1px rgb(176,58,91);
+}
+
+.contents{
+    /* width:80%; */
+    height:350px;
+    /* border:solid 1px rgb(176,58,91); */
+    border-radius: 9px;
+    margin:0 20px;
+    background:white;
+    box-shadow: 0 4px 8px 0 rgba(7,17,27,.05);
+}
+.contents-title{
+    height:35px;
+    padding-top:10px;
+    margin:0px 10px;
+    /* border:solid 1px rgb(176,58,91); */
+}
+.contents-text{
+    height:200px;
+    margin-top:15px;
+    padding:0 10px 0 1px;
+    font-size:14px;
+    /* border:solid 1px rgb(176,58,91); */
+    /* background:green; */
+}
+ul{
+    padding-left:20px;
+}
+.more{
+    float: right;
+    display: inline;
+    /* margin-top: 4px; */
+}
+
+.article-date{
+    float: right;
+}
+@media (max-width: 430px){
+    .article-date{
+       display:none;
+    }
+}
+#Sidebar{
+    width: 162px;
+    height: 120px;
+    bottom: 80px;
+    right: 2%;
+    /* border:solid 1px red; */
+    position: fixed;
+    cursor: pointer;
+    z-index: 10;
+}
+@media (max-width: 800px){
+    #Sidebar{
+        display:none;
+    }
+}
+#Sidebar-box{
+    float:left;
+    
+}
+#Sidebar-display{
+    width:40px;
+    height:120px;
+    float:right;
+}
+#Sidebar-display div{
+    width:40px;
+    height: 40px;
+}
+#git{
+    background:gray;
+}
+#wechat{
+    background:blue;
+}
+#toTop{
+    /* height: 40px; */
+    background:green;
+}
+#wechat-box{
+    width: 120px;
+    height: 120px;
+    /* bottom: 90px; */
+    /* right: 11%; */
+    /* position: fixed; */
+    z-index: 10;
+}
+#Sidebar img{
+    width:100%;
+    height:100%;
+}
+footer{
+    /* background:#2e2c2d; */
+    clear:both; 
+    text-align:center;
+}
+
+#foot{
+    width:100%;
+    height:150px;
+    margin-top:10px;
+    border:solid 1px red;
+    /* background:grey; */
+}
+
+#copyright{
+    /* color:white; */
+}
