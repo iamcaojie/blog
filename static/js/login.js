@@ -1,25 +1,22 @@
 //初始化layui
-layui.use(['layer', 'form'], function(){
+layui.use(['layer', 'form', 'colorpicker'], function(){
 var layer = layui.layer
-,form = layui.form;
-
+,form = layui.form
+,colorpicker = layui.colorpicker;
+colorpicker.render({
+    elem: '#test1'  //绑定元素
+  });
 });
 
 // jQuery特效
 $(function(){ 
-    // 注册链接拦截
-    $("#sign").click(function(){
-        layer.msg('coding中,暂未开放');
-        return false;
+    //手机
+    // 编辑背景特效
+    $("#edit-canvas").click(function(){
+        alert("值为: " + $("input[name='password']").val());
     });
-    // 检查搜索框
-    $("#search").click(function(){
-        var search_text = $("#search_text").val()
-        if ( search_text == ""){
-            layer.msg('请输入搜索内容！！！');
-            return false;
-        }
-    });
+    // MD5加密
+   
 });
 
 console.log("欢迎提交bug或建议，联系方式QQ10804842")

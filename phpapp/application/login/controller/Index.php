@@ -8,6 +8,10 @@ class Index
     public function index()
     {
         $view = new View();
-        return $view->fetch("login/login");
+        return $view->fetch('login/login');
+    }
+    public function validate($username='',$password='')
+    {
+        // ;
     }
 }
