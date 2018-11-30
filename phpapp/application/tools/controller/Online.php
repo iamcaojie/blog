@@ -1,10 +1,10 @@
 <?php
 namespace app\tools\controller;
 
-class Index
+class Online
 {
     public function index()
     {
-        return '工具';
+        return '在线工具';
     }
 }

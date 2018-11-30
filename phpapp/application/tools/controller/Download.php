@@ -1,10 +1,10 @@
 <?php
 namespace app\tools\controller;
 
-class Index
+class Download
 {
     public function index()
     {
-        return '工具';
+        return '实用工具下载';
     }
 }

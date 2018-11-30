@@ -5,8 +5,9 @@ use think\View;
 
 class Python
 {
-    public function index()
+    public function index($page=1)
     {
+        // echo $page;
         $view = new View();
         return $view->fetch("contents/contents");
     }

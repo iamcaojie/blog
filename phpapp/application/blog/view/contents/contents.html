@@ -14,9 +14,14 @@
         <link href="/static/css/bootstrap.css" rel="stylesheet"></link>
         <link href="/static/css/font-awesome.css" rel="stylesheet"></link>
         <link href="/static/css/contents.css" rel="stylesheet"></link>
+        <!--[if lt IE 9]>
+            <script src="/static/js/html5shiv.js"></script>
+            <script src="/static/js/respond.src.js"></script>
+        <![endif]-->
     </head>
     <body>
         <noscript>抱歉，你的浏览器不支持 JavaScript，访问可能出现错误!</noscript>
+        <h1><a href="https://www.python.org/">Python</a></h1>
         <ol class="breadcrumb">
             <li><a href="http://localhost">首页</a></li>
             <li class="active">Python</li>
@@ -26,9 +31,11 @@
             <div class="row">
                 <div class="col-sm-12 col-md-12">
                     <div class="article-list">
-                        <div class="img-Placeholder"></div>
+                        <div class="img-Placeholder">
+                            <a href="/blog/python/detail-1.html"><img src="/static/img/python.jpg"/></a>
+                        </div>
                         <div class="article">
-                            <div class="article-title"><a href="/blog/python/detail-1">标题标题标题</a></div>
+                            <div class="article-title"><h2><a href="/blog/python/detail-1.html">标题标题标题</a></h2></div>
                             <div class="article-text">文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本</div>
                             <div class="article-information">1213</div>
                         </div>
@@ -36,6 +43,27 @@
                 </div>
             </div>
         </div>
+        <nav aria-label="Page navigation">
+            <div class="page-box">
+              <ul class="pagination">
+                <li>
+                  <a href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                  </a>
+                </li>
+                <li><a href="/blog/python?page=1">1</a></li>
+                <li class="active"><a href="/blog/python?page=2">2</a></li>
+                <li><a href="/blog/python?page=3">3</a></li>
+                <li><a href="/blog/python?page=4">4</a></li>
+                <li><a href="/blog/python?page=5">5</a></li>
+                <li>
+                  <a href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+        </nav>
         <script src="/static/js/jquery3.3.1.js"></script>
         <script src="/static/js/bootstrap.js"></script>
         <script src="/static/layui/layui.js"></script>

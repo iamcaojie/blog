@@ -1,7 +1,6 @@
 @charset"utf-8";
 body {
     background:rgb(230,230,230);
-    padding-top: 70px;
 }
 
 /* 全局a标签样式 */
@@ -19,50 +18,82 @@ i{
 }
 /* 全局标题样式 */
 h1{
-    font-size:20px;
+    font-size:40px;
+    color:rgb(176,58,91);
+    margin:0;
+    padding-top:6px;
+    height:60px;
     text-align:center;
 }
+@media (max-width:768px){
+    h1{
+        font-size:30px;
+        text-align:left;
+        padding-left:10px;
+        height:45px;
+    }
+}
 h2{
-
+    
     font-size:16px;
-    border-bottom: 2px solid rgb(176,58,91);
+    margin:0;
+    /* border-bottom: 2px solid rgb(176,58,91); */
     display: inline;
 }
 
 .row{
-    border:solid 1px rgb(176,58,91);
+    /* border:solid 1px rgb(176,58,91); */
 }
 .col-md-12{
-    height:180px;
+    height:150px;
 }
 .article-list{
-    width:75%;
+    border-radius: 9px;
+    width:80%;
     height:100%;
-    border:1px solid black;
+    /* border:1px solid black; */
+    background:white;
+    transition-duration: 0.2s;
+    -webkit-transition-duration: 0.2s;
+}
+.article-list:hover{
+    height:100%;
+    box-shadow: 0.5px 0.5px 1px #888888;
     background:white;
 }
-@media (max-width: 768px){
+@media (max-width: 800px){
     .article-list{
         width:100%;
     }
 }
 .img-Placeholder{
-    width:150px;
-    height:150px;
+    width:22%;
+    height:85%;
     margin:10px;
-    border:1px solid black;
+    /* border:1px solid black; */
     float:left;
+    overflow: hidden;
 }
+/* 图片缩放动画 */
+.img-Placeholder img{
+    width:100%;
+    transition: all 0.6s;
+    -webkit-transition: all 0.6s;
+}
+.img-Placeholder img:hover{
+    transform: scale(1.1);
+}
+
 
 .article{
     float:left;
-    border:1px solid black;
-    width:90%;
-    margin:10px;
-    height:150px;
+    /* border:1px solid black; */
+    width:65%;
+    margin:10px 10px 10px 0;
+    height:130px;
 }
 
-@media (max-width:1025px){
+@media (max-width:968px){
     .img-Placeholder{
         display:none;
     }
@@ -73,17 +104,39 @@ h2{
 }
 
 .article-title{
-    margin:10px 10px;
+    margin:7px 10px;
     font-size:18px;
-    border-bottom:1px solid black;
+    /* border-bottom:1px solid black; */
 }
 .article-text{
-    margin:10px 10px;
+    margin:7px 10px;
     
 }
 .article-information{
-    margin:30px 5px 0 0;
+    margin:10px 5px 0 0;
     float:right;
+}
+.page-box{
+    width:230.58px;
+    margin:auto;
+    
+}
+/* 重写bootstrap样式 */
+.pagination > li > a{
+    color: rgb(176,58,91);
+}
+.pagination > li > a:hover{
+    color: rgb(176,58,91);
+    font-weight:bold;
+}
+.pagination > .active > a{
+    background:rgb(176,58,91);
+    border-color:rgb(176,58,91);
+}
+.pagination > .active > a:hover{
+    background:rgb(176,58,91);
+    border-color:rgb(176,58,91);
+    font-weight:normal;
 }
 
 /* 侧边栏 */
