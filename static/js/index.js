@@ -3,18 +3,24 @@ layui.use(['layer', 'form','carousel'], function(){
 var layer = layui.layer
 ,form = layui.form
 ,carousel = layui.carousel;
-  //轮播实例
+  //轮播
   carousel.render({
     elem: '#carousel'
     ,width: '100%' 
     ,arrow: 'always' 
-    ,height: '456.34px'
+    ,height: carouselAutoHeight()
   });
 });
+
 //根据窗口获取轮播图高度
-// function carouselheight(){
-    // if ($(window).width() > ) {return '456.34px'};
-// }
+function carouselAutoHeight(){
+    var windowWidth = $(window).width();
+    var imgWidth = $('.col-sm-8').css('width').replace('px','');
+    if ( windowWidth > 1200) {return '456.34px'};
+    if ( windowWidth >=992 && windowWidth <= 1200) {return '375.2px'};
+    if ( windowWidth >=765 && windowWidth <= 992) {return '285.97px'};
+    if ( windowWidth < 765) {return ((imgWidth*9/16)-2)+'px'};
+}
 
 function IEVersion() {
     //取得浏览器的userAgent字符串  
@@ -63,14 +69,11 @@ $(function(){
             return false;
         }
     });
-    
-    // $(window).resize(function(){
-        // if $(window).width()
-        // var box = $('#introduction').css('height');
-        // $('#carousel').css("height",);
-        // alert($('#introduction').css('height'));
-    // });
+    //响应轮播容器高度
+    $(window).resize(function(){
+        $('#carousel').css("height",carouselAutoHeight());
+        alert(carouselAuotHeight());
+    });
 });
 
 console.log("欢迎提交bug或建议，联系方式QQ10804842")
-// alert(IEVersion());
