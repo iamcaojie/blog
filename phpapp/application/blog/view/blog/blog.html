@@ -10,7 +10,7 @@
         <meta name="renderer" content="webkit" />
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <link href="/static/css/Normalize.css" rel="stylesheet"></link>
-        <link href="/static/layui/css/layui.css" rel="stylesheet"></link>
+        <link href="/static/layui/css/layui.css"  media="all" rel="stylesheet"></link>
         <link href="/static/css/bootstrap.css" rel="stylesheet"></link>
         <link href="/static/css/font-awesome.css" rel="stylesheet"></link>
         <link href="/static/css/index.css" rel="stylesheet"></link>
@@ -83,20 +83,48 @@
         <div class="container">
             <!-- 轮播 -->
             <div class="row" >
-                <!-- <h1>轮播页面</h1> -->
-                <div class="col-sm-12 col-md-12">
-                    <div id="carousel">
-                    <img src="/static/img/img.jpg"></img>
+                <div class="col-sm-8 col-md-8">
+                <!-- <img src="/static/img/contents.png" ></img> -->
+                    <div class="layui-carousel" id="carousel">
+                          <div carousel-item>
+                            <div><img class="carousel-img" src="/static/img/contents.png" ></img></div>
+                            <div><img class="carousel-img" src="/static/img/contents.png" ></img></div>
+                            <div><img class="carousel-img" src="/static/img/contents.png" ></img></div>
+                          </div>
                     </div>
-                    <div id="introduction"></div>
+                </div>
+                <div class="col-sm-4 col-md-4 intro">
+                    <div id="introduction">
+                        <div id="avatar">
+                            <div>
+                                <a href="/temp/index/resume"><img src="/static/img/avatar.jpg"></img></a>
+                            </div>
+                        </div>
+                        <div id="introduction-box">
+                            <dl>
+                                <div>
+                                <dt>标题标题</dt>
+                                <dd>内容内容</dd>
+                                </div>
+                                <div>
+                                <dt>标题标题</dt>
+                                <dd>内容内容</dd>
+                                </div>
+                                <div>
+                                <dt>标题标题</dt>
+                                <dd>内容内容</dd>
+                                </div>
+                            </dl>
+                        </div>
+                    </div>
                 </div>
             </div>
             <!-- 展示栏 -->
             <div class="row" >
                     <h1><i class="fa fa-rotate-left"></i><a href="http://www.baidu.com"> 最近更新</a></h1>
                 <div class="col-sm-6 col-md-4 col-lg-3 ">
-                    <div class="thumbnail" style="height:100%;">
-                        <div class="img_pach">
+                    <div class="thumbnail">
+                        <div class="img-Placeholder">
                             <a href="http://www.baidu.com">
                                 <img src="/static/img/img.jpg" style="width:300px; height:150px;"/>
                             </a>

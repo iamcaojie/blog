@@ -29,7 +29,7 @@
                     <input type="text" name="username"/>
                     <div style="height:5px;"></div>
                     <label><span>密码</span></label> 
-                    <input type="password1" name="password"/>
+                    <input type="password" name="password"/>
                     <input type="hidden" name="password"/>
                 </div>
                     <button type="submit" class="login" >登录</button> 
@@ -39,20 +39,20 @@
                 <a id="edit-canvas" href="javascript:void(0)">修改背景</a>
             </div>
         </div>
-        <div id="edit-box">
-            <form>
-                <input id="vx" placeholder="点x轴速度,正为右，负为左" />
-                <input id="vy" placeholder="点y轴速度" />
-                <input id="height" placeholder="点高" />
-                <input id="width" placeholder="点宽" />
-                <input id="count" placeholder="点个数" />
-                <div style="height:1px;"></div>
-                <input id="color" placeholder="点颜色" />
-                <input id="stroke" placeholder="线条颜色" />
-                <input id="dist" placeholder="点吸附距离" />
-                <input id="e_dist" placeholder="鼠标吸附加速距离" />
-                <input id="max_conn" placeholder="点到点最大连接数" />
-            </form>
+        <!-- <div id="edit-box"> -->
+            <!-- <form> -->
+                <!-- <input id="vx" placeholder="点x轴速度,正为右，负为左" /> -->
+                <!-- <input id="vy" placeholder="点y轴速度" /> -->
+                <!-- <input id="height" placeholder="点高" /> -->
+                <!-- <input id="width" placeholder="点宽" /> -->
+                <!-- <input id="count" placeholder="点个数" /> -->
+                <!-- <div style="height:1px;"></div> -->
+                <!-- <input id="color" placeholder="点颜色" /> -->
+                <!-- <input id="stroke" placeholder="线条颜色" /> -->
+                <!-- <input id="dist" placeholder="点吸附距离" /> -->
+                <!-- <input id="e_dist" placeholder="鼠标吸附加速距离" /> -->
+                <!-- <input id="max_conn" placeholder="点到点最大连接数" /> -->
+            <!-- </form> -->
         </div>
         <script src="/static/js/jquery3.3.1.js"></script>
         <script src="/static/js/bootstrap.js"></script>
@@ -68,7 +68,7 @@
                                 vy:  4,//点y轴速度
                                 height: 2,//点高宽，其实为正方形，所以不宜太大
                                 width: 2,
-                                count: 240,//点个数
+                                count: 120,//点个数
                                 color: "176,58,91",//点颜色
                                 stroke: "176,58,91",//线条颜色
                                 dist: 2000,//点吸附距离

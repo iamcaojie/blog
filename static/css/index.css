@@ -3,7 +3,10 @@ body {
     background:rgb(230,230,230);
     padding-top: 70px;
 }
-
+/* 显示所有元素边框 */
+/* body *{ */
+    /* border:0.5px solid rgb(176,58,91); */
+/* } */
 /* 
 单一选择器无法覆盖原始bootstrap样式 
 重写部分导航栏样式
@@ -40,7 +43,7 @@ body {
     -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
     -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
     transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-    border:1px solid rgb(176,58,91);
+    border:0.5px solid rgb(176,58,91);
 }
 .search-btn{
     color:white;
@@ -52,15 +55,18 @@ body {
     border:1px solid rgb(176,58,91);
     background:rgb(176,58,91);
 }
-
-/* 平板状态挡住轮播图 */
+.search-btn:visited{
+    color:white;
+    border:1px solid rgb(176,58,91);
+    background:rgb(176,58,91);
+}
+/* 修复平板状态挡住轮播图 */
 @media (max-width: 1014px) and (min-width: 768px){
     #sign{display:none;}
 }
 @media (max-width: 1014px) and (min-width: 768px){
     #sign{display:none;}
 }
-
 
 
 /* 全局a标签样式 */
@@ -89,63 +95,96 @@ h2{
 }
 
 .row{
-    border:solid 1px rgb(176,58,91);
+
 }
 
 .col-md-9{
-    /* width:850px; */
     margin:2px;
 }
-.col-md-4{
-    /* 不写宽度外边距当做容器使用，会自动对齐匹配 */
-    /* height: 220px; */
-    /* background:rgb(40,146,155); */
-    border:solid 1px rgb(176,58,91);
-    /* clear:both; */
+#carousel{
+    
 }
 #carousel img{
-    max-width:70%
-}
-@media (max-width: 768px){
-    #carousel img{
     max-width:100%;
+    width:100%;
+    /* border-radius: 5px;  */
+}
+
+#introduction{
+    height:456.34px;
+    padding:10px;
+    border-radius: 9px;
+    background:white;
+}
+#avatar{
+    height:100px;
+}
+#avatar div{
+    margin:auto;
+    width:70px;
+    /* z-index:10; */
+    /* transition: width 1s ; */
+    /* -webkit-transition: width 1s ; */
+}
+/* #avatar div:hover{ */
+    /* margin:auto; */
+    /* width:100%; */
+    /* height:70px; */
+/* } */
+#avatar img{
+    width:100%;
+    border-radius: 50%;
+    transition: border-radius 1s ;
+    -webkit-transition: border-radius 1s ;
+}
+#avatar img:hover{
+    width:100%;
+    border-radius: 0;
+}
+dl div{
+    margin:10px;
+}
+dt{
+    float:left;
+}
+dd{
+    padding-left:80px;
+}
+
+/* 简介高度跟随图片变化 */
+@media (max-width: 1200px){
+    #introduction {
+        height:375.2px;
     }
 }
-#introduction{
-    float:right;
-    width:27%;
-    height:auto;
-    border:solid 1px rgb(176,58,91);
-}
-@media (max-width: 800px){
+@media (max-width: 992px){
     #introduction {
-        background-color: lightgreen;
-        border:solid 10px rgb(176,58,91);
+        height:285.97px;
+    }
+}
+@media (max-width: 765px){
+    #introduction {
         display:none;
     }
 }
-.img_pach{
+.thumbnail{
+    border-radius: 9px;
+}
+.img-Placeholder{
     width: 100%;
     height: 78%;
     margin:auto;
 }
-img{
-    margin:auto;
-}
+
 .topic-contents{
     padding-left: 10px;
 }
 .col-md-4{
-    /* background:rgb(40,144,100); */
     margin-bottom: 10px;
-    /* height:450px; */
-    border:solid 1px rgb(176,58,91);
 }
 
 .contents{
-    /* width:80%; */
     height:350px;
-    /* border:solid 1px rgb(176,58,91); */
     border-radius: 9px;
     margin:0 20px;
     background:white;
@@ -155,15 +194,12 @@ img{
     height:35px;
     padding-top:10px;
     margin:0px 10px;
-    /* border:solid 1px rgb(176,58,91); */
 }
 .contents-text{
     height:200px;
     margin-top:15px;
     padding:0 10px 0 1px;
     font-size:14px;
-    /* border:solid 1px rgb(176,58,91); */
-    /* background:green; */
 }
 ul{
     padding-left:20px;
@@ -171,7 +207,6 @@ ul{
 .more{
     float: right;
     display: inline;
-    /* margin-top: 4px; */
 }
 
 .article-date{
@@ -187,7 +222,6 @@ ul{
     height: 120px;
     bottom: 80px;
     right: 2%;
-    /* border:solid 1px red; */
     position: fixed;
     cursor: pointer;
     z-index: 10;
@@ -217,15 +251,11 @@ ul{
     background:blue;
 }
 #toTop{
-    /* height: 40px; */
     background:green;
 }
 #wechat-box{
     width: 120px;
     height: 120px;
-    /* bottom: 90px; */
-    /* right: 11%; */
-    /* position: fixed; */
     z-index: 10;
 }
 #Sidebar img{
@@ -233,7 +263,6 @@ ul{
     height:100%;
 }
 footer{
-    /* background:#2e2c2d; */
     clear:both; 
     text-align:center;
 }
@@ -242,10 +271,8 @@ footer{
     width:100%;
     height:150px;
     margin-top:10px;
-    border:solid 1px red;
-    /* background:grey; */
 }
 
 #copyright{
-    /* color:white; */
+
 }
