@@ -2,7 +2,9 @@
 namespace app\admin\controller;
 
 use think\View;
-// use think\Cookie;
+use think\Cookie;
+use app\admin\model\User;
+
 class Index
 {
     public function index()

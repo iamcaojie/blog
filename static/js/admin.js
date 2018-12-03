@@ -5,21 +5,24 @@ var layer = layui.layer
 
 });
 
+    var E = window.wangEditor;
+    var editor = new E('#editor');
+    // 或者 var editor = new E( document.getElementById('editor') )
+    editor.create();
+document.getElementById('btn1').addEventListener('click', function () {
+    // 读取 html
+    alert(editor.txt.html())
+}, false)
+document.getElementById('btn2').addEventListener('click', function () {
+    // 读取 text
+    alert(editor.txt.text())
+}, false)
+
+
 // jQuery特效
 $(function(){ 
     // 注册链接拦截
-    $("#sign").click(function(){
-        layer.msg('coding中,暂未开放');
-        return false;
-    });
-    // 检查搜索框
-    $("#search").click(function(){
-        var search_text = $("#search_text").val()
-        if ( search_text == ""){
-            layer.msg('请输入搜索内容！！！');
-            return false;
-        }
-    });
+
 });
 
 console.log("欢迎提交bug或建议，联系方式QQ10804842")

@@ -3,6 +3,7 @@ namespace app\blog\controller;
 
 use think\View;
 use think\Request;
+use app\blog\model\User;
 
 class Index
 {
@@ -29,22 +30,6 @@ class Index
         return 'Hello,name:'.$name.' age:'.$age;
     }    
 
-    public function jsondata()
-    {
-        $data = ['name'=>'thinkphp','url'=>'iamcaojie.com'];
-        return json(['data'=>$data,'code'=>'code','message'=>'Done']);
-    }
-    public function xmldata()
-    {
-        $data = ['name'=>'thinkphp','url'=>'iamcaojie.com'];
-        return xml(['data'=>$data,'code'=>'code','message'=>'Done']);
-    }
-    
-    public function jsonpdata()
-    {
-        $data = ['name'=>'thinkphp','url'=>'iamcaojie.com'];
-        return jsonp(['data'=>$data,'code'=>'code','message'=>'Done']);
-    }
     public function tem()
     {
         $request = Request::instance();
