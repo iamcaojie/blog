@@ -1,3 +1,23 @@
+.layui-layout-admin .layui-logo{
+    background:white;
+    color:rgb(176,58,91);
+}
+.layui-layout-admin .layui-header{
+    background:white;
+}
+.layui-nav .layui-nav-item a:hover, .layui-nav .layui-this a{
+    color:rgb(176,58,91);
+}
+.layui-nav .layui-nav-item a{
+    color:rgb(176,58,91);
+}
+
+
+
+
+
+
+
 #editor-box{
     width:695px;
     min-width:695px;
