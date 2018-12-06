@@ -29,22 +29,24 @@
         </ol>
         <div class="container">
             <div class="row">
-                <div class="col-sm-12 col-md-12">
+                {volist name="bloglist" id="vo"}
+                    <div class="col-sm-12 col-md-12">
                     <div class="article-list">
                         <div class="img-Placeholder">
                             <a href="/blog/python/detail-1.html"><img src="/static/img/python.jpg"/></a>
                         </div>
                         <div class="article">
-                            <div class="article-title"><h2><a href="/blog/python/detail-1.html">标题标题标题</a></h2></div>
+                            <div class="article-title"><h2><a href="/blog/python/detail-1.html">{$vo[0]}</a></h2></div>
                             <div class="article-information">
                             <span>原创</span>
                             <span>技巧</span>
                             <span>2018-11-23 09:09</span>
                             </div>
-                            <div class="article-text">文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本</div>
+                            <div class="article-text">{$vo[1]}</div>
                         </div>
                     </div>
-                </div>
+                    </div>
+                {/volist}
             </div>
         </div>
         <nav aria-label="Page navigation">

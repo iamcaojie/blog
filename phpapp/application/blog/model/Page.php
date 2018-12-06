@@ -9,12 +9,17 @@ class Page extends Model
     // 分页列表数据
     public function getBlogList($page,$page_num)
     {
+        if (($page > $this->getPageCount($page,$page_num)) or ($page<1)){
+            return '错误';
+        }else
+        {
         $bloglist = [];
-        $pagelist = $this->where('id','BETWEEN',[($page-1)*$page_num,$page*$page_num])->select();
+        $pagelist = $this->where('id','BETWEEN',[($page-1)*$page_num+1,$page*$page_num])->select();
         foreach ($pagelist as $value){
-            $bloglist[$value -> blog_title] = $value -> blog_text;
+            array_push($bloglist,[$value -> blog_title,$value -> blog_text]);
         }
         return $bloglist;
+        }
     }
     // 总页数
     public function getPageCount($page,$page_num)
