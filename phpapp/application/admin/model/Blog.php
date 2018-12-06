@@ -5,10 +5,12 @@ use think\Model;
 
 class Blog extends Model
 {
-    // public function getBlogList($)
-    // {
-        
-    // }
+    public function getBlogList()
+    {
+            $queryblog = [];
+            $blog = $this->select();
+            return $blog;
+    }
     // public function createBlog()
     // {
         
@@ -26,6 +28,6 @@ class Blog extends Model
         $queryblog = [];
         $blog = $this->where('id',$id)->find();
         array_push($queryblog,[$blog -> blog_title, $blog -> blog_text]);
-        return $queryblog;
+        return $blog;
     }
 }

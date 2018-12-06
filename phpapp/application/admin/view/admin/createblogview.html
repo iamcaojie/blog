@@ -1,0 +1,41 @@
+            <div>发布文章</div>
+            <form class="layui-form" method="POST" action="/admin/index/createblog">
+              <div class="layui-form-item">
+                <label class="layui-form-label">输入框</label>
+                <div class="layui-input-block">
+                  <input type="text" name="blog_title" required  lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">文章分类</label>
+                <div class="layui-input-block">
+                  <select name="city" lay-verify="required">
+                    <option value=""></option>
+                    <option value="0"></option>
+                    <option value="1"></option>
+                    <option value="2"></option>
+                    <option value="3"></option>
+                    <option value="4"></option>
+                  </select>
+                </div>
+              </div>
+                <div class="layui-form-item">
+                <label class="layui-form-label">选择标签</label>
+                <div class="layui-input-block">
+                  <select name="city" lay-verify="required" style="z-index:10;">
+                    <option value=""></option>
+                    <option value="0">Python</option>
+                    <option value="1">PHP</option>
+                    <option value="2">Java</option>
+                    <option value="3"></option>
+                    <option value="4"></option>
+                  </select>
+                </div>
+              </div>
+                <div>
+                    <div id="editor-box" style="z-index:-1;"><div id="editor"></div></div>
+                </div>
+                <button class="layui-btn" id="btn1">获取html数据</button>
+                <button class="layui-btn" id="btn2">获取text数据</button>
+                <button class="layui-btn" id="btn3">提交</button>
+            </form>
