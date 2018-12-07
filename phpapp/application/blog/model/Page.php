@@ -7,14 +7,14 @@ class Page extends Model
 {
     protected $table = 'think_blog';
     // 分页列表数据
-    public function getBlogList($page,$page_num)
+    public function getBlogList($page,$limit)
     {
-        if (($page > $this->getPageCount($page,$page_num)) or ($page<1)){
+        if (($page > $this->getPageCount($page,$limit)) or ($page<1)){
             return '错误';
         }else
         {
         $bloglist = [];
-        $pagelist = $this->where('id','BETWEEN',[($page-1)*$page_num+1,$page*$page_num])->select();
+        $pagelist = $this->where('id','>=',($page-1)*$limit+1)->limit($limit)->select();
         foreach ($pagelist as $value){
             array_push($bloglist,[$value -> blog_title,$value -> blog_text]);
         }
@@ -22,9 +22,9 @@ class Page extends Model
         }
     }
     // 总页数
-    public function getPageCount($page,$page_num)
+    public function getPageCount($page,$limit)
     {
         $count = $this->count();
-        return ceil($count/$page_num);
+        return ceil($count/$limit);
     }
 }
