@@ -2,22 +2,26 @@
 namespace app\admin\model;
 
 use think\Model;
-//update_time在database中设置
+
+// update_time在database中设置
+// layui数据规范{"code":0,"msg":"","count":7,"data":[]}
+// 0:正常; 1:参数错误; 2:查询错误; 3:未知错误
+
 class Blog extends Model
 {
-
     public function getBlogList($page,$limit)
     {
-        // if (($page > $this->getPageCount($page,$limit)) or ($page<1)){
-            // return '错误';
-        // }else
-        // {
+        $bloglist = [];
         $pagelist = $this->where('id','>=',($page-1)*$limit+1)->limit($limit)->select();
         $blogcount = $this->count();
-        // foreach ($pagelist as $value){
-            // array_push($bloglist,[$value -> blog_title,$value -> blog_text]);
-        // }
-        return ["code"=>0,"msg"=>"","count"=>$blogcount,'data'=>$pagelist];
+        // 添加操作数据
+        foreach ($pagelist as $value){
+            // $value['operate']='<a class="edit" onclick="deleteBlog('.$value -> id.')">修改</a><a class="detete" id_data="'.$value -> id.'">删除</a>';
+            $value['operate']='<a >查看 </a><a class="editBlog" onclick="editBlog('.$value -> id.')">修改 </a><a class="deteteBlog" onclick="deleteBlog('.$value -> id.')">删除</a>';
+            
+            array_push($bloglist,$value);
+        }
+        return ["code"=>0,"msg"=>"","count"=>$blogcount,'data'=>$bloglist];
         // }
     }
     public function createBlog()

@@ -117,11 +117,12 @@
             <!-- 博客管理-发布文章 -->
             <div id="createblog" style="display">
             <div>发布文章</div>
-            <form class="layui-form" method="POST" action="/admin/index/createblog">
+            <form class="layui-form">
               <div class="layui-form-item">
+                <input name="id" type="" value=""/>
                 <label class="layui-form-label">标题</label>
                 <div class="layui-input-block">
-                  <input type="text" name="blog_title" required  lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
+                  <input type="text" name="blog_title" required  lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input"/>
                 </div>
             </div>
               <div class="layui-form-item">
@@ -153,19 +154,20 @@
                 <div>
                     <div id="editor-box" style="z-index:-1">
                         <div id="editor" style="z-index:-1"></div>
-                        <input name="blog_text" type="hidden" value/>
+                        <input name="blog_text" type="" value/>
                     </div>
                 </div>
-                <button class="layui-btn" id="btn1">获取html数据</button>
-                <button class="layui-btn" id="btn2">获取text数据</button>
+                <!-- <button class="layui-btn" id="btn1">获取html数据</button> -->
+                <!-- <button class="layui-btn" id="btn2">获取text数据</button> -->
                 <button class="layui-btn" id="btn3">提交</button>
+                <button class="layui-btn" id="btn4">确认修改</button>
             </form>
             </div>
             <!-- 博客管理-文章列表 -->
-            <div style="display:none;">
+            <div style="display">
             <div>文章列表</div>
-            <table id="article" lay-filter="test"></table>
-            </div>
+            <table id="article" lass="layui-table" lay-data="{id: 'idTest'} lay-filter="test"></table>
+
             <!-- 博客管理-标签管理 -->
         </div>
       </div>

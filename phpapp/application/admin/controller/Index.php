@@ -18,27 +18,16 @@ class Index
         $view = new View();
         return $view->fetch("admin/admin");
     }
-    // 以下为前台显示的ajax获取页面，get方法
-    // 网站状态页
+
+    // 以下为ajax后台提交地址，post方法
     public function webStatus($switch='off')
     {
         echo $switch;
         Web::where('id', '1')
             ->where('name', 'blog')
             ->update(['status' => $switch]);
-        
     }
-    // 发布文章页
-    public function getCreateBlogView()
-    {
-        return view('admin/createblogview');
-    }
-    // 文章列表页
-    public function getBlogListView()
-    {
-        
-    }
-    // 以下为ajax后台提交地址，post方法
+
     // 查询博客
     public function queryblog($action='query',$id=1,$page=1,$limit=10)
     {   
@@ -59,6 +48,7 @@ class Index
             return '查询关键词错误';
         }
     }
+    
     // 新增博客
     public function createblog()
     {
@@ -66,11 +56,9 @@ class Index
         $data = input('post.');
         $blog ->blog_title = $data['blog_title'];
         $blog ->blog_text = $data['blog_text'];
-
         $blog ->allowField(true)->save();
-        // 验证
-        print_r($data);
     }
+    
     // 编辑博客
     public function editblog()
     {
@@ -78,8 +66,10 @@ class Index
         $data = input('post.');
         $blog = Blog::get($data['id']);
         $blog ->blog_title = $data['blog_title'];
+        $blog ->blog_text = $data['blog_text'];
         $blog ->allowField(true)->save();
     }
+    
     // 软删除博客
     public function deleteblog($id)
     {   
