@@ -19,7 +19,8 @@ class Python
     }
     public function detail($id=1)
     {
-        $detail = Detail->queryBlog($id)["data"];
+        $detail = new Detail;
+        $detail->queryBlog($id)["data"];
         $view = new View();
         return $view->fetch("detail/detail",['detail'=>$detail]);
     }
