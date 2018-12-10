@@ -13,12 +13,12 @@ var layer = layui.layer
           {field: 'id', title: '博客ID', width:80, sort: true, fixed: 'left'}
           ,{field: 'blog_title', title: '标题', width:80}
           ,{field: 'blog_category', title: '分类', width: 80, sort: true}
-          ,{field: 'blog_text', title: '内容', width:80}
+          ,{field: 'blog_text', title: '内容', width:240}
           ,{field: 'delete_time', title: '软删除时间', width:80} 
-          ,{field: 'update_time', title: '更新时间', width: 177, sort: true}
+          ,{field: 'update_time', title: '更新时间', width: 80, sort: true}
           ,{field: 'create_time', title: '创建时间', width: 80, sort: true}
           ,{field: 'read_count', title: '阅读量', width: 80, sort: true}
-          ,{field: 'operate', title: '操作', width: 160}
+          ,{field: 'operate', title: '操作', width: 150}
         ]]
     });
     form.on('switch(web-status)', function(data){
@@ -32,11 +32,9 @@ var E = window.wangEditor;
 var editor = new E('#editor');
 editor.create();
 
-// var 
+var blogId = $('input[name="id"]')
+var blogTitle = $('input[name="blog_title"]')
 
-// 选项卡切换
-$('#createblog').click(function(){
-});
 
 // 所有数据前端不验证，后端验证数据合法性
 
@@ -54,15 +52,18 @@ $(function(){
     });
     
     // 发布文章
-    // 捕获编辑器可能修改内容的事件，自动保存文章，不改id
-    $(".w-e-text").on('keyup click mouseleave blur',function(){
-        var data = {'id':0,'blog_title':$('input[name="blog_title"]').val(),'blog_text':editor.txt.html()};
-        autoSave(data);
+    // 捕获编辑器可能修改内容的事件，自动保存文章
+    $(".w-e-text").on('keyup click mouseleave',function(){
+        autoSave();
     });
-    // 手动保存，获取保存状态，重置内容，删除临时保存数据
+    // 手动保存，获取保存状态
     $("#btn3").click(function(){
-        var blogData = {'blog_title':$('input[name="blog_title"]').val(),'blog_text':editor.txt.html()};
-        postBlogData('/admin/index/createblog','POST',blogData);
+        // if
+        postBlogData('/admin/index/createblog','POST',getlocalData());
+        return false;
+    });
+    $("#btn4").click(function(){
+        postBlogData('/admin/index/editblog', 'POST', getlocalData());
         return false;
     });
 });
@@ -75,12 +76,28 @@ document.getElementById('btn2').addEventListener('click', function () {
 alert(editor.txt.text());
 }, false);
 
+
+/* 
+处理函数
+
+
+
+
+*/ 
+// 选项卡切换
+function changeTab(tabBox){
+    $('#createblog').click(function(){
+});
+}
+
+
 // 编辑文章
 function editBlog(id){
     // 查询编辑器是否有数据，如有，清空数据或者继续编辑
-    if ($('input[name="blog_title"]').val() == '' && editor.txt.text()==''){
+    if (blogTitle.val() == '' && editor.txt.text()==''){
         getBlogData('/admin/index/queryblog/action/queryblog','GET',{'id':id});
-        
+        $("#btn3").hide();
+        $("#btn4").show();
     }else{
         layer.confirm('编辑器中还有数据，请选择？', {
             btn: ['清空原数据并继续', '编辑原数据']
@@ -88,7 +105,8 @@ function editBlog(id){
             ,btn1: function(index, layero){
                 layer.close(index);
                 getBlogData('/admin/index/queryblog/action/queryblog','GET',{'id':id});
-                // 
+                $("#btn3").hide();
+                $("#btn4").show();
             }
             ,btn2: function(index, layero){
                 // 编辑原数据
@@ -112,11 +130,37 @@ function deleteBlog(id){
     });
 }
 
-// 函数
-//自动保存博客数据
-function autoSave(data){
-    postBlogData('/admin/index/editblog','POST',data);
+// 清空内容
+function emptyBlogData(){
+    blogId.val("");
+    blogTitle.val("");
+    $(".w-e-text").empty();
 }
+
+// 编辑时填充数据到编辑页
+function fillBlogData(DataBox, data, method){
+    if(method='append'){DataBox.append(data);}
+    if(method='val'){DataBox.val(data);}
+}
+
+// 实时获取编辑数据,键与后台对应
+function getlocalData(){
+    var data = {};
+    data["id"] = blogId.val();
+    data["blog_title"] = blogTitle.val();
+    // blogCateData =  .val();
+    // blogTagData =  .val();
+    data["blog_text"] = editor.txt.html();
+    return data
+}
+
+//自动保存博客数据,id为1
+function autoSave(){
+    var tempData = getlocalData();
+    tempData['id'] = 1;
+    postBlogData('/admin/index/editblog','POST',tempData);
+}
+
 // 提交博客数据
 function postBlogData(url,method,data){
     $(function(){ 
@@ -124,24 +168,37 @@ function postBlogData(url,method,data){
             type:method || 'POST',
             url:url,
             data:data,
+            dataType:'json',
             success: function(data){
-                layer.msg("ajax上载完成");
-                tableIns.reload();
+                if(data.msg == "自动保存完成"){
+                    // layer.msg("自动保存");
+                }else{
+                    layer.msg(data["msg"])
+                    emptyBlogData();
+                    tableIns.reload();
+                }
+            },error:function(data){
+                layer.msg("保存失败");
             }
         });
     });
 }
-// 根据id查询博客数据
+
+// 根据id查询博客数据,编辑时调用
 function getBlogData(url,method,data){
     $(function(){ 
         $.ajax({
             type:method || 'GET',
             url:url,
             data:data,
+            dataType:'json',
             success: function(data){
-                layer.msg("ajax查询完成");
-               // 填充数据到编辑器
-               // 
+                // 填充数据到编辑器
+                // layer.msg(data.msg);
+                emptyBlogData();
+                fillBlogData(blogId, data.data["id"], 'val');
+                fillBlogData(blogTitle, data.data["blog_title"], 'val');
+                fillBlogData($(".w-e-text"), data.data["blog_text"], 'append');
             }
         });
     });
@@ -153,16 +210,13 @@ function deleteBlogData(url,method,data){
             type:method || 'POST',
             url:url,
             data:data,
+            dataType:'json',
             success: function(data){
-                layer.msg('删除完成');
+                layer.msg(data.msg);
                 tableIns.reload();
             }
         });
     });
 }
-// 编辑时填充数据到编辑器
-function fillBlogdata(data){
-    
-}
- 
+
 console.log("欢迎提交bug或建议，联系方式QQ10804842");

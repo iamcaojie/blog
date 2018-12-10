@@ -3,6 +3,7 @@ namespace app\blog\controller;
 
 use think\View;
 use app\blog\model\Page;
+use app\blog\model\Detail;
 class Python
 {
     public function index($page=1,$page_num=10)
@@ -18,8 +19,8 @@ class Python
     }
     public function detail($id=1)
     {
-        
+        $detail = Detail->queryBlog($id)["data"];
         $view = new View();
-        return $view->fetch("detail/detail");
+        return $view->fetch("detail/detail",['detail'=>$detail]);
     }
 }

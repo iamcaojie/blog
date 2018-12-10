@@ -40,6 +40,7 @@ class Index
             break;
         case 'queryblog'://根据id获取博客
             return json($blog->queryBlog($id));
+            // print_r(json($blog->queryBlog($id)));
             break;
         case 'query':
             return '查询错误';
@@ -57,6 +58,7 @@ class Index
         $blog ->blog_title = $data['blog_title'];
         $blog ->blog_text = $data['blog_text'];
         $blog ->allowField(true)->save();
+        return json(["code"=>0, "msg"=>"保存成功"]);
     }
     
     // 编辑博客
@@ -65,15 +67,21 @@ class Index
         // 可修改表单字段，避免和数据库一致
         $data = input('post.');
         $blog = Blog::get($data['id']);
-        $blog ->blog_title = $data['blog_title'];
-        $blog ->blog_text = $data['blog_text'];
-        $blog ->allowField(true)->save();
+        $blog -> blog_title = $data['blog_title'];
+        $blog -> blog_text = $data['blog_text'];
+        $blog -> allowField(true) -> save();
+        if ($data['id']==1){
+            return json(["code"=>0, "msg"=>"自动保存完成"]);
+        }else{
+            return json(["code"=>0, "msg"=>"编辑成功"]);
+        }
+        
     }
     
     // 软删除博客
     public function deleteblog($id)
     {   
         $blog = New Blog;
-        echo $blog->deleteBlog($id);
+        return json($blog->deleteBlog($id));
     }
 }
