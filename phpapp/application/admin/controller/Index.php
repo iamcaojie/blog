@@ -3,7 +3,7 @@ namespace app\admin\controller;
 
 use think\View;
 use think\Cookie;
-use app\admin\model\User;
+use app\admin\model\Users;
 use app\admin\model\Web;
 use app\admin\model\Blog;
 
@@ -12,14 +12,14 @@ class Index
 {
     public function index()
     {
-        // echo ;
         cookie(['prefix' => 'think_', 'expire' => 3600]);
         cookie('name', 'value', 3600);
         $view = new View();
         return $view->fetch("admin/admin");
     }
 
-    // 以下为ajax后台提交地址，post方法
+    // 以下为ajax后台提交地址
+    // 网站状态
     public function webStatus($switch='off')
     {
         echo $switch;
@@ -84,4 +84,10 @@ class Index
         $blog = New Blog;
         return json($blog->deleteBlog($id));
     }
+    
+    // 
+    
+    
+    
+    
 }

@@ -3,7 +3,7 @@ namespace app\admin\model;
 
 use think\Model;
 
-class User extends Model
+class Users extends Model
 {
     public function getNameAttr($value)
     {

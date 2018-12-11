@@ -3,7 +3,7 @@ namespace app\admin\model;
 
 use think\Model;
 
-class Web extends Model
+class Massage extends Model
 {
     public function getWebStatus()
     {

@@ -10,16 +10,16 @@ use think\Model;
 
 class Blog extends Model
 {
-    protected $type = [
+    // protected $type = [
         // 'delete_time'    =>  'datetime',
-    ];
+    // ];
     
     public function getBlogList($page,$limit)
     {
         $bloglist = [];
-        $pagelist = $this ->where('id','>=',($page-1)*$limit+1) -> limit($limit) -> select();
-        $blogcount = $this -> count();
-        // -> where('delete_time',null) bug
+        $pagelist = $this -> where('delete_time',null) -> limit(($page-1)*$limit,$page*$limit) -> select();
+        $blogcount = $this -> where('delete_time',null) -> count();
+        //  bug
         // 添加操作数据
         foreach ($pagelist as $value){
             $value["operate"]='<a >查看 </a><a class="editBlog" onclick="editBlog('.$value -> id.')">修改 </a><a class="deteteBlog" onclick="deleteBlog('.$value -> id.')">删除</a>';
