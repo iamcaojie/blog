@@ -14,7 +14,7 @@ var layer = layui.layer
 });
 
 
-// jQuery特效
+
 $(function(){ 
     // 注册链接拦截
     $("#sign").click(function(){
@@ -34,7 +34,9 @@ $(function(){
         $('#carousel').css("height",carouselAutoHeight());
     });
     // 联系方式
-    
+    $('#wechat').hover(function(){
+        $('#wechat-box').toggle();
+    });
     // 留言
     $('#massage').click(function(){
         layer.open({
