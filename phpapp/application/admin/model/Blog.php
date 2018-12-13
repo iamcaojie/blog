@@ -10,16 +10,22 @@ use think\Model;
 
 class Blog extends Model
 {
+    
     // protected $type = [
         // 'delete_time'    =>  'datetime',
     // ];
-    
+    // 相对分类的一对多关联
+    public function cate()
+    {
+        return $this->belongsTo('cate');
+    }
+    // 获取博客列表
     public function getBlogList($page,$limit)
     {
         $bloglist = [];
         $pagelist = $this -> where('delete_time',null) -> limit(($page-1)*$limit,$page*$limit) -> select();
         $blogcount = $this -> where('delete_time',null) -> count();
-        //  bug
+
         // 添加操作数据
         foreach ($pagelist as $value){
             $value["operate"]='<a >查看 </a><a class="editBlog" onclick="editBlog('.$value -> id.')">修改 </a><a class="deteteBlog" onclick="deleteBlog('.$value -> id.')">删除</a>';
@@ -45,7 +51,7 @@ class Blog extends Model
     public function editBlog()
     {
         // pass
-    }    
+    }
     
     public function queryBlog($id)
     {

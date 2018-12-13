@@ -26,18 +26,18 @@ class Index
             'create table think_cate(id int(10) AUTO_INCREMENT, blog_category varchar(10), create_time int(11), update_time int(11), delete_time int(11),primary key(id)) AUTO_INCREMENT=1 DEFAULT CHARSET=utf8',
             // 博客标签表(n) -- 博客文章表(n)
             'create table think_tags(id int(10) AUTO_INCREMENT, create_time int(11), update_time int(11), delete_time int(11),primary key(id)) AUTO_INCREMENT=1 DEFAULT CHARSET=utf8',
-            // 中间表  博客标签表(n) -- 博客文章表(n)
-            'create table think_blogs_tags(id int(10) tag_id int(10) blog_id int(10) AUTO_INCREMENT) AUTO_INCREMENT=1 DEFAULT CHARSET=utf8',
+            // 中间表  博客标签表(n)(blog_id) -- 博客文章表(n)(tag_id)
+            'create table think_blogs_tags(id int(10) AUTO_INCREMENT, tag_id int(10), blog_id int(10), create_time int(11), update_time int(11), delete_time int(11), primary key(id)) AUTO_INCREMENT=1 DEFAULT CHARSET=utf8',
             // 文档链接表
             'create table think_doclinks(id int(10) AUTO_INCREMENT, name varchar(10), link varchar(100), create_time int(11),update_time int(11),delete_time int(11),primary key(id)) AUTO_INCREMENT=1 DEFAULT CHARSET=utf8', 
             // 外站链接表
             'create table think_weblinks(id int(10) AUTO_INCREMENT, name varchar(10), link varchar(100),create_time int(11),update_time int(11),delete_time int(11),primary key(id)) AUTO_INCREMENT=1 DEFAULT CHARSET=utf8',
             // 留言表
             'create table think_massage(id int(10) AUTO_INCREMENT, massage_title varchar(10), massage_text varchar(100),create_time int(11),update_time int(11),delete_time int(11),primary key(id)) AUTO_INCREMENT=1 DEFAULT CHARSET=utf8',
-            // 评论表(n) -- 博客文章表(1)
-            'create table think_comments(id int(10) AUTO_INCREMENT, user_id int(10), blog_id int(10), comment_text varchar(100),create_time int(11),update_time int(11),delete_time int(11), AUTO_INCREMENT=1primary key(id)) AUTO_INCREMENT=1 DEFAULT CHARSET=utf8',
+            // 评论表(n)(blog_id) -- 博客文章表(1)
+            'create table think_comments(id int(10) AUTO_INCREMENT, user_id int(10), blog_id int(10), comment_text varchar(100),create_time int(11),update_time int(11),delete_time int(11), primary key(id)) AUTO_INCREMENT=1 DEFAULT CHARSET=utf8',
             // 下载链接表
-            'create table think_downloads(id int(10) AUTO_INCREMENT, name int(10), link varchar(100),primary key(id)) AUTO_INCREMENT=1 DEFAULT CHARSET=utf8'
+            'create table think_downloads(id int(10) AUTO_INCREMENT, name int(10), link varchar(100),create_time int(11),update_time int(11),delete_time int(11),primary key(id)) AUTO_INCREMENT=1 DEFAULT CHARSET=utf8'
         ];
         
         $dmlsql = [

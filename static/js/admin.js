@@ -7,12 +7,12 @@ var layer = layui.layer
     tableIns = table.render({
         elem: '#article'
         ,height: 400
-        ,url: '/admin/index/queryblog/action/getbloglist' //数据接口
+        ,url: '/admin/blog/queryblog/action/getbloglist' //数据接口
         ,page: true //开启分页
         ,cols: [[ //表头
           {field: 'id', title: '博客ID', width:80, sort: true, fixed: 'left'}
           ,{field: 'blog_title', title: '标题', width:80}
-          ,{field: 'blog_category', title: '分类', width: 80, sort: true}
+          ,{field: 'cate_id', title: '分类', width: 80, sort: true}
           ,{field: 'blog_text', title: '内容', width:240}
           ,{field: 'delete_time', title: '软删除时间', width:80} 
           ,{field: 'update_time', title: '更新时间', width: 80, sort: true}
@@ -59,11 +59,11 @@ $(function(){
     // 手动保存，获取保存状态
     $("#btn3").click(function(){
         // if
-        postBlogData('/admin/index/createblog','POST',getlocalData());
+        postBlogData('/admin/blog/createblog','POST',getlocalData());
         return false;
     });
     $("#btn4").click(function(){
-        postBlogData('/admin/index/editblog', 'POST', getlocalData());
+        postBlogData('/admin/blog/editblog', 'POST', getlocalData());
         return false;
     });
 });
@@ -104,7 +104,7 @@ function editBlog(id){
             ,anim: 2
             ,btn1: function(index, layero){
                 layer.close(index);
-                getBlogData('/admin/index/queryblog/action/queryblog','GET',{'id':id});
+                getBlogData('/admin/blog/queryblog/action/queryblog','GET',{'id':id});
                 $("#btn3").hide();
                 $("#btn4").show();
             }
@@ -122,7 +122,7 @@ function deleteBlog(id){
         ,anim: 2
         ,btn1: function(index, layero){
             layer.close(index);
-            deleteBlogData('/admin/index/deleteblog','POST',{'id':id});
+            deleteBlogData('/admin/blog/deleteblog','POST',{'id':id});
         }
         ,btn2: function(index, layero){
             // pass
@@ -158,7 +158,7 @@ function getlocalData(){
 function autoSave(){
     var tempData = getlocalData();
     tempData['id'] = 1;
-    postBlogData('/admin/index/editblog','POST',tempData);
+    postBlogData('/admin/blog/editblog','POST',tempData);
 }
 
 // 提交博客数据
