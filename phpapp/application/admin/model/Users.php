@@ -3,11 +3,37 @@ namespace app\admin\model;
 
 use think\Model;
 
+
 class Users extends Model
 {
-    public function getNameAttr($value)
+
+    // 静态方法，查询所有数据
+    // sql:select * from _users;
+    public static function getUsersList()
     {
-        $status = [-1=>'删除',0=>'禁用',1=>'正常',2=>'待审核'];
-        return $value;
+        return self::select();
+    }
+    
+    public static function createUsers($data)
+    {
+        self::create($data);
+        return ["data"=>""];
+    }
+    
+    public static function editUsers($data)
+    {
+        self::update($data);
+        return ["data"=>""];
+    }
+    
+    public static function deleteUsers($data)
+    {
+        self::destroy($data);
+        return ["data"=>""];
+    }
+    
+    public static function queryUsers($data)
+    {
+        //pass
     }
 }

@@ -21,7 +21,7 @@ class Index
             // 网站用户表
             'create table think_users(id int(10) AUTO_INCREMENT, username varchar(10), password varchar(10),permission int(10),create_time int(11),update_time int(11),delete_time int(11),primary key(id)) DEFAULT CHARSET=utf8',
             // 博客文章表(n)(cate_id) -- 博客分类表(1)
-            'create table think_blog(id int(10) AUTO_INCREMENT, blog_title varchar(30), cate_id int(10), blog_text char(100),create_time int(11),update_time int(11),delete_time int(11),read_count int(10),primary key(id)) AUTO_INCREMENT=1 DEFAULT CHARSET=utf8',
+            'create table think_blog(id int(10) AUTO_INCREMENT, blog_title varchar(30), cate_id int(10), blog_text char(100),create_time int(11),update_time int(11),delete_time int(11),read_count int(10) default 0,primary key(id)) AUTO_INCREMENT=1 DEFAULT CHARSET=utf8',
             // 博客分类表(1) -- 博客文章表(n)
             'create table think_cate(id int(10) AUTO_INCREMENT, blog_category varchar(10), create_time int(11), update_time int(11), delete_time int(11),primary key(id)) AUTO_INCREMENT=1 DEFAULT CHARSET=utf8',
             // 博客标签表(n) -- 博客文章表(n)

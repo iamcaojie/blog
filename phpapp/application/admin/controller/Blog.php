@@ -2,6 +2,8 @@
 namespace app\admin\controller;
 
 use app\admin\model\Blog as Blogmodel;
+use app\admin\model\Cate as Catemodel;
+
 
 class Blog
 {
@@ -11,7 +13,7 @@ class Blog
     public function queryblog($action='query',$id=1,$page=1,$limit=10)
     {   
         $blog = New Blogmodel;
-        // 根据关键字调用模型方法，返回json数据
+        // 根据关键字调用模型方法
         switch ($action)
         {
         case 'getbloglist'://获取全部博客,layui表格组件所需数据
@@ -19,7 +21,6 @@ class Blog
             break;
         case 'queryblog'://根据id获取博客
             return json($blog->queryBlog($id));
-            // print_r(json($blog->queryBlog($id)));
             break;
         case 'query':
             return '查询错误';
@@ -29,7 +30,7 @@ class Blog
         }
     }
     
-    // 新增博客
+    // 新增博客 -> 写入已有分类 -> 向中间表添加标签数据
     // post /admin/blog/createblog
     public function createblog()
     {
@@ -37,11 +38,12 @@ class Blog
         $data = input('post.');
         $blog ->blog_title = $data['blog_title'];
         $blog ->blog_text = $data['blog_text'];
+        
         $blog ->allowField(true)->save();
         return json(["code"=>0, "msg"=>"保存成功"]);
     }
     
-    // 编辑博客
+    // 编辑博客 -> 编辑已有分类 -> 向中间表修改标签数据
     // post /admin/blog/editblog
     public function editblog()
     {
@@ -59,7 +61,7 @@ class Blog
         
     }
     
-    // 软删除博客
+    // 软删除博客->
     // post /admin/blog/deleteblog
     public function deleteblog($id)
     {   

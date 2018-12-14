@@ -3,14 +3,37 @@ namespace app\admin\model;
 
 use think\Model;
 
+
 class Web extends Model
 {
-    public function getWebStatus()
+ 
+    // 静态方法，查询所有数据
+    // sql:select * from _web;
+    public static function getWebList()
     {
-        return $this->where('name','blog');
+        return self::select();
     }
-    // public function getWebStatus()
-    // {
-        
-    // }
+    
+    public static function createWeb($data)
+    {
+        self::create($data);
+        return ["data"=>""];
+    }
+    
+    public static function editWeb($data)
+    {
+        self::update($data);
+        return ["data"=>""];
+    }
+    
+    public static function deleteWeb($data)
+    {
+        self::destroy($data);
+        return ["data"=>""];
+    }
+    
+    public static function queryWeb($data)
+    {
+        //pass
+    }
 }

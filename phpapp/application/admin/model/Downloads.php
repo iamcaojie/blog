@@ -4,41 +4,36 @@ namespace app\admin\model;
 use think\Model;
 
 
-class Weblinks extends Model
+class Downloads extends Model
 {
-    
+
     // 静态方法，查询所有数据
-    // sql:select * from _weblinks;
-    public static function getWeblinksList()
+    // sql:select * from _downloads;
+    public static function getDownloadsList()
     {
         return self::select();
     }
     
-    public static function createWeblinks($data)
+    public static function createDownloads($data)
     {
         self::create($data);
         return ["data"=>""];
     }
     
-    public static function editWeblinks($data)
+    public static function editDownloads($data)
     {
         self::update($data);
         return ["data"=>""];
     }
     
-    public static function deleteWeblinks($data)
+    public static function deleteDownloads($data)
     {
         self::destroy($data);
         return ["data"=>""];
     }
     
-    public static function queryWeblinks($data)
+    public static function queryDownloads($data)
     {
         //pass
     }
-}
-    
-    
-    
-    
 }

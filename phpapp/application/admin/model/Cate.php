@@ -7,7 +7,7 @@ use think\Model;
 class Cate extends Model
 {
     // 一个分类对应多篇文章
-    public function common()
+    public function blog()
     {   
         return $this->hasMany('Blog','cate_id','id');
     }   
@@ -40,9 +40,4 @@ class Cate extends Model
     {
         //pass
     }
-}
-    
-    
-    
-    
 }

@@ -31,7 +31,7 @@ class Cate
     {
         $data = input('post.');
         // 验证数据合法性
-        $data = Catemodel::editsCate($data);
+        $data = Catemodel::editCate($data);
         return json(["code"=>0,"msg"=>"编辑分类成功"]);
     }
     
