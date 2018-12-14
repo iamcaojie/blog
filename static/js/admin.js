@@ -12,7 +12,8 @@ var layer = layui.layer
         ,cols: [[ //表头
           {field: 'id', title: '博客ID', width:80, sort: true, fixed: 'left'}
           ,{field: 'blog_title', title: '标题', width:80}
-          ,{field: 'cate_id', title: '分类', width: 80, sort: true}
+          ,{field: 'cate', title: '分类', width: 80}
+          ,{field: 'tag', title: '标签', width: 80}
           ,{field: 'blog_text', title: '内容', width:240}
           ,{field: 'delete_time', title: '软删除时间', width:80} 
           ,{field: 'update_time', title: '更新时间', width: 80, sort: true}
@@ -32,9 +33,9 @@ var E = window.wangEditor;
 var editor = new E('#editor');
 editor.create();
 
-var blogId = $('input[name="id"]')
-var blogTitle = $('input[name="blog_title"]')
-
+var blogId = $('input[name="id"]');
+var blogTitle = $('input[name="blog_title"]');
+var blogCategory = $('#blog_category option:selected');
 
 // 所有数据前端不验证，后端验证数据合法性
 
@@ -148,7 +149,7 @@ function getlocalData(){
     var data = {};
     data["id"] = blogId.val();
     data["blog_title"] = blogTitle.val();
-    // blogCateData =  .val();
+    data["cate_id"] =  blogCategory.val();
     // blogTagData =  .val();
     data["blog_text"] = editor.txt.html();
     return data

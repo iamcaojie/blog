@@ -8,8 +8,8 @@ use app\admin\model\Cate as Catemodel;
 class Blog
 {
     // 查询博客 
-    // get /admin/blog/queryblog/getbloglist/page/?/limit/?
-    // get /admin/blog/queryblog/queryblog/id/?
+    // get /admin/blog/queryblog/action/getbloglist/page/?/limit/?
+    // get /admin/blog/queryblog/action/queryblog/id/?
     public function queryblog($action='query',$id=1,$page=1,$limit=10)
     {   
         $blog = New Blogmodel;
@@ -20,7 +20,7 @@ class Blog
             return json($blog->getBlogList($page,$limit));
             break;
         case 'queryblog'://根据id获取博客
-            return json($blog->queryBlog($id));
+            return json(Blogmodel::queryBlog($id));
             break;
         case 'query':
             return '查询错误';
@@ -30,16 +30,13 @@ class Blog
         }
     }
     
-    // 新增博客 -> 写入已有分类 -> 向中间表添加标签数据
+    // 新增博客(分类直接写入对应cate_id,只能向中间表添加已有标签数据)
     // post /admin/blog/createblog
     public function createblog()
     {
-        $blog = New Blogmodel;
         $data = input('post.');
-        $blog ->blog_title = $data['blog_title'];
-        $blog ->blog_text = $data['blog_text'];
-        
-        $blog ->allowField(true)->save();
+        // $blog ->allowField(true)->save();
+        Blogmodel::createBlog($data);
         return json(["code"=>0, "msg"=>"保存成功"]);
     }
     

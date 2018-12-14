@@ -14,13 +14,13 @@ class Blog extends Model
     // 相对与分类的一对多关联
     public function cate()
     {
-        return $this->belongsTo('cate','cate_id');
+        return $this->belongsTo('cate','cate_id','id');
     }
     
     // 标签与博客多对多关联
     public function tags()
     {
-        return $this->belongsToMany('tags','think_blogs_tags','tag_id','blog_id');
+        return $this->belongsToMany('tags','blogs_tags','tag_id','blog_id');
     }
     
     // 博客与评论一对多关联
@@ -36,26 +36,31 @@ class Blog extends Model
         $pagelist = $this -> where('delete_time',null) -> limit(($page-1)*$limit,$page*$limit) -> select();
         $blogcount = $this -> where('delete_time',null) -> count();
 
-        // 查询分类数据 查询标签数据 添加操作数据 
+        // 查询原始分类数据 查询原始标签数据 添加操作数据 
         foreach ($pagelist as $value){
-            $value['cate'] = self::get($value['id']) -> cate() -> cate;
-            $value['tag'] = self::get($value['id']) -> tags;
+            $value['cate'] = self::get($value['id']) -> cate-> blog_category;
+            $tag = [];
+            foreach(self::get($value['id']) -> tags as $temp)
+            {
+                array_push($tag, $temp['tag']);
+            }
+            $value['tag'] = $tag;
             $value["operate"]='<a >查看 </a><a class="editBlog" onclick="editBlog('.$value -> id.')">修改 </a><a class="deteteBlog" onclick="deleteBlog('.$value -> id.')">删除</a>';
             array_push($bloglist,$value);
         }
         return ["code"=>0,"msg"=>"列表查询完成","count"=>$blogcount,"data"=>$bloglist];
     }
     
-    public function createBlog()
+    public static function createBlog($data)
     {
-        // pass
+        self::create($data);
     }
     
     // 只标记删除，记录delete_time,int类型
     // 不删除评论
     public function deleteBlog($id)
     {
-        $deleteblogitem = $this::get($id);
+        $deleteblogitem = self::get($id);
         $deleteblogitem -> delete_time = strtotime('now');
         $deleteblogitem -> save();
         return ["code"=>0,"msg"=>"删除成功"];
@@ -65,10 +70,16 @@ class Blog extends Model
     {
         // pass
     }
-    
-    public function queryBlog($id)
+    // 查询表数据，返回关联表的标签id
+    public static function queryBlog($id)
     {
-        $blog = $this->where('id',$id)->find();
+        $blog = self::get($id);
+        $tag = [];
+        foreach($blog -> tags as $temp)
+        {
+            array_push($tag,$temp['id']);
+        }
+        $blog['tag'] = $tag;
         return ["code"=>0,"msg"=>"查询完成","data"=>$blog];
     }
 }
