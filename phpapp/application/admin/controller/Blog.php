@@ -8,16 +8,15 @@ use app\admin\model\Cate as Catemodel;
 class Blog
 {
     // 查询博客 
-    // get /admin/blog/queryblog/action/getbloglist/page/?/limit/?
-    // get /admin/blog/queryblog/action/queryblog/id/?
+    // get /admin/blog/queryblog/action/getbloglist/page/1/limit/10
+    // get /admin/blog/queryblog/action/queryblog/id/1
     public function queryblog($action='query',$id=1,$page=1,$limit=10)
     {   
-        $blog = New Blogmodel;
         // 根据关键字调用模型方法
         switch ($action)
         {
         case 'getbloglist'://获取全部博客,layui表格组件所需数据
-            return json($blog->getBlogList($page,$limit));
+            return json(Blogmodel::getBlogList($page,$limit));
             break;
         case 'queryblog'://根据id获取博客
             return json(Blogmodel::queryBlog($id));

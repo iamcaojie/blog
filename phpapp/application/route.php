@@ -11,12 +11,12 @@
 // 注册路由
 //注册路由到index模块的Index控制器的hello操作
 
-// use think\Route;
+ use think\Route;
 // Route::rule('index/','index/Index/index');
 // Route::rule('json/','index/Index/jsondata');
 // Route::rule('xml/','index/Index/xmldata');
 // Route::rule('baidu/','https://www.baidu.com');
-// Route::rule('hello/:name/:age','index/Index/hello',"GET",['ext'=>'html']);
+ Route::rule('blog/python/detail/:id','index/Index/hello',"GET",['ext'=>'html']);
 
 // 正则限制变量规则
 // Route::pattern([

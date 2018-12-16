@@ -2,26 +2,21 @@
 namespace app\blog\controller;
 
 use think\View;
-use app\blog\model\Page;
+// use app\blog\model\Page;
+use app\admin\model\Blog as Blogmodel;
 use app\blog\model\Detail;
 class Python
 {
-    public function index($page=1,$page_num=10)
+    public function index($page=1,$limit=10)
     {
-        $pagel =new Page;
-        $bloglist = $pagel->getBlogList($page,$page_num);
-        $pagecount = $pagel->getPageCount($page,$page_num);
-        // print_r($bloglist);
-        // print_r($pagecount);
-        
+        $bloglist = Blogmodel::getBlogList($page,$limit);
         $view = new View();
-        return $view->fetch("contents/contents",['bloglist'=>$bloglist,$pagecount]);
+        return $view->fetch("contents/contents",['bloglist'=>$bloglist['data'],'pagecount'=>$bloglist['count']]);
     }
-    public function detail($id=1)
+    public function detail($id)
     {
-        $detail = new Detail;
-        $detail->queryBlog($id)["data"];
+        $detail = Blogmodel::queryBlog($id);
         $view = new View();
-        return $view->fetch("detail/detail",['detail'=>$detail]);
+        return $view->fetch("detail/detail",['blogdetail'=>$detail['data']]);
     }
 }

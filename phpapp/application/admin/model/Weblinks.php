@@ -37,8 +37,3 @@ class Weblinks extends Model
         //pass
     }
 }
-    
-    
-    
-    
-}

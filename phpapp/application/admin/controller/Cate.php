@@ -36,10 +36,10 @@ class Cate
     }
     
     // 查询分类
-    public function queryCate()
-    {
-        //pass
-    }
+    // public function queryCate()
+    // {
+        // pass
+    // }
     
     // 删除分类
     // 已有博客的重置为默认分类

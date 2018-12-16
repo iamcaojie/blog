@@ -30,15 +30,15 @@ class Blog extends Model
     }
     
     // 获取博客列表
-    public function getBlogList($page,$limit)
+    public static function getBlogList($page,$limit)
     {
         $bloglist = [];
-        $pagelist = $this -> where('delete_time',null) -> limit(($page-1)*$limit,$page*$limit) -> select();
-        $blogcount = $this -> where('delete_time',null) -> count();
+        $pagelist = self::where('delete_time',null) -> limit(($page-1)*$limit,$page*$limit) -> select();
+        $blogcount = self::where('delete_time',null) -> count();
 
         // 查询原始分类数据 查询原始标签数据 添加操作数据 
         foreach ($pagelist as $value){
-            $value['cate'] = self::get($value['id']) -> cate-> blog_category;
+            $value['cate'] = self::get($value['id']) -> cate -> blog_category;
             $tag = [];
             foreach(self::get($value['id']) -> tags as $temp)
             {
@@ -79,7 +79,7 @@ class Blog extends Model
         {
             array_push($tag,$temp['id']);
         }
-        $blog['tag'] = $tag;
+        $blog['tags'] = $tag;
         return ["code"=>0,"msg"=>"查询完成","data"=>$blog];
     }
 }

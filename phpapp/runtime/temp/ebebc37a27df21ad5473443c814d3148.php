@@ -1,3 +1,4 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:68:"D:\server\nginx\html/phpapp/application/blog\view\detail\detail.html";i:1544958047;}*/ ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
     <head>
@@ -30,8 +31,8 @@
             <div class="row">
                 <div class="col-md-9">
                     <div class="article-detail">
-                        <div class="article-title"><h1>{$blogdetail['blog_title']}</h1></div>
-                        <div class="article-text">{$blogdetail['blog_text']}</div>
+                        <div class="article-title"><h1><?php echo $blogdetail['blog_title']; ?></h1></div>
+                        <div class="article-text"><?php echo $blogdetail['blog_text']; ?></div>
                     </div>
                     <div>
                     

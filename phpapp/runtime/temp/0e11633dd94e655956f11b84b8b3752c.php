@@ -1,3 +1,4 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:72:"D:\server\nginx\html/phpapp/application/blog\view\contents\contents.html";i:1544965445;}*/ ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
     <head>
@@ -29,25 +30,25 @@
         </ol>
         <div class="container">
             <div class="row">
-                {volist name="bloglist" id="blogdata"}
+                <?php if(is_array($bloglist) || $bloglist instanceof \think\Collection || $bloglist instanceof \think\Paginator): $i = 0; $__LIST__ = $bloglist;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$blogdata): $mod = ($i % 2 );++$i;?>
                     <div class="col-sm-12 col-md-12">
                     <div class="article-list">
                         <div class="img-Placeholder">
-                            <a href="/blog/python/detail/id/{$blogdata['id']}.html"><img src="/static/img/python.jpg"/></a>
+                            <a href="/blog/python/detail/id/<?php echo $blogdata['id']; ?>.html"><img src="/static/img/python.jpg"/></a>
                         </div>
                         <div class="article">
-                            <div class="article-title"><h2><a href="/blog/python/detail/id/{$blogdata['id']}.html">{$blogdata['blog_title']}</a></h2></div>
+                            <div class="article-title"><h2><a href="/blog/python/detail/id/<?php echo $blogdata['id']; ?>.html"><?php echo $blogdata['blog_title']; ?></a></h2></div>
                             <div class="article-information">
-                            {volist name="blogdata['tag']" id="tag"}
-                                  <span> {$tag}</span>
-                            {/volist}
-                            <span>{$blogdata['update_time']}</span>
+                            <?php if(is_array($blogdata['tag']) || $blogdata['tag'] instanceof \think\Collection || $blogdata['tag'] instanceof \think\Paginator): $i = 0; $__LIST__ = $blogdata['tag'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$tag): $mod = ($i % 2 );++$i;?>
+                                  <span> <?php echo $tag; ?></span>
+                            <?php endforeach; endif; else: echo "" ;endif; ?>
+                            <span><?php echo $blogdata['update_time']; ?></span>
                             </div>
-                            <div class="article-text">{$blogdata['blog_text']}</div>
+                            <div class="article-text"><?php echo $blogdata['blog_text']; ?></div>
                         </div>
                     </div>
                     </div>
-                {/volist}
+                <?php endforeach; endif; else: echo "" ;endif; ?>
             </div>
         </div>
         <nav aria-label="Page navigation">

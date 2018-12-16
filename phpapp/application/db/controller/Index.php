@@ -43,7 +43,7 @@ class Index
         $dmlsql = [
             'insert into think_web(id, name, status, domain) values(1,"blog","on","iamcaojie.com")',
             'insert into think_users(id,username,password,permission) values(1,"caojie","caojie",0)',
-            'insert into think_blog(id) values(1)'
+            'insert into think_blog(id) values(1)',
             'insert into think_cate(id, blog_category) values(0,"无")'
         ];
         foreach ($ddlsql as $value)
@@ -52,7 +52,7 @@ class Index
         }
         foreach ($dmlsql as $value)
         {
-               Db::execute($value); 
+           Db::execute($value); 
         }
         echo '完成';
     }
