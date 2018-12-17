@@ -1,3 +1,4 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:67:"D:\server\nginx\html/phpapp/application/admin\view\admin\admin.html";i:1545055835;}*/ ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
     <head>
@@ -131,13 +132,11 @@
               <div class="layui-form-item">
                 <label class="layui-form-label">笔记分类</label>
                 <div class="layui-input-block">
-                    {volist name='catelist' id='cate'}
-                     {if condition='$cate["blog_category"] == "无"'}
-                         <input type="radio" name="blog-category" value="{$cate['id']}" title="{$cate['blog_category']}" checked>
-                     {else /}
-                         <input type="radio" name="blog-category" value="{$cate['id']}" title="{$cate['blog_category']}">
-                     {/if}
-                    {/volist}
+                    <?php if(is_array($catelist) || $catelist instanceof \think\Collection || $catelist instanceof \think\Paginator): $i = 0; $__LIST__ = $catelist;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$cate): $mod = ($i % 2 );++$i;if($cate["blog_category"] == "无"): ?>
+                         <input type="radio" name="blog-category" value="<?php echo $cate['id']; ?>" title="<?php echo $cate['blog_category']; ?>" checked>
+                     <?php else: ?>
+                         <input type="radio" name="blog-category" value="<?php echo $cate['id']; ?>" title="<?php echo $cate['blog_category']; ?>">
+                     <?php endif; endforeach; endif; else: echo "" ;endif; ?>
                     <div><a id="manage-classification" href="javascript:;">分类管理</a></div>
                 </div>
               </div>

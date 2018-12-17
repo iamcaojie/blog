@@ -33,7 +33,7 @@ class Blog extends Model
     public static function getBlogList($page,$limit)
     {
         $bloglist = [];
-        $pagelist = self::where('delete_time',null) -> limit(($page-1)*$limit,$page*$limit) -> select();
+        $pagelist = self::where('delete_time',null) -> limit(($page-1)*$limit,$limit) -> select();
         $blogcount = self::where('delete_time',null) -> count();
 
         // 查询原始分类数据 查询原始标签数据 添加操作数据 

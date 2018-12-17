@@ -80,7 +80,7 @@ $(function(){
         }else{
             var webData={'switch':'off'};
         }
-        postdata('/admin/index/webStatus','POST', webData);
+        postData('/admin/index/webStatus','POST', webData);
         return false;
     }); 
     $('#manage-classification').click(function(){
@@ -99,21 +99,21 @@ $(function(){
     });
     // 手动保存，获取保存状态
     $("#btn3").click(function(){
-        postBlogData('/admin/blog/createblog','POST',getlocalData());
+        postData('/admin/blog/createblog','POST',getlocalData());
         return false;
     });
     // 保存编辑博客
     $("#btn4").click(function(){
-        postBlogData('/admin/blog/editblog', 'POST', getlocalData());
+        postData('/admin/blog/editblog', 'POST', getlocalData());
         return false;
     });
 });
 
 
-
 /* 
 处理函数
  */ 
+
 // 选项卡切换
 function changeTab(tabBox){
     $('#createblog').click(function(){
@@ -179,7 +179,8 @@ function getlocalData(){
     data["blog_title"] = blogTitle.val();
     data["cate_id"] =  $('input[name="blog-category"]:checked').val();
     // blogTagData =  .val();
-    data["blog_text"] = editor.txt.html();
+    data["blog_html"] = editor.txt.html();
+    data["blog_text"] = editor.txt.text();
     return data;
 }
 
@@ -187,11 +188,11 @@ function getlocalData(){
 function autoSave(){
     var tempData = getlocalData();
     tempData['id'] = 1;
-    postBlogData('/admin/blog/editblog','POST',tempData);
+    postData('/admin/blog/editblog','POST',tempData);
 }
 
-// 提交博客数据
-function postBlogData(url,method,data){
+// 提交数据(保存博客、编辑博客)
+function postData(url,method,data){
     $(function(){ 
         $.ajax({
             type:method || 'POST',
@@ -201,10 +202,14 @@ function postBlogData(url,method,data){
             success: function(data){
                 if(data.msg == "自动保存完成"){
                     // layer.msg("自动保存");
-                }else{
+                }else if(data.msg == "保存成功" || data.msg == "编辑成功" ){
                     layer.msg(data["msg"])
                     emptyBlogData();
                     tableIns.reload();
+                }else if(data.msg == ""){
+                    //
+                }else{
+                    //
                 }
             },error:function(data){
                 layer.msg("保存失败");

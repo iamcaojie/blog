@@ -85,11 +85,11 @@ return [
     // URL普通方式参数 用于自动生成
     'url_common_param'       => false,
     // URL参数方式 0 按名称成对解析 1 按顺序解析
-    'url_param_type'         =>  1,
+    'url_param_type'         =>  0,
     // 是否开启路由
     'url_route_on'           => true,
     // 路由使用完整匹配
-    'route_complete_match'   => true,
+    'route_complete_match'   => false,
     // 路由配置文件（支持配置多个）
     'route_config_file'      => ['route'],
     // 是否强制使用路由
