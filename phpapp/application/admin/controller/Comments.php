@@ -5,7 +5,7 @@ use app\admin\model\Comments as Commentsmodel;
 
 class Comments
 {
-    // 获取所有分类
+    // 获取所有评论
     // /admin/comments/getcommentslist
     public function getCommentsList()
     {
@@ -13,7 +13,7 @@ class Comments
         return json(["code"=>0, "msg"=>"查询成功", "data"=>$data]);
     }
     
-    // 创建评论
+    // 创建评论，只能在评论页调用，需登录
     // /admin/comments/createcomments
     // public function createComments()
     // {

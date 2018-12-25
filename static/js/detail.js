@@ -2,24 +2,43 @@
 layui.use(['layer', 'form'], function(){
 var layer = layui.layer
 ,form = layui.form;
-
 });
 
-// jQuery特效
 $(function(){ 
-    // 注册链接拦截
-    $("#sign").click(function(){
-        layer.msg('coding中,暂未开放');
+//    评论列表-回复切换
+    $("#comment-list-tab").click(function(){
+        $(this).addClass("selected");
+        $(this).siblings().removeClass("selected");
+        $('#comment-list').show();
+        $('#reply-comment').hide();
+    });
+    $("#reply-comment-tab").click(function(){
+        $(this).addClass("selected");
+        $(this).siblings().removeClass("selected");
+        $('#comment-list').hide();
+        $('#reply-comment').show();
+    });
+//    提交评论
+    $("#submit").click(function(){
+        alert("a");
         return false;
     });
-    // 检查搜索框
-    $("#search").click(function(){
-        var search_text = $("#search_text").val()
-        if ( search_text == ""){
-            layer.msg('请输入搜索内容！！！');
-            return false;
-        }
-    });
 });
 
+
+// 检测登录状态
+function checkLogin(){
+    
+}
+// 检测评论内容，后台也需检测
+function checkComment(){
+// 字数统计
+// 敏感词
+// 黑客攻击词
+
+}
+// 提交评论
+function postComment(){
+    
+}
 console.log("欢迎提交bug或建议，联系方式QQ10804842")

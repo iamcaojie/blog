@@ -41,9 +41,13 @@ $(function(){
     $('#massage').click(function(){
         layer.open({
             type: 1, 
-            area: ['500px', '300px'],
-            title: '留言',
-            content: '<form><label>留言主题</label><input name="massage_title"/><label>留言内容</label><input name="massage_text"/></form>' 
+            skin: 'massageboard-class',
+            area: ['500px', '400px'],
+            title: '<div style="color: rgb(176,58,91);"><b>有什么想说的，在这里畅所欲言^_^</b></div>',
+            content: '<div id="massage-board"><form >留言主题\n\
+            <br><input placeholder="必填，25字以内" name="massage_title"/>\n\
+            <br>联系方式<br><input placeholder="选填，最多20字" name="contact"/>\n\
+            <br>留言内容<br><textarea id="massage-text" placeholder="选填，最多200字" name="massage_text"></textarea></form></div>' 
             ,btn: ['提交']
             ,yes: function(index, layero){
                 postMassage();
@@ -95,6 +99,11 @@ function IEVersion() {
         return -1;//不是ie浏览器
     }
 }
+// 检测留言内容，提交时后台也需检测
+function checkMassage(){
+    //
+}
+// 检测评论时间间隔
 
 // 提交留言
 function postMassage(){

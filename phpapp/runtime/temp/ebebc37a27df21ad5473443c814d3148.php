@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:68:"D:\server\nginx\html/phpapp/application/blog\view\detail\detail.html";i:1544958047;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:68:"D:\server\nginx\html/phpapp/application/blog\view\detail\detail.html";i:1545750957;}*/ ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
     <head>
@@ -32,14 +32,32 @@
                 <div class="col-md-9">
                     <div class="article-detail">
                         <div class="article-title"><h1><?php echo $blogdetail['blog_title']; ?></h1></div>
-                        <div class="article-text"><?php echo $blogdetail['blog_text']; ?></div>
+                        <div class="article-text"><?php echo $blogdetail['blog_html']; ?></div>
+                        <div id="comment">
+                            <ul id="comment-tab">
+                                <li id="comment-list-tab" class="selected"><a>评论列表</a></li>
+                                <li id="reply-comment-tab"><a>发布评论</a></li>
+                            </ul>
+                            <div id="comment-list">
+                                <div>评论评论评论评论评论评论评论评论评论评论评论评论评论</div>
+                                <div>评论评论评论评论评论评论评论评论评论评论评论评论评论</div>
+                            </div>
+                            <div id="reply-comment" style="display:none;">
+                                <form>
+                                    <textarea name="comment_text"></textarea>
+                                    <br>
+                                    <button id="clear">清空</button>
+                                    <button id="submit">提交</button>
+                                </form>
+                            </div>
+                        </div>
                     </div>
-                    <div>
-                    
-                    </div>
+        
                 </div>
                 <div class="col-md-3">
-                    <div style="width:100%;height:500px;background:white;"></div>
+                    <div style="width:100%;height:500px;background:white;">
+                        <div>热门推荐</div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:67:"D:\server\nginx\html/phpapp/application/admin\view\admin\admin.html";i:1545055835;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:67:"D:\server\nginx\html/phpapp/application/admin\view\admin\admin.html";i:1545743394;}*/ ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
     <head>
@@ -103,7 +103,7 @@
         
         <div id="container" style="padding: 15px;">
             <!-- 网站设置-状态设置 -->
-            <div id="web-status-tab" style="display">
+<!--            <div id="web-status-tab" style="display">
                 <div>网站设置-状态设置-是否开启网站</div>
                 <form class="layui-form" id="web-status-form">
                     <div class="layui-form-item" id="web-switch">
@@ -113,7 +113,7 @@
                         </div>
                     </div>
                 </form>
-            </div>
+            </div>-->
             <!-- 网站设置-轮播设置 -->
             <!-- 网站设置-信息设置 -->
             <!-- 网站设置-主题设置 -->
@@ -126,33 +126,34 @@
                 <input name="id" type="" value=""/>
                 <label class="layui-form-label">标题</label>
                 <div class="layui-input-block">
-                  <input type="text" name="blog_title" required  lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input"/>
+                  <input type="text" name="blog_title" placeholder="请输入标题" autocomplete="off" class="layui-input"/>
                 </div>
             </div>
-              <div class="layui-form-item">
-                <label class="layui-form-label">笔记分类</label>
-                <div class="layui-input-block">
-                    <?php if(is_array($catelist) || $catelist instanceof \think\Collection || $catelist instanceof \think\Paginator): $i = 0; $__LIST__ = $catelist;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$cate): $mod = ($i % 2 );++$i;if($cate["blog_category"] == "无"): ?>
-                         <input type="radio" name="blog-category" value="<?php echo $cate['id']; ?>" title="<?php echo $cate['blog_category']; ?>" checked>
-                     <?php else: ?>
-                         <input type="radio" name="blog-category" value="<?php echo $cate['id']; ?>" title="<?php echo $cate['blog_category']; ?>">
-                     <?php endif; endforeach; endif; else: echo "" ;endif; ?>
-                    <div><a id="manage-classification" href="javascript:;">分类管理</a></div>
-                </div>
-              </div>
+              <div class="layui-form-item">  
+            <label class="layui-form-label">笔记分类</label>
+            <div class="layui-input-block">
+                <?php if(is_array($catelist) || $catelist instanceof \think\Collection || $catelist instanceof \think\Paginator): $i = 0; $__LIST__ = $catelist;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$cate): $mod = ($i % 2 );++$i;if($cate["blog_category"] == "无"): ?>
+                     <input type="radio" lay-filter="blog-category" name="blog-category" value="<?php echo $cate['id']; ?>" title="<?php echo $cate['blog_category']; ?>" checked>
+                 <?php else: ?>
+                     <input type="radio" lay-filter="blog-category" name="blog-category" value="<?php echo $cate['id']; ?>" title="<?php echo $cate['blog_category']; ?>">
+                 <?php endif; endforeach; endif; else: echo "" ;endif; ?>
+                <div><a id="manage-classification" href="javascript:;">分类管理</a></div>
+            </div>
+            </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">选择标签</label>
                     <div class="layui-input-block">
-                        <input type="radio" name="tag-origin" value="1" title="原创">
-                        <input type="radio" name="tag-origin" value="2" title="转载" checked>
+                        <input type="radio" lay-filter="tag-origin" name="tag-origin" value="1" title="原创">
+                        <input type="radio" lay-filter="tag-origin" name="tag-origin" value="2" title="转载" checked>
                     </div>
                     <div class="layui-input-block">
-                        <input type="radio" name="tag-level" value="3" title="基础" checked>
-                        <input type="radio" name="tag-level" value="4" title="技巧" >
-                        <input type="radio" name="tag-level" value="5" title="重点">
-                        <input type="radio" name="tag-level" value="6" title="难点">
+                        <input type="radio" lay-filter="tag-level" name="tag-level" value="3" title="基础" checked>
+                        <input type="radio" lay-filter="tag-level" name="tag-level" value="4" title="技巧" >
+                        <input type="radio" lay-filter="tag-level" name="tag-level" value="5" title="重点">
+                        <input type="radio" lay-filter="tag-level" name="tag-level" value="6" title="难点">
                     </div>
                 </div>
+            </form>
                 <div>
                     <div id="editor-box">
                         <div id="editor"></div>
@@ -162,7 +163,7 @@
                 <button class="layui-btn" id="btn2">获取text数据</button>
                 <button class="layui-btn" id="btn3">提交</button>
                 <button class="layui-btn" id="btn4" style="display:none">确认修改</button>
-            </form>
+        <!--</form>-->
             </div>
             <!-- 博客管理-文章列表 -->
             <div id="bloglist-tab" style="display">

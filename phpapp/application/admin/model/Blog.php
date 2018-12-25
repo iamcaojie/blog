@@ -5,7 +5,7 @@ use think\Model;
 
 // update_time格式在database中设置
 // layui数据规范{"code":0,"msg":"","count":7,"data":[]}
-// 0:正常; 1:参数错误; 2:查询错误; 3:未知错误
+// 0:正常; -1:参数错误; 2:查询错误; 3:未知错误
 // 生成json的数组属性名必须双引号
 
 class Blog extends Model
@@ -53,22 +53,32 @@ class Blog extends Model
     
     public static function createBlog($data)
     {
-        self::create($data);
+        
+        self::create($data["blogdata"]);
+        // 新增博客的标签数据,tag_data要与前台一致，只能增加关联的中间表数据
+        self::get(self::getLastInsID()) -> tags() -> saveAll($data["tagdata"]);
+        return["code"=>0, "msg"=>"保存成功"];
     }
     
     // 只标记删除，记录delete_time,int类型
-    // 不删除评论
+    // 不删除关联数据
     public function deleteBlog($id)
     {
-        $deleteblogitem = self::get($id);
-        $deleteblogitem -> delete_time = strtotime('now');
-        $deleteblogitem -> save();
-        return ["code"=>0,"msg"=>"删除成功"];
+        $deleteblog = self::get($id);
+        $deleteblog -> delete_time = strtotime('now');
+        $deleteblog -> save();
+        return ["code"=>0, "msg"=>"删除成功"];
     }   
-    
-    public function editBlog()
+    // 编辑关联数据，仅编辑关联的中间表数据
+    public static function editBlog($data)
     {
-        // pass
+//        更新数据
+        $blog = self::update($data["blogdata"]);
+//        删除所有关联，再添加新的关联
+        $editblog = self::get($data["blogdata"]['id']);
+        $editblog -> tags() -> detach();
+        $editblog-> tags() -> saveAll($data["tagdata"]);
+        return ["code"=>0, "msg"=>"修改成功"];
     }
     // 查询表数据，返回关联表的标签id
     public static function queryBlog($id)

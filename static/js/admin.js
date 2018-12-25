@@ -4,6 +4,7 @@ var layer = layui.layer
 ,form = layui.form
 ,element = layui.element
 ,table = layui.table;
+    // 文章列表
     tableIns = table.render({
         elem: '#article'
         ,height: 400
@@ -22,6 +23,7 @@ var layer = layui.layer
           ,{field: 'operate', title: '操作', width: 150}
         ]]
     });
+    // 消息列表
     massageTableIns = table.render({
         elem: '#massage-list'
         ,height: 400
@@ -37,7 +39,8 @@ var layer = layui.layer
           // ,{field: 'operate', title: '操作', width: 150}
         ]]
         });
-        commentTableIns = table.render({
+        // 评论列表
+    commentTableIns = table.render({
         elem: '#comment-list'
         ,height: 400
         ,url: '/admin/comments/getcommentslist' //数据接口
@@ -54,10 +57,26 @@ var layer = layui.layer
           // ,{field: 'operate', title: '操作', width: 150}
         ]]
     });
+    // 获取开关值
     form.on('switch(web-status)', function(data){
         // **全局变量webStatus
         webStatus = data.elem.checked; //开关是否开启，true或者false
     }); 
+    
+    // jQuery可以代替的功能
+    // 获取分类值
+//    form.on('radio(blog-category)', function(data){
+//        blogCate = data.value; 
+//    });  
+    // 获区来源分类值
+//    form.on('radio(tag-origin)', function(data){
+//        blogOrigin = data.value; 
+//        console.log(blogOrigin);
+//    }); 
+    // 获取分级分类值
+//    form.on('radio(tag-level)', function(data){
+//        blogLevel = data.value; 
+//    }); 
 });
 
 // 初始化wangEditor
@@ -70,7 +89,6 @@ var blogTitle = $('input[name="blog_title"]');
 
 
 // 所有数据前端不验证，后端验证数据合法性
-
 
 $(function(){ 
     // 网站状态切换
@@ -99,12 +117,16 @@ $(function(){
     });
     // 手动保存，获取保存状态
     $("#btn3").click(function(){
+        if(check()){
         postData('/admin/blog/createblog','POST',getlocalData());
+        } 
         return false;
     });
     // 保存编辑博客
     $("#btn4").click(function(){
         postData('/admin/blog/editblog', 'POST', getlocalData());
+        $("#btn4").hide();
+        $("#btn3").show();
         return false;
     });
 });
@@ -167,27 +189,41 @@ function emptyBlogData(){
 }
 
 // 编辑时填充数据到编辑页
-function fillBlogData(DataBox, data, method){
-    if(method='append'){DataBox.append(data);}
-    if(method='val'){DataBox.val(data);}
+function fillBlogData(data){
+    blogId.val(data["data"]["id"]);
+    blogTitle.val(data["data"]["blog_title"]);
+    $(".w-e-text").append(data["data"]["blog_html"]);
 }
-
+// 检查数据合法性
+function check(){
+    if(blogTitle.val() == ""){
+    layer.msg("请输入标题");
+    return false;
+    }
+    if(editor.txt.text() == ""){
+    layer.msg("请输入内容");
+    return false;
+    }
+    return true;
+}
 // 实时获取编辑数据,键与后台对应
 function getlocalData(){
     var data = {};
+    var tagData = new Array($('input[name="tag-origin"]:checked').val(),$('input[name="tag-level"]:checked').val());
     data["id"] = blogId.val();
     data["blog_title"] = blogTitle.val();
     data["cate_id"] =  $('input[name="blog-category"]:checked').val();
-    // blogTagData =  .val();
     data["blog_html"] = editor.txt.html();
     data["blog_text"] = editor.txt.text();
-    return data;
+    var blogData = {"blogdata":data, "tagdata":tagData};
+    console.log(blogData);
+    return blogData;
 }
 
 //自动保存博客数据,id为1
 function autoSave(){
     var tempData = getlocalData();
-    tempData['id'] = 1;
+    tempData["blogdata"]["id"] = 1;
     postData('/admin/blog/editblog','POST',tempData);
 }
 
@@ -200,10 +236,11 @@ function postData(url,method,data){
             data:data,
             dataType:'json',
             success: function(data){
+                // 所有后台回调操作
                 if(data.msg == "自动保存完成"){
                     // layer.msg("自动保存");
-                }else if(data.msg == "保存成功" || data.msg == "编辑成功" ){
-                    layer.msg(data["msg"])
+                }else if(data.msg == "保存成功" || data.msg == "修改成功" ){
+                    layer.msg(data["msg"]);
                     emptyBlogData();
                     tableIns.reload();
                 }else if(data.msg == ""){
@@ -212,7 +249,7 @@ function postData(url,method,data){
                     //
                 }
             },error:function(data){
-                layer.msg("保存失败");
+                layer.msg("操作失败");
             }
         });
     });
@@ -228,11 +265,8 @@ function getBlogData(url,method,data){
             dataType:'json',
             success: function(data){
                 // 填充数据到编辑器
-                // layer.msg(data.msg);
                 emptyBlogData();
-                fillBlogData(blogId, data.data["id"], 'val');
-                fillBlogData(blogTitle, data.data["blog_title"], 'val');
-                fillBlogData($(".w-e-text"), data.data["blog_text"], 'append');
+                fillBlogData(data);
             }
         });
     });
@@ -318,8 +352,6 @@ function viewitem(url){
 // 查看评论
 
 // 删除评论
-
-
 
 
 console.log("欢迎提交bug或建议，联系方式QQ10804842");

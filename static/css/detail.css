@@ -43,6 +43,7 @@ h2{
 
 .row{
     border:solid 1px rgb(176,58,91);
+    
 }
 .article-detail{
     height:1000px;
@@ -53,7 +54,52 @@ h2{
 .article-text{
     padding:20px 0 0 30px;
 }
-
+#comment{
+    margin: 0 10px 0 20px;
+}
+#comment-tab{
+    clear: both;
+    /*width: 200px;*/
+    height: 30px;
+    
+}
+#comment-tab li{
+    display: block;
+    color: white;
+    float: left;
+    cursor:pointer;
+    padding: 5px 20px 5px 20px;
+    border: 1px solid rgb(176,58,91);
+}
+.selected{
+    background: rgb(176,58,91);
+}
+.selected a{
+    /*border-top: 1px solid rgb(176,58,91);*/
+    color: white;
+}
+textarea{
+    width:70%;
+    height: 80px;
+    resize: none;
+    border: 1px solid rgb(176,58,91);
+}
+@media (max-width: 768px){
+    textarea{width:100%;}
+}
+button{
+    background: white;
+    color:rgb(176,58,91);
+    width: 75px;
+    height: 30px;
+    border: 1px solid rgb(176,58,91);
+    transition: 0.5s ;
+    -webkit-transition: 0.5s ;
+}
+button:hover{
+    color:white;
+    background: rgb(176,58,91);
+}
 #Sidebar{
     width: 162px;
     height: 120px;
@@ -64,6 +110,7 @@ h2{
     cursor: pointer;
     z-index: 10;
 }
+
 @media (max-width: 800px){
     #Sidebar{
         display:none;
@@ -71,7 +118,6 @@ h2{
 }
 #Sidebar-box{
     float:left;
-    
 }
 #Sidebar-display{
     width:40px;

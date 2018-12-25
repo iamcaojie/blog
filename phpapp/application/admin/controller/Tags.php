@@ -5,7 +5,7 @@ use app\admin\model\Tags as Tagsmodel;
 
 class Tags
 {
-  // 获取所有标签
+    // 获取所有标签
     // /admin/tags/gettagslist
     public function getTagsList()
     {

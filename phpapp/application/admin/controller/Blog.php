@@ -34,7 +34,6 @@ class Blog
     public function createblog()
     {
         $data = input('post.');
-        // $blog ->allowField(true)->save();
         Blogmodel::createBlog($data);
         return json(["code"=>0, "msg"=>"保存成功"]);
     }
@@ -43,18 +42,19 @@ class Blog
     // post /admin/blog/editblog
     public function editblog()
     {
-        // 可修改表单字段，避免和数据库一致
+        // 可修改表单字段，避免和数据库一致，不用保存关联数据
         $data = input('post.');
-        $blog = Blogmodel::get($data['id']);
-        $blog -> blog_title = $data['blog_title'];
-        $blog -> blog_text = $data['blog_text'];
-        $blog -> allowField(true) -> save();
-        if ($data['id']==1){
+        $blogData = $data["blogdata"];
+        if ($blogData['id']==1){
+            $blog = Blogmodel::get(1);
+            $blog -> blog_title = $blogData['blog_title'];
+            $blog -> blog_text = $blogData['blog_text'];
+            $blog -> blog_html = $blogData['blog_html'];
+            $blog -> allowField(true) -> save();
             return json(["code"=>0, "msg"=>"自动保存完成"]);
         }else{
-            return json(["code"=>0, "msg"=>"编辑成功"]);
+            return json(Blogmodel::editBlog($data));
         }
-        
     }
     
     // 软删除博客->

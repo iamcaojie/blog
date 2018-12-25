@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:64:"D:\server\nginx\html/phpapp/application/blog\view\blog\blog.html";i:1544861777;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:64:"D:\server\nginx\html/phpapp/application/blog\view\blog\blog.html";i:1545489927;}*/ ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
     <head>
@@ -51,7 +51,6 @@
                     <li><a href="/blog/server">服务器</a></li>
                     <li role="separator" class="divider"></li>
                     <li><a href="/blog/other">杂谈</a></li>
-                    <li><a href="/blog/timeline">timeline</a></li>
                   </ul>
                 </li>
               </ul>
@@ -68,10 +67,11 @@
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">相关链接<span class="caret"></span></a>
                   <ul class="dropdown-menu">
                     <li><a href="https://github.com/iamcaojie" target="_blank">Git</a></li>
-                    <li><a href="https://leetcode-cn.com/" target="_blank">Leecode</a></li>
-                    <li><a href="/api">api</a></li>
-                    <li><a href="/books">读书笔记</a></li>
+                    <li><a href="https://leetcode-cn.com/" target="_blank">Leetcode</a></li>
+                        <li><a href="/api">Api</a></li>
+                    <li><a href="/api">Timeline</a></li>
                     <li role="separator" class="divider"></li>
+                    <li><a href="/books">读书笔记</a></li>
                     <li><a href="/tools/online">在线工具</a></li>
                     <li><a href="/tools/download">下载</a></li>
                     <li><a href="/tools/doclinks">文档链接</a></li>
