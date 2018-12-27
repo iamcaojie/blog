@@ -31,23 +31,32 @@
                 <div class="col-md-9">
                     <div class="article-detail">
                         <div class="article-title"><h1>{$blogdetail['blog_title']}</h1></div>
+                        <!--<span class="">作者</span>-->
+                        <span class="time">创建时间{$blogdetail['create_time']}</span>
+                        <span class="time">更新时间{$blogdetail['update_time']}</span>
                         <div class="article-text">{$blogdetail['blog_html']}</div>
                         <div id="comment">
                             <ul id="comment-tab">
                                 <li id="comment-list-tab" class="selected"><a>评论列表</a></li>
                                 <li id="reply-comment-tab"><a>发布评论</a></li>
                             </ul>
-                            <div id="comment-list">
-                                <div>评论评论评论评论评论评论评论评论评论评论评论评论评论</div>
-                                <div>评论评论评论评论评论评论评论评论评论评论评论评论评论</div>
-                            </div>
-                            <div id="reply-comment" style="display:none;">
-                                <form>
-                                    <textarea name="comment_text"></textarea>
-                                    <br>
-                                    <button id="clear">清空</button>
-                                    <button id="submit">提交</button>
-                                </form>
+                            <div id="comment-tab-detail">
+                                <div id="comment-list">
+                                    {volist name='blogcomments' id='blogcomment'}
+                                    <span class="time">{$blogcomment['create_time']}</span>
+                                    <div id="comment-text">{$blogcomment['comment_text']}</div>
+                                    {/volist}
+                                </div>
+                                <div id="reply-comment" style="display:none;">
+                                    <form>
+                                        <input name='id' type='hidden' value='{$id}'></input>
+                                        <textarea id="comment_text"></textarea>
+                                        <br>
+                                        <button id="clear">清空</button>
+                                        <button id="submit">提交</button>
+                                        <span id="text-count"></span>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -3,17 +3,13 @@ layui.use(['layer', 'form','carousel'], function(){
 var layer = layui.layer
 ,form = layui.form
 ,carousel = layui.carousel;
-    //轮播
     carousel.render({
         elem: '#carousel'
         ,width: '100%' 
         ,arrow: 'always' 
         ,height: carouselAutoHeight()
     });
-    
 });
-
-
 
 $(function(){ 
     // 注册链接拦截
@@ -47,11 +43,11 @@ $(function(){
             content: '<div id="massage-board"><form >留言主题\n\
             <br><input placeholder="必填，25字以内" name="massage_title"/>\n\
             <br>联系方式<br><input placeholder="选填，最多20字" name="contact"/>\n\
-            <br>留言内容<br><textarea id="massage-text" placeholder="选填，最多200字" name="massage_text"></textarea></form></div>' 
+            <br>留言内容<br><textarea id="massage-text" placeholder="选填，最多200字" name="massage_text"></textarea></form><span id="text-count"></span></div>' 
             ,btn: ['提交']
             ,yes: function(index, layero){
                 postMassage();
-                layer.close(index);
+//                layer.close(index);
             }
         });
     });
@@ -101,17 +97,20 @@ function IEVersion() {
 }
 // 检测留言内容，提交时后台也需检测
 function checkMassage(){
-    //
+   
 }
-// 检测评论时间间隔
 
 // 提交留言
 function postMassage(){
     $(function(){
-        var massageData = {"massage_title":$('input[name="massage_title"]').val(),"massage_text":$('input[name="massage_text"]').val()};
+        var massageTitle = $('input[name="massage_title"]'),
+        contact = $('input[name="contact"]'),
+        massageText = $('#massage-text');
+        var massageData = {"massage_title":massageTitle.val(),"contact":contact.val(),"massage_text":massageText.val()};
+        console.log(massageData);
         $.ajax({
             url:'/blog/index/getmassage',
-            type:'post',
+            type:'POST',
             data:massageData,
             dataType: 'json',
             success:function(data){

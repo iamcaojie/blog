@@ -61,6 +61,7 @@ h2{
     clear: both;
     /*width: 200px;*/
     height: 30px;
+    /*border-bottom: 1px solid rgb(176,58,91);*/
     
 }
 #comment-tab li{
@@ -80,8 +81,9 @@ h2{
 }
 textarea{
     width:70%;
-    height: 80px;
-    resize: none;
+    min-height: 100px;
+    padding:5px;
+    resize: vertical;
     border: 1px solid rgb(176,58,91);
 }
 @media (max-width: 768px){

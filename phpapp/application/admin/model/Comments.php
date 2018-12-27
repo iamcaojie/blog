@@ -15,7 +15,7 @@ class Comments extends Model
     public static function createComments($data)
     {
         self::create($data);
-        return ["data"=>""];
+        return ["code"=>0, "msg"=>"评论已发布", "data"=>""];
     }
 //     暂无需求
     public static function editComments($data)
@@ -29,9 +29,10 @@ class Comments extends Model
         self::destroy($data);
         return ["data"=>""];
     }
-    
-    public static function queryComments($data)
+//    根据id查询博客评论
+    public static function queryComments($id)
     {
-//        pass
+      $data = self::where('delete_time',null)->where('blog_id',$id)->select();
+      return ["code"=>0, "msg"=>"", "data"=>$data];
     }
 }
