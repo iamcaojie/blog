@@ -1,0 +1,2622 @@
+---------------------------------------------------------------
+[ 2019-01-23T21:32:05+08:00 ] 127.0.0.1 GET localhost/
+[运行时间：0.971862s] [吞吐率：1.03req/s] [内存消耗：1,326.55kb] [文件加载：38]
+[ info ] [ LANG ] D:\server\nginx\html\phpapp\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'province_id=1; city_id=2; district_id=39; thinkphp_show_page_trace=0|0',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'keep-alive',
+  'host' => 'localhost',
+  'content-length' => '',
+  'content-type' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\blog\controller\Index->index[ D:\server\nginx\html\phpapp\application\blog\controller\Index.php ]
+[ info ] [ VIEW ] D:\server\nginx\html/phpapp/application/blog\view\blog\blog.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-01-23T21:32:24+08:00 ] 127.0.0.1 GET localhost/
+[运行时间：0.028871s] [吞吐率：34.64req/s] [内存消耗：1,326.56kb] [文件加载：38]
+[ info ] [ LANG ] D:\server\nginx\html\phpapp\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'province_id=1; city_id=2; district_id=39; thinkphp_show_page_trace=0|0',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'keep-alive',
+  'host' => 'localhost',
+  'content-length' => '',
+  'content-type' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\blog\controller\Index->index[ D:\server\nginx\html\phpapp\application\blog\controller\Index.php ]
+[ info ] [ VIEW ] D:\server\nginx\html/phpapp/application/blog\view\blog\blog.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-01-23T21:36:10+08:00 ] 127.0.0.1 GET localhost/blog/python
+[运行时间：1.711954s] [吞吐率：0.58req/s] [内存消耗：2,717.55kb] [文件加载：53]
+[ info ] [ LANG ] D:\server\nginx\html\phpapp\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'blog',
+    1 => 'python',
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|4; province_id=1; city_id=2; district_id=39; thinkphp_show_page_trace=0|0',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://localhost/',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'keep-alive',
+  'host' => 'localhost',
+  'content-length' => '',
+  'content-type' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\blog\controller\Python->index[ D:\server\nginx\html\phpapp\application\blog\controller\Python.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\server\nginx\html/phpapp/application/blog\view\contents\contents.html [ array (
+  0 => 'bloglist',
+  1 => 'pagecount',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.344003s ] mysql:host=127.0.0.1;port=3306;dbname=tp;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_blog` [ RunTime:0.944209s ]
+[ sql ] [ SQL ] SELECT * FROM `think_blog` WHERE  `delete_time` IS NULL LIMIT 0,10 [ RunTime:0.046536s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_blog',
+  'partitions' => NULL,
+  'type' => 'ALL',
+  'possible_keys' => NULL,
+  'key' => NULL,
+  'key_len' => NULL,
+  'ref' => NULL,
+  'rows' => 2,
+  'filtered' => 50.0,
+  'extra' => 'Using where',
+) ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_blog` WHERE  `delete_time` IS NULL LIMIT 1 [ RunTime:0.014017s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_blog',
+  'partitions' => NULL,
+  'type' => 'ALL',
+  'possible_keys' => NULL,
+  'key' => NULL,
+  'key_len' => NULL,
+  'ref' => NULL,
+  'rows' => 2,
+  'filtered' => 50.0,
+  'extra' => 'Using where',
+) ]
+[ sql ] [ SQL ] SELECT * FROM `think_blog` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.002354s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_blog',
+  'partitions' => NULL,
+  'type' => 'const',
+  'possible_keys' => 'PRIMARY',
+  'key' => 'PRIMARY',
+  'key_len' => '4',
+  'ref' => 'const',
+  'rows' => 1,
+  'filtered' => 100.0,
+  'extra' => NULL,
+) ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_cate` [ RunTime:0.054513s ]
+[ sql ] [ SQL ] SELECT * FROM `think_cate` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000533s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_cate',
+  'partitions' => NULL,
+  'type' => 'const',
+  'possible_keys' => 'PRIMARY',
+  'key' => 'PRIMARY',
+  'key_len' => '4',
+  'ref' => 'const',
+  'rows' => 1,
+  'filtered' => 100.0,
+  'extra' => NULL,
+) ]
+[ sql ] [ SQL ] SELECT * FROM `think_blog` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000981s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_blog',
+  'partitions' => NULL,
+  'type' => 'const',
+  'possible_keys' => 'PRIMARY',
+  'key' => 'PRIMARY',
+  'key_len' => '4',
+  'ref' => 'const',
+  'rows' => 1,
+  'filtered' => 100.0,
+  'extra' => NULL,
+) ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_blogs_tags` [ RunTime:0.049112s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_tags` [ RunTime:0.104505s ]
+[ sql ] [ SQL ] SELECT `think_tags`.*,pivot.id AS pivot__id,pivot.tag_id AS pivot__tag_id,pivot.blog_id AS pivot__blog_id,pivot.create_time AS pivot__create_time,pivot.update_time AS pivot__update_time,pivot.delete_time AS pivot__delete_time FROM `think_tags` INNER JOIN `think_blogs_tags` `pivot` ON `pivot`.`tag_id`=`think_tags`.`id` WHERE  `pivot`.`blog_id` = 1 [ RunTime:0.003042s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'pivot',
+  'partitions' => NULL,
+  'type' => 'ALL',
+  'possible_keys' => NULL,
+  'key' => NULL,
+  'key_len' => NULL,
+  'ref' => NULL,
+  'rows' => 2,
+  'filtered' => 50.0,
+  'extra' => 'Using where',
+) ]
+[ sql ] [ SQL ] SELECT * FROM `think_blog` WHERE  `id` = 2 LIMIT 1 [ RunTime:0.000417s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_blog',
+  'partitions' => NULL,
+  'type' => 'const',
+  'possible_keys' => 'PRIMARY',
+  'key' => 'PRIMARY',
+  'key_len' => '4',
+  'ref' => 'const',
+  'rows' => 1,
+  'filtered' => 100.0,
+  'extra' => NULL,
+) ]
+[ sql ] [ SQL ] SELECT * FROM `think_cate` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000367s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_cate',
+  'partitions' => NULL,
+  'type' => 'const',
+  'possible_keys' => 'PRIMARY',
+  'key' => 'PRIMARY',
+  'key_len' => '4',
+  'ref' => 'const',
+  'rows' => 1,
+  'filtered' => 100.0,
+  'extra' => NULL,
+) ]
+[ sql ] [ SQL ] SELECT * FROM `think_blog` WHERE  `id` = 2 LIMIT 1 [ RunTime:0.000393s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_blog',
+  'partitions' => NULL,
+  'type' => 'const',
+  'possible_keys' => 'PRIMARY',
+  'key' => 'PRIMARY',
+  'key_len' => '4',
+  'ref' => 'const',
+  'rows' => 1,
+  'filtered' => 100.0,
+  'extra' => NULL,
+) ]
+[ sql ] [ SQL ] SELECT `think_tags`.*,pivot.id AS pivot__id,pivot.tag_id AS pivot__tag_id,pivot.blog_id AS pivot__blog_id,pivot.create_time AS pivot__create_time,pivot.update_time AS pivot__update_time,pivot.delete_time AS pivot__delete_time FROM `think_tags` INNER JOIN `think_blogs_tags` `pivot` ON `pivot`.`tag_id`=`think_tags`.`id` WHERE  `pivot`.`blog_id` = 2 [ RunTime:0.000489s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'pivot',
+  'partitions' => NULL,
+  'type' => 'ALL',
+  'possible_keys' => NULL,
+  'key' => NULL,
+  'key_len' => NULL,
+  'ref' => NULL,
+  'rows' => 2,
+  'filtered' => 50.0,
+  'extra' => 'Using where',
+) ]
+---------------------------------------------------------------
+[ 2019-01-23T21:36:11+08:00 ] 127.0.0.1 GET localhost/blog/python
+[运行时间：0.116867s] [吞吐率：8.56req/s] [内存消耗：2,717.55kb] [文件加载：53]
+[ info ] [ LANG ] D:\server\nginx\html\phpapp\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'blog',
+    1 => 'python',
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|4; province_id=1; city_id=2; district_id=39; thinkphp_show_page_trace=0|0',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://localhost/',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'keep-alive',
+  'host' => 'localhost',
+  'content-length' => '',
+  'content-type' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\blog\controller\Python->index[ D:\server\nginx\html\phpapp\application\blog\controller\Python.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\server\nginx\html/phpapp/application/blog\view\contents\contents.html [ array (
+  0 => 'bloglist',
+  1 => 'pagecount',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.005757s ] mysql:host=127.0.0.1;port=3306;dbname=tp;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_blog` [ RunTime:0.044832s ]
+[ sql ] [ SQL ] SELECT * FROM `think_blog` WHERE  `delete_time` IS NULL LIMIT 0,10 [ RunTime:0.000851s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_blog',
+  'partitions' => NULL,
+  'type' => 'ALL',
+  'possible_keys' => NULL,
+  'key' => NULL,
+  'key_len' => NULL,
+  'ref' => NULL,
+  'rows' => 2,
+  'filtered' => 50.0,
+  'extra' => 'Using where',
+) ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_blog` WHERE  `delete_time` IS NULL LIMIT 1 [ RunTime:0.000907s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_blog',
+  'partitions' => NULL,
+  'type' => 'ALL',
+  'possible_keys' => NULL,
+  'key' => NULL,
+  'key_len' => NULL,
+  'ref' => NULL,
+  'rows' => 2,
+  'filtered' => 50.0,
+  'extra' => 'Using where',
+) ]
+[ sql ] [ SQL ] SELECT * FROM `think_blog` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000492s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_blog',
+  'partitions' => NULL,
+  'type' => 'const',
+  'possible_keys' => 'PRIMARY',
+  'key' => 'PRIMARY',
+  'key_len' => '4',
+  'ref' => 'const',
+  'rows' => 1,
+  'filtered' => 100.0,
+  'extra' => NULL,
+) ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_cate` [ RunTime:0.002550s ]
+[ sql ] [ SQL ] SELECT * FROM `think_cate` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000627s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_cate',
+  'partitions' => NULL,
+  'type' => 'const',
+  'possible_keys' => 'PRIMARY',
+  'key' => 'PRIMARY',
+  'key_len' => '4',
+  'ref' => 'const',
+  'rows' => 1,
+  'filtered' => 100.0,
+  'extra' => NULL,
+) ]
+[ sql ] [ SQL ] SELECT * FROM `think_blog` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000474s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_blog',
+  'partitions' => NULL,
+  'type' => 'const',
+  'possible_keys' => 'PRIMARY',
+  'key' => 'PRIMARY',
+  'key_len' => '4',
+  'ref' => 'const',
+  'rows' => 1,
+  'filtered' => 100.0,
+  'extra' => NULL,
+) ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_blogs_tags` [ RunTime:0.002211s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_tags` [ RunTime:0.001722s ]
+[ sql ] [ SQL ] SELECT `think_tags`.*,pivot.id AS pivot__id,pivot.tag_id AS pivot__tag_id,pivot.blog_id AS pivot__blog_id,pivot.create_time AS pivot__create_time,pivot.update_time AS pivot__update_time,pivot.delete_time AS pivot__delete_time FROM `think_tags` INNER JOIN `think_blogs_tags` `pivot` ON `pivot`.`tag_id`=`think_tags`.`id` WHERE  `pivot`.`blog_id` = 1 [ RunTime:0.000502s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'pivot',
+  'partitions' => NULL,
+  'type' => 'ALL',
+  'possible_keys' => NULL,
+  'key' => NULL,
+  'key_len' => NULL,
+  'ref' => NULL,
+  'rows' => 2,
+  'filtered' => 50.0,
+  'extra' => 'Using where',
+) ]
+[ sql ] [ SQL ] SELECT * FROM `think_blog` WHERE  `id` = 2 LIMIT 1 [ RunTime:0.000465s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_blog',
+  'partitions' => NULL,
+  'type' => 'const',
+  'possible_keys' => 'PRIMARY',
+  'key' => 'PRIMARY',
+  'key_len' => '4',
+  'ref' => 'const',
+  'rows' => 1,
+  'filtered' => 100.0,
+  'extra' => NULL,
+) ]
+[ sql ] [ SQL ] SELECT * FROM `think_cate` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000831s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_cate',
+  'partitions' => NULL,
+  'type' => 'const',
+  'possible_keys' => 'PRIMARY',
+  'key' => 'PRIMARY',
+  'key_len' => '4',
+  'ref' => 'const',
+  'rows' => 1,
+  'filtered' => 100.0,
+  'extra' => NULL,
+) ]
+[ sql ] [ SQL ] SELECT * FROM `think_blog` WHERE  `id` = 2 LIMIT 1 [ RunTime:0.000422s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_blog',
+  'partitions' => NULL,
+  'type' => 'const',
+  'possible_keys' => 'PRIMARY',
+  'key' => 'PRIMARY',
+  'key_len' => '4',
+  'ref' => 'const',
+  'rows' => 1,
+  'filtered' => 100.0,
+  'extra' => NULL,
+) ]
+[ sql ] [ SQL ] SELECT `think_tags`.*,pivot.id AS pivot__id,pivot.tag_id AS pivot__tag_id,pivot.blog_id AS pivot__blog_id,pivot.create_time AS pivot__create_time,pivot.update_time AS pivot__update_time,pivot.delete_time AS pivot__delete_time FROM `think_tags` INNER JOIN `think_blogs_tags` `pivot` ON `pivot`.`tag_id`=`think_tags`.`id` WHERE  `pivot`.`blog_id` = 2 [ RunTime:0.000458s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'pivot',
+  'partitions' => NULL,
+  'type' => 'ALL',
+  'possible_keys' => NULL,
+  'key' => NULL,
+  'key_len' => NULL,
+  'ref' => NULL,
+  'rows' => 2,
+  'filtered' => 50.0,
+  'extra' => 'Using where',
+) ]
+---------------------------------------------------------------
+[ 2019-01-23T21:36:12+08:00 ] 127.0.0.1 GET localhost/blog/python/detail/id/1.html
+[运行时间：0.161451s] [吞吐率：6.19req/s] [内存消耗：2,751.51kb] [文件加载：52]
+[ info ] [ LANG ] D:\server\nginx\html\phpapp\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'blog',
+    1 => 'python',
+    2 => 'detail',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; thinkphp_show_page_trace=0|4; province_id=1; city_id=2; district_id=39; thinkphp_show_page_trace=0|0',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://localhost/blog/python',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'keep-alive',
+  'host' => 'localhost',
+  'content-length' => '',
+  'content-type' => '',
+)
+[ info ] [ PARAM ] array (
+  'id' => '1',
+)
+[ info ] [ RUN ] app\blog\controller\Python->detail[ D:\server\nginx\html\phpapp\application\blog\controller\Python.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\server\nginx\html/phpapp/application/blog\view\detail\detail.html [ array (
+  0 => 'id',
+  1 => 'blogdetail',
+  2 => 'blogcomments',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001659s ] mysql:host=127.0.0.1;port=3306;dbname=tp;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_blog` [ RunTime:0.028717s ]
+[ sql ] [ SQL ] SELECT * FROM `think_blog` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.018197s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_blog',
+  'partitions' => NULL,
+  'type' => 'const',
+  'possible_keys' => 'PRIMARY',
+  'key' => 'PRIMARY',
+  'key_len' => '4',
+  'ref' => 'const',
+  'rows' => 1,
+  'filtered' => 100.0,
+  'extra' => NULL,
+) ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_blogs_tags` [ RunTime:0.002787s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_tags` [ RunTime:0.002884s ]
+[ sql ] [ SQL ] SELECT `think_tags`.*,pivot.id AS pivot__id,pivot.tag_id AS pivot__tag_id,pivot.blog_id AS pivot__blog_id,pivot.create_time AS pivot__create_time,pivot.update_time AS pivot__update_time,pivot.delete_time AS pivot__delete_time FROM `think_tags` INNER JOIN `think_blogs_tags` `pivot` ON `pivot`.`tag_id`=`think_tags`.`id` WHERE  `pivot`.`blog_id` = 1 [ RunTime:0.000883s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'pivot',
+  'partitions' => NULL,
+  'type' => 'ALL',
+  'possible_keys' => NULL,
+  'key' => NULL,
+  'key_len' => NULL,
+  'ref' => NULL,
+  'rows' => 2,
+  'filtered' => 50.0,
+  'extra' => 'Using where',
+) ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_comments` [ RunTime:0.046139s ]
+[ sql ] [ SQL ] SELECT * FROM `think_comments` WHERE  `delete_time` IS NULL  AND `blog_id` = 1 [ RunTime:0.001057s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_comments',
+  'partitions' => NULL,
+  'type' => 'ALL',
+  'possible_keys' => NULL,
+  'key' => NULL,
+  'key_len' => NULL,
+  'ref' => NULL,
+  'rows' => 2,
+  'filtered' => 50.0,
+  'extra' => 'Using where',
+) ]
+---------------------------------------------------------------
+[ 2019-01-23T21:36:18+08:00 ] 127.0.0.1 GET localhost/blog/python/detail/id/1.html
+[运行时间：0.175877s] [吞吐率：5.69req/s] [内存消耗：2,605.02kb] [文件加载：50]
+[ info ] [ LANG ] D:\server\nginx\html\phpapp\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'blog',
+    1 => 'python',
+    2 => 'detail',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; thinkphp_show_page_trace=0|4; province_id=1; city_id=2; district_id=39; thinkphp_show_page_trace=0|0',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://localhost/blog/python',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'keep-alive',
+  'host' => 'localhost',
+  'content-length' => '',
+  'content-type' => '',
+)
+[ info ] [ PARAM ] array (
+  'id' => '1',
+)
+[ info ] [ RUN ] app\blog\controller\Python->detail[ D:\server\nginx\html\phpapp\application\blog\controller\Python.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\server\nginx\html/phpapp/application/blog\view\detail\detail.html [ array (
+  0 => 'id',
+  1 => 'blogdetail',
+  2 => 'blogcomments',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.036576s ] mysql:host=127.0.0.1;port=3306;dbname=tp;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_blog` [ RunTime:0.027559s ]
+[ sql ] [ SQL ] SELECT * FROM `think_blog` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.001505s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_blog',
+  'partitions' => NULL,
+  'type' => 'const',
+  'possible_keys' => 'PRIMARY',
+  'key' => 'PRIMARY',
+  'key_len' => '4',
+  'ref' => 'const',
+  'rows' => 1,
+  'filtered' => 100.0,
+  'extra' => NULL,
+) ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_blogs_tags` [ RunTime:0.004554s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_tags` [ RunTime:0.003618s ]
+[ sql ] [ SQL ] SELECT `think_tags`.*,pivot.id AS pivot__id,pivot.tag_id AS pivot__tag_id,pivot.blog_id AS pivot__blog_id,pivot.create_time AS pivot__create_time,pivot.update_time AS pivot__update_time,pivot.delete_time AS pivot__delete_time FROM `think_tags` INNER JOIN `think_blogs_tags` `pivot` ON `pivot`.`tag_id`=`think_tags`.`id` WHERE  `pivot`.`blog_id` = 1 [ RunTime:0.000640s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'pivot',
+  'partitions' => NULL,
+  'type' => 'ALL',
+  'possible_keys' => NULL,
+  'key' => NULL,
+  'key_len' => NULL,
+  'ref' => NULL,
+  'rows' => 2,
+  'filtered' => 50.0,
+  'extra' => 'Using where',
+) ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_comments` [ RunTime:0.002549s ]
+[ sql ] [ SQL ] SELECT * FROM `think_comments` WHERE  `delete_time` IS NULL  AND `blog_id` = 1 [ RunTime:0.000658s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_comments',
+  'partitions' => NULL,
+  'type' => 'ALL',
+  'possible_keys' => NULL,
+  'key' => NULL,
+  'key_len' => NULL,
+  'ref' => NULL,
+  'rows' => 2,
+  'filtered' => 50.0,
+  'extra' => 'Using where',
+) ]
+---------------------------------------------------------------
+[ 2019-01-23T21:45:13+08:00 ] 127.0.0.1 GET localhost/blog/python/detail/id/1.html
+[运行时间：0.118816s] [吞吐率：8.42req/s] [内存消耗：2,753.42kb] [文件加载：52]
+[ info ] [ LANG ] D:\server\nginx\html\phpapp\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'blog',
+    1 => 'python',
+    2 => 'detail',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; thinkphp_show_page_trace=0|4; province_id=1; city_id=2; district_id=39; thinkphp_show_page_trace=0|0',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://localhost/blog/python',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'keep-alive',
+  'host' => 'localhost',
+  'content-length' => '',
+  'content-type' => '',
+)
+[ info ] [ PARAM ] array (
+  'id' => '1',
+)
+[ info ] [ RUN ] app\blog\controller\Python->detail[ D:\server\nginx\html\phpapp\application\blog\controller\Python.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\server\nginx\html/phpapp/application/blog\view\detail\detail.html [ array (
+  0 => 'id',
+  1 => 'blogdetail',
+  2 => 'blogcomments',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.021176s ] mysql:host=127.0.0.1;port=3306;dbname=tp;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_blog` [ RunTime:0.021859s ]
+[ sql ] [ SQL ] SELECT * FROM `think_blog` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.011351s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_blog',
+  'partitions' => NULL,
+  'type' => 'const',
+  'possible_keys' => 'PRIMARY',
+  'key' => 'PRIMARY',
+  'key_len' => '4',
+  'ref' => 'const',
+  'rows' => 1,
+  'filtered' => 100.0,
+  'extra' => NULL,
+) ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_blogs_tags` [ RunTime:0.002134s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_tags` [ RunTime:0.002208s ]
+[ sql ] [ SQL ] SELECT `think_tags`.*,pivot.id AS pivot__id,pivot.tag_id AS pivot__tag_id,pivot.blog_id AS pivot__blog_id,pivot.create_time AS pivot__create_time,pivot.update_time AS pivot__update_time,pivot.delete_time AS pivot__delete_time FROM `think_tags` INNER JOIN `think_blogs_tags` `pivot` ON `pivot`.`tag_id`=`think_tags`.`id` WHERE  `pivot`.`blog_id` = 1 [ RunTime:0.000683s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'pivot',
+  'partitions' => NULL,
+  'type' => 'ALL',
+  'possible_keys' => NULL,
+  'key' => NULL,
+  'key_len' => NULL,
+  'ref' => NULL,
+  'rows' => 2,
+  'filtered' => 50.0,
+  'extra' => 'Using where',
+) ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_comments` [ RunTime:0.001824s ]
+[ sql ] [ SQL ] SELECT * FROM `think_comments` WHERE  `delete_time` IS NULL  AND `blog_id` = 1 [ RunTime:0.012284s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_comments',
+  'partitions' => NULL,
+  'type' => 'ALL',
+  'possible_keys' => NULL,
+  'key' => NULL,
+  'key_len' => NULL,
+  'ref' => NULL,
+  'rows' => 2,
+  'filtered' => 50.0,
+  'extra' => 'Using where',
+) ]
+---------------------------------------------------------------
+[ 2019-01-23T21:48:54+08:00 ] 127.0.0.1 GET localhost/blog/python/detail/id/1.html
+[运行时间：0.171031s] [吞吐率：5.85req/s] [内存消耗：2,605.09kb] [文件加载：50]
+[ info ] [ LANG ] D:\server\nginx\html\phpapp\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'blog',
+    1 => 'python',
+    2 => 'detail',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; thinkphp_show_page_trace=0|4; province_id=1; city_id=2; district_id=39; thinkphp_show_page_trace=0|0',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://localhost/blog/python',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'keep-alive',
+  'host' => 'localhost',
+  'content-length' => '',
+  'content-type' => '',
+)
+[ info ] [ PARAM ] array (
+  'id' => '1',
+)
+[ info ] [ RUN ] app\blog\controller\Python->detail[ D:\server\nginx\html\phpapp\application\blog\controller\Python.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\server\nginx\html/phpapp/application/blog\view\detail\detail.html [ array (
+  0 => 'id',
+  1 => 'blogdetail',
+  2 => 'blogcomments',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.085500s ] mysql:host=127.0.0.1;port=3306;dbname=tp;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_blog` [ RunTime:0.034670s ]
+[ sql ] [ SQL ] SELECT * FROM `think_blog` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000511s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_blog',
+  'partitions' => NULL,
+  'type' => 'const',
+  'possible_keys' => 'PRIMARY',
+  'key' => 'PRIMARY',
+  'key_len' => '4',
+  'ref' => 'const',
+  'rows' => 1,
+  'filtered' => 100.0,
+  'extra' => NULL,
+) ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_blogs_tags` [ RunTime:0.002735s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_tags` [ RunTime:0.001389s ]
+[ sql ] [ SQL ] SELECT `think_tags`.*,pivot.id AS pivot__id,pivot.tag_id AS pivot__tag_id,pivot.blog_id AS pivot__blog_id,pivot.create_time AS pivot__create_time,pivot.update_time AS pivot__update_time,pivot.delete_time AS pivot__delete_time FROM `think_tags` INNER JOIN `think_blogs_tags` `pivot` ON `pivot`.`tag_id`=`think_tags`.`id` WHERE  `pivot`.`blog_id` = 1 [ RunTime:0.000582s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'pivot',
+  'partitions' => NULL,
+  'type' => 'ALL',
+  'possible_keys' => NULL,
+  'key' => NULL,
+  'key_len' => NULL,
+  'ref' => NULL,
+  'rows' => 2,
+  'filtered' => 50.0,
+  'extra' => 'Using where',
+) ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_comments` [ RunTime:0.001345s ]
+[ sql ] [ SQL ] SELECT * FROM `think_comments` WHERE  `delete_time` IS NULL  AND `blog_id` = 1 [ RunTime:0.000532s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_comments',
+  'partitions' => NULL,
+  'type' => 'ALL',
+  'possible_keys' => NULL,
+  'key' => NULL,
+  'key_len' => NULL,
+  'ref' => NULL,
+  'rows' => 2,
+  'filtered' => 50.0,
+  'extra' => 'Using where',
+) ]
+---------------------------------------------------------------
+[ 2019-01-23T21:49:58+08:00 ] 127.0.0.1 GET localhost/blog/python/detail/id/1.html
+[运行时间：0.078783s] [吞吐率：12.69req/s] [内存消耗：2,605.09kb] [文件加载：50]
+[ info ] [ LANG ] D:\server\nginx\html\phpapp\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'blog',
+    1 => 'python',
+    2 => 'detail',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; thinkphp_show_page_trace=0|4; province_id=1; city_id=2; district_id=39; thinkphp_show_page_trace=0|0',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://localhost/blog/python',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'keep-alive',
+  'host' => 'localhost',
+  'content-length' => '',
+  'content-type' => '',
+)
+[ info ] [ PARAM ] array (
+  'id' => '1',
+)
+[ info ] [ RUN ] app\blog\controller\Python->detail[ D:\server\nginx\html\phpapp\application\blog\controller\Python.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\server\nginx\html/phpapp/application/blog\view\detail\detail.html [ array (
+  0 => 'id',
+  1 => 'blogdetail',
+  2 => 'blogcomments',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.020673s ] mysql:host=127.0.0.1;port=3306;dbname=tp;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_blog` [ RunTime:0.007150s ]
+[ sql ] [ SQL ] SELECT * FROM `think_blog` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000604s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_blog',
+  'partitions' => NULL,
+  'type' => 'const',
+  'possible_keys' => 'PRIMARY',
+  'key' => 'PRIMARY',
+  'key_len' => '4',
+  'ref' => 'const',
+  'rows' => 1,
+  'filtered' => 100.0,
+  'extra' => NULL,
+) ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_blogs_tags` [ RunTime:0.002029s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_tags` [ RunTime:0.001326s ]
+[ sql ] [ SQL ] SELECT `think_tags`.*,pivot.id AS pivot__id,pivot.tag_id AS pivot__tag_id,pivot.blog_id AS pivot__blog_id,pivot.create_time AS pivot__create_time,pivot.update_time AS pivot__update_time,pivot.delete_time AS pivot__delete_time FROM `think_tags` INNER JOIN `think_blogs_tags` `pivot` ON `pivot`.`tag_id`=`think_tags`.`id` WHERE  `pivot`.`blog_id` = 1 [ RunTime:0.000608s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'pivot',
+  'partitions' => NULL,
+  'type' => 'ALL',
+  'possible_keys' => NULL,
+  'key' => NULL,
+  'key_len' => NULL,
+  'ref' => NULL,
+  'rows' => 2,
+  'filtered' => 50.0,
+  'extra' => 'Using where',
+) ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_comments` [ RunTime:0.001454s ]
+[ sql ] [ SQL ] SELECT * FROM `think_comments` WHERE  `delete_time` IS NULL  AND `blog_id` = 1 [ RunTime:0.000516s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_comments',
+  'partitions' => NULL,
+  'type' => 'ALL',
+  'possible_keys' => NULL,
+  'key' => NULL,
+  'key_len' => NULL,
+  'ref' => NULL,
+  'rows' => 2,
+  'filtered' => 50.0,
+  'extra' => 'Using where',
+) ]
+---------------------------------------------------------------
+[ 2019-01-23T21:50:13+08:00 ] 127.0.0.1 GET localhost/blog/python/detail/id/1.html
+[运行时间：0.053470s] [吞吐率：18.70req/s] [内存消耗：2,605.09kb] [文件加载：50]
+[ info ] [ LANG ] D:\server\nginx\html\phpapp\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'blog',
+    1 => 'python',
+    2 => 'detail',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; thinkphp_show_page_trace=0|4; province_id=1; city_id=2; district_id=39; thinkphp_show_page_trace=0|0',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://localhost/blog/python',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'keep-alive',
+  'host' => 'localhost',
+  'content-length' => '',
+  'content-type' => '',
+)
+[ info ] [ PARAM ] array (
+  'id' => '1',
+)
+[ info ] [ RUN ] app\blog\controller\Python->detail[ D:\server\nginx\html\phpapp\application\blog\controller\Python.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\server\nginx\html/phpapp/application/blog\view\detail\detail.html [ array (
+  0 => 'id',
+  1 => 'blogdetail',
+  2 => 'blogcomments',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001425s ] mysql:host=127.0.0.1;port=3306;dbname=tp;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_blog` [ RunTime:0.002304s ]
+[ sql ] [ SQL ] SELECT * FROM `think_blog` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000856s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_blog',
+  'partitions' => NULL,
+  'type' => 'const',
+  'possible_keys' => 'PRIMARY',
+  'key' => 'PRIMARY',
+  'key_len' => '4',
+  'ref' => 'const',
+  'rows' => 1,
+  'filtered' => 100.0,
+  'extra' => NULL,
+) ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_blogs_tags` [ RunTime:0.001648s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_tags` [ RunTime:0.001578s ]
+[ sql ] [ SQL ] SELECT `think_tags`.*,pivot.id AS pivot__id,pivot.tag_id AS pivot__tag_id,pivot.blog_id AS pivot__blog_id,pivot.create_time AS pivot__create_time,pivot.update_time AS pivot__update_time,pivot.delete_time AS pivot__delete_time FROM `think_tags` INNER JOIN `think_blogs_tags` `pivot` ON `pivot`.`tag_id`=`think_tags`.`id` WHERE  `pivot`.`blog_id` = 1 [ RunTime:0.000596s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'pivot',
+  'partitions' => NULL,
+  'type' => 'ALL',
+  'possible_keys' => NULL,
+  'key' => NULL,
+  'key_len' => NULL,
+  'ref' => NULL,
+  'rows' => 2,
+  'filtered' => 50.0,
+  'extra' => 'Using where',
+) ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_comments` [ RunTime:0.001391s ]
+[ sql ] [ SQL ] SELECT * FROM `think_comments` WHERE  `delete_time` IS NULL  AND `blog_id` = 1 [ RunTime:0.000523s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_comments',
+  'partitions' => NULL,
+  'type' => 'ALL',
+  'possible_keys' => NULL,
+  'key' => NULL,
+  'key_len' => NULL,
+  'ref' => NULL,
+  'rows' => 2,
+  'filtered' => 50.0,
+  'extra' => 'Using where',
+) ]
+---------------------------------------------------------------
+[ 2019-01-23T21:51:12+08:00 ] 127.0.0.1 GET localhost/blog/python/detail/id/1.html
+[运行时间：0.101006s] [吞吐率：9.90req/s] [内存消耗：2,753.45kb] [文件加载：52]
+[ info ] [ LANG ] D:\server\nginx\html\phpapp\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'blog',
+    1 => 'python',
+    2 => 'detail',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; thinkphp_show_page_trace=0|4; province_id=1; city_id=2; district_id=39; thinkphp_show_page_trace=0|0',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://localhost/blog/python',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'keep-alive',
+  'host' => 'localhost',
+  'content-length' => '',
+  'content-type' => '',
+)
+[ info ] [ PARAM ] array (
+  'id' => '1',
+)
+[ info ] [ RUN ] app\blog\controller\Python->detail[ D:\server\nginx\html\phpapp\application\blog\controller\Python.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\server\nginx\html/phpapp/application/blog\view\detail\detail.html [ array (
+  0 => 'id',
+  1 => 'blogdetail',
+  2 => 'blogcomments',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.042363s ] mysql:host=127.0.0.1;port=3306;dbname=tp;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_blog` [ RunTime:0.002213s ]
+[ sql ] [ SQL ] SELECT * FROM `think_blog` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.001561s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_blog',
+  'partitions' => NULL,
+  'type' => 'const',
+  'possible_keys' => 'PRIMARY',
+  'key' => 'PRIMARY',
+  'key_len' => '4',
+  'ref' => 'const',
+  'rows' => 1,
+  'filtered' => 100.0,
+  'extra' => NULL,
+) ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_blogs_tags` [ RunTime:0.001504s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_tags` [ RunTime:0.001263s ]
+[ sql ] [ SQL ] SELECT `think_tags`.*,pivot.id AS pivot__id,pivot.tag_id AS pivot__tag_id,pivot.blog_id AS pivot__blog_id,pivot.create_time AS pivot__create_time,pivot.update_time AS pivot__update_time,pivot.delete_time AS pivot__delete_time FROM `think_tags` INNER JOIN `think_blogs_tags` `pivot` ON `pivot`.`tag_id`=`think_tags`.`id` WHERE  `pivot`.`blog_id` = 1 [ RunTime:0.000576s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'pivot',
+  'partitions' => NULL,
+  'type' => 'ALL',
+  'possible_keys' => NULL,
+  'key' => NULL,
+  'key_len' => NULL,
+  'ref' => NULL,
+  'rows' => 2,
+  'filtered' => 50.0,
+  'extra' => 'Using where',
+) ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_comments` [ RunTime:0.001440s ]
+[ sql ] [ SQL ] SELECT * FROM `think_comments` WHERE  `delete_time` IS NULL  AND `blog_id` = 1 [ RunTime:0.000557s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_comments',
+  'partitions' => NULL,
+  'type' => 'ALL',
+  'possible_keys' => NULL,
+  'key' => NULL,
+  'key_len' => NULL,
+  'ref' => NULL,
+  'rows' => 2,
+  'filtered' => 50.0,
+  'extra' => 'Using where',
+) ]
+---------------------------------------------------------------
+[ 2019-01-23T21:52:39+08:00 ] 127.0.0.1 GET localhost/blog/python/detail/id/1.html
+[运行时间：0.100027s] [吞吐率：10.00req/s] [内存消耗：2,753.48kb] [文件加载：52]
+[ info ] [ LANG ] D:\server\nginx\html\phpapp\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'blog',
+    1 => 'python',
+    2 => 'detail',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; thinkphp_show_page_trace=0|4; province_id=1; city_id=2; district_id=39; thinkphp_show_page_trace=0|0',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://localhost/blog/python',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'keep-alive',
+  'host' => 'localhost',
+  'content-length' => '',
+  'content-type' => '',
+)
+[ info ] [ PARAM ] array (
+  'id' => '1',
+)
+[ info ] [ RUN ] app\blog\controller\Python->detail[ D:\server\nginx\html\phpapp\application\blog\controller\Python.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\server\nginx\html/phpapp/application/blog\view\detail\detail.html [ array (
+  0 => 'id',
+  1 => 'blogdetail',
+  2 => 'blogcomments',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.030603s ] mysql:host=127.0.0.1;port=3306;dbname=tp;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_blog` [ RunTime:0.008087s ]
+[ sql ] [ SQL ] SELECT * FROM `think_blog` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000576s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_blog',
+  'partitions' => NULL,
+  'type' => 'const',
+  'possible_keys' => 'PRIMARY',
+  'key' => 'PRIMARY',
+  'key_len' => '4',
+  'ref' => 'const',
+  'rows' => 1,
+  'filtered' => 100.0,
+  'extra' => NULL,
+) ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_blogs_tags` [ RunTime:0.012250s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_tags` [ RunTime:0.001303s ]
+[ sql ] [ SQL ] SELECT `think_tags`.*,pivot.id AS pivot__id,pivot.tag_id AS pivot__tag_id,pivot.blog_id AS pivot__blog_id,pivot.create_time AS pivot__create_time,pivot.update_time AS pivot__update_time,pivot.delete_time AS pivot__delete_time FROM `think_tags` INNER JOIN `think_blogs_tags` `pivot` ON `pivot`.`tag_id`=`think_tags`.`id` WHERE  `pivot`.`blog_id` = 1 [ RunTime:0.000574s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'pivot',
+  'partitions' => NULL,
+  'type' => 'ALL',
+  'possible_keys' => NULL,
+  'key' => NULL,
+  'key_len' => NULL,
+  'ref' => NULL,
+  'rows' => 2,
+  'filtered' => 50.0,
+  'extra' => 'Using where',
+) ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_comments` [ RunTime:0.001537s ]
+[ sql ] [ SQL ] SELECT * FROM `think_comments` WHERE  `delete_time` IS NULL  AND `blog_id` = 1 [ RunTime:0.000823s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_comments',
+  'partitions' => NULL,
+  'type' => 'ALL',
+  'possible_keys' => NULL,
+  'key' => NULL,
+  'key_len' => NULL,
+  'ref' => NULL,
+  'rows' => 2,
+  'filtered' => 50.0,
+  'extra' => 'Using where',
+) ]
+---------------------------------------------------------------
+[ 2019-01-23T21:53:05+08:00 ] 127.0.0.1 GET localhost/blog/python/detail/id/1.html
+[运行时间：0.093800s] [吞吐率：10.66req/s] [内存消耗：2,605.15kb] [文件加载：50]
+[ info ] [ LANG ] D:\server\nginx\html\phpapp\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'blog',
+    1 => 'python',
+    2 => 'detail',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; thinkphp_show_page_trace=0|4; province_id=1; city_id=2; district_id=39; thinkphp_show_page_trace=0|0',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://localhost/blog/python',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'keep-alive',
+  'host' => 'localhost',
+  'content-length' => '',
+  'content-type' => '',
+)
+[ info ] [ PARAM ] array (
+  'id' => '1',
+)
+[ info ] [ RUN ] app\blog\controller\Python->detail[ D:\server\nginx\html\phpapp\application\blog\controller\Python.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\server\nginx\html/phpapp/application/blog\view\detail\detail.html [ array (
+  0 => 'id',
+  1 => 'blogdetail',
+  2 => 'blogcomments',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.022161s ] mysql:host=127.0.0.1;port=3306;dbname=tp;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_blog` [ RunTime:0.018268s ]
+[ sql ] [ SQL ] SELECT * FROM `think_blog` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.001451s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_blog',
+  'partitions' => NULL,
+  'type' => 'const',
+  'possible_keys' => 'PRIMARY',
+  'key' => 'PRIMARY',
+  'key_len' => '4',
+  'ref' => 'const',
+  'rows' => 1,
+  'filtered' => 100.0,
+  'extra' => NULL,
+) ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_blogs_tags` [ RunTime:0.001679s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_tags` [ RunTime:0.001312s ]
+[ sql ] [ SQL ] SELECT `think_tags`.*,pivot.id AS pivot__id,pivot.tag_id AS pivot__tag_id,pivot.blog_id AS pivot__blog_id,pivot.create_time AS pivot__create_time,pivot.update_time AS pivot__update_time,pivot.delete_time AS pivot__delete_time FROM `think_tags` INNER JOIN `think_blogs_tags` `pivot` ON `pivot`.`tag_id`=`think_tags`.`id` WHERE  `pivot`.`blog_id` = 1 [ RunTime:0.000603s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'pivot',
+  'partitions' => NULL,
+  'type' => 'ALL',
+  'possible_keys' => NULL,
+  'key' => NULL,
+  'key_len' => NULL,
+  'ref' => NULL,
+  'rows' => 2,
+  'filtered' => 50.0,
+  'extra' => 'Using where',
+) ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_comments` [ RunTime:0.001646s ]
+[ sql ] [ SQL ] SELECT * FROM `think_comments` WHERE  `delete_time` IS NULL  AND `blog_id` = 1 [ RunTime:0.000575s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_comments',
+  'partitions' => NULL,
+  'type' => 'ALL',
+  'possible_keys' => NULL,
+  'key' => NULL,
+  'key_len' => NULL,
+  'ref' => NULL,
+  'rows' => 2,
+  'filtered' => 50.0,
+  'extra' => 'Using where',
+) ]
+---------------------------------------------------------------
+[ 2019-01-23T21:57:28+08:00 ] 127.0.0.1 GET localhost/blog/python/detail/id/1.html
+[运行时间：0.078967s] [吞吐率：12.66req/s] [内存消耗：2,605.15kb] [文件加载：50]
+[ info ] [ LANG ] D:\server\nginx\html\phpapp\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'blog',
+    1 => 'python',
+    2 => 'detail',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; thinkphp_show_page_trace=0|4; province_id=1; city_id=2; district_id=39; thinkphp_show_page_trace=0|0',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://localhost/blog/python',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'keep-alive',
+  'host' => 'localhost',
+  'content-length' => '',
+  'content-type' => '',
+)
+[ info ] [ PARAM ] array (
+  'id' => '1',
+)
+[ info ] [ RUN ] app\blog\controller\Python->detail[ D:\server\nginx\html\phpapp\application\blog\controller\Python.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\server\nginx\html/phpapp/application/blog\view\detail\detail.html [ array (
+  0 => 'id',
+  1 => 'blogdetail',
+  2 => 'blogcomments',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.027082s ] mysql:host=127.0.0.1;port=3306;dbname=tp;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_blog` [ RunTime:0.002307s ]
+[ sql ] [ SQL ] SELECT * FROM `think_blog` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000570s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_blog',
+  'partitions' => NULL,
+  'type' => 'const',
+  'possible_keys' => 'PRIMARY',
+  'key' => 'PRIMARY',
+  'key_len' => '4',
+  'ref' => 'const',
+  'rows' => 1,
+  'filtered' => 100.0,
+  'extra' => NULL,
+) ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_blogs_tags` [ RunTime:0.003205s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_tags` [ RunTime:0.001851s ]
+[ sql ] [ SQL ] SELECT `think_tags`.*,pivot.id AS pivot__id,pivot.tag_id AS pivot__tag_id,pivot.blog_id AS pivot__blog_id,pivot.create_time AS pivot__create_time,pivot.update_time AS pivot__update_time,pivot.delete_time AS pivot__delete_time FROM `think_tags` INNER JOIN `think_blogs_tags` `pivot` ON `pivot`.`tag_id`=`think_tags`.`id` WHERE  `pivot`.`blog_id` = 1 [ RunTime:0.000531s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'pivot',
+  'partitions' => NULL,
+  'type' => 'ALL',
+  'possible_keys' => NULL,
+  'key' => NULL,
+  'key_len' => NULL,
+  'ref' => NULL,
+  'rows' => 2,
+  'filtered' => 50.0,
+  'extra' => 'Using where',
+) ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_comments` [ RunTime:0.001428s ]
+[ sql ] [ SQL ] SELECT * FROM `think_comments` WHERE  `delete_time` IS NULL  AND `blog_id` = 1 [ RunTime:0.000424s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_comments',
+  'partitions' => NULL,
+  'type' => 'ALL',
+  'possible_keys' => NULL,
+  'key' => NULL,
+  'key_len' => NULL,
+  'ref' => NULL,
+  'rows' => 2,
+  'filtered' => 50.0,
+  'extra' => 'Using where',
+) ]
+---------------------------------------------------------------
+[ 2019-01-23T21:58:05+08:00 ] 127.0.0.1 GET localhost/blog/python/detail/id/1.html
+[运行时间：0.130571s] [吞吐率：7.66req/s] [内存消耗：2,605.15kb] [文件加载：50]
+[ info ] [ LANG ] D:\server\nginx\html\phpapp\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'blog',
+    1 => 'python',
+    2 => 'detail',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; thinkphp_show_page_trace=0|4; province_id=1; city_id=2; district_id=39; thinkphp_show_page_trace=0|0',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://localhost/blog/python',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'keep-alive',
+  'host' => 'localhost',
+  'content-length' => '',
+  'content-type' => '',
+)
+[ info ] [ PARAM ] array (
+  'id' => '1',
+)
+[ info ] [ RUN ] app\blog\controller\Python->detail[ D:\server\nginx\html\phpapp\application\blog\controller\Python.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\server\nginx\html/phpapp/application/blog\view\detail\detail.html [ array (
+  0 => 'id',
+  1 => 'blogdetail',
+  2 => 'blogcomments',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.025353s ] mysql:host=127.0.0.1;port=3306;dbname=tp;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_blog` [ RunTime:0.031076s ]
+[ sql ] [ SQL ] SELECT * FROM `think_blog` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.013972s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_blog',
+  'partitions' => NULL,
+  'type' => 'const',
+  'possible_keys' => 'PRIMARY',
+  'key' => 'PRIMARY',
+  'key_len' => '4',
+  'ref' => 'const',
+  'rows' => 1,
+  'filtered' => 100.0,
+  'extra' => NULL,
+) ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_blogs_tags` [ RunTime:0.014824s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_tags` [ RunTime:0.003965s ]
+[ sql ] [ SQL ] SELECT `think_tags`.*,pivot.id AS pivot__id,pivot.tag_id AS pivot__tag_id,pivot.blog_id AS pivot__blog_id,pivot.create_time AS pivot__create_time,pivot.update_time AS pivot__update_time,pivot.delete_time AS pivot__delete_time FROM `think_tags` INNER JOIN `think_blogs_tags` `pivot` ON `pivot`.`tag_id`=`think_tags`.`id` WHERE  `pivot`.`blog_id` = 1 [ RunTime:0.000610s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'pivot',
+  'partitions' => NULL,
+  'type' => 'ALL',
+  'possible_keys' => NULL,
+  'key' => NULL,
+  'key_len' => NULL,
+  'ref' => NULL,
+  'rows' => 2,
+  'filtered' => 50.0,
+  'extra' => 'Using where',
+) ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_comments` [ RunTime:0.001375s ]
+[ sql ] [ SQL ] SELECT * FROM `think_comments` WHERE  `delete_time` IS NULL  AND `blog_id` = 1 [ RunTime:0.000507s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_comments',
+  'partitions' => NULL,
+  'type' => 'ALL',
+  'possible_keys' => NULL,
+  'key' => NULL,
+  'key_len' => NULL,
+  'ref' => NULL,
+  'rows' => 2,
+  'filtered' => 50.0,
+  'extra' => 'Using where',
+) ]
+---------------------------------------------------------------
+[ 2019-01-23T21:59:25+08:00 ] 127.0.0.1 GET localhost/blog/python/detail/id/1.html
+[运行时间：0.090794s] [吞吐率：11.01req/s] [内存消耗：2,603.55kb] [文件加载：50]
+[ info ] [ LANG ] D:\server\nginx\html\phpapp\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'blog',
+    1 => 'python',
+    2 => 'detail',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; thinkphp_show_page_trace=0|4; province_id=1; city_id=2; district_id=39; thinkphp_show_page_trace=0|0',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://localhost/blog/python',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'keep-alive',
+  'host' => 'localhost',
+  'content-length' => '',
+  'content-type' => '',
+)
+[ info ] [ PARAM ] array (
+  'id' => '1',
+)
+[ info ] [ RUN ] app\blog\controller\Python->detail[ D:\server\nginx\html\phpapp\application\blog\controller\Python.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\server\nginx\html/phpapp/application/blog\view\detail\detail.html [ array (
+  0 => 'id',
+  1 => 'blogdetail',
+  2 => 'blogcomments',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.034964s ] mysql:host=127.0.0.1;port=3306;dbname=tp;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_blog` [ RunTime:0.001884s ]
+[ sql ] [ SQL ] SELECT * FROM `think_blog` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000927s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_blog',
+  'partitions' => NULL,
+  'type' => 'const',
+  'possible_keys' => 'PRIMARY',
+  'key' => 'PRIMARY',
+  'key_len' => '4',
+  'ref' => 'const',
+  'rows' => 1,
+  'filtered' => 100.0,
+  'extra' => NULL,
+) ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_blogs_tags` [ RunTime:0.001603s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_tags` [ RunTime:0.003801s ]
+[ sql ] [ SQL ] SELECT `think_tags`.*,pivot.id AS pivot__id,pivot.tag_id AS pivot__tag_id,pivot.blog_id AS pivot__blog_id,pivot.create_time AS pivot__create_time,pivot.update_time AS pivot__update_time,pivot.delete_time AS pivot__delete_time FROM `think_tags` INNER JOIN `think_blogs_tags` `pivot` ON `pivot`.`tag_id`=`think_tags`.`id` WHERE  `pivot`.`blog_id` = 1 [ RunTime:0.000777s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'pivot',
+  'partitions' => NULL,
+  'type' => 'ALL',
+  'possible_keys' => NULL,
+  'key' => NULL,
+  'key_len' => NULL,
+  'ref' => NULL,
+  'rows' => 2,
+  'filtered' => 50.0,
+  'extra' => 'Using where',
+) ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_comments` [ RunTime:0.001424s ]
+[ sql ] [ SQL ] SELECT * FROM `think_comments` WHERE  `delete_time` IS NULL  AND `blog_id` = 1 [ RunTime:0.000510s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_comments',
+  'partitions' => NULL,
+  'type' => 'ALL',
+  'possible_keys' => NULL,
+  'key' => NULL,
+  'key_len' => NULL,
+  'ref' => NULL,
+  'rows' => 2,
+  'filtered' => 50.0,
+  'extra' => 'Using where',
+) ]
+---------------------------------------------------------------
+[ 2019-01-23T21:59:27+08:00 ] 127.0.0.1 GET localhost/blog/python/detail/id/1.html
+[运行时间：0.054732s] [吞吐率：18.27req/s] [内存消耗：2,603.55kb] [文件加载：50]
+[ info ] [ LANG ] D:\server\nginx\html\phpapp\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'blog',
+    1 => 'python',
+    2 => 'detail',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; thinkphp_show_page_trace=0|4; province_id=1; city_id=2; district_id=39; thinkphp_show_page_trace=0|0',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://localhost/blog/python',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'keep-alive',
+  'host' => 'localhost',
+  'content-length' => '',
+  'content-type' => '',
+)
+[ info ] [ PARAM ] array (
+  'id' => '1',
+)
+[ info ] [ RUN ] app\blog\controller\Python->detail[ D:\server\nginx\html\phpapp\application\blog\controller\Python.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\server\nginx\html/phpapp/application/blog\view\detail\detail.html [ array (
+  0 => 'id',
+  1 => 'blogdetail',
+  2 => 'blogcomments',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.003312s ] mysql:host=127.0.0.1;port=3306;dbname=tp;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_blog` [ RunTime:0.001481s ]
+[ sql ] [ SQL ] SELECT * FROM `think_blog` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000521s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_blog',
+  'partitions' => NULL,
+  'type' => 'const',
+  'possible_keys' => 'PRIMARY',
+  'key' => 'PRIMARY',
+  'key_len' => '4',
+  'ref' => 'const',
+  'rows' => 1,
+  'filtered' => 100.0,
+  'extra' => NULL,
+) ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_blogs_tags` [ RunTime:0.001387s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_tags` [ RunTime:0.001287s ]
+[ sql ] [ SQL ] SELECT `think_tags`.*,pivot.id AS pivot__id,pivot.tag_id AS pivot__tag_id,pivot.blog_id AS pivot__blog_id,pivot.create_time AS pivot__create_time,pivot.update_time AS pivot__update_time,pivot.delete_time AS pivot__delete_time FROM `think_tags` INNER JOIN `think_blogs_tags` `pivot` ON `pivot`.`tag_id`=`think_tags`.`id` WHERE  `pivot`.`blog_id` = 1 [ RunTime:0.000589s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'pivot',
+  'partitions' => NULL,
+  'type' => 'ALL',
+  'possible_keys' => NULL,
+  'key' => NULL,
+  'key_len' => NULL,
+  'ref' => NULL,
+  'rows' => 2,
+  'filtered' => 50.0,
+  'extra' => 'Using where',
+) ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_comments` [ RunTime:0.001347s ]
+[ sql ] [ SQL ] SELECT * FROM `think_comments` WHERE  `delete_time` IS NULL  AND `blog_id` = 1 [ RunTime:0.000507s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_comments',
+  'partitions' => NULL,
+  'type' => 'ALL',
+  'possible_keys' => NULL,
+  'key' => NULL,
+  'key_len' => NULL,
+  'ref' => NULL,
+  'rows' => 2,
+  'filtered' => 50.0,
+  'extra' => 'Using where',
+) ]
+---------------------------------------------------------------
+[ 2019-01-23T22:09:51+08:00 ] 127.0.0.1 GET localhost/blog/python/detail/id/1.html
+[运行时间：0.144593s] [吞吐率：6.92req/s] [内存消耗：2,603.55kb] [文件加载：50]
+[ info ] [ LANG ] D:\server\nginx\html\phpapp\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'blog',
+    1 => 'python',
+    2 => 'detail',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; thinkphp_show_page_trace=0|4; province_id=1; city_id=2; district_id=39; thinkphp_show_page_trace=0|0',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://localhost/blog/python',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'keep-alive',
+  'host' => 'localhost',
+  'content-length' => '',
+  'content-type' => '',
+)
+[ info ] [ PARAM ] array (
+  'id' => '1',
+)
+[ info ] [ RUN ] app\blog\controller\Python->detail[ D:\server\nginx\html\phpapp\application\blog\controller\Python.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\server\nginx\html/phpapp/application/blog\view\detail\detail.html [ array (
+  0 => 'id',
+  1 => 'blogdetail',
+  2 => 'blogcomments',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.035205s ] mysql:host=127.0.0.1;port=3306;dbname=tp;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_blog` [ RunTime:0.046905s ]
+[ sql ] [ SQL ] SELECT * FROM `think_blog` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.009974s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_blog',
+  'partitions' => NULL,
+  'type' => 'const',
+  'possible_keys' => 'PRIMARY',
+  'key' => 'PRIMARY',
+  'key_len' => '4',
+  'ref' => 'const',
+  'rows' => 1,
+  'filtered' => 100.0,
+  'extra' => NULL,
+) ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_blogs_tags` [ RunTime:0.002169s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_tags` [ RunTime:0.001364s ]
+[ sql ] [ SQL ] SELECT `think_tags`.*,pivot.id AS pivot__id,pivot.tag_id AS pivot__tag_id,pivot.blog_id AS pivot__blog_id,pivot.create_time AS pivot__create_time,pivot.update_time AS pivot__update_time,pivot.delete_time AS pivot__delete_time FROM `think_tags` INNER JOIN `think_blogs_tags` `pivot` ON `pivot`.`tag_id`=`think_tags`.`id` WHERE  `pivot`.`blog_id` = 1 [ RunTime:0.000580s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'pivot',
+  'partitions' => NULL,
+  'type' => 'ALL',
+  'possible_keys' => NULL,
+  'key' => NULL,
+  'key_len' => NULL,
+  'ref' => NULL,
+  'rows' => 2,
+  'filtered' => 50.0,
+  'extra' => 'Using where',
+) ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_comments` [ RunTime:0.001680s ]
+[ sql ] [ SQL ] SELECT * FROM `think_comments` WHERE  `delete_time` IS NULL  AND `blog_id` = 1 [ RunTime:0.000532s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_comments',
+  'partitions' => NULL,
+  'type' => 'ALL',
+  'possible_keys' => NULL,
+  'key' => NULL,
+  'key_len' => NULL,
+  'ref' => NULL,
+  'rows' => 2,
+  'filtered' => 50.0,
+  'extra' => 'Using where',
+) ]
+---------------------------------------------------------------
+[ 2019-01-23T22:14:31+08:00 ] 127.0.0.1 GET localhost/blog/python/detail/id/1.html
+[运行时间：0.094427s] [吞吐率：10.59req/s] [内存消耗：2,753.48kb] [文件加载：52]
+[ info ] [ LANG ] D:\server\nginx\html\phpapp\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'blog',
+    1 => 'python',
+    2 => 'detail',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; thinkphp_show_page_trace=0|4; province_id=1; city_id=2; district_id=39; thinkphp_show_page_trace=0|0',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://localhost/blog/python',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'keep-alive',
+  'host' => 'localhost',
+  'content-length' => '',
+  'content-type' => '',
+)
+[ info ] [ PARAM ] array (
+  'id' => '1',
+)
+[ info ] [ RUN ] app\blog\controller\Python->detail[ D:\server\nginx\html\phpapp\application\blog\controller\Python.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\server\nginx\html/phpapp/application/blog\view\detail\detail.html [ array (
+  0 => 'id',
+  1 => 'blogdetail',
+  2 => 'blogcomments',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.013508s ] mysql:host=127.0.0.1;port=3306;dbname=tp;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_blog` [ RunTime:0.019341s ]
+[ sql ] [ SQL ] SELECT * FROM `think_blog` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.003854s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_blog',
+  'partitions' => NULL,
+  'type' => 'const',
+  'possible_keys' => 'PRIMARY',
+  'key' => 'PRIMARY',
+  'key_len' => '4',
+  'ref' => 'const',
+  'rows' => 1,
+  'filtered' => 100.0,
+  'extra' => NULL,
+) ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_blogs_tags` [ RunTime:0.001140s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_tags` [ RunTime:0.000871s ]
+[ sql ] [ SQL ] SELECT `think_tags`.*,pivot.id AS pivot__id,pivot.tag_id AS pivot__tag_id,pivot.blog_id AS pivot__blog_id,pivot.create_time AS pivot__create_time,pivot.update_time AS pivot__update_time,pivot.delete_time AS pivot__delete_time FROM `think_tags` INNER JOIN `think_blogs_tags` `pivot` ON `pivot`.`tag_id`=`think_tags`.`id` WHERE  `pivot`.`blog_id` = 1 [ RunTime:0.000572s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'pivot',
+  'partitions' => NULL,
+  'type' => 'ALL',
+  'possible_keys' => NULL,
+  'key' => NULL,
+  'key_len' => NULL,
+  'ref' => NULL,
+  'rows' => 2,
+  'filtered' => 50.0,
+  'extra' => 'Using where',
+) ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_comments` [ RunTime:0.001470s ]
+[ sql ] [ SQL ] SELECT * FROM `think_comments` WHERE  `delete_time` IS NULL  AND `blog_id` = 1 [ RunTime:0.000507s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_comments',
+  'partitions' => NULL,
+  'type' => 'ALL',
+  'possible_keys' => NULL,
+  'key' => NULL,
+  'key_len' => NULL,
+  'ref' => NULL,
+  'rows' => 2,
+  'filtered' => 50.0,
+  'extra' => 'Using where',
+) ]
+---------------------------------------------------------------
+[ 2019-01-23T22:14:47+08:00 ] 127.0.0.1 GET localhost/blog/python/detail/id/1.html
+[运行时间：0.153115s] [吞吐率：6.53req/s] [内存消耗：2,753.48kb] [文件加载：52]
+[ info ] [ LANG ] D:\server\nginx\html\phpapp\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'blog',
+    1 => 'python',
+    2 => 'detail',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; thinkphp_show_page_trace=0|4; province_id=1; city_id=2; district_id=39; thinkphp_show_page_trace=0|0',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://localhost/blog/python',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'keep-alive',
+  'host' => 'localhost',
+  'content-length' => '',
+  'content-type' => '',
+)
+[ info ] [ PARAM ] array (
+  'id' => '1',
+)
+[ info ] [ RUN ] app\blog\controller\Python->detail[ D:\server\nginx\html\phpapp\application\blog\controller\Python.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\server\nginx\html/phpapp/application/blog\view\detail\detail.html [ array (
+  0 => 'id',
+  1 => 'blogdetail',
+  2 => 'blogcomments',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001809s ] mysql:host=127.0.0.1;port=3306;dbname=tp;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_blog` [ RunTime:0.066818s ]
+[ sql ] [ SQL ] SELECT * FROM `think_blog` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000809s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_blog',
+  'partitions' => NULL,
+  'type' => 'const',
+  'possible_keys' => 'PRIMARY',
+  'key' => 'PRIMARY',
+  'key_len' => '4',
+  'ref' => 'const',
+  'rows' => 1,
+  'filtered' => 100.0,
+  'extra' => NULL,
+) ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_blogs_tags` [ RunTime:0.001014s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_tags` [ RunTime:0.000560s ]
+[ sql ] [ SQL ] SELECT `think_tags`.*,pivot.id AS pivot__id,pivot.tag_id AS pivot__tag_id,pivot.blog_id AS pivot__blog_id,pivot.create_time AS pivot__create_time,pivot.update_time AS pivot__update_time,pivot.delete_time AS pivot__delete_time FROM `think_tags` INNER JOIN `think_blogs_tags` `pivot` ON `pivot`.`tag_id`=`think_tags`.`id` WHERE  `pivot`.`blog_id` = 1 [ RunTime:0.000425s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'pivot',
+  'partitions' => NULL,
+  'type' => 'ALL',
+  'possible_keys' => NULL,
+  'key' => NULL,
+  'key_len' => NULL,
+  'ref' => NULL,
+  'rows' => 2,
+  'filtered' => 50.0,
+  'extra' => 'Using where',
+) ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_comments` [ RunTime:0.004399s ]
+[ sql ] [ SQL ] SELECT * FROM `think_comments` WHERE  `delete_time` IS NULL  AND `blog_id` = 1 [ RunTime:0.000457s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_comments',
+  'partitions' => NULL,
+  'type' => 'ALL',
+  'possible_keys' => NULL,
+  'key' => NULL,
+  'key_len' => NULL,
+  'ref' => NULL,
+  'rows' => 2,
+  'filtered' => 50.0,
+  'extra' => 'Using where',
+) ]
+---------------------------------------------------------------
+[ 2019-01-23T22:17:06+08:00 ] 127.0.0.1 GET localhost/
+[运行时间：0.031743s] [吞吐率：31.50req/s] [内存消耗：1,326.56kb] [文件加载：38]
+[ info ] [ LANG ] D:\server\nginx\html\phpapp\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'province_id=1; city_id=2; district_id=39; thinkphp_show_page_trace=0|0',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'keep-alive',
+  'host' => 'localhost',
+  'content-length' => '',
+  'content-type' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\blog\controller\Index->index[ D:\server\nginx\html\phpapp\application\blog\controller\Index.php ]
+[ info ] [ VIEW ] D:\server\nginx\html/phpapp/application/blog\view\blog\blog.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-01-23T22:17:08+08:00 ] 127.0.0.1 GET localhost/blog/python
+[运行时间：0.230004s] [吞吐率：4.35req/s] [内存消耗：2,717.55kb] [文件加载：53]
+[ info ] [ LANG ] D:\server\nginx\html\phpapp\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'blog',
+    1 => 'python',
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|4; province_id=1; city_id=2; district_id=39; thinkphp_show_page_trace=0|0',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://localhost/',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'keep-alive',
+  'host' => 'localhost',
+  'content-length' => '',
+  'content-type' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\blog\controller\Python->index[ D:\server\nginx\html\phpapp\application\blog\controller\Python.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\server\nginx\html/phpapp/application/blog\view\contents\contents.html [ array (
+  0 => 'bloglist',
+  1 => 'pagecount',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.027191s ] mysql:host=127.0.0.1;port=3306;dbname=tp;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_blog` [ RunTime:0.039046s ]
+[ sql ] [ SQL ] SELECT * FROM `think_blog` WHERE  `delete_time` IS NULL LIMIT 0,10 [ RunTime:0.017832s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_blog',
+  'partitions' => NULL,
+  'type' => 'ALL',
+  'possible_keys' => NULL,
+  'key' => NULL,
+  'key_len' => NULL,
+  'ref' => NULL,
+  'rows' => 2,
+  'filtered' => 50.0,
+  'extra' => 'Using where',
+) ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_blog` WHERE  `delete_time` IS NULL LIMIT 1 [ RunTime:0.000555s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_blog',
+  'partitions' => NULL,
+  'type' => 'ALL',
+  'possible_keys' => NULL,
+  'key' => NULL,
+  'key_len' => NULL,
+  'ref' => NULL,
+  'rows' => 2,
+  'filtered' => 50.0,
+  'extra' => 'Using where',
+) ]
+[ sql ] [ SQL ] SELECT * FROM `think_blog` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000528s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_blog',
+  'partitions' => NULL,
+  'type' => 'const',
+  'possible_keys' => 'PRIMARY',
+  'key' => 'PRIMARY',
+  'key_len' => '4',
+  'ref' => 'const',
+  'rows' => 1,
+  'filtered' => 100.0,
+  'extra' => NULL,
+) ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_cate` [ RunTime:0.002259s ]
+[ sql ] [ SQL ] SELECT * FROM `think_cate` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000562s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_cate',
+  'partitions' => NULL,
+  'type' => 'const',
+  'possible_keys' => 'PRIMARY',
+  'key' => 'PRIMARY',
+  'key_len' => '4',
+  'ref' => 'const',
+  'rows' => 1,
+  'filtered' => 100.0,
+  'extra' => NULL,
+) ]
+[ sql ] [ SQL ] SELECT * FROM `think_blog` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000475s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_blog',
+  'partitions' => NULL,
+  'type' => 'const',
+  'possible_keys' => 'PRIMARY',
+  'key' => 'PRIMARY',
+  'key_len' => '4',
+  'ref' => 'const',
+  'rows' => 1,
+  'filtered' => 100.0,
+  'extra' => NULL,
+) ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_blogs_tags` [ RunTime:0.000936s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_tags` [ RunTime:0.000870s ]
+[ sql ] [ SQL ] SELECT `think_tags`.*,pivot.id AS pivot__id,pivot.tag_id AS pivot__tag_id,pivot.blog_id AS pivot__blog_id,pivot.create_time AS pivot__create_time,pivot.update_time AS pivot__update_time,pivot.delete_time AS pivot__delete_time FROM `think_tags` INNER JOIN `think_blogs_tags` `pivot` ON `pivot`.`tag_id`=`think_tags`.`id` WHERE  `pivot`.`blog_id` = 1 [ RunTime:0.000742s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'pivot',
+  'partitions' => NULL,
+  'type' => 'ALL',
+  'possible_keys' => NULL,
+  'key' => NULL,
+  'key_len' => NULL,
+  'ref' => NULL,
+  'rows' => 2,
+  'filtered' => 50.0,
+  'extra' => 'Using where',
+) ]
+[ sql ] [ SQL ] SELECT * FROM `think_blog` WHERE  `id` = 2 LIMIT 1 [ RunTime:0.000522s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_blog',
+  'partitions' => NULL,
+  'type' => 'const',
+  'possible_keys' => 'PRIMARY',
+  'key' => 'PRIMARY',
+  'key_len' => '4',
+  'ref' => 'const',
+  'rows' => 1,
+  'filtered' => 100.0,
+  'extra' => NULL,
+) ]
+[ sql ] [ SQL ] SELECT * FROM `think_cate` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000431s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_cate',
+  'partitions' => NULL,
+  'type' => 'const',
+  'possible_keys' => 'PRIMARY',
+  'key' => 'PRIMARY',
+  'key_len' => '4',
+  'ref' => 'const',
+  'rows' => 1,
+  'filtered' => 100.0,
+  'extra' => NULL,
+) ]
+[ sql ] [ SQL ] SELECT * FROM `think_blog` WHERE  `id` = 2 LIMIT 1 [ RunTime:0.000445s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_blog',
+  'partitions' => NULL,
+  'type' => 'const',
+  'possible_keys' => 'PRIMARY',
+  'key' => 'PRIMARY',
+  'key_len' => '4',
+  'ref' => 'const',
+  'rows' => 1,
+  'filtered' => 100.0,
+  'extra' => NULL,
+) ]
+[ sql ] [ SQL ] SELECT `think_tags`.*,pivot.id AS pivot__id,pivot.tag_id AS pivot__tag_id,pivot.blog_id AS pivot__blog_id,pivot.create_time AS pivot__create_time,pivot.update_time AS pivot__update_time,pivot.delete_time AS pivot__delete_time FROM `think_tags` INNER JOIN `think_blogs_tags` `pivot` ON `pivot`.`tag_id`=`think_tags`.`id` WHERE  `pivot`.`blog_id` = 2 [ RunTime:0.000536s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'pivot',
+  'partitions' => NULL,
+  'type' => 'ALL',
+  'possible_keys' => NULL,
+  'key' => NULL,
+  'key_len' => NULL,
+  'ref' => NULL,
+  'rows' => 2,
+  'filtered' => 50.0,
+  'extra' => 'Using where',
+) ]
+---------------------------------------------------------------
+[ 2019-01-23T22:17:09+08:00 ] 127.0.0.1 GET localhost/blog/python/detail/id/1.html
+[运行时间：0.091005s] [吞吐率：10.99req/s] [内存消耗：2,603.30kb] [文件加载：50]
+[ info ] [ LANG ] D:\server\nginx\html\phpapp\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'blog',
+    1 => 'python',
+    2 => 'detail',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; thinkphp_show_page_trace=0|4; province_id=1; city_id=2; district_id=39; thinkphp_show_page_trace=0|0',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://localhost/blog/python',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'keep-alive',
+  'host' => 'localhost',
+  'content-length' => '',
+  'content-type' => '',
+)
+[ info ] [ PARAM ] array (
+  'id' => '1',
+)
+[ info ] [ RUN ] app\blog\controller\Python->detail[ D:\server\nginx\html\phpapp\application\blog\controller\Python.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\server\nginx\html/phpapp/application/blog\view\detail\detail.html [ array (
+  0 => 'id',
+  1 => 'blogdetail',
+  2 => 'blogcomments',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.003017s ] mysql:host=127.0.0.1;port=3306;dbname=tp;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_blog` [ RunTime:0.031714s ]
+[ sql ] [ SQL ] SELECT * FROM `think_blog` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000855s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_blog',
+  'partitions' => NULL,
+  'type' => 'const',
+  'possible_keys' => 'PRIMARY',
+  'key' => 'PRIMARY',
+  'key_len' => '4',
+  'ref' => 'const',
+  'rows' => 1,
+  'filtered' => 100.0,
+  'extra' => NULL,
+) ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_blogs_tags` [ RunTime:0.001341s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_tags` [ RunTime:0.000860s ]
+[ sql ] [ SQL ] SELECT `think_tags`.*,pivot.id AS pivot__id,pivot.tag_id AS pivot__tag_id,pivot.blog_id AS pivot__blog_id,pivot.create_time AS pivot__create_time,pivot.update_time AS pivot__update_time,pivot.delete_time AS pivot__delete_time FROM `think_tags` INNER JOIN `think_blogs_tags` `pivot` ON `pivot`.`tag_id`=`think_tags`.`id` WHERE  `pivot`.`blog_id` = 1 [ RunTime:0.000616s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'pivot',
+  'partitions' => NULL,
+  'type' => 'ALL',
+  'possible_keys' => NULL,
+  'key' => NULL,
+  'key_len' => NULL,
+  'ref' => NULL,
+  'rows' => 2,
+  'filtered' => 50.0,
+  'extra' => 'Using where',
+) ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_comments` [ RunTime:0.000926s ]
+[ sql ] [ SQL ] SELECT * FROM `think_comments` WHERE  `delete_time` IS NULL  AND `blog_id` = 1 [ RunTime:0.000619s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_comments',
+  'partitions' => NULL,
+  'type' => 'ALL',
+  'possible_keys' => NULL,
+  'key' => NULL,
+  'key_len' => NULL,
+  'ref' => NULL,
+  'rows' => 2,
+  'filtered' => 50.0,
+  'extra' => 'Using where',
+) ]
+---------------------------------------------------------------
+[ 2019-01-23T22:18:45+08:00 ] 127.0.0.1 GET localhost/blog/python/detail/id/1.html
+[运行时间：0.090298s] [吞吐率：11.07req/s] [内存消耗：2,603.55kb] [文件加载：50]
+[ info ] [ LANG ] D:\server\nginx\html\phpapp\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'blog',
+    1 => 'python',
+    2 => 'detail',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; thinkphp_show_page_trace=0|4; province_id=1; city_id=2; district_id=39; thinkphp_show_page_trace=0|0',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://localhost/blog/python',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'keep-alive',
+  'host' => 'localhost',
+  'content-length' => '',
+  'content-type' => '',
+)
+[ info ] [ PARAM ] array (
+  'id' => '1',
+)
+[ info ] [ RUN ] app\blog\controller\Python->detail[ D:\server\nginx\html\phpapp\application\blog\controller\Python.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\server\nginx\html/phpapp/application/blog\view\detail\detail.html [ array (
+  0 => 'id',
+  1 => 'blogdetail',
+  2 => 'blogcomments',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.022487s ] mysql:host=127.0.0.1;port=3306;dbname=tp;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_blog` [ RunTime:0.019163s ]
+[ sql ] [ SQL ] SELECT * FROM `think_blog` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.004420s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_blog',
+  'partitions' => NULL,
+  'type' => 'const',
+  'possible_keys' => 'PRIMARY',
+  'key' => 'PRIMARY',
+  'key_len' => '4',
+  'ref' => 'const',
+  'rows' => 1,
+  'filtered' => 100.0,
+  'extra' => NULL,
+) ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_blogs_tags` [ RunTime:0.001029s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_tags` [ RunTime:0.000945s ]
+[ sql ] [ SQL ] SELECT `think_tags`.*,pivot.id AS pivot__id,pivot.tag_id AS pivot__tag_id,pivot.blog_id AS pivot__blog_id,pivot.create_time AS pivot__create_time,pivot.update_time AS pivot__update_time,pivot.delete_time AS pivot__delete_time FROM `think_tags` INNER JOIN `think_blogs_tags` `pivot` ON `pivot`.`tag_id`=`think_tags`.`id` WHERE  `pivot`.`blog_id` = 1 [ RunTime:0.000674s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'pivot',
+  'partitions' => NULL,
+  'type' => 'ALL',
+  'possible_keys' => NULL,
+  'key' => NULL,
+  'key_len' => NULL,
+  'ref' => NULL,
+  'rows' => 2,
+  'filtered' => 50.0,
+  'extra' => 'Using where',
+) ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_comments` [ RunTime:0.001265s ]
+[ sql ] [ SQL ] SELECT * FROM `think_comments` WHERE  `delete_time` IS NULL  AND `blog_id` = 1 [ RunTime:0.000488s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_comments',
+  'partitions' => NULL,
+  'type' => 'ALL',
+  'possible_keys' => NULL,
+  'key' => NULL,
+  'key_len' => NULL,
+  'ref' => NULL,
+  'rows' => 2,
+  'filtered' => 50.0,
+  'extra' => 'Using where',
+) ]
+---------------------------------------------------------------
+[ 2019-01-23T22:18:47+08:00 ] 127.0.0.1 GET localhost/blog/python
+[运行时间：0.099399s] [吞吐率：10.06req/s] [内存消耗：2,717.64kb] [文件加载：53]
+[ info ] [ LANG ] D:\server\nginx\html\phpapp\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'blog',
+    1 => 'python',
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|4; province_id=1; city_id=2; district_id=39; thinkphp_show_page_trace=0|0',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://localhost/blog/python/detail/id/1.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'keep-alive',
+  'host' => 'localhost',
+  'content-length' => '',
+  'content-type' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\blog\controller\Python->index[ D:\server\nginx\html\phpapp\application\blog\controller\Python.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\server\nginx\html/phpapp/application/blog\view\contents\contents.html [ array (
+  0 => 'bloglist',
+  1 => 'pagecount',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002864s ] mysql:host=127.0.0.1;port=3306;dbname=tp;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_blog` [ RunTime:0.001337s ]
+[ sql ] [ SQL ] SELECT * FROM `think_blog` WHERE  `delete_time` IS NULL LIMIT 0,10 [ RunTime:0.000468s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_blog',
+  'partitions' => NULL,
+  'type' => 'ALL',
+  'possible_keys' => NULL,
+  'key' => NULL,
+  'key_len' => NULL,
+  'ref' => NULL,
+  'rows' => 2,
+  'filtered' => 50.0,
+  'extra' => 'Using where',
+) ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_blog` WHERE  `delete_time` IS NULL LIMIT 1 [ RunTime:0.000539s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_blog',
+  'partitions' => NULL,
+  'type' => 'ALL',
+  'possible_keys' => NULL,
+  'key' => NULL,
+  'key_len' => NULL,
+  'ref' => NULL,
+  'rows' => 2,
+  'filtered' => 50.0,
+  'extra' => 'Using where',
+) ]
+[ sql ] [ SQL ] SELECT * FROM `think_blog` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.002571s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_blog',
+  'partitions' => NULL,
+  'type' => 'const',
+  'possible_keys' => 'PRIMARY',
+  'key' => 'PRIMARY',
+  'key_len' => '4',
+  'ref' => 'const',
+  'rows' => 1,
+  'filtered' => 100.0,
+  'extra' => NULL,
+) ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_cate` [ RunTime:0.004234s ]
+[ sql ] [ SQL ] SELECT * FROM `think_cate` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000865s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_cate',
+  'partitions' => NULL,
+  'type' => 'const',
+  'possible_keys' => 'PRIMARY',
+  'key' => 'PRIMARY',
+  'key_len' => '4',
+  'ref' => 'const',
+  'rows' => 1,
+  'filtered' => 100.0,
+  'extra' => NULL,
+) ]
+[ sql ] [ SQL ] SELECT * FROM `think_blog` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000527s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_blog',
+  'partitions' => NULL,
+  'type' => 'const',
+  'possible_keys' => 'PRIMARY',
+  'key' => 'PRIMARY',
+  'key_len' => '4',
+  'ref' => 'const',
+  'rows' => 1,
+  'filtered' => 100.0,
+  'extra' => NULL,
+) ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_blogs_tags` [ RunTime:0.002139s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_tags` [ RunTime:0.001235s ]
+[ sql ] [ SQL ] SELECT `think_tags`.*,pivot.id AS pivot__id,pivot.tag_id AS pivot__tag_id,pivot.blog_id AS pivot__blog_id,pivot.create_time AS pivot__create_time,pivot.update_time AS pivot__update_time,pivot.delete_time AS pivot__delete_time FROM `think_tags` INNER JOIN `think_blogs_tags` `pivot` ON `pivot`.`tag_id`=`think_tags`.`id` WHERE  `pivot`.`blog_id` = 1 [ RunTime:0.000823s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'pivot',
+  'partitions' => NULL,
+  'type' => 'ALL',
+  'possible_keys' => NULL,
+  'key' => NULL,
+  'key_len' => NULL,
+  'ref' => NULL,
+  'rows' => 2,
+  'filtered' => 50.0,
+  'extra' => 'Using where',
+) ]
+[ sql ] [ SQL ] SELECT * FROM `think_blog` WHERE  `id` = 2 LIMIT 1 [ RunTime:0.000741s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_blog',
+  'partitions' => NULL,
+  'type' => 'const',
+  'possible_keys' => 'PRIMARY',
+  'key' => 'PRIMARY',
+  'key_len' => '4',
+  'ref' => 'const',
+  'rows' => 1,
+  'filtered' => 100.0,
+  'extra' => NULL,
+) ]
+[ sql ] [ SQL ] SELECT * FROM `think_cate` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000671s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_cate',
+  'partitions' => NULL,
+  'type' => 'const',
+  'possible_keys' => 'PRIMARY',
+  'key' => 'PRIMARY',
+  'key_len' => '4',
+  'ref' => 'const',
+  'rows' => 1,
+  'filtered' => 100.0,
+  'extra' => NULL,
+) ]
+[ sql ] [ SQL ] SELECT * FROM `think_blog` WHERE  `id` = 2 LIMIT 1 [ RunTime:0.000433s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_blog',
+  'partitions' => NULL,
+  'type' => 'const',
+  'possible_keys' => 'PRIMARY',
+  'key' => 'PRIMARY',
+  'key_len' => '4',
+  'ref' => 'const',
+  'rows' => 1,
+  'filtered' => 100.0,
+  'extra' => NULL,
+) ]
+[ sql ] [ SQL ] SELECT `think_tags`.*,pivot.id AS pivot__id,pivot.tag_id AS pivot__tag_id,pivot.blog_id AS pivot__blog_id,pivot.create_time AS pivot__create_time,pivot.update_time AS pivot__update_time,pivot.delete_time AS pivot__delete_time FROM `think_tags` INNER JOIN `think_blogs_tags` `pivot` ON `pivot`.`tag_id`=`think_tags`.`id` WHERE  `pivot`.`blog_id` = 2 [ RunTime:0.000504s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'pivot',
+  'partitions' => NULL,
+  'type' => 'ALL',
+  'possible_keys' => NULL,
+  'key' => NULL,
+  'key_len' => NULL,
+  'ref' => NULL,
+  'rows' => 2,
+  'filtered' => 50.0,
+  'extra' => 'Using where',
+) ]
+---------------------------------------------------------------
+[ 2019-01-23T22:18:49+08:00 ] 127.0.0.1 GET localhost/blog/python/detail/id/2.html
+[运行时间：0.068202s] [吞吐率：14.66req/s] [内存消耗：2,616.66kb] [文件加载：50]
+[ info ] [ LANG ] D:\server\nginx\html\phpapp\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'blog',
+    1 => 'python',
+    2 => 'detail',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; thinkphp_show_page_trace=0|4; province_id=1; city_id=2; district_id=39; thinkphp_show_page_trace=0|0',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://localhost/blog/python',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'keep-alive',
+  'host' => 'localhost',
+  'content-length' => '',
+  'content-type' => '',
+)
+[ info ] [ PARAM ] array (
+  'id' => '2',
+)
+[ info ] [ RUN ] app\blog\controller\Python->detail[ D:\server\nginx\html\phpapp\application\blog\controller\Python.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\server\nginx\html/phpapp/application/blog\view\detail\detail.html [ array (
+  0 => 'id',
+  1 => 'blogdetail',
+  2 => 'blogcomments',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001743s ] mysql:host=127.0.0.1;port=3306;dbname=tp;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_blog` [ RunTime:0.001006s ]
+[ sql ] [ SQL ] SELECT * FROM `think_blog` WHERE  `id` = 2 LIMIT 1 [ RunTime:0.000611s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_blog',
+  'partitions' => NULL,
+  'type' => 'const',
+  'possible_keys' => 'PRIMARY',
+  'key' => 'PRIMARY',
+  'key_len' => '4',
+  'ref' => 'const',
+  'rows' => 1,
+  'filtered' => 100.0,
+  'extra' => NULL,
+) ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_blogs_tags` [ RunTime:0.001074s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_tags` [ RunTime:0.000890s ]
+[ sql ] [ SQL ] SELECT `think_tags`.*,pivot.id AS pivot__id,pivot.tag_id AS pivot__tag_id,pivot.blog_id AS pivot__blog_id,pivot.create_time AS pivot__create_time,pivot.update_time AS pivot__update_time,pivot.delete_time AS pivot__delete_time FROM `think_tags` INNER JOIN `think_blogs_tags` `pivot` ON `pivot`.`tag_id`=`think_tags`.`id` WHERE  `pivot`.`blog_id` = 2 [ RunTime:0.000653s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'pivot',
+  'partitions' => NULL,
+  'type' => 'ALL',
+  'possible_keys' => NULL,
+  'key' => NULL,
+  'key_len' => NULL,
+  'ref' => NULL,
+  'rows' => 2,
+  'filtered' => 50.0,
+  'extra' => 'Using where',
+) ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_comments` [ RunTime:0.000842s ]
+[ sql ] [ SQL ] SELECT * FROM `think_comments` WHERE  `delete_time` IS NULL  AND `blog_id` = 2 [ RunTime:0.000555s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_comments',
+  'partitions' => NULL,
+  'type' => 'ALL',
+  'possible_keys' => NULL,
+  'key' => NULL,
+  'key_len' => NULL,
+  'ref' => NULL,
+  'rows' => 2,
+  'filtered' => 50.0,
+  'extra' => 'Using where',
+) ]
+---------------------------------------------------------------
+[ 2019-01-23T22:27:02+08:00 ] 127.0.0.1 GET localhost/blog/python/detail/id/2.html
+[运行时间：0.083979s] [吞吐率：11.91req/s] [内存消耗：2,616.91kb] [文件加载：50]
+[ info ] [ LANG ] D:\server\nginx\html\phpapp\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'blog',
+    1 => 'python',
+    2 => 'detail',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; thinkphp_show_page_trace=0|4; province_id=1; city_id=2; district_id=39; thinkphp_show_page_trace=0|0',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://localhost/blog/python',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'keep-alive',
+  'host' => 'localhost',
+  'content-length' => '',
+  'content-type' => '',
+)
+[ info ] [ PARAM ] array (
+  'id' => '2',
+)
+[ info ] [ RUN ] app\blog\controller\Python->detail[ D:\server\nginx\html\phpapp\application\blog\controller\Python.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\server\nginx\html/phpapp/application/blog\view\detail\detail.html [ array (
+  0 => 'id',
+  1 => 'blogdetail',
+  2 => 'blogcomments',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.027890s ] mysql:host=127.0.0.1;port=3306;dbname=tp;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_blog` [ RunTime:0.001196s ]
+[ sql ] [ SQL ] SELECT * FROM `think_blog` WHERE  `id` = 2 LIMIT 1 [ RunTime:0.000608s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_blog',
+  'partitions' => NULL,
+  'type' => 'const',
+  'possible_keys' => 'PRIMARY',
+  'key' => 'PRIMARY',
+  'key_len' => '4',
+  'ref' => 'const',
+  'rows' => 1,
+  'filtered' => 100.0,
+  'extra' => NULL,
+) ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_blogs_tags` [ RunTime:0.000736s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_tags` [ RunTime:0.000714s ]
+[ sql ] [ SQL ] SELECT `think_tags`.*,pivot.id AS pivot__id,pivot.tag_id AS pivot__tag_id,pivot.blog_id AS pivot__blog_id,pivot.create_time AS pivot__create_time,pivot.update_time AS pivot__update_time,pivot.delete_time AS pivot__delete_time FROM `think_tags` INNER JOIN `think_blogs_tags` `pivot` ON `pivot`.`tag_id`=`think_tags`.`id` WHERE  `pivot`.`blog_id` = 2 [ RunTime:0.008490s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'pivot',
+  'partitions' => NULL,
+  'type' => 'ALL',
+  'possible_keys' => NULL,
+  'key' => NULL,
+  'key_len' => NULL,
+  'ref' => NULL,
+  'rows' => 2,
+  'filtered' => 50.0,
+  'extra' => 'Using where',
+) ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_comments` [ RunTime:0.001143s ]
+[ sql ] [ SQL ] SELECT * FROM `think_comments` WHERE  `delete_time` IS NULL  AND `blog_id` = 2 [ RunTime:0.000557s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_comments',
+  'partitions' => NULL,
+  'type' => 'ALL',
+  'possible_keys' => NULL,
+  'key' => NULL,
+  'key_len' => NULL,
+  'ref' => NULL,
+  'rows' => 2,
+  'filtered' => 50.0,
+  'extra' => 'Using where',
+) ]
