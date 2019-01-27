@@ -47,7 +47,7 @@ $(function(){
             ,btn: ['提交']
             ,yes: function(index, layero){
                 postMassage();
-//                layer.close(index);
+                layer.close(index);
             }
         });
     });

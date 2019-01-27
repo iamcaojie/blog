@@ -7,9 +7,11 @@ class Comments extends Model
 {
     // 静态方法，查询所有数据
     // sql:select * from _comments;
-    public static function getCommentsList()
+    public static function getCommentsList($page,$limit)
     {
-        return self::select();
+        $list = self::where('delete_time',null) -> limit(($page-1)*$limit,$limit) -> select();
+        $count = self::where('delete_time',null) -> count();
+        return ["code"=>0,"msg"=>"列表查询完成","count"=>$count,"data"=>$list];
     }
 //     创建评论，只能在评论页调用
     public static function createComments($data)

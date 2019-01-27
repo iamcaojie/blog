@@ -51,25 +51,29 @@
       <div class="layui-side layui-bg-black">
         <div class="layui-side-scroll">
           <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
-          <ul class="layui-nav layui-nav-tree"  lay-filter="test">
+          <ul class="layui-nav layui-nav-tree">
             <li class="layui-nav-item layui-nav-itemed">
-              <a class="" href="javascript:;">网站设置</a>
+              <a class="" href="javascript:;">网站管理</a>
               <dl class="layui-nav-child">
                 <dd><a href="javascript:;">状态设置</a></dd>
-                <dd><a href="javascript:;">轮播设置</a></dd>
                 <dd><a href="javascript:;">信息设置</a></dd>
-                <dd><a href="javascript:;">主题设置</a></dd>
-                <dd><a href="javascript:;">链接设置</a></dd>
                 <dd><a href="javascript:;">下载设置</a></dd>
               </dl>
             </li>
             <li class="layui-nav-item">
               <a href="javascript:;">博客管理</a>
               <dl class="layui-nav-child">
-                <dd><a id="createblog" href="javascript:;">发布笔记</a></dd>
+                <dd><a id="createblog" href="javascript:;">发布文章</a></dd>
                 <dd><a href="javascript:;">文章列表</a></dd>
                 <!-- <dd><a href="javascript:;">标签管理</a></dd> -->
                 <!-- <dd><a href="">超链接</a></dd> -->
+              </dl>
+            </li>
+            <li class="layui-nav-item">
+              <a class="" href="javascript:;">链接管理</a>
+              <dl class="layui-nav-child">
+                <dd><a href="javascript:;">发布链接</a></dd>
+                <dd><a href="javascript:;">链接列表</a></dd>
               </dl>
             </li>
             <li class="layui-nav-item">
@@ -99,11 +103,10 @@
       
       <div class="layui-body">
         <!-- 内容主体区域 -->
-        
         <div id="container" style="padding: 15px;">
             <!-- 网站设置-状态设置 -->
-<!--            <div id="web-status-tab" style="display">
-                <div>网站设置-状态设置-是否开启网站</div>
+            <div id="web-status-tab" style="display">
+                <div>网站设置-状态设置</div>
                 <form class="layui-form" id="web-status-form">
                     <div class="layui-form-item" id="web-switch">
                         <label class="layui-form-label">开关</label>
@@ -112,17 +115,42 @@
                         </div>
                     </div>
                 </form>
-            </div>-->
-            <!-- 网站设置-轮播设置 -->
+            </div>
             <!-- 网站设置-信息设置 -->
+            <div id="web-info-tab" style="display">
+                <div>网站设置-信息设置</div>
+                <form class="layui-form" id="web-info-form">
+                    <div class="layui-form-item" id="web-info">
+                        <label class="layui-form-label">域名设置</label>
+                        <div class="layui-input-block">
+                            <input name="domain" type="text" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item" id="web-theme">
+                        <label class="layui-form-label">主题设置</label>
+                        <div class="layui-input-block">
+                            <input name="theme" type="text" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item" id="web-theme">
+                        <label class="layui-form-label">轮播设置</label>
+                        <div class="layui-input-block">
+                            <input name="carousel1" type="text" class="layui-input">
+                            <input name="carousel2" type="text" class="layui-input">
+                            <input name="carousel3" type="text" class="layui-input">
+                        </div>
+                    </div>
+                    <button class="layui-btn" id="info-btn">提交</button>
+                </form>
+            </div>
+            <!-- 网站设置-轮播设置 -->
             <!-- 网站设置-主题设置 -->
-            <!-- 网站设置-链接设置 -->
             <!-- 博客管理-下载文章 -->
             <div id="create-blog-tab" style="display">
             <div>发布笔记</div>
             <form class="layui-form">
               <div class="layui-form-item">
-                <input name="id" type="" value=""/>
+                <input name="id" value="">
                 <label class="layui-form-label">标题</label>
                 <div class="layui-input-block">
                   <input type="text" name="blog_title" placeholder="请输入标题" autocomplete="off" class="layui-input"/>
@@ -154,37 +182,47 @@
                         <input type="radio" lay-filter="tag-level" name="tag-level" value="6" title="难点">
                     </div>
                 </div>
-            </form>
                 <div>
                     <div id="editor-box">
                         <div id="editor"></div>
                     </div>
                 </div>
-                <button class="layui-btn" id="btn1">获取html数据</button>
+                <button class="layui-btn" id="btn1">编辑html数据</button>
                 <button class="layui-btn" id="btn2">获取text数据</button>
                 <button class="layui-btn" id="btn3">提交</button>
                 <button class="layui-btn" id="btn4" style="display:none">确认修改</button>
-        <!--</form>-->
+            </form>
             </div>
             <!-- 博客管理-文章列表 -->
             <div id="bloglist-tab" style="display">
-            <div>文章列表</div>
-            <table id="article" class="layui-table" lay-filter="test"></table>
+                <div>文章列表</div>
+                <table id="article" class="layui-table"></table>
+            </div>
+            <!-- 网站设置-发布链接 -->
+            <div id="create-links-tab" style="display">
+                <div>发布链接</div>
+                
+            </div>
+            <!-- 网站设置-发布链接 -->
+            <div id="links-tab" style="display">
+                <div>链接列表</div>
+                <table id="links" class="layui-table"></table>
             </div>
             <!-- 留言管理-留言列表 -->`
             <div id="massagelist-tab" style="display">
                 <div>留言列表</div>
-                <table id="massage-list" class="layui-table" lay-filter="test"></table>
+                <table id="massage-list" class="layui-table"></table>
             </div>
             <!-- 留言管理-评论管理 -->
             <div id="commentlist-tab" style="display">
                 <div>评论列表</div>
-                <table id="comment-list" class="layui-table" lay-filter="test"></table>
+                <table id="comment-list" class="layui-table"></table>
             </div>
-      <div class="layui-footer">
-        <!-- 底部固定区域 -->
-        今日访问量： 累计访问量： 
-      </div>
+
+            <!-- 底部固定区域 -->
+            <div class="layui-footer">
+                 今日访问量： 累计访问量： 
+            </div>
     </div>
     <script src="/static/js/jquery3.3.1.js"></script>
     <!-- <script src="/static/js/bootstrap.js"></script> -->

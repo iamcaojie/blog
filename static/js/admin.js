@@ -5,7 +5,26 @@ var layer = layui.layer
 ,element = layui.element
 ,table = layui.table;
     // 文章列表
-    tableIns = table.render({
+    linksIns = table.render({
+        elem: '#links'
+        ,height: 400
+        ,url: '/admin/blog/queryblog/action/getbloglist' //数据接口
+        ,page: true //开启分页
+        ,cols: [[ //表头
+          {field: 'id', title: '博客ID', width:80, sort: true, fixed: 'left'}
+          ,{field: 'blog_title', title: '标题', width:80}
+          ,{field: 'cate', title: '分类', width: 80}
+          ,{field: 'tag', title: '标签', width: 80}
+          ,{field: 'blog_text', title: '内容', width:240}
+          //,{field: 'delete_time', title: '软删除时间', width:80} 
+          ,{field: 'update_time', title: '更新时间', width: 80, sort: true}
+          ,{field: 'create_time', title: '创建时间', width: 80, sort: true}
+          ,{field: 'read_count', title: '阅读量', width: 80, sort: true}
+          ,{field: 'operate', title: '操作', width: 150}
+        ]]
+    });
+    // 文章列表
+    articleIns = table.render({
         elem: '#article'
         ,height: 400
         ,url: '/admin/blog/queryblog/action/getbloglist' //数据接口
@@ -16,7 +35,7 @@ var layer = layui.layer
           ,{field: 'cate', title: '分类', width: 80}
           ,{field: 'tag', title: '标签', width: 80}
           ,{field: 'blog_text', title: '内容', width:240}
-          ,{field: 'delete_time', title: '软删除时间', width:80} 
+          //,{field: 'delete_time', title: '软删除时间', width:80} 
           ,{field: 'update_time', title: '更新时间', width: 80, sort: true}
           ,{field: 'create_time', title: '创建时间', width: 80, sort: true}
           ,{field: 'read_count', title: '阅读量', width: 80, sort: true}
@@ -33,13 +52,14 @@ var layer = layui.layer
           {field: 'id', title: 'ID', width:80, sort: true, fixed: 'left'}
           ,{field: 'massage_title', title: '主题', width:160}
           ,{field: 'massage_text', title: '内容', width: 400}
+          ,{field: 'contact', title: '联系方式', width: 400}
           // ,{field: 'delete_time', title: '软删除时间', width:80} 
           ,{field: 'update_time', title: '更新时间', width: 80, sort: true}
           ,{field: 'create_time', title: '创建时间', width: 80, sort: true}
           // ,{field: 'operate', title: '操作', width: 150}
         ]]
-        });
-        // 评论列表
+    });
+    // 评论列表
     commentTableIns = table.render({
         elem: '#comment-list'
         ,height: 400
@@ -49,10 +69,10 @@ var layer = layui.layer
           {field: 'id', title: 'ID', width:80, sort: true, fixed: 'left'}
           ,{field: 'use_id', title: '用户id', width:80}
           ,{field: 'blog_id', title: '博客id', width: 80}
-          ,{field: 'tag', title: '标签', width: 80}
+//          ,{field: 'tag', title: '标签', width: 80}
           ,{field: 'comment_text', title: '内容', width:240}
-          ,{field: 'delete_time', title: '软删除时间', width:80} 
-          ,{field: 'update_time', title: '更新时间', width: 80, sort: true}
+//          ,{field: 'delete_time', title: '软删除时间', width:80} 
+//          ,{field: 'update_time', title: '更新时间', width: 80, sort: true}
           ,{field: 'create_time', title: '创建时间', width: 80, sort: true}
           // ,{field: 'operate', title: '操作', width: 150}
         ]]
@@ -84,8 +104,10 @@ var E = window.wangEditor;
 var editor = new E('#editor');
 editor.create();
 
-var blogId = $('input[name="id"]');
-var blogTitle = $('input[name="blog_title"]');
+var webDomain = $('input[name="domain"]'),
+webTheme = $('input[name="theme"]'),
+blogId = $('input[name="id"]'),
+blogTitle = $('input[name="blog_title"]');
 
 
 // 所有数据前端不验证，后端验证数据合法性
@@ -104,6 +126,10 @@ $(function(){
     $('#manage-classification').click(function(){
         getClassData();
     });
+    // 修改网站信息
+     $("#info-btn").click(function(){
+         
+     });
     // 发布文章
     // 捕获编辑器可能修改内容的事件，自动保存文章
     $(".w-e-text").on('keyup click mouseleave',function(){
@@ -112,9 +138,9 @@ $(function(){
     $("#btn1").click(function(){
         alert(editor.txt.html());
     });
-    $("#btn2").click(function(){
-        alert(editor.txt.text());
-    });
+//    $("#btn2").click(function(){
+//        alert(editor.txt.text());
+//    });
     // 手动保存，获取保存状态
     $("#btn3").click(function(){
         if(check()){
@@ -206,6 +232,10 @@ function check(){
     }
     return true;
 }
+// 获取网站信息数据
+function getWebData(){
+    webDomain.val();
+}
 // 实时获取编辑数据,键与后台对应
 function getlocalData(){
     var data = {};
@@ -242,7 +272,7 @@ function postData(url,method,data){
                 }else if(data.msg == "保存成功" || data.msg == "修改成功" ){
                     layer.msg(data["msg"]);
                     emptyBlogData();
-                    tableIns.reload();
+                    articleIns.reload();
                 }else if(data.msg == ""){
                     //
                 }else{
@@ -281,7 +311,7 @@ function deleteBlogData(url,method,data){
             dataType:'json',
             success: function(data){
                 layer.msg(data.msg);
-                tableIns.reload();
+                articleIns.reload();
             }
         });
     });

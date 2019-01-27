@@ -9,10 +9,9 @@ class Massage
 {
     // 获取所有留言消息
     // /admin/massage/getmassagelist
-    public function getMassageList()
+    public function getMassageList($page,$limit)
     {
-        $data = Massagemodel::getMassageList();
-        return json(["code"=>0, "msg"=>"查询成功", "data"=>$data]);
+        return json(Massagemodel::getMassageList($page,$limit));
     }
     
     // 创建留言消息

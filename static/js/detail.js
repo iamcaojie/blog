@@ -3,17 +3,22 @@ layui.use(['layer', 'form'], function(){
 var layer = layui.layer
 ,form = layui.form;
 });
-
+var eQrcode = $("#qrcode");
 var commentText = $('#comment_text');
 var textCount = $('#text-count');
 var maxCount = 200;
 
+
 $(function(){ 
-//    评论列表-回复切换
+    //评论列表-回复切换
     $("#comment-tab li").click(function(){
         $(this).addClass("selected").siblings().removeClass("selected");
         var index = $(this).index();
         $('#comment-tab-detail').children().eq(index).show().siblings().hide();
+    });
+    // 二维码显示
+    $("#s-qrcode").hover(function(){
+        eQrcode.toggle();
     });
 //    清空评论
     $("#clear").click(function(){
@@ -88,4 +93,17 @@ function postComment(url,method,data){
 function getNewComments(){
     
 }
+
+//生成网址二维码
+function makeCode(){
+    var qrcode = new QRCode("qrcode",{
+        width: 128,
+        height: 128,
+        colorDark : "rgb(176,58,91)",
+        colorLight : "#ffffff",
+        correctLevel : QRCode.CorrectLevel.H
+    });
+    qrcode.makeCode(window.location.href);
+}
+makeCode();
 console.log("欢迎提交bug或建议，联系方式QQ10804842")

@@ -7,10 +7,9 @@ class Comments
 {
     // 获取所有评论
     // /admin/comments/getcommentslist
-    public function getCommentsList()
+    public function getCommentsList($page,$limit)
     {
-        $data = Commentsmodel::getCommentsList();
-        return json(["code"=>0, "msg"=>"查询成功", "data"=>$data]);
+        return json(Commentsmodel::getCommentsList($page,$limit));
     }
     
     // 创建评论，只能在评论页调用，需登录

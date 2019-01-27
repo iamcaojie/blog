@@ -29,4 +29,8 @@ class Python
         $data["comment_text"] = htmlentities($data["comment_text"]);
         return json(Commentsmodel::createComments($data));
     }
+    public function getcomments()
+    {
+        
+    }
 }

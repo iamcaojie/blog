@@ -20,6 +20,7 @@ class Index
         $massage = new Massage;
         $data = input('post.');
         $massage -> massage_title = $data['massage_title'];
+        $massage -> contact = $data['contact'];
         $massage -> massage_text = $data['massage_text'];
         $massage -> save();
         return ["code"=>0, "msg"=>"提交成功"];

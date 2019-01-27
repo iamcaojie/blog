@@ -6,16 +6,13 @@ use think\Model;
 
 class Massage extends Model
 {
-    // 一个留言消息对应多篇文章
-    public function blog()
-    {   
-        return $this->hasMany('Blog','massage_id','id');
-    }   
     // 静态方法，查询所有数据
     // sql:select * from _massage;
-    public static function getMassageList()
+    public static function getMassageList($page,$limit)
     {
-        return self::select();
+        $list = self::where('delete_time',null) -> limit(($page-1)*$limit,$limit) -> select();
+        $count = self::where('delete_time',null) -> count();
+        return ["code"=>0,"msg"=>"列表查询完成","count"=>$count,"data"=>$list];
     }
     
     public static function createMassage($data)

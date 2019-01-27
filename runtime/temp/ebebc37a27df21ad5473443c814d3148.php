@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:68:"D:\server\nginx\html/phpapp/application/blog\view\detail\detail.html";i:1548252885;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:68:"D:\server\nginx\html/phpapp/application/blog\view\detail\detail.html";i:1545917984;}*/ ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
     <head>
@@ -35,8 +35,6 @@
                         <!--<span class="">作者</span>-->
                         <span class="time">创建时间<?php echo $blogdetail['create_time']; ?></span>
                         <span class="time">更新时间<?php echo $blogdetail['update_time']; ?></span>
-                        <span id="s-qrcode">手机访问</span>
-                        <div id="qrcode"></div>
                         <div class="article-text"><?php echo $blogdetail['blog_html']; ?></div>
                         <div id="comment">
                             <ul id="comment-tab">
@@ -76,7 +74,6 @@
         <script src="/static/js/bootstrap.js"></script>
         <script src="/static/layui/layui.js"></script>
         <script src="/static/js/toTop.js"></script>
-        <script src="/static/js/qrcode.js"></script>
         <script src="/static/js/detail.js"></script>
     </body>
 </html>

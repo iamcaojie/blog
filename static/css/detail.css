@@ -45,6 +45,11 @@ h2{
     border:solid 1px rgb(176,58,91);
     
 }
+#qrcode{
+    display: none;
+    position: relative;
+    left:30px;
+}
 .article-detail{
     height:1000px;
     background:white;

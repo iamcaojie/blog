@@ -18,13 +18,13 @@ class Web
     
     // 创建网站状态
     // /admin/web/createweb
-    public function createWeb()
-    {
-        $data = input('post.');
-        // 验证数据合法性
-        $data = Webmodel::createWeb($data);
-        return json(["code"=>0,"msg"=>"创建网站状态成功"]);
-    }
+//    public function createWeb()
+//    {
+//        $data = input('post.');
+//        // 验证数据合法性
+//        $data = Webmodel::createWeb($data);
+//        return json(["code"=>0,"msg"=>"创建网站状态成功"]);
+//    }
     
     // 编辑网站状态
     // /admin/web/editweb
@@ -37,20 +37,20 @@ class Web
     }
     
     // 查询网站状态
-    public function queryWeb()
-    {
-        //pass
-    }
+//    public function queryWeb()
+//    {
+//        //pass
+//    }
     
     // 删除网站状态
     // 已有博客的重置为默认网站状态
     // /admin/web/deleteweb
-    public function deleteWeb()
-    {
-        $data = input('post.');
-        // 验证数据合法性
-        $data = Webmodel::deleteWeb($data);
-        return json(["code"=>0,"msg"=>"删除网站状态成功"]);
-    }
+//    public function deleteWeb()
+//    {
+//        $data = input('post.');
+//        // 验证数据合法性
+//        $data = Webmodel::deleteWeb($data);
+//        return json(["code"=>0,"msg"=>"删除网站状态成功"]);
+//    }
 
 }
