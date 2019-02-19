@@ -1,7 +1,6 @@
 //初始化layui
-layui.use(['layer', 'form'], function(){
-var layer = layui.layer
-,form = layui.form;
+layui.use(['layer'], function(){
+var layer = layui.layer;
 });
 var eQrcode = $("#qrcode");
 var commentText = $('#comment_text');

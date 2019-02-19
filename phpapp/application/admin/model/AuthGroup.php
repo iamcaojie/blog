@@ -4,35 +4,35 @@ namespace app\admin\model;
 use think\Model;
 
 
-class Links extends Model
+class AuthGroup extends Model
 {
-    
+ 
     // 静态方法，查询所有数据
-    // sql:select * from _weblinks;
-    public static function getWeblinksList()
+    // sql:select * from _auth_group;
+    public static function getAuthGroupList()
     {
         return self::select();
     }
     
-    public static function createWeblinks($data)
+    public static function createAuthGroup($data)
     {
         self::create($data);
-        return ["code"=> 0, "data"=>"创建链接成功"];
+        return ["data"=>""];
     }
     
-    public static function editWeblinks($data)
+    public static function editAuthGroup($data)
     {
         self::update($data);
         return ["data"=>""];
     }
     
-    public static function deleteWeblinks($data)
+    public static function deleteAuthGroup($data)
     {
         self::destroy($data);
         return ["data"=>""];
     }
     
-    public static function queryWeblinks($data)
+    public static function queryAuthGroup($data)
     {
         //pass
     }

@@ -43,12 +43,25 @@ h2{
 
 .row{
     border:solid 1px rgb(176,58,91);
-    
+}
+
+#tag-box{
+    margin-left: 45px;
+}
+
+#blog-time{
+    float:left;
+}
+
+#s-qrcode{
+    cursor: pointer;
+}
+#qrcode-box{
+    float:left;
 }
 #qrcode{
     display: none;
-    position: relative;
-    left:30px;
+    position: absolute;
 }
 .article-detail{
     height:1000px;
@@ -57,7 +70,7 @@ h2{
     border-radius: 9px;
 }
 .article-text{
-    padding:20px 0 0 30px;
+    padding:20px 30px 0 30px;
 }
 #comment{
     margin: 0 10px 0 20px;
@@ -87,6 +100,7 @@ h2{
 textarea{
     width:70%;
     min-height: 100px;
+    max-height: 200px;
     padding:5px;
     resize: vertical;
     border: 1px solid rgb(176,58,91);
