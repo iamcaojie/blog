@@ -17,7 +17,7 @@ use think\Loader;
 * 第三个参数为and时表示，用户需要同时具有规则1和规则2的权限。 当第三个参数为or时，表示用户值需要具备其中一个条件即可。默认为or
 * 3，一个用户可以属于多个用户组(think_auth_group_access表 定义了用户所属用户组)。我们需要设置每个用户组拥有哪些规则(think_auth_group 定义了用户组权限)
 * 4，支持规则表达式。
-* 在think_auth_rule 表中定义一条规则时，如果type为1， condition字段就可以定义规则表达式。 如定义{score}>5  and {score}<100
+* 在think_auth_rule 表中定义一条规则时，如果type为1， conditions字段就可以定义规则表达式。 如定义{score}>5  and {score}<100
 * 表示用户的分数在5-100之间时这条规则才会通过。
 */
 
@@ -25,7 +25,7 @@ use think\Loader;
 /*
 -- ----------------------------
 -- think_auth_rule，规则表，
--- id:主键，name：规则唯一标识, title：规则中文名称 status 状态：为1正常，为0禁用，condition：规则表达式，为空表示存在就验证，不为空表示按照条件验证
+-- id:主键，name：规则唯一标识, title：规则中文名称 status 状态：为1正常，为0禁用，conditions：规则表达式，为空表示存在就验证，不为空表示按照条件验证
 -- ----------------------------
 DROP TABLE IF EXISTS `think_auth_rule`;
 CREATE TABLE `think_auth_rule` (
@@ -34,7 +34,7 @@ CREATE TABLE `think_auth_rule` (
     `title` char(20) NOT NULL DEFAULT '',
     `type` tinyint(1) NOT NULL DEFAULT '1',
     `status` tinyint(1) NOT NULL DEFAULT '1',
-    `condition` char(100) NOT NULL DEFAULT '',  # 规则附件条件,满足附加条件的规则,才认为是有效的规则
+    `conditions` char(100) NOT NULL DEFAULT '',  # 规则附件条件,满足附加条件的规则,才认为是有效的规则
     PRIMARY KEY (`id`),
     UNIQUE KEY `name` (`name`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
@@ -83,7 +83,7 @@ class Auth
         'auth_group'        => 'auth_group', // 用户组数据表名
         'auth_group_access' => 'auth_group_access', // 用户-用户组关系表
         'auth_rule'         => 'auth_rule', // 权限规则表
-        'auth_user'         => 'member', // 用户信息表
+        'auth_user'         => 'users', // 用户信息表
     ];
     /**
      * 类架构函数
@@ -220,16 +220,16 @@ class Auth
             'type' => $type
         ];
         //读取用户组所有权限规则
-        $rules = Db::name($this->config['auth_rule'])->where($map)->field('condition,name')->select();
+        $rules = Db::name($this->config['auth_rule'])->where($map)->field('conditions,name')->select();
         //循环规则，判断结果。
         $authList = []; //
         foreach ($rules as $rule) {
-            if (!empty($rule['condition'])) {
-                //根据condition进行验证
+            if (!empty($rule['conditions'])) {
+                //根据conditions进行验证
                 $user    = $this->getUserInfo($uid); //获取用户信息,一维数组
-                $command = preg_replace('/\{(\w*?)\}/', '$user[\'\\1\']', $rule['condition']);
-                @(eval('$condition=(' . $command . ');'));
-                if ($condition) {
+                $command = preg_replace('/\{(\w*?)\}/', '$user[\'\\1\']', $rule['conditions']);
+                @(eval('$conditions=(' . $command . ');'));
+                if ($conditions) {
                     $authList[] = strtolower($rule['name']);
                 }
             } else {

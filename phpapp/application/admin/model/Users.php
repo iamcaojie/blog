@@ -17,12 +17,12 @@ class Users extends Model
     public static function createUsers($data)
     {
         self::create($data);
-        return ["data"=>""];
+        return ["data"=>"创建用户成功"];
     }
     
     public static function editUsers($data)
     {
-        self::update($data);
+        self::update($data,['username'=>$data['username']],true);
         return ["data"=>""];
     }
     
@@ -32,8 +32,17 @@ class Users extends Model
         return ["data"=>""];
     }
     
-    public static function queryUsers($data)
+    public static function validateUser($data)
     {
-        //pass
+       $userData = self::where('username',$data["username"])
+               -> where('password',$data["password"]) 
+               -> find();
+       return $userData;
+    }
+    public static function queryUser($data)
+    {
+        $userData = self::where('username',$data["username"])
+               -> find();
+       return $userData;
     }
 }

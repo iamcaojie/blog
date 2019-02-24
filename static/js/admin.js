@@ -223,12 +223,12 @@ function fillBlogData(data){
 // 检查数据合法性
 function check(){
     if(blogTitle.val() == ""){
-    layer.msg("请输入标题");
-    return false;
+        layer.msg("请输入标题");
+        return false;
     }
     if(editor.txt.text() == ""){
-    layer.msg("请输入内容");
-    return false;
+        layer.msg("请输入内容");
+        return false;
     }
     return true;
 }

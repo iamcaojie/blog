@@ -5,7 +5,7 @@ use app\admin\model\Blog as Blogmodel;
 use app\admin\model\Cate as Catemodel;
 
 
-class Blog
+class Blog extends Base
 {
     // 查询博客 
     // get /admin/blog/queryblog/action/getbloglist/page/1/limit/10

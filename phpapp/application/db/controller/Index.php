@@ -29,6 +29,7 @@ class Index
             'DROP TABLE IF EXISTS think_massage;',
             'DROP TABLE IF EXISTS think_comments;',
             'DROP TABLE IF EXISTS think_download;',
+            'DROP TABLE IF EXISTS think_ip;',
             // 网站状态表
             'CREATE TABLE think_web('
                 . 'id int UNSIGNED NOT NULL AUTO_INCREMENT, '
@@ -52,6 +53,7 @@ class Index
             // 网站用户表
             'CREATE TABLE think_users('
                 . 'id int UNSIGNED NOT NULL AUTO_INCREMENT, '
+                .' nickname varchar(20), '
                 . 'username varchar(50), '
                 . 'password varchar(50), '
                 . 'create_time int, '
@@ -114,6 +116,7 @@ class Index
                 . 'create_time int,'
                 . 'update_time int,'
                 . 'delete_time int,'
+                . 'sort tinyint(1) NOT NULL DEFAULT 10,'
                 . 'PRIMARY KEY(id)) '
                 . 'DEFAULT CHARSET=utf8;',
             // 博客标签表(n) -- 博客文章表(n)
@@ -170,6 +173,15 @@ class Index
                 . 'user_id int, '
                 . 'blog_id int, '
                 . 'comment_text varchar(200),'
+                . 'create_time int,'
+                . 'update_time int,'
+                . 'delete_time int,'
+                . 'PRIMARY KEY(id)) '
+                . 'DEFAULT CHARSET=utf8;',
+            // ip地址表
+            'CREATE TABLE think_ip('
+                . 'id int UNSIGNED NOT NULL AUTO_INCREMENT, '
+                . 'ip varchar(50),'
                 . 'create_time int,'
                 . 'update_time int,'
                 . 'delete_time int,'

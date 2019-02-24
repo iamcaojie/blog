@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:67:"D:\server\nginx\html/phpapp/application/admin\view\admin\admin.html";i:1546520551;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:67:"D:\server\nginx\html/phpapp/application/admin\view\admin\admin.html";i:1550845089;}*/ ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
     <head>
@@ -45,7 +45,7 @@
               <dd><a href="">安全设置</a></dd>
             </dl>
           </li>
-          <li class="layui-nav-item"><a href="">安全退出</a></li>
+          <li class="layui-nav-item"><a href="/login/index/loginoff">安全退出</a></li>
         </ul>
       </div>
       

@@ -2,20 +2,19 @@
 namespace app\admin\controller;
 
 use think\View;
-use think\Cookie;
 use app\admin\model\Users;
 use app\admin\model\Web;
 use app\admin\model\Blog;
 use app\admin\model\Cate;
 
-// 全部方法需登陆验证
+
 // 除Index控制器其余全为后台ajax获取提交地址
-class Index
+class Index extends Base
 {
     public function index()
     {
-//        cookie(['prefix' => 'think_', 'expire' => 3600]);
-//        cookie('name', 'value', 3600);
+        $request = request();
+        $ip = $request -> ip();
         $catelist = Cate::getCateList();
         $view = new View();
         return $view->fetch("admin/admin",['catelist' => $catelist]);
@@ -34,8 +33,6 @@ class Index
         }
     }
 
-
-    
     // 
     
     
