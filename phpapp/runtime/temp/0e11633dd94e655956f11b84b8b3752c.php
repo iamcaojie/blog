@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:72:"D:\server\nginx\html/phpapp/application/blog\view\contents\contents.html";i:1544965445;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:72:"D:\server\nginx\html/phpapp/application/blog\view\contents\contents.html";i:1551099309;}*/ ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
     <head>
@@ -37,7 +37,7 @@
                             <a href="/blog/python/detail/id/<?php echo $blogdata['id']; ?>.html"><img src="/static/img/python.jpg"/></a>
                         </div>
                         <div class="article">
-                            <div class="article-title"><h2><a href="/blog/python/detail/id/<?php echo $blogdata['id']; ?>.html"><?php echo $blogdata['blog_title']; ?></a></h2></div>
+                            <div class="article-title"><h2><a href="/blog/contents/detail/id/<?php echo $blogdata['id']; ?>.html"><?php echo $blogdata['blog_title']; ?></a></h2></div>
                             <div class="article-information">
                             <?php if(is_array($blogdata['tag']) || $blogdata['tag'] instanceof \think\Collection || $blogdata['tag'] instanceof \think\Paginator): $i = 0; $__LIST__ = $blogdata['tag'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$tag): $mod = ($i % 2 );++$i;?>
                                   <span> <?php echo $tag; ?></span>

@@ -1,11 +1,7 @@
 <?php
-namespace app\admin\controller;
+namespace app\user\controller;
 
-use app\admin\model\Users;
-use app\admin\model\Web;
-use app\admin\model\Blog;
 use app\admin\model\Cate;
-
 
 // 除Index控制器其余全为后台ajax获取提交地址
 class Index extends Base
@@ -16,7 +12,7 @@ class Index extends Base
         $ip = $request -> ip();
         $cateList = Cate::getCateList();
         $userName = session('user')['username'];
-        return view("admin/admin",
+        return view("user/user",
             ['username' => $userName,
                 'catelist' => $cateList,
                 'ip' => $ip

@@ -1,3 +1,4 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:66:"D:\server\nginx\html/phpapp/application/user\view\admin\admin.html";i:1551187858;}*/ ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
     <head>
@@ -24,14 +25,12 @@
             <li class="layui-nav-item"><a href="http://localhost">网站首页</a></li>
             <li class="layui-nav-item"><a href="https://iamcaojie.github.io" target="_blank">流量统计</a></li>
             <li class="layui-nav-item"><a href="javascript:void(0);">用户管理</a></li>
-            <li class="layui-nav-item"><a href="/user">转到用户后台</a></li>
-            <li class="layui-nav-item"><a href="/">音乐播放</a></li>
         </ul>
         <ul class="layui-nav layui-layout-right">
             <li class="layui-nav-item">
                 <a href="javascript:;">
                     <img src="/static/img/avatar.jpg" class="layui-nav-img">
-                    {$username}
+                    <?php echo $username; ?>
                 </a>
                 <dl class="layui-nav-child">
                   <dd><a href="">基本资料</a></dd>
@@ -41,8 +40,8 @@
         </ul>
       </div>
       
-      <div class="layui-side layui-bg-black" >
-        <div class="layui-side-scroll" style="display: none;">
+      <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
           <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
           <ul class="layui-nav layui-nav-tree">
             <li class="layui-nav-item layui-nav-itemed">
@@ -185,13 +184,11 @@
                           <div class="layui-form-item">  
                         <label class="layui-form-label">笔记分类</label>
                         <div class="layui-input-block">
-                            {volist name='catelist' id='cate'}
-                             {if condition='$cate["blog_category"] == "无"'}
-                                 <input type="radio" lay-filter="blog-category" name="blog-category" value="{$cate['id']}" title="{$cate['blog_category']}" checked>
-                             {else /}
-                                 <input type="radio" lay-filter="blog-category" name="blog-category" value="{$cate['id']}" title="{$cate['blog_category']}">
-                             {/if}
-                            {/volist}
+                            <?php if(is_array($catelist) || $catelist instanceof \think\Collection || $catelist instanceof \think\Paginator): $i = 0; $__LIST__ = $catelist;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$cate): $mod = ($i % 2 );++$i;if($cate["blog_category"] == "无"): ?>
+                                 <input type="radio" lay-filter="blog-category" name="blog-category" value="<?php echo $cate['id']; ?>" title="<?php echo $cate['blog_category']; ?>" checked>
+                             <?php else: ?>
+                                 <input type="radio" lay-filter="blog-category" name="blog-category" value="<?php echo $cate['id']; ?>" title="<?php echo $cate['blog_category']; ?>">
+                             <?php endif; endforeach; endif; else: echo "" ;endif; ?>
                             <div><a id="manage-classification" href="javascript:;">分类管理</a></div>
                         </div>
                         </div>
@@ -267,7 +264,7 @@
             </div>
             <!-- 底部固定区域 -->
             <div class="layui-footer">
-                 今日访问量： 累计访问量： 当前ip：{$ip}
+                 今日访问量： 累计访问量： 当前ip：<?php echo $ip; ?>
             </div>
     </div>
     <script type="text/html" id="bar">

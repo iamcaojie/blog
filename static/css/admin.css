@@ -1,22 +1,9 @@
-.layui-layout-admin .layui-logo{
-    background:white;
-    color:rgb(176,58,91);
+.layui-upload-img {
+    /*width: 92px;*/
+    height: 92px;
+    margin: 0 10px 10px 0;
+    cursor: pointer;
 }
-.layui-layout-admin .layui-header{
-    background:white;
-}
-.layui-nav .layui-nav-item a:hover, .layui-nav .layui-this a{
-    color:rgb(176,58,91);
-}
-.layui-nav .layui-nav-item a{
-    color:rgb(176,58,91);
-}
-
-
-
-
-
-
 
 #editor-box{
     width:695px;

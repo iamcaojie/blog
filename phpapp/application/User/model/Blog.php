@@ -1,11 +1,7 @@
 <?php 
-namespace app\admin\model;
+namespace app\user\model;
 
 use think\Model;
-
-// update_time格式在database中设置
-// layui数据规范{"code":0,"msg":"","count":7,"data":[]}
-// 0:正常; -1:参数错误; 2:查询错误; 3:未知错误
 
 class Blog extends Model
 {

@@ -2,7 +2,6 @@
 namespace app\login\controller;
 
 use think\Controller;
-use think\View;
 use think\Db;
 use app\admin\model\Users as Usersmodel;
 use PHPMailer\QQMailer;
@@ -13,8 +12,10 @@ class Index extends Controller
 {
     public function index()
     {
-        $view = new View();
-        return $view->fetch('login/login');
+        if(session('user')){
+            $this ->redirect('/admin');
+        }
+        return view('login/login');
     }
     // 登陆
     public function validateLogin()
@@ -27,7 +28,7 @@ class Index extends Controller
         $data = passWordMd5($data);
         $userData = Usersmodel::validateuser($data);
         if (!($userData === null)){
-            session('user_id',$userData["id"]);
+            session('user',['user_id'=>$userData["id"],"username"=>$userData["username"]]);
             return json(["code"=>0,"msg"=>"登陆成功","url"=>"/admin"]);
         }else{
             return json(["code"=>-1,"msg"=>"用户名或密码错误"]);
@@ -46,7 +47,7 @@ class Index extends Controller
     // 登出
     public function LoginOff()
     {
-        $user = session('user_id');
+        $user = session('user');
         session(null);
         $this->redirect('/login');
     }

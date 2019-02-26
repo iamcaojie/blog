@@ -30,14 +30,16 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="http://localhost">iamcaojie.com</a>
+              <a class="navbar-brand" href="http://{$domain}">{$domain}</a>
             </div>
             <!-- 导航条链接 -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav">
-                <li class=""><a href="/blog/python">Python</a></li>
-                <li><a href="/blog/php">PHP</a></li>
-                <li><a href="/blog/java">Java</a></li>
+                  {volist name="cates" id="cate"}
+                      {if condition='$cate["blog_category"] !== "无"'}
+                            <li class=""><a href="/blog/contents">{$cate.blog_category}</a></li>
+                      {/if}
+                  {/volist}
                 <li class="dropdown">
                   <a href="" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">其他<span class="caret"></span></a>
                   <ul class="dropdown-menu">
@@ -60,8 +62,7 @@
                 <button type="submit" id="search" class="btn search-btn">搜索</button>
               </form>
               <ul class="nav navbar-nav navbar-right">
-                <li><a id="sign" href="/admin">注册</a></li>
-                <li><a id="login" href="/login">登录</a></li>
+                  <li><a id="login" href="/login">{$username?: '注册/登录'}</a></li>
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">相关链接<span class="caret"></span></a>
                   <ul class="dropdown-menu">

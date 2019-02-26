@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:68:"D:\server\nginx\html/phpapp/application/blog\view\detail\detail.html";i:1548594991;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:68:"D:\server\nginx\html/phpapp/application/blog\view\detail\detail.html";i:1551101353;}*/ ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
     <head>
@@ -24,7 +24,7 @@
         <noscript>抱歉，你的浏览器不支持 JavaScript，访问可能出现错误!</noscript>
         <ol class="breadcrumb">
             <li><a href="http://localhost">首页</a></li>
-            <li><a href="/blog/python">Python</a></li>
+            <li><a href="/blog/contents">Python</a></li>
             <li class="active">详情</li>
         </ol>
         <div class="container">
@@ -52,6 +52,7 @@
                             <div id="comment-tab-detail">
                                 <div id="comment-list">
                                     <?php if(is_array($blogcomments) || $blogcomments instanceof \think\Collection || $blogcomments instanceof \think\Paginator): $i = 0; $__LIST__ = $blogcomments;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$blogcomment): $mod = ($i % 2 );++$i;?>
+                                    <span class=""><?php echo $blogcomment['user_id']; ?></span>
                                     <span class="time"><?php echo $blogcomment['create_time']; ?></span>
                                     <div id="comment-text"><?php echo $blogcomment['comment_text']; ?></div>
                                     <?php endforeach; endif; else: echo "" ;endif; ?>
@@ -59,11 +60,15 @@
                                 <div id="reply-comment" style="display:none;">
                                     <form>
                                         <input name='id' type='hidden' value='<?php echo $id; ?>'></input>
-                                        <textarea id="comment_text"></textarea>
-                                        <br>
-                                        <button id="clear">清空</button>
-                                        <button id="submit">提交</button>
-                                        <span id="text-count"></span>
+                                        <div style="<?php echo !empty($username)?'display:block;':'display:none;'; ?>">
+                                            <textarea id="comment_text"></textarea><br>
+                                            <button id="clear">清空</button>
+                                            <button id="submit">提交</button>
+                                            <span id="text-count"></span>
+                                        </div>
+                                        <div style="<?php echo !empty($username)?'display:none;':'display:block;'; ?>">
+                                            <p>请<a href="/login">登录</a>后进行操作</p>
+                                        </div>
                                     </form>
                                 </div>
                             </div>

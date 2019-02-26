@@ -1,3 +1,4 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:64:"D:\server\nginx\html/phpapp/application/user\view\user\user.html";i:1551189312;}*/ ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
     <head>
@@ -23,15 +24,12 @@
         <ul class="layui-nav layui-layout-left">
             <li class="layui-nav-item"><a href="http://localhost">网站首页</a></li>
             <li class="layui-nav-item"><a href="https://iamcaojie.github.io" target="_blank">流量统计</a></li>
-            <li class="layui-nav-item"><a href="javascript:void(0);">用户管理</a></li>
-            <li class="layui-nav-item"><a href="/user">转到用户后台</a></li>
-            <li class="layui-nav-item"><a href="/">音乐播放</a></li>
         </ul>
         <ul class="layui-nav layui-layout-right">
             <li class="layui-nav-item">
                 <a href="javascript:;">
                     <img src="/static/img/avatar.jpg" class="layui-nav-img">
-                    {$username}
+                    <?php echo $username; ?>
                 </a>
                 <dl class="layui-nav-child">
                   <dd><a href="">基本资料</a></dd>
@@ -41,8 +39,8 @@
         </ul>
       </div>
       
-      <div class="layui-side layui-bg-black" >
-        <div class="layui-side-scroll" style="display: none;">
+      <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
           <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
           <ul class="layui-nav layui-nav-tree">
             <li class="layui-nav-item layui-nav-itemed">
@@ -83,11 +81,8 @@
                 <dd><a href="javascript:;">数据查询</a></dd>
                 <dd><a href="javascript:;">相册管理</a></dd>
                 <dd><a href="javascript:;">回收站</a></dd>
-                <!-- <dd><a href="">超链接</a></dd> -->
               </dl>
             </li>
-            <!-- <li class="layui-nav-item"><a href="">云市场</a></li> -->
-            <!-- <li class="layui-nav-item"><a href="">发布商品</a></li> -->
           </ul>
         </div>
       </div>
@@ -97,81 +92,12 @@
         <div id="container" style="padding: 15px;">
             <div class="layui-tab" lay-filter="tab-list">
                 <ul class="layui-tab-title">
-                    <li class="layui-this" lay-id="zhuangtai">状态设置</li>
-                    <li lay-id="xinxi">信息设置</li>
-                    <li lay-id="xiazai">下载设置</li>
-                    <li lay-id="fabuwenzhang">发布文章</li>
-                    <li lay-id="wenzhang">文章列表</li>
-                    <li lay-id="fabulianjie">发布链接</li>
-                    <li lay-id="lianjie">链接列表</li>
-                    <li lay-id="liuyan">留言列表</li>
-                    <li lay-id="pinlun">评论管理</li>
-                    <li lay-id="xiangceguanli">相册管理</li>
+                    <li class="layui-this" lay-id="fabuwenzhang">发布文章</li>
+                    <li lay-id="wenzhang">我的文章</li>
+                    <li lay-id="pinlun">我的评论</li>
                 </ul>
                 <div class="layui-tab-content">
                     <div class="layui-tab-item layui-show">
-                        <!-- 网站设置-状态设置 -->
-                        <div id="web-status-tab">
-                            <form class="layui-form" id="web-status-form">
-                                <div class="layui-form-item" id="web-switch">
-                                    <label class="layui-form-label">是否开启</label>
-                                    <div class="layui-input-block">
-                                        <input type="checkbox" lay-filter="web-status" id="switch" checked name="switch" lay-skin="switch" lay-text="开启|关闭">
-                                    </div>
-                                </div>
-                            </form>
-                            <div>
-                                <div>关闭网站时对外显示的内容</div>
-                                <form>
-                                    <input/>
-                                    <button>提交</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="layui-tab-item">
-                        <!-- 网站设置-信息设置 -->
-                        <div id="web-info-tab">
-                            <form class="layui-form" id="web-info-form">
-                                <div class="layui-form-item" id="web-info">
-                                    <label class="layui-form-label">域名设置</label>
-                                    <div class="layui-input-block">
-                                        <input name="domain" type="text" class="layui-input">
-                                    </div>
-                                </div>
-                                <div class="layui-form-item">
-                                <label class="layui-form-label">ip设置</label>
-                                <div class="layui-input-block">
-                                    <input name="theme" type="text" class="layui-input">
-                                </div>
-                                </div>
-                                <div class="layui-form-item">
-                                    <label class="layui-form-label">备案号设置</label>
-                                    <div class="layui-input-block">
-                                        <input name="theme" type="text" class="layui-input">
-                                    </div>
-                                </div>
-                                <div class="layui-form-item">
-                                    <label class="layui-form-label">轮播设置</label>
-                                    <div class="layui-input-block">
-                                        <div class="layui-upload">
-                                            <button type="button" class="layui-btn" id="imguploadbtn">轮播图上传</button><input class="layui-upload-file" type="file" accept="undefined" name="file" multiple="">
-                                            <blockquote class="layui-elem-quote layui-quote-nm" style="margin-top: 10px;">
-                                                预览图：
-                                                <div class="layui-upload-list" id="img-list"></div>
-                                            </blockquote>
-                                            <a class="layui-btn" id="uploadaction">开始上传</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <button class="layui-btn" id="info-btn">提交</button>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="layui-tab-item">
-                        <div>开发中</div>
-                    </div>
-                    <div class="layui-tab-item">
                         <div id="create-blog-tab">
                         <div>发布笔记</div>
                         <form class="layui-form">
@@ -185,14 +111,11 @@
                           <div class="layui-form-item">  
                         <label class="layui-form-label">笔记分类</label>
                         <div class="layui-input-block">
-                            {volist name='catelist' id='cate'}
-                             {if condition='$cate["blog_category"] == "无"'}
-                                 <input type="radio" lay-filter="blog-category" name="blog-category" value="{$cate['id']}" title="{$cate['blog_category']}" checked>
-                             {else /}
-                                 <input type="radio" lay-filter="blog-category" name="blog-category" value="{$cate['id']}" title="{$cate['blog_category']}">
-                             {/if}
-                            {/volist}
-                            <div><a id="manage-classification" href="javascript:;">分类管理</a></div>
+                            <?php if(is_array($catelist) || $catelist instanceof \think\Collection || $catelist instanceof \think\Paginator): $i = 0; $__LIST__ = $catelist;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$cate): $mod = ($i % 2 );++$i;if($cate["blog_category"] == "无"): ?>
+                                 <input type="radio" lay-filter="blog-category" name="blog-category" value="<?php echo $cate['id']; ?>" title="<?php echo $cate['blog_category']; ?>" checked>
+                             <?php else: ?>
+                                 <input type="radio" lay-filter="blog-category" name="blog-category" value="<?php echo $cate['id']; ?>" title="<?php echo $cate['blog_category']; ?>">
+                             <?php endif; endforeach; endif; else: echo "" ;endif; ?>
                         </div>
                         </div>
                             <div class="layui-form-item">
@@ -220,33 +143,11 @@
                         </form>
                         </div>
                     </div>
-
                     <div class="layui-tab-item">
                         <!-- 博客管理-文章列表 -->
                         <div id="bloglist-tab" style="display">
                             <div>文章列表</div>
                             <table id="article" class="layui-table" lay-filter="article"></table>
-                        </div>
-                    </div>
-                    <div class="layui-tab-item">
-                        <!-- 网站设置-发布链接 -->
-                        <div id="create-links-tab" style="display">
-                            <div>发布链接</div>
-
-                        </div>
-                    </div>
-                    <div class="layui-tab-item">
-                        <!-- 网站设置-链接列表 -->
-                        <div id="links-tab">
-                            <div>链接列表</div>
-                            <table id="links" class="layui-table"></table>
-                        </div>
-                    </div>
-                    <div class="layui-tab-item">
-                        <!-- 留言管理-留言列表 -->
-                        <div id="massagelist-tab" style="display">
-                            <div>留言列表</div>
-                            <table id="massage-list" class="layui-table"></table>
                         </div>
                     </div>
                     <div class="layui-tab-item">
@@ -256,18 +157,11 @@
                             <table id="comment-list" class="layui-table"></table>
                         </div>
                     </div>
-                    <div class="layui-tab-item">
-                        <!-- 留言管理-相册管理 -->
-                        <div id="commentlist-tab" style="display">
-                            <div>相册管理（轮播，主题图，页内图）</div>
-                            <div><a>获取所有图片</a></div>
-                        </div>
-                    </div>
                 </div>
             </div>
             <!-- 底部固定区域 -->
             <div class="layui-footer">
-                 今日访问量： 累计访问量： 当前ip：{$ip}
+                 当前ip：<?php echo $ip; ?>
             </div>
     </div>
     <script type="text/html" id="bar">
@@ -280,6 +174,6 @@
     <script src="/static/layui/layui.js"></script>
     <script src="/static/js/wangEditor.js"></script>
     <script src="/static/js/toTop.js"></script>
-    <script src="/static/js/admin.js"></script>
+    <script src="/static/js/user.js"></script>
     </body>
 </html>

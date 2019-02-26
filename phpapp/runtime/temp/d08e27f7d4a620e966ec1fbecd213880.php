@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:64:"D:\server\nginx\html/phpapp/application/blog\view\blog\blog.html";i:1545489927;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:64:"D:\server\nginx\html/phpapp/application/blog\view\blog\blog.html";i:1551071101;}*/ ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
     <head>
@@ -31,14 +31,14 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="http://localhost">iamcaojie.com</a>
+              <a class="navbar-brand" href="http://<?php echo $domain; ?>"><?php echo $domain; ?></a>
             </div>
             <!-- 导航条链接 -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav">
-                <li class=""><a href="/blog/python">Python</a></li>
-                <li><a href="/blog/php">PHP</a></li>
-                <li><a href="/blog/java">Java</a></li>
+                  <?php if(is_array($cates) || $cates instanceof \think\Collection || $cates instanceof \think\Paginator): $i = 0; $__LIST__ = $cates;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$cate): $mod = ($i % 2 );++$i;if($cate["blog_category"] !== "无"): ?>
+                            <li class=""><a href="/blog/contents"><?php echo $cate['blog_category']; ?></a></li>
+                      <?php endif; endforeach; endif; else: echo "" ;endif; ?>
                 <li class="dropdown">
                   <a href="" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">其他<span class="caret"></span></a>
                   <ul class="dropdown-menu">
@@ -61,8 +61,7 @@
                 <button type="submit" id="search" class="btn search-btn">搜索</button>
               </form>
               <ul class="nav navbar-nav navbar-right">
-                <li><a id="sign" href="/admin">注册</a></li>
-                <li><a id="login" href="/login">登录</a></li>
+                  <li><a id="login" href="/login"><?php echo !empty($username)?$username: '注册/登录'; ?></a></li>
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">相关链接<span class="caret"></span></a>
                   <ul class="dropdown-menu">

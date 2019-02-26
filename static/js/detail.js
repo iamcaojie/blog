@@ -33,7 +33,7 @@ $(function(){
         if(postCheck()){
             var data = {"blog_id":$('input[name="id"]').val(),"comment_text":commentText.val()};
             console.log(data);
-            postComment('/blog/python/comment','POST',data);
+            postComment('/blog/contents/comment','POST',data);
         }
         return false;
     });

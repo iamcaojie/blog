@@ -1,5 +1,5 @@
 <?php
-namespace app\admin\controller;
+namespace app\user\controller;
 
 use think\Controller;
 use org\Auth;

@@ -23,7 +23,7 @@
         <noscript>抱歉，你的浏览器不支持 JavaScript，访问可能出现错误!</noscript>
         <ol class="breadcrumb">
             <li><a href="http://localhost">首页</a></li>
-            <li><a href="/blog/python">Python</a></li>
+            <li><a href="/blog/contents">Python</a></li>
             <li class="active">详情</li>
         </ol>
         <div class="container">
@@ -51,6 +51,7 @@
                             <div id="comment-tab-detail">
                                 <div id="comment-list">
                                     {volist name='blogcomments' id='blogcomment'}
+                                    <span class="">{$blogcomment['user_id']}</span>
                                     <span class="time">{$blogcomment['create_time']}</span>
                                     <div id="comment-text">{$blogcomment['comment_text']}</div>
                                     {/volist}
@@ -58,11 +59,15 @@
                                 <div id="reply-comment" style="display:none;">
                                     <form>
                                         <input name='id' type='hidden' value='{$id}'></input>
-                                        <textarea id="comment_text"></textarea>
-                                        <br>
-                                        <button id="clear">清空</button>
-                                        <button id="submit">提交</button>
-                                        <span id="text-count"></span>
+                                        <div style="{$username? 'display:block;':'display:none;'}">
+                                            <textarea id="comment_text"></textarea><br>
+                                            <button id="clear">清空</button>
+                                            <button id="submit">提交</button>
+                                            <span id="text-count"></span>
+                                        </div>
+                                        <div style="{$username?'display:none;':'display:block;'}">
+                                            <p>请<a href="/login">登录</a>后进行操作</p>
+                                        </div>
                                     </form>
                                 </div>
                             </div>

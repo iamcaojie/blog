@@ -16,6 +16,8 @@ class Index
         $ddlsql = [
             'DROP TABLE IF EXISTS think_web;',
             'DROP TABLE IF EXISTS think_info;',
+            'DROP TABLE IF EXISTS think_image;',
+            'DROP TABLE IF EXISTS think_imagecate;',
             'DROP TABLE IF EXISTS think_users;',
             'DROP TABLE IF EXISTS think_auth_group;',
             'DROP TABLE IF EXISTS think_auth_rule;',
@@ -36,6 +38,9 @@ class Index
                 . 'name varchar(10), '// 网站名称
                 . 'status varchar(10), '// 网站状态
                 . 'domain varchar(50),'// 域名
+                . 'ip varchar(50),'// ip
+                . 'today_views int,'// 今日访问
+                . 'all_views int,' // 总访问
                 . 'create_time int,'
                 . 'update_time int,'
                 . 'delete_time int,'
@@ -50,12 +55,35 @@ class Index
                 . 'delete_time int, '
                 . 'PRIMARY KEY(id)) '
                 . 'DEFAULT CHARSET=utf8; ',
+            // 图片地址表
+            'CREATE TABLE think_image('
+            . 'id int UNSIGNED NOT NULL AUTO_INCREMENT, '
+            . 'name varchar(10), '
+            . 'imagecate_id varchar(10), '
+            . 'address varchar(100), '
+            . 'ext varchar(5), '
+            . 'create_time int, '
+            . 'update_time int, '
+            . 'delete_time int, '
+            . 'PRIMARY KEY(id)) '
+            . 'DEFAULT CHARSET=utf8; ',
+            // 图片分类表（与uploads目录对应）<carousel轮播：1，masterimages主图：2，detailimages详情图：3>
+            'CREATE TABLE think_imagecate('
+            . 'id int UNSIGNED NOT NULL AUTO_INCREMENT, '
+            . 'name varchar(10), '
+            . 'dir varchar(20), '
+            . 'create_time int, '
+            . 'update_time int, '
+            . 'delete_time int, '
+            . 'PRIMARY KEY(id)) '
+            . 'DEFAULT CHARSET=utf8; ',
             // 网站用户表
             'CREATE TABLE think_users('
                 . 'id int UNSIGNED NOT NULL AUTO_INCREMENT, '
                 .' nickname varchar(20), '
                 . 'username varchar(50), '
                 . 'password varchar(50), '
+                . 'gender tinyint(1), '
                 . 'create_time int, '
                 . 'update_time int, '
                 . 'delete_time int, '
@@ -193,7 +221,7 @@ class Index
             'insert into think_web(id, name, status, domain) '
             . 'values (1,"blog","on","imcaojie.com");',
             'insert into think_users(id,username,password) '
-            . 'values (1,"caojie","caojie")',
+            . 'values (1,"caojie","d226d500e7899a09458559bf2661a62b")',
             'insert into think_blog(id, blog_title, cate_id, delete_time) '
             . 'values (1, "临时缓存内容", 1, 1);',
             'insert into think_cate(id, blog_category) '
@@ -201,7 +229,9 @@ class Index
             'insert into think_tags(id, tag) '
             . 'values (1,"原创"),(2,"转载"),(3,"基础"),(4,"技巧"),(5,"重点"),(6,"难点");',
             'insert into think_linkcate(id, name) '
-            . 'values (1,"主页链接"),(2,"文档链接"),(3,"友情链接");'
+            . 'values (1,"主页链接"),(2,"文档链接"),(3,"友情链接");',
+            'insert into think_imagecate(id, name, dir)'
+            .'values (1,"轮播图","carousel"),(2,"主图","masterimage"),(3,"详情图","detailimage")'
         ];
         foreach ($ddlsql as $value)
         {
