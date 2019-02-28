@@ -1,7 +1,6 @@
 <?php
 namespace app\blog\controller;
 
-use think\Request;
 use think\Controller;
 use think\Db;
 use app\admin\model\Cate as Catemodel;
@@ -11,6 +10,8 @@ class Index extends Controller
 {
     public function index()
     {
+//        $redis = new \Redis();
+//        echo $redis->connect('127.0.0.1', 6379);
         $userName = session('user')['username'];
         $cateData = Catemodel::getCateList();
         $webData = Db::name('web')->where('id',1)->find();
@@ -20,7 +21,6 @@ class Index extends Controller
                 'domain'=>$domain,
                 'cates'=>$cateData
                 ]
-
             );
     }
     

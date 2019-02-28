@@ -71,8 +71,9 @@ class Index extends Controller
             . '<p align="right">5分钟内有效</p>'
             . '<p align="right">如非本人操作请忽略QAQ</p>';
         $msg = $data['action'].'验证码已发送,请查收';
-        $mailer = new QQMailer();
-        $mailer->send('1041973277@qq.com', $title, $content);
+        $mailer = new QQMailer(true);
+        $info = $mailer->send('1041973277@qq.com', $title, $content);
+        var_dump($info);die;
         return json(['code'=>0, 'msg'=>$msg]);
     }
     // 注册

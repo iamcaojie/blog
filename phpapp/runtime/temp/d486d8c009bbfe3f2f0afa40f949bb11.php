@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:67:"D:\server\nginx\html/phpapp/application/admin\view\admin\admin.html";i:1551190606;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:67:"D:\server\nginx\html/phpapp/application/admin\view\admin\admin.html";i:1551364284;}*/ ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
     <head>
@@ -127,8 +127,6 @@
                                     <input/>
                                     <button>提交</button>
                                 </form>
-                                <audio controls="controls" >
-                                    <source src="/static/video/1.mp3">
                             </div>
                         </div>
                     </div>
@@ -231,28 +229,52 @@
                     </div>
                     <div class="layui-tab-item">
                         <!-- 网站设置-发布链接 -->
-                        <div id="create-links-tab" style="display">
+                        <div id="create-links-tab">
                             <div>发布链接</div>
-
+                            <form class="layui-form">
+                                <div class="layui-form-item">
+                                    <input name="link_id" value="">
+                                    <label class="layui-form-label">链接主题</label>
+                                    <div class="layui-input-block">
+                                        <input type="text" name="link_title" placeholder="请输入链接主题" class="layui-input"/>
+                                    </div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">链接分类</label>
+                                    <div class="layui-input-block">
+                                        <?php if(is_array($linkcatelist) || $linkcatelist instanceof \think\Collection || $linkcatelist instanceof \think\Paginator): $i = 0; $__LIST__ = $linkcatelist;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$linkcate): $mod = ($i % 2 );++$i;?>
+                                        <input type="radio" lay-filter="blog-category" name="link_cate" value="<?php echo $linkcate['id']; ?>" title="<?php echo $linkcate['link_cate_title']; ?>">
+                                        <?php endforeach; endif; else: echo "" ;endif; ?>
+                                    </div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">链接地址</label>
+                                    <div class="layui-input-block">
+                                        <input type="text" name="link_address" placeholder="请输入链接地址" class="layui-input"/>
+                                    </div>
+                                </div>
+                                <button class="layui-btn" id="btn5">提交</button>
+                                <button class="layui-btn" id="btn6" style="display:none">确认修改</button>
+                            </form>
                         </div>
                     </div>
                     <div class="layui-tab-item">
                         <!-- 网站设置-链接列表 -->
                         <div id="links-tab">
                             <div>链接列表</div>
-                            <table id="links" class="layui-table"></table>
+                            <table id="links" class="layui-table" lay-filter="links"></table>
                         </div>
                     </div>
                     <div class="layui-tab-item">
                         <!-- 留言管理-留言列表 -->
-                        <div id="massagelist-tab" style="display">
+                        <div id="massagelist-tab">
                             <div>留言列表</div>
                             <table id="massage-list" class="layui-table"></table>
                         </div>
                     </div>
                     <div class="layui-tab-item">
                         <!-- 留言管理-评论管理 -->
-                        <div id="commentlist-tab" style="display">
+                        <div id="commentlist-tab">
                             <div>评论列表</div>
                             <table id="comment-list" class="layui-table"></table>
                         </div>

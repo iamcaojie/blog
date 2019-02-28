@@ -57,28 +57,25 @@ var layer = layui.layer,
     
      // 链接列表
     linksIns = table.render({
-    elem: '#links',
-    height: 400,
-    url: '/admin/blog/queryblog/action/getbloglist', //数据接口
-    page: true, //开启分页
-    toolbar: 'default', //开启工具栏
-    totalRow: true, //开启合计行
-    cols: [[ //表头
-        {type: 'checkbox', fixed: 'left'},
-        {field: 'id', title: '博客ID', width:80, sort: true, fixed: 'left'},
-        {field: 'blog_title', title: '标题', width:80},
-        {field: 'cate', title: '分类', width: 80},
-        {field: 'tag', title: '标签', width: 80},
-        {field: 'blog_text', title: '内容', width:240},
-        //,{field: 'delete_time', title: '软删除时间', width:80}, 
-        {field: 'update_time', title: '更新时间', width: 80, sort: true},
-        {field: 'create_time', title: '创建时间', width: 80, sort: true},
-        {field: 'read_count', title: '阅读量', width: 80, sort: true},
-        {field: 'operate', title: '操作', width: 150},
-        {fixed: 'right', width: 165, align:'center', toolbar: '#bar'}
-    ]]
-});
-    // 消息列表
+        elem: '#links',
+        height: 400,
+        url: '/admin/links/getLinksList', //数据接口
+        page: true, //开启分页
+        toolbar: 'default', //开启工具栏
+        totalRow: true, //开启合计行
+        cols: [[ //表头
+            {type: 'checkbox', fixed: 'left'},
+            {field: 'id', title: '链接ID', width:80, sort: true, fixed: 'left'},
+            {field: 'link_cate_title', title: '分类', width:80},
+            {field: 'link_title', title: '名称', width: 80},
+            {field: 'link', title: '链接地址', width: 160},
+            //,{field: 'delete_time', title: '软删除时间', width:80},
+            {field: 'update_time', title: '更新时间', width: 80, sort: true},
+            {field: 'create_time', title: '创建时间', width: 80, sort: true},
+            {fixed: 'right', width: 165, align:'center', toolbar: '#bar'}
+        ]]
+    });
+    // 留言列表
     massageTableIns = table.render({
         elem: '#massage-list',
         height: 400,
@@ -107,7 +104,7 @@ var layer = layui.layer,
         toolbar: 'default', //开启工具栏
         cols: [[ //表头
             {type: 'checkbox', fixed: 'left'},
-            {field: 'id', title: 'ID', width:80, sort: true, fixed: 'left'},
+            {field: 'id', title: 'ID', wridth:80, sort: true, fixed: 'left'},
             {field: 'use_id', title: '用户id', width:80},
             {field: 'blog_id', title: '博客id', width: 80},
             // {field: 'tag', title: '标签', width: 80},
@@ -146,10 +143,10 @@ var layer = layui.layer,
         };
     });
   
-    //监听行工具事件
+    //监听博客列表行工具事件
     table.on('tool(article)', function(obj){ //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
         var data = obj.data, //获得当前行数据
-        layEvent = obj.event; //获得 lay-event 对应的值
+            layEvent = obj.event; //获得 lay-event 对应的值
         if(layEvent === 'detail'){
             layer.msg(1);
         } else if(layEvent === 'del'){
@@ -160,6 +157,22 @@ var layer = layui.layer,
             });
         }else if(layEvent === 'edit'){
             editBlog(data.id);
+        }
+    });
+    //监听链接列表行工具事件
+    table.on('tool(links)', function(obj){ //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
+        var data = obj.data, //获得当前行数据
+            layEvent = obj.event; //获得 lay-event 对应的值
+        if(layEvent === 'detail'){
+            layer.msg(1);
+        } else if(layEvent === 'del'){
+            layer.confirm('真的删除行么', function(index){
+                obj.del(); //删除对应行（tr）的DOM结构
+                layer.close(index);
+                deleteBlog(data.id);
+            });
+        }else if(layEvent === 'edit'){
+                editLink(data.id);
         }
     });
     // 获取开关值
@@ -177,8 +190,10 @@ editor.create();
 var webDomain = $('input[name="domain"]'),
 webTheme = $('input[name="theme"]'),
 blogId = $('input[name="id"]'),
-blogTitle = $('input[name="blog_title"]');
-
+blogTitle = $('input[name="blog_title"]'),
+linkId = $('input[name="link_id"]'),
+linkTitle = $('input[name="link_title"]'),
+linkAddress = $('input[name="link_address"]');
 
 // 所有数据前端不验证，后端验证数据合法性
 
@@ -226,6 +241,19 @@ $(function(){
         postData('/admin/blog/editblog', 'POST', getlocalData());
         $("#btn4").hide();
         $("#btn3").show();
+        return false;
+    });
+    // 提交链接数据
+    $("#btn5").click(function(){
+
+        postData('/admin/links/createlinks', 'POST',getLocalLinkData());
+        return false;
+    });
+    // 修改链接数据
+    $("#btn6").click(function(){
+        postData('/admin/links/editlinks', 'POST',getLocalLinkData());
+        $("#btn6").hide();
+        $("#btn5").show();
         return false;
     });
 });
@@ -281,19 +309,41 @@ function deleteBlog(id){
     });
 }
 
-// 清空内容
+// 编辑链接
+function editLink(id){
+    getLinkData('/admin/links/querylink','GET',{'id':id});
+    $("#btn5").hide();
+    $("#btn6").show();
+}
+
+// 清空博客内容
 function emptyBlogData(){
     blogId.val("");
     blogTitle.val("");
     $(".w-e-text").empty();
 }
+// 清空链接内容
+function emptyLinkData(){
+    linkId.val("");
+    linkTitle.val("");
+    linkAddress.val("");
+}
 
-// 编辑时填充数据到编辑页
+// 编辑时填充数据到博客编辑页
 function fillBlogData(data){
     blogId.val(data["data"]["id"]);
     blogTitle.val(data["data"]["blog_title"]);
     $(".w-e-text").append(data["data"]["blog_html"]);
 }
+
+// 编辑时填充数据到链接编辑页
+function fillLinkData(data){
+    console.log(data["data"]);
+    linkId.val(data["data"]["id"]);
+    linkTitle.val(data["data"]["link_title"]);
+    linkAddress.val(data["data"]["link"]);
+}
+
 // 检查数据合法性
 function check(){
     if(blogTitle.val() == ""){
@@ -324,6 +374,16 @@ function getlocalData(){
     return blogData;
 }
 
+// 获取链接数据
+function getLocalLinkData(){
+    var data = {};
+    data["id"] = linkId.val();
+    data["link_cate_id"] = $('input[name="link_cate"]:checked').val();
+    data["link_title"] = linkTitle.val();
+    data["link"] = linkAddress.val();
+    return data;
+}
+
 //自动保存博客数据,id为1
 function autoSave(){
     var tempData = getlocalData();
@@ -331,7 +391,7 @@ function autoSave(){
     postData('/admin/blog/editblog','POST',tempData);
 }
 
-// 提交数据(保存博客、编辑博客)
+// 提交数据(保存博客、编辑博客、保存链接、编辑链接)
 function postData(url,method,data){
     $(function(){ 
         $.ajax({
@@ -342,18 +402,15 @@ function postData(url,method,data){
             success: function(data){
                 // 所有后台回调操作
                 if(data.msg == "自动保存完成"){
-                    // layer.msg("自动保存");
-                }else if(data.msg == "保存成功" || data.msg == "修改成功" ){
-                    layer.msg(data["msg"]);
+                    // pass
+                }else{
+                    layer.msg(data.msg);
+                    emptyLinkData();
                     emptyBlogData();
                     articleIns.reload();
-                }else if(data.msg == ""){
-                    //
-                }else{
-                    //
                 }
             },error:function(data){
-                layer.msg("操作失败");
+                layer.msg("请求失败");
             }
         });
     });
@@ -368,13 +425,31 @@ function getBlogData(url,method,data){
             data:data,
             dataType:'json',
             success: function(data){
-                // 填充数据到编辑器
                 emptyBlogData();
                 fillBlogData(data);
             }
         });
     });
 }
+
+// 根据id查询链接数据,编辑时填充调用
+function getLinkData(url,method,data){
+    $(function(){
+        $.ajax({
+            type:method || 'GET',
+            url:url,
+            data:data,
+            dataType:'json',
+            success: function(data){
+                // 填充数据到编辑器
+                emptyLinkData();
+                console.log(data);
+                fillLinkData(data);
+            }
+        });
+    });
+}
+
 // 根据id删除博客
 function deleteBlogData(url,method,data){
     $(function(){ 

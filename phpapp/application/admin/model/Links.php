@@ -3,37 +3,55 @@ namespace app\admin\model;
 
 use think\Model;
 
-
 class Links extends Model
 {
-    
-    // 静态方法，查询所有数据
-    // sql:select * from _weblinks;
-    public static function getWeblinksList()
+
+    // 相对与链接分类的多对一关联
+    public function linkcates()
     {
-        return self::select();
+        return $this->belongsTo('Linkcate','link_cate_id','id');
+    }
+
+    // sql:select * from _links;
+    public static function getLinksList($page,$limit)
+    {
+        $linkList = [];
+        $linkDatas = self::where('delete_time',null)
+            -> limit(($page-1)*$limit,$limit)
+            -> select();
+        $linkCount = self::where('delete_time',null)
+            -> count();
+        // 写入关联的分类
+        foreach ($linkDatas as $linkData){
+                $linkCateData = self::get($linkData['id'])
+                    -> linkcates
+                    ->link_cate_title;
+                $linkData['link_cate_title'] = $linkCateData;
+            }
+        return ["count"=>$linkCount,"data"=>$linkDatas];
     }
     
-    public static function createWeblinks($data)
+    public static function createLinks($data)
     {
         self::create($data);
         return ["code"=> 0, "data"=>"创建链接成功"];
     }
     
-    public static function editWeblinks($data)
+    public static function editLinks($data)
     {
         self::update($data);
         return ["data"=>""];
     }
     
-    public static function deleteWeblinks($data)
+    public static function deleteLinks($data)
     {
         self::destroy($data);
         return ["data"=>""];
     }
     
-    public static function queryWeblinks($data)
+    public static function queryLink($id)
     {
-        //pass
+        $linkData = self::get($id);
+        return $linkData;
     }
 }

@@ -6,7 +6,12 @@ use think\Model;
 
 class Linkcate extends Model
 {
-    
+    // 一个分类对应多个链接
+    public function links()
+    {
+        return $this->hasMany('Links','link_cate','id');
+    }
+
     // 静态方法，查询所有数据
     // sql:select * from _linkcate;
     public static function getLinkcateList()

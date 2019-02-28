@@ -2,13 +2,13 @@
 namespace PHPMailer;
 class QQMailer
 {
-    public static $HOST = 'smtp.qq.com'; // QQ 邮箱的服务器地址
+    public static $HOST = 'smtp.163.com'; // QQ 邮箱的服务器地址
     public static $PORT = 465; // smtp 服务器的远程服务器端口号
     public static $SMTP = 'ssl'; // 使用 ssl 加密方式登录
     public static $CHARSET = 'UTF-8'; // 设置发送的邮件的编码
 
-    private static $USERNAME = '81946820@qq.com'; // 授权登录的账号
-    private static $PASSWORD = 'zgiykkxtjcuvcbdj'; // 授权登录的密码
+    private static $USERNAME = 'imcaojiemail@163.com'; // 授权登录的账号
+    private static $PASSWORD = ''; // 授权登录的密码
     private static $NICKNAME = 'Mailrobot'; // 发件人的昵称
 
     /**

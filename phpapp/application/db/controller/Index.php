@@ -169,8 +169,8 @@ class Index
             // 链接表(n) -- 链接分类表(1)
             'CREATE TABLE think_links('
                 . 'id int UNSIGNED NOT NULL AUTO_INCREMENT, '
-                . 'link_cate int, '
-                . 'name varchar(10), '
+                . 'link_cate_id int, '
+                . 'link_title varchar(10), '
                 . 'link varchar(200), '
                 . 'create_time int, '
                 . 'update_time int,'
@@ -179,7 +179,7 @@ class Index
             // 链接分类表(1) -- 链接表(n)
             'CREATE TABLE think_linkcate('
                 . 'id int UNSIGNED NOT NULL AUTO_INCREMENT, '
-                . 'name varchar(10), '
+                . 'link_cate_title varchar(10), '
                 . 'create_time int,'
                 . 'update_time int,'
                 . 'delete_time int,PRIMARY KEY(id)) '
@@ -228,8 +228,10 @@ class Index
             . 'values (1,"无"),(2,"Python"),(3,"PHP"),(4,"Java");',
             'insert into think_tags(id, tag) '
             . 'values (1,"原创"),(2,"转载"),(3,"基础"),(4,"技巧"),(5,"重点"),(6,"难点");',
-            'insert into think_linkcate(id, name) '
+            'insert into think_linkcate(id, link_cate_title) '
             . 'values (1,"主页链接"),(2,"文档链接"),(3,"友情链接");',
+            'insert into think_links(id, link_cate_id, link_title, link) '
+            . 'value (1, 1, "我的博客", "http://www.imcaojie.com");',
             'insert into think_imagecate(id, name, dir)'
             .'values (1,"轮播图","carousel"),(2,"主图","masterimage"),(3,"详情图","detailimage")'
         ];

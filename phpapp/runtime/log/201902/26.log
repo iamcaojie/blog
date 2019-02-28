@@ -1641,3 +1641,1251 @@
   'filtered' => 100.0,
   'extra' => NULL,
 ) ]
+---------------------------------------------------------------
+[ 2019-02-26T23:27:39+08:00 ] 127.0.0.1 GET localhost/
+[运行时间：0.100242s] [吞吐率：9.98req/s] [内存消耗：2,527.21kb] [文件加载：48]
+[ info ] [ LANG ] D:\server\nginx\html\phpapp\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=pibgu1jnd5o68hj382af6c8vh1; thinkphp_show_page_trace=0|0',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'keep-alive',
+  'host' => 'localhost',
+  'content-length' => '',
+  'content-type' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\blog\controller\Index->index[ D:\server\nginx\html\phpapp\application\blog\controller\Index.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\server\nginx\html/phpapp/application/blog\view\blog\blog.html [ array (
+  0 => 'username',
+  1 => 'domain',
+  2 => 'cates',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001943s ] mysql:host=127.0.0.1;port=3306;dbname=tp;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_cate` [ RunTime:0.003382s ]
+[ sql ] [ SQL ] SELECT * FROM `think_cate` [ RunTime:0.000456s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_cate',
+  'partitions' => NULL,
+  'type' => 'ALL',
+  'possible_keys' => NULL,
+  'key' => NULL,
+  'key_len' => NULL,
+  'ref' => NULL,
+  'rows' => 4,
+  'filtered' => 100.0,
+  'extra' => NULL,
+) ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_web` [ RunTime:0.000828s ]
+[ sql ] [ SQL ] SELECT * FROM `think_web` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000441s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_web',
+  'partitions' => NULL,
+  'type' => 'const',
+  'possible_keys' => 'PRIMARY',
+  'key' => 'PRIMARY',
+  'key_len' => '4',
+  'ref' => 'const',
+  'rows' => 1,
+  'filtered' => 100.0,
+  'extra' => NULL,
+) ]
+---------------------------------------------------------------
+[ 2019-02-26T23:27:43+08:00 ] 127.0.0.1 GET localhost/user
+[运行时间：0.169221s] [吞吐率：5.91req/s] [内存消耗：2,574.16kb] [文件加载：52]
+[ info ] [ LANG ] D:\server\nginx\html\phpapp\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'user',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=pibgu1jnd5o68hj382af6c8vh1; thinkphp_show_page_trace=0|0',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'keep-alive',
+  'host' => 'localhost',
+  'content-length' => '',
+  'content-type' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\user\controller\Index->index[ D:\server\nginx\html\phpapp\application\User\controller\Index.php ]
+[ info ] [ VIEW ] D:\server\nginx\html/phpapp/application/user\view\user\user.html [ array (
+  0 => 'username',
+  1 => 'catelist',
+  2 => 'ip',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001866s ] mysql:host=127.0.0.1;port=3306;dbname=tp;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_web` [ RunTime:0.001589s ]
+[ sql ] [ SQL ] SELECT * FROM `think_web` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000751s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_web',
+  'partitions' => NULL,
+  'type' => 'const',
+  'possible_keys' => 'PRIMARY',
+  'key' => 'PRIMARY',
+  'key_len' => '4',
+  'ref' => 'const',
+  'rows' => 1,
+  'filtered' => 100.0,
+  'extra' => NULL,
+) ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_group_access` [ RunTime:0.001210s ]
+[ sql ] [ SQL ] SELECT `AuthGroupAccess`.`uid`,`AuthGroupAccess`.`group_id`,`AuthGroup`.`title`,`AuthGroup`.`rules` FROM `think_auth_group_access` `AuthGroupAccess` LEFT JOIN `think_auth_group` `AuthGroup` ON `AuthGroupAccess`.`group_id`=`AuthGroup`.`id` WHERE  (  AuthGroupAccess.uid='1' and AuthGroup.status='1' ) [ RunTime:0.000513s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => NULL,
+  'partitions' => NULL,
+  'type' => NULL,
+  'possible_keys' => NULL,
+  'key' => NULL,
+  'key_len' => NULL,
+  'ref' => NULL,
+  'rows' => NULL,
+  'filtered' => NULL,
+  'extra' => 'no matching row in const table',
+) ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_cate` [ RunTime:0.001347s ]
+[ sql ] [ SQL ] SELECT * FROM `think_cate` [ RunTime:0.000823s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_cate',
+  'partitions' => NULL,
+  'type' => 'ALL',
+  'possible_keys' => NULL,
+  'key' => NULL,
+  'key_len' => NULL,
+  'ref' => NULL,
+  'rows' => 4,
+  'filtered' => 100.0,
+  'extra' => NULL,
+) ]
+---------------------------------------------------------------
+[ 2019-02-26T23:27:52+08:00 ] 127.0.0.1 GET localhost/admin/blog/queryblog/action/getbloglist?page=1&limit=10
+[运行时间：0.069369s] [吞吐率：14.42req/s] [内存消耗：2,514.14kb] [文件加载：49]
+[ info ] [ LANG ] D:\server\nginx\html\phpapp\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'blog',
+    2 => 'queryblog',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; PHPSESSID=pibgu1jnd5o68hj382af6c8vh1; thinkphp_show_page_trace=0|0',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://localhost/user',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36',
+  'x-requested-with' => 'XMLHttpRequest',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'connection' => 'keep-alive',
+  'host' => 'localhost',
+  'content-length' => '',
+  'content-type' => '',
+)
+[ info ] [ PARAM ] array (
+  'page' => '1',
+  'limit' => '10',
+  'action' => 'getbloglist',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\admin\controller\Blog->queryblog[ D:\server\nginx\html\phpapp\application\admin\controller\Blog.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001600s ] mysql:host=127.0.0.1;port=3306;dbname=tp;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_web` [ RunTime:0.001347s ]
+[ sql ] [ SQL ] SELECT * FROM `think_web` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000648s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_web',
+  'partitions' => NULL,
+  'type' => 'const',
+  'possible_keys' => 'PRIMARY',
+  'key' => 'PRIMARY',
+  'key_len' => '4',
+  'ref' => 'const',
+  'rows' => 1,
+  'filtered' => 100.0,
+  'extra' => NULL,
+) ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_auth_group_access` [ RunTime:0.001294s ]
+[ sql ] [ SQL ] SELECT `AuthGroupAccess`.`uid`,`AuthGroupAccess`.`group_id`,`AuthGroup`.`title`,`AuthGroup`.`rules` FROM `think_auth_group_access` `AuthGroupAccess` LEFT JOIN `think_auth_group` `AuthGroup` ON `AuthGroupAccess`.`group_id`=`AuthGroup`.`id` WHERE  (  AuthGroupAccess.uid='1' and AuthGroup.status='1' ) [ RunTime:0.000556s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => NULL,
+  'partitions' => NULL,
+  'type' => NULL,
+  'possible_keys' => NULL,
+  'key' => NULL,
+  'key_len' => NULL,
+  'ref' => NULL,
+  'rows' => NULL,
+  'filtered' => NULL,
+  'extra' => 'no matching row in const table',
+) ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_blog` [ RunTime:0.001267s ]
+[ sql ] [ SQL ] SELECT * FROM `think_blog` WHERE  `delete_time` IS NULL LIMIT 0,10 [ RunTime:0.000686s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_blog',
+  'partitions' => NULL,
+  'type' => 'ALL',
+  'possible_keys' => NULL,
+  'key' => NULL,
+  'key_len' => NULL,
+  'ref' => NULL,
+  'rows' => 1,
+  'filtered' => 100.0,
+  'extra' => 'Using where',
+) ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_blog` WHERE  `delete_time` IS NULL LIMIT 1 [ RunTime:0.000536s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_blog',
+  'partitions' => NULL,
+  'type' => 'ALL',
+  'possible_keys' => NULL,
+  'key' => NULL,
+  'key_len' => NULL,
+  'ref' => NULL,
+  'rows' => 1,
+  'filtered' => 100.0,
+  'extra' => 'Using where',
+) ]
+---------------------------------------------------------------
+[ 2019-02-26T23:27:52+08:00 ] 127.0.0.1 GET localhost/admin/comments/getcommentslist?page=1&limit=10
+[运行时间：0.056456s] [吞吐率：17.71req/s] [内存消耗：2,147.66kb] [文件加载：40]
+[ info ] [ LANG ] D:\server\nginx\html\phpapp\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'comments',
+    2 => 'getcommentslist',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; PHPSESSID=pibgu1jnd5o68hj382af6c8vh1; thinkphp_show_page_trace=0|0',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://localhost/user',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36',
+  'x-requested-with' => 'XMLHttpRequest',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'connection' => 'keep-alive',
+  'host' => 'localhost',
+  'content-length' => '',
+  'content-type' => '',
+)
+[ info ] [ PARAM ] array (
+  'page' => '1',
+  'limit' => '10',
+)
+[ info ] [ RUN ] app\admin\controller\Comments->getCommentsList[ D:\server\nginx\html\phpapp\application\admin\controller\Comments.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001787s ] mysql:host=127.0.0.1;port=3306;dbname=tp;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_comments` [ RunTime:0.002999s ]
+[ sql ] [ SQL ] SELECT * FROM `think_comments` WHERE  `delete_time` IS NULL LIMIT 0,10 [ RunTime:0.000709s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_comments',
+  'partitions' => NULL,
+  'type' => 'ALL',
+  'possible_keys' => NULL,
+  'key' => NULL,
+  'key_len' => NULL,
+  'ref' => NULL,
+  'rows' => 1,
+  'filtered' => 100.0,
+  'extra' => 'Using where',
+) ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_comments` WHERE  `delete_time` IS NULL LIMIT 1 [ RunTime:0.000515s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_comments',
+  'partitions' => NULL,
+  'type' => 'ALL',
+  'possible_keys' => NULL,
+  'key' => NULL,
+  'key_len' => NULL,
+  'ref' => NULL,
+  'rows' => 1,
+  'filtered' => 100.0,
+  'extra' => 'Using where',
+) ]
+---------------------------------------------------------------
+[ 2019-02-26T23:29:12+08:00 ] 127.0.0.1 GET localhost/blog/contents
+[运行时间：0.068185s] [吞吐率：14.67req/s] [内存消耗：2,475.63kb] [文件加载：47]
+[ info ] [ LANG ] D:\server\nginx\html\phpapp\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'blog',
+    1 => 'contents',
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; thinkphp_show_page_trace=0|0; PHPSESSID=pibgu1jnd5o68hj382af6c8vh1; thinkphp_show_page_trace=0|0',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://localhost/',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'keep-alive',
+  'host' => 'localhost',
+  'content-length' => '',
+  'content-type' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\blog\controller\Contents->index[ D:\server\nginx\html\phpapp\application\blog\controller\Contents.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\server\nginx\html/phpapp/application/blog\view\contents\contents.html [ array (
+  0 => 'bloglist',
+  1 => 'pagecount',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001546s ] mysql:host=127.0.0.1;port=3306;dbname=tp;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_blog` [ RunTime:0.001006s ]
+[ sql ] [ SQL ] SELECT * FROM `think_blog` WHERE  `delete_time` IS NULL LIMIT 0,10 [ RunTime:0.000506s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_blog',
+  'partitions' => NULL,
+  'type' => 'ALL',
+  'possible_keys' => NULL,
+  'key' => NULL,
+  'key_len' => NULL,
+  'ref' => NULL,
+  'rows' => 1,
+  'filtered' => 100.0,
+  'extra' => 'Using where',
+) ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_blog` WHERE  `delete_time` IS NULL LIMIT 1 [ RunTime:0.000406s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_blog',
+  'partitions' => NULL,
+  'type' => 'ALL',
+  'possible_keys' => NULL,
+  'key' => NULL,
+  'key_len' => NULL,
+  'ref' => NULL,
+  'rows' => 1,
+  'filtered' => 100.0,
+  'extra' => 'Using where',
+) ]
+---------------------------------------------------------------
+[ 2019-02-26T23:29:14+08:00 ] 127.0.0.1 GET localhost/
+[运行时间：0.057904s] [吞吐率：17.27req/s] [内存消耗：2,527.21kb] [文件加载：48]
+[ info ] [ LANG ] D:\server\nginx\html\phpapp\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=pibgu1jnd5o68hj382af6c8vh1; thinkphp_show_page_trace=0|0',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'keep-alive',
+  'host' => 'localhost',
+  'content-length' => '',
+  'content-type' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\blog\controller\Index->index[ D:\server\nginx\html\phpapp\application\blog\controller\Index.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\server\nginx\html/phpapp/application/blog\view\blog\blog.html [ array (
+  0 => 'username',
+  1 => 'domain',
+  2 => 'cates',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001026s ] mysql:host=127.0.0.1;port=3306;dbname=tp;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_cate` [ RunTime:0.000776s ]
+[ sql ] [ SQL ] SELECT * FROM `think_cate` [ RunTime:0.000380s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_cate',
+  'partitions' => NULL,
+  'type' => 'ALL',
+  'possible_keys' => NULL,
+  'key' => NULL,
+  'key_len' => NULL,
+  'ref' => NULL,
+  'rows' => 4,
+  'filtered' => 100.0,
+  'extra' => NULL,
+) ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_web` [ RunTime:0.000682s ]
+[ sql ] [ SQL ] SELECT * FROM `think_web` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000421s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_web',
+  'partitions' => NULL,
+  'type' => 'const',
+  'possible_keys' => 'PRIMARY',
+  'key' => 'PRIMARY',
+  'key_len' => '4',
+  'ref' => 'const',
+  'rows' => 1,
+  'filtered' => 100.0,
+  'extra' => NULL,
+) ]
+---------------------------------------------------------------
+[ 2019-02-26T23:29:17+08:00 ] 127.0.0.1 GET localhost/blog/contents
+[运行时间：0.051227s] [吞吐率：19.52req/s] [内存消耗：2,475.63kb] [文件加载：47]
+[ info ] [ LANG ] D:\server\nginx\html\phpapp\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'blog',
+    1 => 'contents',
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; thinkphp_show_page_trace=0|0; PHPSESSID=pibgu1jnd5o68hj382af6c8vh1; thinkphp_show_page_trace=0|0',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://localhost/',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'keep-alive',
+  'host' => 'localhost',
+  'content-length' => '',
+  'content-type' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\blog\controller\Contents->index[ D:\server\nginx\html\phpapp\application\blog\controller\Contents.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\server\nginx\html/phpapp/application/blog\view\contents\contents.html [ array (
+  0 => 'bloglist',
+  1 => 'pagecount',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001172s ] mysql:host=127.0.0.1;port=3306;dbname=tp;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_blog` [ RunTime:0.001424s ]
+[ sql ] [ SQL ] SELECT * FROM `think_blog` WHERE  `delete_time` IS NULL LIMIT 0,10 [ RunTime:0.000429s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_blog',
+  'partitions' => NULL,
+  'type' => 'ALL',
+  'possible_keys' => NULL,
+  'key' => NULL,
+  'key_len' => NULL,
+  'ref' => NULL,
+  'rows' => 1,
+  'filtered' => 100.0,
+  'extra' => 'Using where',
+) ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `think_blog` WHERE  `delete_time` IS NULL LIMIT 1 [ RunTime:0.000345s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_blog',
+  'partitions' => NULL,
+  'type' => 'ALL',
+  'possible_keys' => NULL,
+  'key' => NULL,
+  'key_len' => NULL,
+  'ref' => NULL,
+  'rows' => 1,
+  'filtered' => 100.0,
+  'extra' => 'Using where',
+) ]
+---------------------------------------------------------------
+[ 2019-02-26T23:29:19+08:00 ] 127.0.0.1 GET localhost/
+[运行时间：0.070680s] [吞吐率：14.15req/s] [内存消耗：2,527.21kb] [文件加载：48]
+[ info ] [ LANG ] D:\server\nginx\html\phpapp\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=pibgu1jnd5o68hj382af6c8vh1; thinkphp_show_page_trace=0|0',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'keep-alive',
+  'host' => 'localhost',
+  'content-length' => '',
+  'content-type' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\blog\controller\Index->index[ D:\server\nginx\html\phpapp\application\blog\controller\Index.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\server\nginx\html/phpapp/application/blog\view\blog\blog.html [ array (
+  0 => 'username',
+  1 => 'domain',
+  2 => 'cates',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001085s ] mysql:host=127.0.0.1;port=3306;dbname=tp;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_cate` [ RunTime:0.000946s ]
+[ sql ] [ SQL ] SELECT * FROM `think_cate` [ RunTime:0.000448s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_cate',
+  'partitions' => NULL,
+  'type' => 'ALL',
+  'possible_keys' => NULL,
+  'key' => NULL,
+  'key_len' => NULL,
+  'ref' => NULL,
+  'rows' => 4,
+  'filtered' => 100.0,
+  'extra' => NULL,
+) ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_web` [ RunTime:0.000959s ]
+[ sql ] [ SQL ] SELECT * FROM `think_web` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000553s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_web',
+  'partitions' => NULL,
+  'type' => 'const',
+  'possible_keys' => 'PRIMARY',
+  'key' => 'PRIMARY',
+  'key_len' => '4',
+  'ref' => 'const',
+  'rows' => 1,
+  'filtered' => 100.0,
+  'extra' => NULL,
+) ]
+---------------------------------------------------------------
+[ 2019-02-26T23:29:35+08:00 ] 127.0.0.1 GET localhost/api
+[运行时间：0.058054s] [吞吐率：17.23req/s] [内存消耗：1,120.15kb] [文件加载：33]
+[ info ] [ LANG ] D:\server\nginx\html\phpapp\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=pibgu1jnd5o68hj382af6c8vh1; thinkphp_show_page_trace=0|0',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://localhost/',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'keep-alive',
+  'host' => 'localhost',
+  'content-length' => '',
+  'content-type' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\api\controller\Index->index[ D:\server\nginx\html\phpapp\application\api\controller\Index.php ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-02-26T23:29:37+08:00 ] 127.0.0.1 GET localhost/
+[运行时间：0.053097s] [吞吐率：18.83req/s] [内存消耗：2,527.21kb] [文件加载：48]
+[ info ] [ LANG ] D:\server\nginx\html\phpapp\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=pibgu1jnd5o68hj382af6c8vh1; thinkphp_show_page_trace=0|0',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'keep-alive',
+  'host' => 'localhost',
+  'content-length' => '',
+  'content-type' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\blog\controller\Index->index[ D:\server\nginx\html\phpapp\application\blog\controller\Index.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\server\nginx\html/phpapp/application/blog\view\blog\blog.html [ array (
+  0 => 'username',
+  1 => 'domain',
+  2 => 'cates',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001195s ] mysql:host=127.0.0.1;port=3306;dbname=tp;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_cate` [ RunTime:0.000826s ]
+[ sql ] [ SQL ] SELECT * FROM `think_cate` [ RunTime:0.000458s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_cate',
+  'partitions' => NULL,
+  'type' => 'ALL',
+  'possible_keys' => NULL,
+  'key' => NULL,
+  'key_len' => NULL,
+  'ref' => NULL,
+  'rows' => 4,
+  'filtered' => 100.0,
+  'extra' => NULL,
+) ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_web` [ RunTime:0.000737s ]
+[ sql ] [ SQL ] SELECT * FROM `think_web` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000527s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_web',
+  'partitions' => NULL,
+  'type' => 'const',
+  'possible_keys' => 'PRIMARY',
+  'key' => 'PRIMARY',
+  'key_len' => '4',
+  'ref' => 'const',
+  'rows' => 1,
+  'filtered' => 100.0,
+  'extra' => NULL,
+) ]
+---------------------------------------------------------------
+[ 2019-02-26T23:29:39+08:00 ] 127.0.0.1 GET localhost/api
+[运行时间：0.038868s] [吞吐率：25.73req/s] [内存消耗：1,120.15kb] [文件加载：33]
+[ info ] [ LANG ] D:\server\nginx\html\phpapp\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=pibgu1jnd5o68hj382af6c8vh1; thinkphp_show_page_trace=0|0',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://localhost/',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'keep-alive',
+  'host' => 'localhost',
+  'content-length' => '',
+  'content-type' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\api\controller\Index->index[ D:\server\nginx\html\phpapp\application\api\controller\Index.php ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-02-26T23:29:41+08:00 ] 127.0.0.1 GET localhost/
+[运行时间：0.055283s] [吞吐率：18.09req/s] [内存消耗：2,527.21kb] [文件加载：48]
+[ info ] [ LANG ] D:\server\nginx\html\phpapp\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=pibgu1jnd5o68hj382af6c8vh1; thinkphp_show_page_trace=0|0',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'keep-alive',
+  'host' => 'localhost',
+  'content-length' => '',
+  'content-type' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\blog\controller\Index->index[ D:\server\nginx\html\phpapp\application\blog\controller\Index.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\server\nginx\html/phpapp/application/blog\view\blog\blog.html [ array (
+  0 => 'username',
+  1 => 'domain',
+  2 => 'cates',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001017s ] mysql:host=127.0.0.1;port=3306;dbname=tp;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_cate` [ RunTime:0.000787s ]
+[ sql ] [ SQL ] SELECT * FROM `think_cate` [ RunTime:0.000368s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_cate',
+  'partitions' => NULL,
+  'type' => 'ALL',
+  'possible_keys' => NULL,
+  'key' => NULL,
+  'key_len' => NULL,
+  'ref' => NULL,
+  'rows' => 4,
+  'filtered' => 100.0,
+  'extra' => NULL,
+) ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_web` [ RunTime:0.001608s ]
+[ sql ] [ SQL ] SELECT * FROM `think_web` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.001157s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_web',
+  'partitions' => NULL,
+  'type' => 'const',
+  'possible_keys' => 'PRIMARY',
+  'key' => 'PRIMARY',
+  'key_len' => '4',
+  'ref' => 'const',
+  'rows' => 1,
+  'filtered' => 100.0,
+  'extra' => NULL,
+) ]
+---------------------------------------------------------------
+[ 2019-02-26T23:29:43+08:00 ] 127.0.0.1 GET localhost/books
+[运行时间：0.081196s] [吞吐率：12.32req/s] [内存消耗：1,142.09kb] [文件加载：33]
+[ info ] [ LANG ] D:\server\nginx\html\phpapp\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'books',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=pibgu1jnd5o68hj382af6c8vh1; thinkphp_show_page_trace=0|0',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://localhost/',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'keep-alive',
+  'host' => 'localhost',
+  'content-length' => '',
+  'content-type' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-02-26T23:29:45+08:00 ] 127.0.0.1 GET localhost/
+[运行时间：0.050334s] [吞吐率：19.87req/s] [内存消耗：2,527.21kb] [文件加载：48]
+[ info ] [ LANG ] D:\server\nginx\html\phpapp\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=pibgu1jnd5o68hj382af6c8vh1; thinkphp_show_page_trace=0|0',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'keep-alive',
+  'host' => 'localhost',
+  'content-length' => '',
+  'content-type' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\blog\controller\Index->index[ D:\server\nginx\html\phpapp\application\blog\controller\Index.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\server\nginx\html/phpapp/application/blog\view\blog\blog.html [ array (
+  0 => 'username',
+  1 => 'domain',
+  2 => 'cates',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001069s ] mysql:host=127.0.0.1;port=3306;dbname=tp;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_cate` [ RunTime:0.000769s ]
+[ sql ] [ SQL ] SELECT * FROM `think_cate` [ RunTime:0.000445s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_cate',
+  'partitions' => NULL,
+  'type' => 'ALL',
+  'possible_keys' => NULL,
+  'key' => NULL,
+  'key_len' => NULL,
+  'ref' => NULL,
+  'rows' => 4,
+  'filtered' => 100.0,
+  'extra' => NULL,
+) ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_web` [ RunTime:0.002610s ]
+[ sql ] [ SQL ] SELECT * FROM `think_web` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000679s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_web',
+  'partitions' => NULL,
+  'type' => 'const',
+  'possible_keys' => 'PRIMARY',
+  'key' => 'PRIMARY',
+  'key_len' => '4',
+  'ref' => 'const',
+  'rows' => 1,
+  'filtered' => 100.0,
+  'extra' => NULL,
+) ]
+---------------------------------------------------------------
+[ 2019-02-26T23:29:47+08:00 ] 127.0.0.1 GET localhost/tools/online
+[运行时间：0.039885s] [吞吐率：25.07req/s] [内存消耗：1,117.24kb] [文件加载：33]
+[ info ] [ LANG ] D:\server\nginx\html\phpapp\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'tools',
+    1 => 'online',
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=pibgu1jnd5o68hj382af6c8vh1; thinkphp_show_page_trace=0|0',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://localhost/',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'keep-alive',
+  'host' => 'localhost',
+  'content-length' => '',
+  'content-type' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\tools\controller\Online->index[ D:\server\nginx\html\phpapp\application\tools\controller\Online.php ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-02-26T23:29:48+08:00 ] 127.0.0.1 GET localhost/
+[运行时间：0.053159s] [吞吐率：18.81req/s] [内存消耗：2,527.21kb] [文件加载：48]
+[ info ] [ LANG ] D:\server\nginx\html\phpapp\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=pibgu1jnd5o68hj382af6c8vh1; thinkphp_show_page_trace=0|0',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'keep-alive',
+  'host' => 'localhost',
+  'content-length' => '',
+  'content-type' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\blog\controller\Index->index[ D:\server\nginx\html\phpapp\application\blog\controller\Index.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\server\nginx\html/phpapp/application/blog\view\blog\blog.html [ array (
+  0 => 'username',
+  1 => 'domain',
+  2 => 'cates',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001039s ] mysql:host=127.0.0.1;port=3306;dbname=tp;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_cate` [ RunTime:0.000784s ]
+[ sql ] [ SQL ] SELECT * FROM `think_cate` [ RunTime:0.000452s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_cate',
+  'partitions' => NULL,
+  'type' => 'ALL',
+  'possible_keys' => NULL,
+  'key' => NULL,
+  'key_len' => NULL,
+  'ref' => NULL,
+  'rows' => 4,
+  'filtered' => 100.0,
+  'extra' => NULL,
+) ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_web` [ RunTime:0.002729s ]
+[ sql ] [ SQL ] SELECT * FROM `think_web` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000681s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_web',
+  'partitions' => NULL,
+  'type' => 'const',
+  'possible_keys' => 'PRIMARY',
+  'key' => 'PRIMARY',
+  'key_len' => '4',
+  'ref' => 'const',
+  'rows' => 1,
+  'filtered' => 100.0,
+  'extra' => NULL,
+) ]
+---------------------------------------------------------------
+[ 2019-02-26T23:29:51+08:00 ] 127.0.0.1 GET localhost/tools/download
+[运行时间：0.040743s] [吞吐率：24.54req/s] [内存消耗：1,117.48kb] [文件加载：33]
+[ info ] [ LANG ] D:\server\nginx\html\phpapp\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'tools',
+    1 => 'download',
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; PHPSESSID=pibgu1jnd5o68hj382af6c8vh1; thinkphp_show_page_trace=0|0',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://localhost/',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'keep-alive',
+  'host' => 'localhost',
+  'content-length' => '',
+  'content-type' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\tools\controller\Download->index[ D:\server\nginx\html\phpapp\application\tools\controller\Download.php ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-02-26T23:29:52+08:00 ] 127.0.0.1 GET localhost/
+[运行时间：0.055350s] [吞吐率：18.07req/s] [内存消耗：2,527.21kb] [文件加载：48]
+[ info ] [ LANG ] D:\server\nginx\html\phpapp\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=pibgu1jnd5o68hj382af6c8vh1; thinkphp_show_page_trace=0|0',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'keep-alive',
+  'host' => 'localhost',
+  'content-length' => '',
+  'content-type' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\blog\controller\Index->index[ D:\server\nginx\html\phpapp\application\blog\controller\Index.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\server\nginx\html/phpapp/application/blog\view\blog\blog.html [ array (
+  0 => 'username',
+  1 => 'domain',
+  2 => 'cates',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001329s ] mysql:host=127.0.0.1;port=3306;dbname=tp;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_cate` [ RunTime:0.001065s ]
+[ sql ] [ SQL ] SELECT * FROM `think_cate` [ RunTime:0.002141s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_cate',
+  'partitions' => NULL,
+  'type' => 'ALL',
+  'possible_keys' => NULL,
+  'key' => NULL,
+  'key_len' => NULL,
+  'ref' => NULL,
+  'rows' => 4,
+  'filtered' => 100.0,
+  'extra' => NULL,
+) ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_web` [ RunTime:0.001516s ]
+[ sql ] [ SQL ] SELECT * FROM `think_web` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000540s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_web',
+  'partitions' => NULL,
+  'type' => 'const',
+  'possible_keys' => 'PRIMARY',
+  'key' => 'PRIMARY',
+  'key_len' => '4',
+  'ref' => 'const',
+  'rows' => 1,
+  'filtered' => 100.0,
+  'extra' => NULL,
+) ]
+---------------------------------------------------------------
+[ 2019-02-26T23:29:54+08:00 ] 127.0.0.1 GET localhost/tools/doclinks
+[运行时间：0.058806s] [吞吐率：17.01req/s] [内存消耗：1,145.41kb] [文件加载：36]
+[ info ] [ LANG ] D:\server\nginx\html\phpapp\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'tools',
+    1 => 'doclinks',
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; PHPSESSID=pibgu1jnd5o68hj382af6c8vh1; thinkphp_show_page_trace=0|0',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://localhost/',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'keep-alive',
+  'host' => 'localhost',
+  'content-length' => '',
+  'content-type' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-02-26T23:29:56+08:00 ] 127.0.0.1 GET localhost/
+[运行时间：0.068644s] [吞吐率：14.57req/s] [内存消耗：2,527.21kb] [文件加载：48]
+[ info ] [ LANG ] D:\server\nginx\html\phpapp\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=pibgu1jnd5o68hj382af6c8vh1; thinkphp_show_page_trace=0|0',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'keep-alive',
+  'host' => 'localhost',
+  'content-length' => '',
+  'content-type' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\blog\controller\Index->index[ D:\server\nginx\html\phpapp\application\blog\controller\Index.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\server\nginx\html/phpapp/application/blog\view\blog\blog.html [ array (
+  0 => 'username',
+  1 => 'domain',
+  2 => 'cates',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001195s ] mysql:host=127.0.0.1;port=3306;dbname=tp;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_cate` [ RunTime:0.001063s ]
+[ sql ] [ SQL ] SELECT * FROM `think_cate` [ RunTime:0.000520s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_cate',
+  'partitions' => NULL,
+  'type' => 'ALL',
+  'possible_keys' => NULL,
+  'key' => NULL,
+  'key_len' => NULL,
+  'ref' => NULL,
+  'rows' => 4,
+  'filtered' => 100.0,
+  'extra' => NULL,
+) ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `think_web` [ RunTime:0.001562s ]
+[ sql ] [ SQL ] SELECT * FROM `think_web` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000745s ]
+[ sql ] [ EXPLAIN : array (
+  'id' => 1,
+  'select_type' => 'SIMPLE',
+  'table' => 'think_web',
+  'partitions' => NULL,
+  'type' => 'const',
+  'possible_keys' => 'PRIMARY',
+  'key' => 'PRIMARY',
+  'key_len' => '4',
+  'ref' => 'const',
+  'rows' => 1,
+  'filtered' => 100.0,
+  'extra' => NULL,
+) ]

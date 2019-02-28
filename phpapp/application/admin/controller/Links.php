@@ -1,55 +1,59 @@
 <?php
 namespace app\admin\controller;
 
-use app\admin\model\Weblinks as Weblinksmodel;
+use app\admin\model\Links as Linksmodel;
 
 // 每个方法为同名模型的函数
 
-class Weblinks
+class Links
 {
-    // 获取所有外站链接
-    // /admin/weblinks/getweblinkslist
-    public function getWeblinksList()
+    // 获取所有链接
+    // /admin/inks/getlinkslist
+    public function getLinksList($page=1,$limit=10)
     {
-        $data = Weblinksmodel::getWeblinksList();
-        return json(["code"=>0, "msg"=>"查询成功", "data"=>$data]);
+        $data = Linksmodel::getLinksList($page,$limit);
+        return json(["code"=>0,
+            "msg"=>"列表查询完成",
+            "count"=>$data['count'],
+            'data'=>$data['data']
+        ]);
     }
     
-    // 创建外站链接
-    // /admin/weblinks/createweblinks
-    public function createWeblinks()
+    // 创建链接
+    // /admin/links/createlinks
+    public function createLinks()
     {
         $data = input('post.');
         // 验证数据合法性
-        $data = Weblinksmodel::createWeblinks($data);
-        return json(["code"=>0,"msg"=>"创建外站链接成功"]);
+        $data = Linksmodel::createLinks($data);
+        return json(["code"=>0,"msg"=>"创建链接成功"]);
     }
     
-    // 编辑外站链接
-    // /admin/weblinks/editweblinks
-    public function editWeblinks()
+    // 编辑链接
+    // /admin/links/editlinks
+    public function editLinks()
     {
         $data = input('post.');
         // 验证数据合法性
-        $data = Weblinksmodel::editsWeblinks($data);
-        return json(["code"=>0,"msg"=>"编辑外站链接成功"]);
+        $data = Linksmodel::editLinks($data);
+        return json(["code"=>0,"msg"=>"编辑链接成功"]);
     }
     
-    // 查询外站链接
-    public function queryWeblinks()
+    // 查询链接
+    public function querylink($id)
     {
-        //pass
+        $data = Linksmodel::queryLink($id);
+        return json(['code'=>0, 'msg'=>'查询完成','data'=> $data]);
     }
     
-    // 删除外站链接
-    // 已有博客的重置为默认外站链接
-    // /admin/weblinks/deleteweblinks
-    public function deleteWeblinks()
+    // 删除链接
+    // /admin/links/deletelinks
+    public function deleteLinks()
     {
         $data = input('post.');
         // 验证数据合法性
-        $data = Weblinksmodel::deleteWeblinks($data);
-        return json(["code"=>0,"msg"=>"删除外站链接成功"]);
+        $data = Linksmodel::deletelinks($data);
+        return json(["code"=>0,"msg"=>"删除链接成功"]);
     }
 
 }

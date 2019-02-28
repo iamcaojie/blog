@@ -10,10 +10,10 @@ use think\Model;
 class Blog extends Model
 {
     
-    // 相对与分类的一对多关联
+    // 相对与博客分类的一对多关联
     public function cate()
     {
-        return $this->belongsTo('cate','cate_id','id');
+        return $this->belongsTo('Cate','cate_id','id');
     }
     
     // 标签与博客多对多关联
@@ -29,16 +29,21 @@ class Blog extends Model
     }
     
     // 获取博客列表
-    public static function getBlogList($page,$limit)
+    public static function getBlogList($page=1,$limit=10)
     {
         $bloglist = [];
-        $pagelist = self::where('delete_time',null) -> limit(($page-1)*$limit,$limit) -> select();
-        $blogcount = self::where('delete_time',null) -> count();
+        $pagelist = self::where('delete_time',null)
+            -> limit(($page-1)*$limit,$limit)
+            -> select();
+        $blogcount = self::where('delete_time',null)
+            -> count();
 
         // 查询原始分类数据 查询原始标签数据并添加
         foreach ($pagelist as $value){
+            // 写入关联的分类
             $value['cate'] = self::get($value['id']) -> cate -> blog_category;
             $tag = [];
+            // 写入关联的标签
             foreach(self::get($value['id']) -> tags as $temp)
             {
                 array_push($tag, $temp['tag']);
