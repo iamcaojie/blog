@@ -4,8 +4,8 @@ namespace app\admin\model;
 use think\Model;
 
 // update_time格式在database中设置
-// layui数据规范{"code":0,"msg":"","count":7,"data":[]}
-// 0:正常; -1:参数错误; 2:查询错误; 3:未知错误
+// layui数据规范{"code":0,"msg":"","count":n,"data":[]}
+// 0:正常; -1:错误;
 
 class Blog extends Model
 {
@@ -27,11 +27,10 @@ class Blog extends Model
     {
         return $this->hasMany('comments',' ','tag_id');
     }
-    
-    // 获取博客列表
-    public static function getBlogList($page=1,$limit=10)
+
+    // 获取博客列表(后台layui调用)
+    public static function getBlogList($page,$limit)
     {
-        $bloglist = [];
         $pagelist = self::where('delete_time',null)
             -> limit(($page-1)*$limit,$limit)
             -> select();
@@ -40,6 +39,8 @@ class Blog extends Model
 
         // 查询原始分类数据 查询原始标签数据并添加
         foreach ($pagelist as $value){
+            // 写入简略博客详情
+            // $value['blog_text_omit'] = substr($value['blog_text'],0,50);
             // 写入关联的分类
             $value['cate'] = self::get($value['id']) -> cate -> blog_category;
             $tag = [];
@@ -49,11 +50,37 @@ class Blog extends Model
                 array_push($tag, $temp['tag']);
             }
             $value['tag'] = $tag;
-            array_push($bloglist,$value);
         }
-        return ["code"=>0,"msg"=>"列表查询完成","count"=>$blogcount,"data"=>$bloglist];
+        return ["code"=>0,"msg"=>"列表查询完成","count"=>$blogcount,"data"=>$pagelist];
     }
-    
+
+    // 获取博客列表(目录页调用）
+    public static function getBlogLists($cate,$page,$limit)
+    {
+        $pagelist = self::where('delete_time',null)
+            -> where('cate_id',$cate)
+            -> limit(($page-1)*$limit,$limit)
+            -> select();
+        $blogcount = self::where('delete_time',null)
+            -> count();
+
+        // 查询原始分类数据 查询原始标签数据并添加
+        foreach ($pagelist as $value){
+            // 写入简略博客详情
+            // $value['blog_text_omit'] = substr($value['blog_text'],0,50);
+            // 写入关联的分类
+            $value['cate'] = self::get($value['id']) -> cate -> blog_category;
+            $tag = [];
+            // 写入关联的标签
+            foreach(self::get($value['id']) -> tags as $temp)
+            {
+                array_push($tag, $temp['tag']);
+            }
+            $value['tag'] = $tag;
+        }
+        return ["code"=>0,"msg"=>"列表查询完成","count"=>$blogcount,"data"=>$pagelist];
+    }
+
     public static function createBlog($data)
     {
         
@@ -75,9 +102,9 @@ class Blog extends Model
     // 编辑关联数据，仅编辑关联的中间表数据
     public static function editBlog($data)
     {
-//        更新数据
+        // 更新数据
         $blog = self::update($data["blogdata"]);
-//        删除所有关联，再添加新的关联
+        //  删除所有关联，再添加新的关联
         $editblog = self::get($data["blogdata"]['id']);
         $editblog -> tags() -> detach();
         $editblog-> tags() -> saveAll($data["tagdata"]);
@@ -86,7 +113,12 @@ class Blog extends Model
     // 查询表数据，返回关联表的标签id
     public static function queryBlog($id)
     {
-        $blog = self::get($id);
+        $blog = self::where('id',$id)
+            ->where('delete_time',null)
+            ->find();
+        if(!$blog){
+            return ["code"=>-1,"msg"=>"文章不存在"];
+        }
         $tag = [];
         foreach($blog -> tags as $temp)
         {

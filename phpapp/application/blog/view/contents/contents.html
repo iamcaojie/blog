@@ -21,10 +21,10 @@
     </head>
     <body>
         <noscript>抱歉，你的浏览器不支持 JavaScript，访问可能出现错误!</noscript>
-        <h1><a href="https://www.python.org/">Python</a></h1>
+        <h1><a href="https://www.python.org/">{$catedata['blog_category']}</a></h1>
         <ol class="breadcrumb">
             <li><a href="http://localhost">首页</a></li>
-            <li class="active">Python</li>
+            <li class="active">{$catedata['blog_category']}</li>
             <!-- <li class="active">Data</li> -->
         </ol>
         <div class="container">
@@ -33,15 +33,20 @@
                     <div class="col-sm-12 col-md-12">
                     <div class="article-list">
                         <div class="img-Placeholder">
-                            <a href="/blog/python/detail/id/{$blogdata['id']}.html"><img src="/static/img/python.jpg"/></a>
+                            <a href="/blog/detail/index/id/{$blogdata['id']}.html"><img src="/static/img/python.jpg"/></a>
                         </div>
                         <div class="article">
-                            <div class="article-title"><h2><a href="/blog/contents/detail/id/{$blogdata['id']}.html">{$blogdata['blog_title']}</a></h2></div>
+                            <div class="article-title"><h2><a href="/blog/detail/index/id/{$blogdata['id']}.html">{$blogdata['blog_title']}</a></h2></div>
                             <div class="article-information">
-                            {volist name="blogdata['tag']" id="tag"}
-                                  <span> {$tag}</span>
-                            {/volist}
-                            <span>{$blogdata['update_time']}</span>
+                                <span><i class="fa fa-calendar"></i>{$blogdata['update_time']}</span>
+                                <span>Tags:</span>
+                                {volist name="blogdata['tag']" id="tag"}
+                                <span> {$tag}</span>
+                                {/volist}
+                                <span><i class="fa fa-eye"></i>{$blogdata['read_count']}次阅读</span>
+                                <span><i class="fa fa-commenting-o"></i>n条评论</span>
+                                <span><i class="fa fa-thumbs-o-up"></i>{$blogdata['read_count']}次点赞</span>
+                                <span>阅读全文<i class="fa fa-chevron-circle-right"></i></span>
                             </div>
                             <div class="article-text">{$blogdata['blog_text']}</div>
                         </div>

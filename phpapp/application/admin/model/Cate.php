@@ -36,8 +36,9 @@ class Cate extends Model
         return ["data"=>""];
     }
     
-    public static function queryCate($data)
+    public static function queryCate($id)
     {
-        //pass
+        $data = self::get($id);
+        return $data;
     }
 }

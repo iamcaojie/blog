@@ -47,13 +47,18 @@ class Links
     }
     
     // 删除链接
-    // /admin/links/deletelinks
-    public function deleteLinks()
+    // /admin/links/deletelink
+    public function deleteLink()
     {
         $data = input('post.');
         // 验证数据合法性
-        $data = Linksmodel::deletelinks($data);
-        return json(["code"=>0,"msg"=>"删除链接成功"]);
+        $info = Linksmodel::deletelink($data);
+        if($info){
+            return json(["code"=>0,"msg"=>"删除链接成功",'data'=>$info]);
+        }else{
+            return json(["code"=>-1,"msg"=>"删除链接失败",'data'=>$info]);
+        }
+
     }
 
 }

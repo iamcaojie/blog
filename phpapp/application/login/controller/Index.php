@@ -4,6 +4,7 @@ namespace app\login\controller;
 use think\Controller;
 use think\Db;
 use app\admin\model\Users as Usersmodel;
+use app\admin\model\Web as Webmodel;
 use PHPMailer\QQMailer;
 
 
@@ -15,7 +16,10 @@ class Index extends Controller
         if(session('user')){
             $this ->redirect('/admin');
         }
-        return view('login/login');
+        $webData = Webmodel::get(1);
+        return view('login/login',
+            ['webdata'=>$webData
+        ]);
     }
     // 登陆
     public function validateLogin()
@@ -29,7 +33,11 @@ class Index extends Controller
         $userData = Usersmodel::validateuser($data);
         if (!($userData === null)){
             session('user',['user_id'=>$userData["id"],"username"=>$userData["username"]]);
-            return json(["code"=>0,"msg"=>"登陆成功","url"=>"/admin"]);
+            if(($userData["id"]) !=1){
+                return json(["code"=>0,"msg"=>"登陆成功","url"=>"/user"]);
+            }else{
+                return json(["code"=>0,"msg"=>"登陆成功","url"=>"/admin"]);
+            }
         }else{
             return json(["code"=>-1,"msg"=>"用户名或密码错误"]);
         }
@@ -71,10 +79,14 @@ class Index extends Controller
             . '<p align="right">5分钟内有效</p>'
             . '<p align="right">如非本人操作请忽略QAQ</p>';
         $msg = $data['action'].'验证码已发送,请查收';
-        $mailer = new QQMailer(true);
+        $mailer = new QQMailer();
         $info = $mailer->send('1041973277@qq.com', $title, $content);
-        var_dump($info);die;
-        return json(['code'=>0, 'msg'=>$msg]);
+        if($info){
+            return json(['code'=>0, 'msg'=>$msg]);
+        }else{
+            return json(['code'=>0, 'msg'=>'发送失败']);
+        }
+
     }
     // 注册
     public function register()

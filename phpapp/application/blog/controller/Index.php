@@ -3,8 +3,9 @@ namespace app\blog\controller;
 
 use think\Controller;
 use think\Db;
+use app\admin\model\Web as Webmodel;
 use app\admin\model\Cate as Catemodel;
-use app\blog\model\Massage;
+
 
 class Index extends Controller
 {
@@ -14,12 +15,11 @@ class Index extends Controller
 //        echo $redis->connect('127.0.0.1', 6379);
         $userName = session('user')['username'];
         $cateData = Catemodel::getCateList();
-        $webData = Db::name('web')->where('id',1)->find();
-        $domain = $webData['domain'];
+        $webData = Webmodel::get(1);
         return view("blog/blog",
             ["username"=>$userName,
-                'domain'=>$domain,
-                'cates'=>$cateData
+                'webdata'=>$webData,
+                'cates'=>$cateData,
                 ]
             );
     }

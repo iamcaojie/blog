@@ -15,7 +15,20 @@ class Web
         $data = Webmodel::getWebList();
         return json(["code"=>0, "msg"=>"查询成功", "data"=>$data]);
     }
-    
+
+    // 网站状态修改
+    public function webStatus()
+    {
+        $data = input('post.');
+        Webmodel::where('id', '1')
+            ->where('name', 'blog')
+            ->update(['web_status' => $data['web_status']]);
+        if (Webmodel::get(1)->web_status) {
+            return json(["code" => 0, "msg" => "网站已开启"]);
+        } else {
+            return json(["code" => 0, "msg" => "网站已关闭"]);
+        }
+    }
     // 创建网站状态
     // /admin/web/createweb
 //    public function createWeb()
@@ -25,17 +38,22 @@ class Web
 //        $data = Webmodel::createWeb($data);
 //        return json(["code"=>0,"msg"=>"创建网站状态成功"]);
 //    }
-    
-    // 编辑网站状态
+
+    // 编辑网站信息
     // /admin/web/editweb
     public function editWeb()
     {
         $data = input('post.');
         // 验证数据合法性
-        $data = Webmodel::editWeb($data);
-        return json(["code"=>0,"msg"=>"编辑网站状态成功"]);
+        $info = Webmodel::editWeb($data);
+        if($info){
+            return json(["code"=>0,"msg"=>"编辑成功"]);
+        }else{
+            return json(["code"=>-1,"msg"=>"编辑失败"]);
+        }
+
     }
-    
+
     // 查询网站状态
 //    public function queryWeb()
 //    {

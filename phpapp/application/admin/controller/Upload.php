@@ -18,7 +18,7 @@ class Upload extends Base
     {
         // 前端是单文件上传
         $imageCount = Db::name('image')->where('imagecate_id','1') ->count();
-        if($imageCount>3){
+        if($imageCount>=3){
             return json(['code' => 0, 'msg' => '轮播图已有3张']);
         }
         $files = request()->file();

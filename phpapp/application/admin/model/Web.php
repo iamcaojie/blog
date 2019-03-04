@@ -13,25 +13,13 @@ class Web extends Model
     {
         return self::select();
     }
-    
-    public static function createWeb($data)
-    {
-        self::create($data);
-        return ["data"=>""];
-    }
-    
+
     public static function editWeb($data)
     {
-        self::update($data);
-        return ["data"=>""];
+        $info = self::update($data);
+        return $info;
     }
-    
-    public static function deleteWeb($data)
-    {
-        self::destroy($data);
-        return ["data"=>""];
-    }
-    
+
     public static function queryWeb($data)
     {
         //pass

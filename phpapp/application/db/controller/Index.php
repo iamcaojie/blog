@@ -1,9 +1,8 @@
 <?php
 namespace app\db\controller;
 
-use think\View;
-use think\Request;
 use think\Db;
+
 class Index
 {
     public function index()
@@ -36,9 +35,10 @@ class Index
             'CREATE TABLE think_web('
                 . 'id int UNSIGNED NOT NULL AUTO_INCREMENT, '
                 . 'name varchar(10), '// 网站名称
-                . 'status varchar(10), '// 网站状态
+                . 'web_status tinyint(1), '// 网站状态
                 . 'domain varchar(50),'// 域名
                 . 'ip varchar(50),'// ip
+                . 'beian_code varchar(50),'// 备案号
                 . 'today_views int,'// 今日访问
                 . 'all_views int,' // 总访问
                 . 'create_time int,'
@@ -128,6 +128,7 @@ class Index
             'CREATE TABLE think_blog('
                 . 'id int UNSIGNED NOT NULL AUTO_INCREMENT, '
                 . 'blog_title varchar(30), '
+                . 'user_id int,'
                 . 'cate_id tinyint(1), '
                 . 'blog_html text, '
                 . 'blog_text text, '
@@ -135,12 +136,14 @@ class Index
                 . 'update_time int, '
                 . 'delete_time int, '
                 . 'read_count mediumint(1) DEFAULT 0,'
+                . 'blog_status tinyint(1),'
                 . 'PRIMARY KEY(id)) '
                 . 'DEFAULT CHARSET=utf8;',
             // 博客分类表(1) -- 博客文章表(n)
             'CREATE TABLE think_cate('
                 . 'id int UNSIGNED NOT NULL AUTO_INCREMENT,'
                 . 'blog_category varchar(10),'
+                . 'cate_detail varchar(100),'
                 . 'create_time int,'
                 . 'update_time int,'
                 . 'delete_time int,'
@@ -218,18 +221,19 @@ class Index
         ];
           
         $dmlsql = [
-            'insert into think_web(id, name, status, domain) '
-            . 'values (1,"blog","on","imcaojie.com");',
+            'insert into think_web(id, name, web_status, domain, ip, beian_code,today_views,all_views) '
+            . 'values (1,"blog", 1,"imcaojie.com","47.112.26.239", "鄂ICP备19004169号",0,0);',
             'insert into think_users(id,username,password) '
             . 'values (1,"caojie","d226d500e7899a09458559bf2661a62b")',
             'insert into think_blog(id, blog_title, cate_id, delete_time) '
             . 'values (1, "临时缓存内容", 1, 1);',
             'insert into think_cate(id, blog_category) '
-            . 'values (1,"无"),(2,"Python"),(3,"PHP"),(4,"Java");',
+            . 'values (1,"无"),(2,"Python"),(3,"PHP"),(4,"Java"),(5,"Web前端"),
+                (6,"编程基础"),(7,"C/C++"),(8,"服务器"),(9,"数据库"),(10,"Linux");',
             'insert into think_tags(id, tag) '
             . 'values (1,"原创"),(2,"转载"),(3,"基础"),(4,"技巧"),(5,"重点"),(6,"难点");',
             'insert into think_linkcate(id, link_cate_title) '
-            . 'values (1,"主页链接"),(2,"文档链接"),(3,"友情链接");',
+            . 'values (1,"主页链接"),(2,"文档链接"),(3,"网站链接"),(4,"友情链接");',
             'insert into think_links(id, link_cate_id, link_title, link) '
             . 'value (1, 1, "我的博客", "http://www.imcaojie.com");',
             'insert into think_imagecate(id, name, dir)'

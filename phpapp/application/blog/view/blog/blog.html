@@ -1,26 +1,21 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-    <head>
-        <title>我的博客</title>
-        <meta charset="utf-8">
-        <meta name="author" content="caojie">
-        <meta name="description" content="个人博客" />
-        <meta name="keywords" content="个人博客" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="renderer" content="webkit" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-        <link href="/static/css/Normalize.css" rel="stylesheet"></link>
-        <link href="/static/layui/css/layui.css"  media="all" rel="stylesheet"></link>
-        <link href="/static/css/bootstrap.css" rel="stylesheet"></link>
-        <link href="/static/css/font-awesome.css" rel="stylesheet"></link>
-        <link href="/static/css/index.css" rel="stylesheet"></link>
-        <!--[if lt IE 9]>
-            <script src="/static/js/html5shiv.js"></script>
-            <script src="/static/js/respond.src.js"></script>
-        <![endif]-->
-    </head>
-    <body>
-        <noscript>抱歉，你的浏览器不支持 JavaScript，访问可能出现错误!</noscript>
+{extend name="public/base" /}
+{block name="header"}
+{__block__}
+{/block}
+{block name="title"}<title>我的网站</title>{/block}
+{block name="css"}
+{__block__}
+<link href="/static/layui/css/layui.css" rel="stylesheet"></link>
+<link href="/static/css/bootstrap.css" rel="stylesheet"></link>
+<link href="/static/css/font-awesome.css" rel="stylesheet"></link>
+<link href="/static/css/index.css" rel="stylesheet"></link>
+<!--[if lt IE 9]>
+<script src="/static/js/html5shiv.js"></script>
+<script src="/static/js/respond.src.js"></script>
+<![endif]-->
+</head>
+{/block}
+{block name="body"}
         <!-- 导航栏 -->
         <nav class="navbar navbar-default navbar-fixed-top">
           <div class="container-fluid">
@@ -30,28 +25,26 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="http://{$domain}">{$domain}</a>
+              <a class="navbar-brand" href="http://{$webdata['domain']}">{$webdata['domain']}</a>
             </div>
             <!-- 导航条链接 -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav">
-                  {volist name="cates" id="cate"}
+                  {volist name='cates' id='cate' offset='1' length='3'}
                       {if condition='$cate["blog_category"] !== "无"'}
-                            <li class=""><a href="/blog/contents">{$cate.blog_category}</a></li>
+                            <li class=""><a href="/blog/contents?cate={$cate['id']}">{$cate.blog_category}</a></li>
                       {/if}
                   {/volist}
                 <li class="dropdown">
                   <a href="" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">其他<span class="caret"></span></a>
                   <ul class="dropdown-menu">
-                    <li><a href="/blog/javascript">JavaScript</a></li>
-                    <li><a href="/blog/cplusplus">C++</a></li>
-                    <li><a href="/blog/computer">计算机体系</a></li>
+                      {volist name="cates" id="cate" offset='4' length='3'}
+                    <li><a href="/blog/contents?cate={$cate['id']}">{$cate["blog_category"]}</a></li>
+                      {/volist}
                     <li role="separator" class="divider"></li>
-                    <li><a href="/blog/linux">Linux</a></li>
-                    <li><a href="/blog/db">数据库</a></li>
-                    <li><a href="/blog/server">服务器</a></li>
-                    <li role="separator" class="divider"></li>
-                    <li><a href="/blog/other">杂谈</a></li>
+                      {volist name="cates" id="cate"  offset='7' length='3'}
+                      <li><a href="/blog/contents?cate={$cate['id']}">{$cate["blog_category"]}</a></li>
+                      {/volist}
                   </ul>
                 </li>
               </ul>
@@ -67,15 +60,14 @@
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">相关链接<span class="caret"></span></a>
                   <ul class="dropdown-menu">
                     <li><a href="https://github.com/iamcaojie" target="_blank">Git</a></li>
-                    <li><a href="https://leetcode-cn.com/" target="_blank">Leetcode</a></li>
-                        <li><a href="/api">Api</a></li>
-                    <li><a href="/api">Timeline</a></li>
+                    <li><a href="https://leetcode-cn.com/" target="_blank">LeetCode</a></li>
+                    <li><a href="https://dribbble.com/" target="_blank">dribbble</a></li>
+                    <li><a href="/api">Api</a></li>
                     <li role="separator" class="divider"></li>
-                    <li><a href="/books">读书笔记</a></li>
-                    <li><a href="/tools/online">在线工具</a></li>
-                    <li><a href="/tools/download">下载</a></li>
-                    <li><a href="/tools/doclinks">文档链接</a></li>
-                    <li><a href="/tools/weblinks">实用网站</a></li>
+                    <li><a href="/tools/index/online">在线工具</a></li>
+                    <li><a href="/tools/index/download">下载</a></li>
+                    <li><a href="/tools/index/doc">文档链接</a></li>
+                    <li><a href="/tools/index/web">实用网站</a></li>
                   </ul>
                 </li>
               </ul>
@@ -257,12 +249,12 @@
         <!-- <div class="container-fluid"> -->
             <footer>
                 <div id="foot"></div>
-                <span id="copyright">版权所有 © iamcaojie.com</span>
+                <span id="copyright">COPYRIGHT 2019 CAOJIE. ALL RIGHTS RESERVED.</span><br>
+                <span><a href="http://www.miitbeian.gov.cn">{$webdata['beian_code']}</a></span>
             </footer>
-        <!-- </div> -->
-        <script src="/static/js/jquery3.3.1.js"></script>
-        <script src="/static/js/bootstrap.js"></script>
-        <script src="/static/layui/layui.js"></script>
+{/block}
+{block name="js"}
+{__block__}
         <script src="/static/js/index.js"></script>
-    </body>
-</html>
+{/block}
+{block name="footer"}

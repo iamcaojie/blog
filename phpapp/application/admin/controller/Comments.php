@@ -43,9 +43,9 @@ class Comments
     // /admin/comments/deletecomments
     public function deleteComments()
     {
-        $data = input('post.');
+        $id = input('post.');
         // 验证数据合法性
-        $data = Catemodel::deleteComments($data);
-        return json(["code"=>0,"msg"=>"删除分类成功"]);
+        $data = Commentsmodel::deleteComments($id);
+        return json(["code"=>0,"msg"=>"删除评论成功"]);
     }
 }

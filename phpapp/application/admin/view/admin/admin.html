@@ -21,7 +21,7 @@
         <div class="layui-logo">博客后台</div>
         <!-- 头部区域（可配合layui已有的水平导航） -->
         <ul class="layui-nav layui-layout-left">
-            <li class="layui-nav-item"><a href="http://localhost">网站首页</a></li>
+            <li class="layui-nav-item"><a href="http://{$webdata['domain']}">网站首页</a></li>
             <li class="layui-nav-item"><a href="https://iamcaojie.github.io" target="_blank">流量统计</a></li>
             <li class="layui-nav-item"><a href="javascript:void(0);">用户管理</a></li>
             <li class="layui-nav-item"><a href="/user">转到用户后台</a></li>
@@ -136,21 +136,23 @@
                                 <div class="layui-form-item" id="web-info">
                                     <label class="layui-form-label">域名设置</label>
                                     <div class="layui-input-block">
-                                        <input name="domain" type="text" class="layui-input">
+                                        <input name="domain" type="text" value="{$webdata['domain']}" class="layui-input">
                                     </div>
                                 </div>
                                 <div class="layui-form-item">
                                 <label class="layui-form-label">ip设置</label>
                                 <div class="layui-input-block">
-                                    <input name="theme" type="text" class="layui-input">
+                                    <input name="ipset" type="text" value="{$webdata['ip']}" class="layui-input">
                                 </div>
                                 </div>
                                 <div class="layui-form-item">
                                     <label class="layui-form-label">备案号设置</label>
                                     <div class="layui-input-block">
-                                        <input name="theme" type="text" class="layui-input">
+                                        <input name="beian" type="text" value="{$webdata['beian_code']}" class="layui-input">
                                     </div>
                                 </div>
+                                <button class="layui-btn" id="info-btn">提交</button>
+                            </form>
                                 <div class="layui-form-item">
                                     <label class="layui-form-label">轮播设置</label>
                                     <div class="layui-input-block">
@@ -164,8 +166,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <button class="layui-btn" id="info-btn">提交</button>
-                            </form>
                         </div>
                     </div>
                     <div class="layui-tab-item">
@@ -189,6 +189,7 @@
                              {if condition='$cate["blog_category"] == "无"'}
                                  <input type="radio" lay-filter="blog-category" name="blog-category" value="{$cate['id']}" title="{$cate['blog_category']}" checked>
                              {else /}
+                                {eq name="$cate['id']" value='6'}<br>{/eq}
                                  <input type="radio" lay-filter="blog-category" name="blog-category" value="{$cate['id']}" title="{$cate['blog_category']}">
                              {/if}
                             {/volist}
@@ -223,7 +224,7 @@
 
                     <div class="layui-tab-item">
                         <!-- 博客管理-文章列表 -->
-                        <div id="bloglist-tab" style="display">
+                        <div id="bloglist-tab">
                             <div>文章列表</div>
                             <table id="article" class="layui-table" lay-filter="article"></table>
                         </div>
@@ -277,12 +278,12 @@
                         <!-- 留言管理-评论管理 -->
                         <div id="commentlist-tab">
                             <div>评论列表</div>
-                            <table id="comment-list" class="layui-table"></table>
+                            <table id="comment-list" class="layui-table" lay-filter="comments"></table>
                         </div>
                     </div>
                     <div class="layui-tab-item">
                         <!-- 留言管理-相册管理 -->
-                        <div id="commentlist-tab" style="display">
+                        <div id="commentlist-tab">
                             <div>相册管理（轮播，主题图，页内图）</div>
                             <div><a>获取所有图片</a></div>
                         </div>
@@ -291,7 +292,7 @@
             </div>
             <!-- 底部固定区域 -->
             <div class="layui-footer">
-                 今日访问量： 累计访问量： 当前ip：{$ip}
+                 今日访问量：{$webdata['today_views']}  累计访问量：{$webdata['all_views']}  当前ip：{$ip}
             </div>
     </div>
     <script type="text/html" id="bar">

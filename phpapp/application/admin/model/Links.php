@@ -43,10 +43,10 @@ class Links extends Model
         return ["data"=>""];
     }
     
-    public static function deleteLinks($data)
+    public static function deleteLink($data)
     {
-        self::destroy($data);
-        return ["data"=>""];
+        $info = self::destroy($data);
+            return $info;
     }
     
     public static function queryLink($id)

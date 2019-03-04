@@ -34,6 +34,11 @@ class Blog extends Base
     public function createblog()
     {
         $data = input('post.');
+        $userID = session('user')['user_id'];
+        if(!$userID){
+            return json(["code"=>-1, "msg"=>"非法操作"]);
+        }
+        $data["blogdata"]['user_id'] = $userID;
         Blogmodel::createBlog($data);
         return json(["code"=>0, "msg"=>"保存成功"]);
     }

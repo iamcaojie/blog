@@ -5,18 +5,22 @@ class Index
 {
     public function index()
     {
-        return '工具';
+        return '开发中';
     }
     public function online()
     {
-        return '在线工具';
+        return '开发中';
     }
     public function download()
     {
-        return '下载';
+        return '开发中';
     }    
     public function doc()
     {
-        return '文档';
+        return '开发中';
+    }
+    public function web()
+    {
+        return '开发中';
     }
 }

@@ -43,6 +43,7 @@ var layer = layui.layer,
         cols: [[ //表头
             {type: 'checkbox', fixed: 'left'},
             {field: 'id', title: '博客ID', width:80, sort: true, fixed: 'left'},
+            {field: 'user_id', title: '用户ID', width:80, sort: true},
             {field: 'blog_title', title: '标题', width:80},
             {field: 'cate', title: '分类', width: 80},
             {field: 'tag', title: '标签', width: 80},
@@ -67,16 +68,16 @@ var layer = layui.layer,
             {type: 'checkbox', fixed: 'left'},
             {field: 'id', title: '链接ID', width:80, sort: true, fixed: 'left'},
             {field: 'link_cate_title', title: '分类', width:80},
-            {field: 'link_title', title: '名称', width: 80},
-            {field: 'link', title: '链接地址', width: 160},
+            {field: 'link_title', title: '名称', width: 100},
+            {field: 'link', title: '链接地址', width: 240},
             //,{field: 'delete_time', title: '软删除时间', width:80},
-            {field: 'update_time', title: '更新时间', width: 80, sort: true},
-            {field: 'create_time', title: '创建时间', width: 80, sort: true},
+            {field: 'update_time', title: '更新时间', width: 120, sort: true},
+            {field: 'create_time', title: '创建时间', width: 120, sort: true},
             {fixed: 'right', width: 165, align:'center', toolbar: '#bar'}
         ]]
     });
     // 留言列表
-    massageTableIns = table.render({
+    massageIns = table.render({
         elem: '#massage-list',
         height: 400,
         url: '/admin/massage/getmassagelist', //数据接口
@@ -96,7 +97,7 @@ var layer = layui.layer,
     });
 
     // 评论列表
-    commentTableIns = table.render({
+    commentsIns = table.render({
         elem: '#comment-list',
         height: 400,
         url: '/admin/comments/getcommentslist', //数据接口
@@ -105,7 +106,7 @@ var layer = layui.layer,
         cols: [[ //表头
             {type: 'checkbox', fixed: 'left'},
             {field: 'id', title: 'ID', wridth:80, sort: true, fixed: 'left'},
-            {field: 'use_id', title: '用户id', width:80},
+            {field: 'user_id', title: '用户id', width:80},
             {field: 'blog_id', title: '博客id', width: 80},
             // {field: 'tag', title: '标签', width: 80},
             {field: 'comment_text', title: '内容', width:240},
@@ -148,7 +149,7 @@ var layer = layui.layer,
         var data = obj.data, //获得当前行数据
             layEvent = obj.event; //获得 lay-event 对应的值
         if(layEvent === 'detail'){
-            layer.msg(1);
+            window.open('/blog/detail/index/id/'+data.id);
         } else if(layEvent === 'del'){
             layer.confirm('真的删除行么', function(index){
                 obj.del(); //删除对应行（tr）的DOM结构
@@ -164,21 +165,37 @@ var layer = layui.layer,
         var data = obj.data, //获得当前行数据
             layEvent = obj.event; //获得 lay-event 对应的值
         if(layEvent === 'detail'){
-            layer.msg(1);
+            window.open(data.link);
         } else if(layEvent === 'del'){
-            layer.confirm('真的删除行么', function(index){
+            layer.confirm('确定删除此链接？', function(index){
                 obj.del(); //删除对应行（tr）的DOM结构
                 layer.close(index);
-                deleteBlog(data.id);
+                deleteLink(data.id);
             });
         }else if(layEvent === 'edit'){
                 editLink(data.id);
         }
     });
+    //监听评论列表行工具事件
+    table.on('tool(comments)', function(obj){ //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
+        var data = obj.data, //获得当前行数据
+            layEvent = obj.event; //获得 lay-event 对应的值
+        if(layEvent === 'detail'){
+            layer.msg(data.comment_text);
+        } else if(layEvent === 'del'){
+            layer.confirm('确定删除此评论？', function(index){
+                obj.del();
+                layer.close(index);
+                deleteComment(data.id);
+            });
+        }else if(layEvent === 'edit'){
+            layer.msg('暂无此功能');
+        }
+    });
     // 获取开关值
     form.on('switch(web-status)', function(data){
-        // **全局变量webStatus
-        webStatus = data.elem.checked; //开关是否开启，true或者false
+        var webStatus = Number(data.elem.checked);
+        postData('/admin/web/webstatus','POST', {'web_status':webStatus});
     });
 });
 
@@ -187,8 +204,9 @@ var E = window.wangEditor;
 var editor = new E('#editor');
 editor.create();
 
-var webDomain = $('input[name="domain"]'),
-webTheme = $('input[name="theme"]'),
+var domain = $('input[name="domain"]'),
+ipSet = $('input[name="ipset"]'),
+beiAn = $('input[name="beian"]'),
 blogId = $('input[name="id"]'),
 blogTitle = $('input[name="blog_title"]'),
 linkId = $('input[name="link_id"]'),
@@ -197,38 +215,30 @@ linkAddress = $('input[name="link_address"]');
 
 // 所有数据前端不验证，后端验证数据合法性
 
-$(function(){ 
-    // 网站状态切换
-    $("#web-switch").click(function(){
-        if(webStatus){
-            var webData={'switch':'on'};
-        }else{
-            var webData={'switch':'off'};
-        }
-        postData('/admin/index/webStatus','POST', webData);
-        return false;
-    }); 
+$(function(){
     $('#manage-classification').click(function(){
         getCateData();
     });
-    $('.layui-upload-img').hover(function () {
-        layer.msg('a');
-    });
     // 修改网站信息
-     $("#info-btn").click(function(){
-         
-     });
+    $("#info-btn").click(function() {
+        var webData = {'id':1,'domain':domain.val(),'ip':ipSet.val(),'beian_code':beiAn.val()}
+        postData('/admin/web/editweb','POST',webData);
+        return false;
+    });
     // 发布文章
     // 捕获编辑器可能修改内容的事件，自动保存文章
     $(".w-e-text").on('keyup click mouseleave',function(){
         autoSave();
     });
+
+    // 编辑html数据
     $("#btn1").click(function(){
         alert(editor.txt.html());
+        return false;
     });
-//    $("#btn2").click(function(){
-//        alert(editor.txt.text());
-//    });
+    // $("#btn2").click(function(){
+    //      alert(editor.txt.text());
+    // });
     // 手动保存，获取保存状态
     $("#btn3").click(function(){
         if(check()){
@@ -245,7 +255,6 @@ $(function(){
     });
     // 提交链接数据
     $("#btn5").click(function(){
-
         postData('/admin/links/createlinks', 'POST',getLocalLinkData());
         return false;
     });
@@ -258,17 +267,12 @@ $(function(){
     });
 });
 
-
 /* 
-处理函数
- */ 
-
-// 选项卡切换
-function changeTab(tabBox){
-    $('#createblog').click(function(){
-        
-});
-}
+** 处理函数
+**
+**
+** 处理函数
+ */
 
 // 编辑文章
 function editBlog(id){
@@ -289,24 +293,35 @@ function editBlog(id){
             }
             ,btn2: function(index, layero){
                 // 编辑原数据
-                // pass
             }
         });
     }
 }
 // 删除文章
 function deleteBlog(id){
-    layer.confirm('确定删除文章？', {
-        btn: ['删除', '返回']
-        ,anim: 2
-        ,btn1: function(index, layero){
-            layer.close(index);
-            deleteBlogData('/admin/blog/deleteblog','POST',{'id':id});
-        }
-        ,btn2: function(index, layero){
-            // pass
-        }
-    });
+    deleteBlogData('/admin/blog/deleteblog','POST',{'id':id});
+}
+// 删除链接
+function deleteLink(id){
+    deleteLinkData('/admin/links/deletelink','POST',{'id':id});
+}
+// 删除评论
+function deleteComment(id){
+    deleteCommentData('/admin/comments/deletecomments','POST',{'id':id});
+}
+
+// 清空博客内容
+function emptyBlogData(){
+    blogId.val("");
+    blogTitle.val("");
+    $(".w-e-text").empty();
+}
+
+// 编辑时填充数据到文章编辑页
+function fillBlogData(data){
+    blogId.val(data["data"]["id"]);
+    blogTitle.val(data["data"]["blog_title"]);
+    $(".w-e-text").append(data["data"]["blog_html"]);
 }
 
 // 编辑链接
@@ -316,24 +331,11 @@ function editLink(id){
     $("#btn6").show();
 }
 
-// 清空博客内容
-function emptyBlogData(){
-    blogId.val("");
-    blogTitle.val("");
-    $(".w-e-text").empty();
-}
 // 清空链接内容
 function emptyLinkData(){
     linkId.val("");
     linkTitle.val("");
     linkAddress.val("");
-}
-
-// 编辑时填充数据到博客编辑页
-function fillBlogData(data){
-    blogId.val(data["data"]["id"]);
-    blogTitle.val(data["data"]["blog_title"]);
-    $(".w-e-text").append(data["data"]["blog_html"]);
 }
 
 // 编辑时填充数据到链接编辑页
@@ -393,76 +395,95 @@ function autoSave(){
 
 // 提交数据(保存博客、编辑博客、保存链接、编辑链接)
 function postData(url,method,data){
-    $(function(){ 
-        $.ajax({
-            type:method || 'POST',
-            url:url,
-            data:data,
-            dataType:'json',
-            success: function(data){
-                // 所有后台回调操作
-                if(data.msg == "自动保存完成"){
-                    // pass
-                }else{
-                    layer.msg(data.msg);
-                    emptyLinkData();
-                    emptyBlogData();
-                    articleIns.reload();
-                }
-            },error:function(data){
-                layer.msg("请求失败");
+    $.ajax({
+        type:method || 'POST',
+        url:url,
+        data:data,
+        dataType:'json',
+        success: function(data){
+            // 所有后台回调操作
+            if(data.msg == "自动保存完成"){
+                // pass
+            }else{
+                layer.msg(data.msg);
+                emptyLinkData();
+                emptyBlogData();
+                articleIns.reload();
+                linksIns.reload();
             }
-        });
+        },error:function(data){
+            layer.msg("请求失败");
+        }
     });
 }
 
 // 根据id查询博客数据,编辑时填充调用
 function getBlogData(url,method,data){
-    $(function(){ 
-        $.ajax({
-            type:method || 'GET',
-            url:url,
-            data:data,
-            dataType:'json',
-            success: function(data){
-                emptyBlogData();
-                fillBlogData(data);
-            }
-        });
+    $.ajax({
+        type:method || 'GET',
+        url:url,
+        data:data,
+        dataType:'json',
+        success: function(data){
+            emptyBlogData();
+            fillBlogData(data);
+        }
     });
 }
 
 // 根据id查询链接数据,编辑时填充调用
 function getLinkData(url,method,data){
-    $(function(){
-        $.ajax({
-            type:method || 'GET',
-            url:url,
-            data:data,
-            dataType:'json',
-            success: function(data){
-                // 填充数据到编辑器
-                emptyLinkData();
-                console.log(data);
-                fillLinkData(data);
-            }
-        });
+    $.ajax({
+        type:method || 'GET',
+        url:url,
+        data:data,
+        dataType:'json',
+        success: function(data){
+            // 填充数据到编辑器
+            emptyLinkData();
+            console.log(data);
+            fillLinkData(data);
+        }
     });
 }
 
 // 根据id删除博客
 function deleteBlogData(url,method,data){
-    $(function(){ 
-        $.ajax({
-            type:method || 'POST',
-            url:url,
-            data:data,
-            dataType:'json',
-            success: function(data){
-                layer.msg(data.msg);
-                articleIns.reload();
-            }
-        });
+    $.ajax({
+        type:method || 'POST',
+        url:url,
+        data:data,
+        dataType:'json',
+        success: function(data){
+            layer.msg(data.msg);
+            articleIns.reload();
+        }
+    });
+}
+// 根据id删除链接
+function deleteLinkData(url,method,data){
+    $.ajax({
+        type:method || 'POST',
+        url:url,
+        data:data,
+        dataType:'json',
+        success: function(data){
+            layer.msg(data.msg);
+            linksIns.reload();
+        }
+    });
+}
+// 根据id删除评论
+function deleteCommentData(url,method,data){
+    $.ajax({
+        type:method || 'POST',
+        url:url,
+        data:data,
+        dataType:'json',
+        success: function(data){
+            layer.msg(data.msg);
+            commentsIns.reload();
+        }
     });
 }
 
@@ -500,34 +521,6 @@ function addCate(){
 function deleteCate(){
     
 }
-
-// 查看留言和评论
-function viewitem(url){
-    $.ajax({
-        url:url,
-        type:method || 'GET',
-        data:data,
-        dataType:'json',
-        success: function(data){
-            layer.open({
-                type: 1, 
-                area: ['500px', '300px'],
-                title: '分类管理',
-                content: classData
-                ,btn: ['提交']
-                ,yes: function(index, layero){
-                    layer.close(index);
-                }
-            });
-        }
-    });
-}
 // 提交分类
-
-// 查看留言
-
-// 查看评论
-
-// 删除评论
 
 console.log("欢迎提交bug或建议，联系方式QQ10804842");
