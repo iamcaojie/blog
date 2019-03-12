@@ -3,7 +3,7 @@ namespace app\admin\controller;
 
 use app\admin\model\Comments as Commentsmodel;
 
-class Comments
+class Comments extends Base
 {
     // 获取所有评论
     // /admin/comments/getcommentslist
@@ -11,17 +11,7 @@ class Comments
     {
         return json(Commentsmodel::getCommentsList($page,$limit));
     }
-    
-    // 创建评论，只能在评论页调用，需登录
-    // /admin/comments/createcomments
-    // public function createComments()
-    // {
-        // $data = input('post.');
-        // 验证数据合法性
-        // $data = Catemodel::createCate($data);
-        // return json(["code"=>0,"msg"=>"创建分类成功"]);
-    // }
-    
+
     // 编辑评论
     // /admin/comments/editcomments
     public function editComments()

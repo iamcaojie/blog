@@ -39,8 +39,7 @@ class Blog extends Model
 
         // 查询原始分类数据 查询原始标签数据并添加
         foreach ($pagelist as $value){
-            // 写入简略博客详情
-            // $value['blog_text_omit'] = substr($value['blog_text'],0,50);
+
             // 写入关联的分类
             $value['cate'] = self::get($value['id']) -> cate -> blog_category;
             $tag = [];
@@ -62,12 +61,15 @@ class Blog extends Model
             -> limit(($page-1)*$limit,$limit)
             -> select();
         $blogcount = self::where('delete_time',null)
+            -> where('cate_id',$cate)
             -> count();
 
         // 查询原始分类数据 查询原始标签数据并添加
         foreach ($pagelist as $value){
             // 写入简略博客详情
-            // $value['blog_text_omit'] = substr($value['blog_text'],0,50);
+            $value['blog_text_omit'] = sub_str(($value['blog_text']),200);
+            // 修改时间格式
+            $value['update_time_today'] = date('Y-m-s',strtotime($value['update_time']));
             // 写入关联的分类
             $value['cate'] = self::get($value['id']) -> cate -> blog_category;
             $tag = [];
@@ -83,7 +85,7 @@ class Blog extends Model
 
     public static function createBlog($data)
     {
-        
+
         self::create($data["blogdata"]);
         // 新增博客的标签数据,tag_data要与前台一致，只能增加关联的中间表数据
         self::get(self::getLastInsID()) -> tags() -> saveAll($data["tagdata"]);

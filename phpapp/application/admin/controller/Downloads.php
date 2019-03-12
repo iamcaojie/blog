@@ -5,7 +5,7 @@ use app\admin\model\Downloads as Downloadsmodel;
 
 // 每个方法为同名模型的函数
 
-class Downloads
+class Downloads extends Base
 {
     // 获取所有下载链接
     // /admin/downloads/getdownloadslist

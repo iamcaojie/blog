@@ -150,5 +150,3 @@ function sendMail(method, url, data){
         });
     });
 }
-
-console.log("欢迎提交bug,建议或漏洞,联系方式QQ：10804842")

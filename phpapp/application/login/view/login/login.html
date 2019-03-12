@@ -20,7 +20,6 @@
         <![endif]-->
     </head>
     <body>
-        <noscript>抱歉，你的浏览器不支持 JavaScript，访问可能出现错误!</noscript>
         <div id="login-box">
             <form id="loginform" action="" method="post">
                 <div class="notice">请输入登录信息</div>
@@ -57,26 +56,25 @@
         <script src="/static/js/md5.js"></script>
         <script src="/static/js/toTop.js"></script>
         <script src="/static/js/login.js"></script>
-           <script type="text/javascript">
-                window.onload = function(){
-                        //配置
-                        var config = {
-                                vx: 4,//点x轴速度,正为右，负为左
-                                vy:  4,//点y轴速度
-                                height: 2,//点高宽，其实为正方形，所以不宜太大
-                                width: 2,
-                                count: 120,//点个数
-                                color: "176,58,91",//点颜色
-                                stroke: "176,58,91",//线条颜色
-                                dist: 2000,//点吸附距离
-                                e_dist: 10000,//鼠标吸附加速距离
-                                max_conn: 10//点到点最大连接数
-                        }
-                        //调用
-                        CanvasParticle(config);
-                };
-         
-</script>
-<canvas width="0px" height="0px;" style="top: 0px; left: 0px;"></canvas>
+        <script type="text/javascript">
+            window.onload = function(){
+                    //配置
+                    var config = {
+                            vx: 4,//点x轴速度,正为右，负为左
+                            vy:  4,//点y轴速度
+                            height: 2,//点高宽，其实为正方形，所以不宜太大
+                            width: 2,
+                            count: 120,//点个数
+                            color: "176,58,91",//点颜色
+                            stroke: "176,58,91",//线条颜色
+                            dist: 2000,//点吸附距离
+                            e_dist: 10000,//鼠标吸附加速距离
+                            max_conn: 10//点到点最大连接数
+                    }
+                    //调用
+                    CanvasParticle(config);
+            };
+        </script>
+    <canvas width="0px" height="0px;" style="top: 0px; left: 0px;"></canvas>
     </body>
 </html>

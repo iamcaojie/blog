@@ -1,10 +1,10 @@
 <?php
 namespace app\blog\controller;
-
+use app\admin\model\Web as Webmodel;
 use app\admin\model\Blog as Blogmodel;
 use app\admin\model\Cate as Catemodel;
 
-class Contents
+class Contents extends Base
 {
     public function index($cate=1,$page=1,$limit=10)
     {
@@ -12,12 +12,22 @@ class Contents
         }else{
             $cate = 2;
         }
+        if(is_numeric($page)&&($page<=0)){
+        }else{
+            $page = 1;
+        }
         $blogList = Blogmodel::getBlogLists($cate,$page,$limit);
         $cateData = Catemodel::queryCate($cate);
+        $webData = Webmodel::get(1);
+        $blogList['count']==0?$pageCount = 1:$pageCount =ceil($blogList['count']/$limit);
         return view("contents/contents",[
+            'webdata'=>$webData,
+            'cate' => $cate,
+            'pagenum' => $page,
+            'limitnum'=> $limit,
             'catedata' => $cateData,
             'bloglist'=>$blogList['data'],
-            'pagecount'=>$blogList['count']
+            'pagecount'=>$pageCount
         ]);
     }
 }

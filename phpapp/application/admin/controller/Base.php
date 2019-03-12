@@ -15,14 +15,22 @@ class Base extends Controller
 //            $this->redirect('/');
         }
         // IE10以下浏览器访问
-        if(!CheckClient::checkAgent()){
-            $this->redirect('/login');
-        }
+//        if(!CheckClient::checkAgent()){
+//            $this->redirect('/login');
+//        }
         // 登陆用户
         $userID = session('user')['user_id'];
         if ($userID){
             $auth = new Auth();
-            $a = $auth ->getGroups($userID);
+            $module = strtolower(request()->module());
+            $con = strtolower(request()->controller());
+            $action = strtolower(request()->action());
+            $name = $con.'/'.$action;
+            $result = $auth ->check($name,$userID);
+//            if(!$result){
+//                json(['code'=>-1,'msg'=>'暂无权限'])->send();
+//                exit;
+//            }
         }else{
             $this->redirect('/login');
         }

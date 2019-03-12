@@ -25,7 +25,6 @@
             <li class="layui-nav-item"><a href="https://iamcaojie.github.io" target="_blank">流量统计</a></li>
             <li class="layui-nav-item"><a href="javascript:void(0);">用户管理</a></li>
             <li class="layui-nav-item"><a href="/user">转到用户后台</a></li>
-            <li class="layui-nav-item"><a href="/">音乐播放</a></li>
         </ul>
         <ul class="layui-nav layui-layout-right">
             <li class="layui-nav-item">
@@ -40,8 +39,8 @@
           <li class="layui-nav-item"><a href="/login/index/loginoff">安全退出</a></li>
         </ul>
       </div>
-      
       <div class="layui-side layui-bg-black" >
+          <div class="layui-side-scroll" >音乐播放</div>
         <div class="layui-side-scroll" style="display: none;">
           <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
           <ul class="layui-nav layui-nav-tree">
@@ -120,11 +119,12 @@
                                     </div>
                                 </div>
                             </form>
-                            <div>
-                                <div>关闭网站时对外显示的内容</div>
+                            <div id="close-web" style="display: none;">
+                                <div>关闭网站时对外显示的内容(或html页面)</div>
                                 <form>
-                                    <input/>
-                                    <button>提交</button>
+                                    <textarea id="close-info-data" class="layui-input" style="min-height: 100px;max-height: 200px;padding:5px;resize: vertical;">{$webdata["close_info"]}</textarea>
+                                    <br>
+                                    <button class="layui-btn" id="close-info">提交</button>
                                 </form>
                             </div>
                         </div>
@@ -180,6 +180,12 @@
                             <label class="layui-form-label">标题</label>
                             <div class="layui-input-block">
                               <input type="text" name="blog_title" placeholder="请输入标题" autocomplete="off" class="layui-input"/>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">个性标签</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="unique_tag" class="layui-input" placeholder="请输入此文章的个性标签，以“，”分隔"/>
                             </div>
                         </div>
                           <div class="layui-form-item">  

@@ -5,7 +5,7 @@ use app\admin\model\Links as Linksmodel;
 
 // 每个方法为同名模型的函数
 
-class Links
+class Links extends Base
 {
     // 获取所有链接
     // /admin/inks/getlinkslist

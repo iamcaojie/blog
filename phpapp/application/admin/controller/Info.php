@@ -5,7 +5,7 @@ use app\admin\model\Info as Infomodel;
 
 // 每个方法为同名模型的函数
 
-class Info
+class Info extends Base
 {
     // 获取所有网站信息
     // /admin/info/getinfolist

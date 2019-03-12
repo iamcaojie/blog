@@ -5,7 +5,7 @@ use app\admin\model\Massage as Massagemodel;
 
 // 每个方法为同名模型的函数
 
-class Massage
+class Massage extends Base
 {
     // 获取所有留言消息
     // /admin/massage/getmassagelist

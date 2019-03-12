@@ -3,7 +3,7 @@ namespace app\admin\controller;
 
 use app\admin\model\Tags as Tagsmodel;
 
-class Tags
+class Tags extends Base
 {
     // 获取所有标签
     // /admin/tags/gettagslist

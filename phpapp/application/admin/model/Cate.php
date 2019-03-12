@@ -10,32 +10,48 @@ class Cate extends Model
     public function blog()
     {   
         return $this->hasMany('Blog','cate_id','id');
-    }   
-    // 静态方法，查询所有数据
-    // sql:select * from _cate;
+    }
+
+    // 查询所有数据，不排序
     public static function getCateList()
     {
-        return self::select();
+        return self::where('delete_time',null)
+            ->select();
     }
-    
+
+    // 查询所有数据，排序
+    public static function getCateTree()
+    {
+        $data = self::where('delete_time',null)
+            ->select();
+        $arr = sortTree($data);
+        return $arr;
+    }
+
     public static function createCate($data)
     {
-        self::create($data);
-        return ["data"=>""];
+        $info = self::create($data,true);
+        return $info;
     }
     
     public static function editCate($data)
     {
-        self::update($data);
-        return ["data"=>""];
+        $info = self::update($data);
+        return $info;
     }
-    
-    public static function deleteCate($data)
+    // 标记删除
+    public static function deleteCate($id)
     {
-        self::destroy($data);
+        $info = self::where('id', 1)
+            ->update(['name' => 'thinkphp']);
         return ["data"=>""];
     }
-    
+
+    // 硬删除
+    // 删除所有子分类
+    // 删除所有分类下的文章
+
+    // 查询分类
     public static function queryCate($id)
     {
         $data = self::get($id);

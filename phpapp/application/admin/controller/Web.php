@@ -3,10 +3,9 @@ namespace app\admin\controller;
 
 use app\admin\model\Web as Webmodel;
 
-
 // 每个方法为同名模型的函数
 
-class Web
+class Web extends Base
 {
     // 获取所有网站状态
     // /admin/web/getweblist
@@ -29,15 +28,6 @@ class Web
             return json(["code" => 0, "msg" => "网站已关闭"]);
         }
     }
-    // 创建网站状态
-    // /admin/web/createweb
-//    public function createWeb()
-//    {
-//        $data = input('post.');
-//        // 验证数据合法性
-//        $data = Webmodel::createWeb($data);
-//        return json(["code"=>0,"msg"=>"创建网站状态成功"]);
-//    }
 
     // 编辑网站信息
     // /admin/web/editweb
@@ -47,9 +37,9 @@ class Web
         // 验证数据合法性
         $info = Webmodel::editWeb($data);
         if($info){
-            return json(["code"=>0,"msg"=>"编辑成功"]);
+            return json(["code"=>0,"msg"=>"网站信息编辑成功"]);
         }else{
-            return json(["code"=>-1,"msg"=>"编辑失败"]);
+            return json(["code"=>-1,"msg"=>"网站信息编辑失败"]);
         }
 
     }

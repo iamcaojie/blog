@@ -41,6 +41,7 @@ class Index
                 . 'beian_code varchar(50),'// 备案号
                 . 'today_views int,'// 今日访问
                 . 'all_views int,' // 总访问
+                . 'close_info text,' // 关闭显示页面
                 . 'create_time int,'
                 . 'update_time int,'
                 . 'delete_time int,'
@@ -130,6 +131,7 @@ class Index
                 . 'blog_title varchar(30), '
                 . 'user_id int,'
                 . 'cate_id tinyint(1), '
+                . 'unique_tag varchar(20),'
                 . 'blog_html text, '
                 . 'blog_text text, '
                 . 'create_time int, '
@@ -147,6 +149,7 @@ class Index
                 . 'create_time int,'
                 . 'update_time int,'
                 . 'delete_time int,'
+                . 'pid int,'
                 . 'sort tinyint(1) NOT NULL DEFAULT 10,'
                 . 'PRIMARY KEY(id)) '
                 . 'DEFAULT CHARSET=utf8;',
@@ -219,7 +222,7 @@ class Index
                 . 'PRIMARY KEY(id)) '
                 . 'DEFAULT CHARSET=utf8;',
         ];
-          
+
         $dmlsql = [
             'insert into think_web(id, name, web_status, domain, ip, beian_code,today_views,all_views) '
             . 'values (1,"blog", 1,"imcaojie.com","47.112.26.239", "鄂ICP备19004169号",0,0);',
@@ -227,9 +230,9 @@ class Index
             . 'values (1,"caojie","d226d500e7899a09458559bf2661a62b")',
             'insert into think_blog(id, blog_title, cate_id, delete_time) '
             . 'values (1, "临时缓存内容", 1, 1);',
-            'insert into think_cate(id, blog_category) '
-            . 'values (1,"无"),(2,"Python"),(3,"PHP"),(4,"Java"),(5,"Web前端"),
-                (6,"编程基础"),(7,"C/C++"),(8,"服务器"),(9,"数据库"),(10,"Linux");',
+            'insert into think_cate(id, blog_category,pid) '
+            . 'values (1,"无",0),(2,"Python",0),(3,"PHP",0),(4,"Java",0),(5,"Web前端",0),
+                (6,"编程基础",0),(7,"C/C++",0),(8,"服务器",0),(9,"数据库",0),(10,"Linux",0);',
             'insert into think_tags(id, tag) '
             . 'values (1,"原创"),(2,"转载"),(3,"基础"),(4,"技巧"),(5,"重点"),(6,"难点");',
             'insert into think_linkcate(id, link_cate_title) '

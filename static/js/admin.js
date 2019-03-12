@@ -196,6 +196,7 @@ var layer = layui.layer,
     form.on('switch(web-status)', function(data){
         var webStatus = Number(data.elem.checked);
         postData('/admin/web/webstatus','POST', {'web_status':webStatus});
+        $('#close-web').slideToggle();
     });
 });
 
@@ -209,6 +210,7 @@ ipSet = $('input[name="ipset"]'),
 beiAn = $('input[name="beian"]'),
 blogId = $('input[name="id"]'),
 blogTitle = $('input[name="blog_title"]'),
+blogUniqueTag = $('input[name="unique_tag"]'),
 linkId = $('input[name="link_id"]'),
 linkTitle = $('input[name="link_title"]'),
 linkAddress = $('input[name="link_address"]');
@@ -218,6 +220,11 @@ linkAddress = $('input[name="link_address"]');
 $(function(){
     $('#manage-classification').click(function(){
         getCateData();
+    });
+    $("#close-info").click(function() {
+        var closeData = {'id':1,'close_info':$('#close-info-data').val()}
+        postData('/admin/web/editweb','POST',closeData);
+        return false;
     });
     // 修改网站信息
     $("#info-btn").click(function() {
@@ -233,12 +240,23 @@ $(function(){
 
     // 编辑html数据
     $("#btn1").click(function(){
-        alert(editor.txt.html());
+        layer.open({
+            type: 1,
+            title: '请在此处输入文章的html页面',
+            area: ['500px', '300px'],
+            content: '<textarea id="html-page" style="width:500px;height:300px"></textarea>',
+            btn: ['提交'],
+            yes: function(index, layero){
+                editHtml();
+                layer.close(index);
+            }
+        });
         return false;
     });
-    // $("#btn2").click(function(){
-    //      alert(editor.txt.text());
-    // });
+    $("#btn2").click(function(){
+         alert(editor.txt.text());
+         return false;
+    });
     // 手动保存，获取保存状态
     $("#btn3").click(function(){
         if(check()){
@@ -274,6 +292,10 @@ $(function(){
 ** 处理函数
  */
 
+// 载入html
+function editHtml(){
+    $(".w-e-text").append($('#html-page').val());
+}
 // 编辑文章
 function editBlog(id){
     // 查询编辑器是否有数据，如有，清空数据或者继续编辑
@@ -368,6 +390,7 @@ function getlocalData(){
     var tagData = new Array($('input[name="tag-origin"]:checked').val(),$('input[name="tag-level"]:checked').val());
     data["id"] = blogId.val();
     data["blog_title"] = blogTitle.val();
+    data["unqiue_tag"] = blogUniqueTag.val();
     data["cate_id"] =  $('input[name="blog-category"]:checked').val();
     data["blog_html"] = editor.txt.html();
     data["blog_text"] = editor.txt.text();
@@ -404,12 +427,14 @@ function postData(url,method,data){
             // 所有后台回调操作
             if(data.msg == "自动保存完成"){
                 // pass
-            }else{
+            }else if(data.msg.indexOf("网站") == -1){
                 layer.msg(data.msg);
                 emptyLinkData();
                 emptyBlogData();
                 articleIns.reload();
                 linksIns.reload();
+            }else{
+                layer.msg(data.msg);
             }
         },error:function(data){
             layer.msg("请求失败");
@@ -489,26 +514,17 @@ function deleteCommentData(url,method,data){
 
 // 获取分类框数据
 function getCateData(){
-    $.get('/admin/cate/getcatelist',function(data){
-        var cateHTML = '';
-        for(var i=0;i<data.data.length;i++){
-            cateHTML = cateHTML + '<input value="'+data.data[i]['blog_category'] +'"/>';
+    layer.open({
+        type: 2,
+        skin: 'massageboard-class',
+        area: ['750px','500px'],
+        title: '<div><b>分类管理</b></div>',
+        content: ['/admin/cate/index','yes'],
+        btn: ['提交'],
+        yes: function(index, layero){
+            // 提交修改
+            layer.close(index);
         }
-        cateHTML = cateHTML + '<div><a onlick= "addCate()">新增</a></div>';
-        layer.open({
-            type: 1,
-            skin: 'massageboard-class',
-            area: ['500px', '400px'],
-            title: '<div><b>分类管理</b></div>',
-            content: cateHTML,
-            btn: ['提交'],
-            yes: function(index, layero){
-                // 提交修改
-                layer.close(index);
-            }
-        });
-        // $('body').append(cateHTML);
-        console.log(cateHTML);
     });
 }
 // 渲染分类面板

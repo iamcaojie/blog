@@ -5,7 +5,7 @@ use app\admin\model\Image as Imagemodel;
 
 // 每个方法为同名模型的函数
 
-class Image
+class Image extends Base
 {
     // 获取所有图片
     // /admin/image/getimagelist

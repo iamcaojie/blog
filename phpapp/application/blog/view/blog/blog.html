@@ -32,25 +32,25 @@
               <ul class="nav navbar-nav">
                   {volist name='cates' id='cate' offset='1' length='3'}
                       {if condition='$cate["blog_category"] !== "无"'}
-                            <li class=""><a href="/blog/contents?cate={$cate['id']}">{$cate.blog_category}</a></li>
+                            <li class=""><a href="/blog/contents?cate={$cate['id']}&page=1">{$cate.blog_category}</a></li>
                       {/if}
                   {/volist}
                 <li class="dropdown">
                   <a href="" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">其他<span class="caret"></span></a>
                   <ul class="dropdown-menu">
                       {volist name="cates" id="cate" offset='4' length='3'}
-                    <li><a href="/blog/contents?cate={$cate['id']}">{$cate["blog_category"]}</a></li>
+                    <li><a href="/blog/contents?cate={$cate['id']}&page=1">{$cate["blog_category"]}</a></li>
                       {/volist}
                     <li role="separator" class="divider"></li>
                       {volist name="cates" id="cate"  offset='7' length='3'}
-                      <li><a href="/blog/contents?cate={$cate['id']}">{$cate["blog_category"]}</a></li>
+                      <li><a href="/blog/contents?cate={$cate['id']}&page=1">{$cate["blog_category"]}</a></li>
                       {/volist}
                   </ul>
                 </li>
               </ul>
               <form class="navbar-form navbar-left" action="search" method="get">
                 <div class="form-group">
-                  <input type="text" id="search_text" name="q" class="search-form" placeholder="搜索博客内容">
+                  <input type="text" id="search_text" name="q" class="search-form" placeholder="请输入搜索内容">
                 </div>
                 <button type="submit" id="search" class="btn search-btn">搜索</button>
               </form>
@@ -59,7 +59,7 @@
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">相关链接<span class="caret"></span></a>
                   <ul class="dropdown-menu">
-                    <li><a href="https://github.com/iamcaojie" target="_blank">Git</a></li>
+                    <li><a href="https://github.com/iamcaojie" target="_blank">Github</a></li>
                     <li><a href="https://leetcode-cn.com/" target="_blank">LeetCode</a></li>
                     <li><a href="https://dribbble.com/" target="_blank">dribbble</a></li>
                     <li><a href="/api">Api</a></li>

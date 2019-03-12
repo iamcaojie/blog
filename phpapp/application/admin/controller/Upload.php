@@ -7,11 +7,6 @@ use think\Db;
 // 所有需登录的控制器继承此类
 class Upload extends Base
 {
-    // 验证，会覆盖Base类的_initialize
-    // public function _initialize()
-    //{
-    //     echo 'hello world';
-    // }
 
     // 轮播图上传
     public function carousel()

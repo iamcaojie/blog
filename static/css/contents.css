@@ -91,6 +91,11 @@ h2{
     width:65%;
     margin:10px 10px 10px 0;
     height:130px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
 }
 
 @media (max-width:968px){

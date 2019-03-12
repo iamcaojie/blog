@@ -1,15 +1,10 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-    <head>
-        <title>博客目录</title>
-        <meta charset="utf-8">
-        <meta name="author" content="caojie">
-        <meta name="description" content="个人博客" />
-        <meta name="keywords" content="个人博客" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="renderer" content="webkit" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-        <link href="/static/css/Normalize.css" rel="stylesheet"></link>
+{extend name="public/base" /}
+{block name="header"}
+{__block__}
+{/block}
+{block name="title"}<title>博客目录-{$catedata['blog_category']}</title>{/block}
+{block name="css"}
+{__block__}
         <link href="/static/layui/css/layui.css" rel="stylesheet"></link>
         <link href="/static/css/bootstrap.css" rel="stylesheet"></link>
         <link href="/static/css/font-awesome.css" rel="stylesheet"></link>
@@ -19,11 +14,11 @@
             <script src="/static/js/respond.src.js"></script>
         <![endif]-->
     </head>
-    <body>
-        <noscript>抱歉，你的浏览器不支持 JavaScript，访问可能出现错误!</noscript>
-        <h1><a href="https://www.python.org/">{$catedata['blog_category']}</a></h1>
+{/block}
+{block name="body"}
+        <h1><a href="javascript:void(0);">{$catedata['blog_category']}</a></h1>
         <ol class="breadcrumb">
-            <li><a href="http://localhost">首页</a></li>
+            <li><a href="http://{$webdata['domain']}">首页</a></li>
             <li class="active">{$catedata['blog_category']}</li>
             <!-- <li class="active">Data</li> -->
         </ol>
@@ -38,17 +33,17 @@
                         <div class="article">
                             <div class="article-title"><h2><a href="/blog/detail/index/id/{$blogdata['id']}.html">{$blogdata['blog_title']}</a></h2></div>
                             <div class="article-information">
-                                <span><i class="fa fa-calendar"></i>{$blogdata['update_time']}</span>
-                                <span>Tags:</span>
-                                {volist name="blogdata['tag']" id="tag"}
-                                <span> {$tag}</span>
-                                {/volist}
+                                <span><i class="fa fa-calendar"></i>{$blogdata['update_time_today']}</span>
+                                <!--<span>Tags:</span>-->
+                                <!--{volist name="blogdata['tag']" id="tag"}-->
+                                <!--<span> {$tag}</span>-->
+                                <!--{/volist}-->
                                 <span><i class="fa fa-eye"></i>{$blogdata['read_count']}次阅读</span>
                                 <span><i class="fa fa-commenting-o"></i>n条评论</span>
                                 <span><i class="fa fa-thumbs-o-up"></i>{$blogdata['read_count']}次点赞</span>
-                                <span>阅读全文<i class="fa fa-chevron-circle-right"></i></span>
+                                <span><a href="/blog/detail/index/id/{$blogdata['id']}.html">阅读全文<i class="fa fa-chevron-circle-right"></i></a></span>
                             </div>
-                            <div class="article-text">{$blogdata['blog_text']}</div>
+                            <div class="article-text">{$blogdata['blog_text_omit']}</div>
                         </div>
                     </div>
                     </div>
@@ -59,27 +54,40 @@
             <div class="page-box">
               <ul class="pagination">
                 <li>
-                  <a href="#" aria-label="Previous">
+                  <a href="/blog/contents?cate={$cate}&page=1" aria-label="Previous">
                     <span aria-hidden="true">&laquo;</span>
                   </a>
                 </li>
-                <li><a href="/blog/python?page=1">1</a></li>
-                <li class="active"><a href="/blog/python?page=2">2</a></li>
-                <li><a href="/blog/python?page=3">3</a></li>
-                <li><a href="/blog/python?page=4">4</a></li>
-                <li><a href="/blog/python?page=5">5</a></li>
-                <li>
-                  <a href="#" aria-label="Next">
+                {for start='$pagenum-2' end='$pagenum+3'}
+                  {egt name='$pagecount' value='$i'}
+                      {gt name='$i' value='0'}
+                          {eq name='$i' value='$pagenum'}
+                            <li class="active"><a href="#">{$i}</a></li>
+                          {else/}
+                            <li><a href="/blog/contents?cate={$cate}&page={$i}">{$i}</a></li>
+                          {/eq}
+                      {/gt}
+                  {/egt}
+                {/for}
+                  <li>
+                  <a href="/blog/contents?cate={$cate}&page={$pagecount}" aria-label="Next">
+                      <input name="page-max" type="hidden" value="{$pagecount}"/>
                     <span aria-hidden="true">&raquo;</span>
                   </a>
+                </li>
+                  <li>
+                    <input name="go-page" style="display:inline;width:40px;height:33.5px;float: left;"/>
+                      <a onclick="goPage();" ria-label="Next" style="cursor:pointer;">
+                          <span aria-hidden="true">Go</span>
+                      </a>
                 </li>
               </ul>
             </div>
         </nav>
-        <script src="/static/js/jquery3.3.1.js"></script>
-        <script src="/static/js/bootstrap.js"></script>
-        <script src="/static/layui/layui.js"></script>
+        {/block}
+        {block name="js"}
+        {__block__}
         <script src="/static/js/toTop.js"></script>
         <script src="/static/js/contents.js"></script>
-    </body>
-</html>
+        {/block}
+        {block name="footer"}

@@ -197,8 +197,8 @@ class Auth
     protected function getAuthList($uid, $type)
     {
         static $_authList = []; //保存用户验证通过的权限列表
-        $t = implode(',', (array)$type);
-        if (isset($_authList[$uid . $t])) {
+        $t = implode(',', (array)$type);// 把数组组合成字符串
+        if (isset($_authList[$uid . $t])) {//
             return $_authList[$uid . $t];
         }
         if (2 == $this->config['auth_type'] && Session::has('_auth_list_' . $uid . $t)) {

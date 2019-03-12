@@ -5,7 +5,7 @@ use app\admin\model\Users as Usersmodel;
 
 // 每个方法为同名模型的函数
 
-class Users
+class Users extends Base
 {
     // 获取所有用户
     // /admin/users/getuserslist
