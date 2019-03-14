@@ -18,14 +18,11 @@
     <body>
         <div class="layui-tab layui-tab-brief" lay-filter="cate-manage">
             <ul class="layui-tab-title">
-                <li class="layui-this">分类预览</li>
-                <li>添加分类</li>
+                <li class="layui-this">添加分类</li>
+                <li>分类预览</li>
             </ul>
             <div class="layui-tab-content">
                 <div class="layui-tab-item layui-show">
-                    <table id="catebox" class="layui-table" lay-filter="catebox"></table>
-                </div>
-                <div class="layui-tab-item">
                     <div id="add-cate">
                         <form class="layui-form" action="/admin/cate/createcate" method="post">
                             <div class="layui-input-block">
@@ -42,20 +39,31 @@
                             <div class="layui-input-block">
                                 <label class="layui-form-label">分类名称</label>
                                 <div class="layui-inline">
-                                    <input name="blog_category" class="layui-input"/>
+                                    <input name="blog_category" class="layui-input" autocomplete="off" placeholder="必填"/>
                                 </div>
                             </div>
-                            <button class="layui-btn layui-btn-sm">添加分类</button>
+                            <div class="layui-input-block">
+                                <label class="layui-form-label">分类详情</label>
+                                <div class="layui-inline">
+                                    <input name="cate_detail" class="layui-input" autocomplete="off" placeholder="选填"/>
+                                </div>
+                            </div>
+                            <button id="add-cate-btn" class="layui-btn layui-btn-sm">添加分类</button>
                         </form>
                     </div>
+                </div>
+                <div class="layui-tab-item">
+                    <button id="recover-btn" class="layui-btn layui-btn-sm">显示已隐藏的分类</button>
+                    <button id="refresh-btn" class="layui-btn layui-btn-normal layui-btn-sm">刷新页面</button>
+                    <table id="catebox" class="layui-table" lay-filter="catebox"></table>
                 </div>
             </div>
         </div>
     </body>
     <script type="text/html" id="bar">
         <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
-        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="sdel">标记删除</a>
-        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="adel">完全删除</a>
+        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="sdel">隐藏分类</a>
+        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="adel">删除分类</a>
     </script>
     <script src="/static/js/jquery3.3.1.js"></script>
     <!-- <script src="/static/js/bootstrap.js"></script> -->

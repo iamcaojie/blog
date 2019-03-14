@@ -1,3 +1,4 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:67:"D:\server\nginx\html/phpapp/application/admin\view\admin\admin.html";i:1552569303;}*/ ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
     <head>
@@ -21,7 +22,7 @@
         <div class="layui-logo">博客后台</div>
         <!-- 头部区域（可配合layui已有的水平导航） -->
         <ul class="layui-nav layui-layout-left">
-            <li class="layui-nav-item"><a href="http://{$webdata['domain']}">网站首页</a></li>
+            <li class="layui-nav-item"><a href="http://<?php echo $webdata['domain']; ?>">网站首页</a></li>
             <li class="layui-nav-item"><a href="/user">用户后台</a></li>
             <li class="layui-nav-item"><a href="https://iamcaojie.github.io" target="_blank">流量统计</a></li>
             <li class="layui-nav-item"><a href="javascript:void(0);">用户管理</a></li>
@@ -30,7 +31,7 @@
             <li class="layui-nav-item">
                 <a href="javascript:;">
                     <img src="/static/img/avatar.jpg" class="layui-nav-img">
-                    {$username}
+                    <?php echo $username; ?>
                 </a>
                 <dl class="layui-nav-child">
                   <dd><a href="">基本资料</a></dd>
@@ -122,7 +123,7 @@
                             <div id="close-web" style="display: none;">
                                 <div>关闭网站时对外显示的内容(或html页面)</div>
                                 <form>
-                                    <textarea id="close-info-data" class="layui-input" style="min-height: 100px;max-height: 200px;padding:5px;resize: vertical;">{$webdata["close_info"]}</textarea>
+                                    <textarea id="close-info-data" class="layui-input" style="min-height: 100px;max-height: 200px;padding:5px;resize: vertical;"><?php echo $webdata["close_info"]; ?></textarea>
                                     <br>
                                     <button class="layui-btn" id="close-info">提交</button>
                                 </form>
@@ -136,19 +137,19 @@
                                 <div class="layui-form-item" id="web-info">
                                     <label class="layui-form-label">域名设置</label>
                                     <div class="layui-input-block">
-                                        <input name="domain" type="text" value="{$webdata['domain']}" class="layui-input">
+                                        <input name="domain" type="text" value="<?php echo $webdata['domain']; ?>" class="layui-input">
                                     </div>
                                 </div>
                                 <div class="layui-form-item">
                                 <label class="layui-form-label">ip设置</label>
                                 <div class="layui-input-block">
-                                    <input name="ipset" type="text" value="{$webdata['ip']}" class="layui-input">
+                                    <input name="ipset" type="text" value="<?php echo $webdata['ip']; ?>" class="layui-input">
                                 </div>
                                 </div>
                                 <div class="layui-form-item">
                                     <label class="layui-form-label">备案号设置</label>
                                     <div class="layui-input-block">
-                                        <input name="beian" type="text" value="{$webdata['beian_code']}" class="layui-input">
+                                        <input name="beian" type="text" value="<?php echo $webdata['beian_code']; ?>" class="layui-input">
                                     </div>
                                 </div>
                                 <button class="layui-btn" id="info-btn">提交</button>
@@ -191,14 +192,11 @@
                           <div class="layui-form-item">  
                         <label class="layui-form-label">笔记分类</label>
                         <div class="layui-input-block">
-                            {volist name='catelist' id='cate'}
-                             {if condition='$cate["blog_category"] == "无"'}
-                                 <input type="radio" lay-filter="blog-category" name="blog-category" value="{$cate['id']}" title="{$cate['blog_category']}" checked>
-                             {else /}
-                                {eq name="$cate['id']" value='6'}<br>{/eq}
-                                 <input type="radio" lay-filter="blog-category" name="blog-category" value="{$cate['id']}" title="{$cate['blog_category']}">
-                             {/if}
-                            {/volist}
+                            <?php if(is_array($catelist) || $catelist instanceof \think\Collection || $catelist instanceof \think\Paginator): $i = 0; $__LIST__ = $catelist;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$cate): $mod = ($i % 2 );++$i;if($cate["blog_category"] == "无"): ?>
+                                 <input type="radio" lay-filter="blog-category" name="blog-category" value="<?php echo $cate['id']; ?>" title="<?php echo $cate['blog_category']; ?>" checked>
+                             <?php else: if($cate['id'] == '6'): ?><br><?php endif; ?>
+                                 <input type="radio" lay-filter="blog-category" name="blog-category" value="<?php echo $cate['id']; ?>" title="<?php echo $cate['blog_category']; ?>">
+                             <?php endif; endforeach; endif; else: echo "" ;endif; ?>
                             <div><a id="manage-classification" href="javascript:;">分类管理</a></div>
                         </div>
                         </div>
@@ -250,9 +248,9 @@
                                 <div class="layui-form-item">
                                     <label class="layui-form-label">链接分类</label>
                                     <div class="layui-input-block">
-                                        {volist name='linkcatelist' id='linkcate'}
-                                        <input type="radio" lay-filter="blog-category" name="link_cate" value="{$linkcate['id']}" title="{$linkcate['link_cate_title']}">
-                                        {/volist}
+                                        <?php if(is_array($linkcatelist) || $linkcatelist instanceof \think\Collection || $linkcatelist instanceof \think\Paginator): $i = 0; $__LIST__ = $linkcatelist;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$linkcate): $mod = ($i % 2 );++$i;?>
+                                        <input type="radio" lay-filter="blog-category" name="link_cate" value="<?php echo $linkcate['id']; ?>" title="<?php echo $linkcate['link_cate_title']; ?>">
+                                        <?php endforeach; endif; else: echo "" ;endif; ?>
                                     </div>
                                 </div>
                                 <div class="layui-form-item">
@@ -298,7 +296,7 @@
             </div>
             <!-- 底部固定区域 -->
             <div class="layui-footer">
-                 今日访问量：{$webdata['today_views']}  累计访问量：{$webdata['all_views']}  当前ip：{$ip}
+                 今日访问量：<?php echo $webdata['today_views']; ?>  累计访问量：<?php echo $webdata['all_views']; ?>  当前ip：<?php echo $ip; ?>
             </div>
     </div>
     <script type="text/html" id="bar">

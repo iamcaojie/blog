@@ -5,6 +5,7 @@ use think\Controller;
 use think\Db;
 use app\admin\model\Web as Webmodel;
 use app\admin\model\Cate as Catemodel;
+use app\admin\model\Massage as Massagemodel;
 
 
 class Index extends Controller
@@ -27,7 +28,7 @@ class Index extends Controller
     public function getMassage()
     {
         // TODO 过滤验证
-        $massage = new Massage;
+        $massage = new Massagemodel;
         $data = input('post.');
         $massage -> massage_title = $data['massage_title'];
         $massage -> contact = $data['contact'];

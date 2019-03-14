@@ -131,13 +131,14 @@ class Index
                 . 'blog_title varchar(30), '
                 . 'user_id int,'
                 . 'cate_id tinyint(1), '
-                . 'unique_tag varchar(20),'
+                . 'unique_tag varchar(50),'
                 . 'blog_html text, '
                 . 'blog_text text, '
                 . 'create_time int, '
                 . 'update_time int, '
                 . 'delete_time int, '
-                . 'read_count mediumint(1) DEFAULT 0,'
+                . 'read_count int UNSIGNED DEFAULT 0,'
+                . 'read_like int UNSIGNED DEFAULT 0,'
                 . 'blog_status tinyint(1),'
                 . 'PRIMARY KEY(id)) '
                 . 'DEFAULT CHARSET=utf8;',
@@ -145,7 +146,7 @@ class Index
             'CREATE TABLE think_cate('
                 . 'id int UNSIGNED NOT NULL AUTO_INCREMENT,'
                 . 'blog_category varchar(10),'
-                . 'cate_detail varchar(100),'
+                . 'cate_detail varchar(100) DEFAULT "",'
                 . 'create_time int,'
                 . 'update_time int,'
                 . 'delete_time int,'
@@ -225,7 +226,7 @@ class Index
 
         $dmlsql = [
             'insert into think_web(id, name, web_status, domain, ip, beian_code,today_views,all_views) '
-            . 'values (1,"blog", 1,"imcaojie.com","47.112.26.239", "鄂ICP备19004169号",0,0);',
+            . 'values (1,"blog", 1,"localhost","00.000.00.000", "鄂ICP备19004169号",0,0);',
             'insert into think_users(id,username,password) '
             . 'values (1,"caojie","d226d500e7899a09458559bf2661a62b")',
             'insert into think_blog(id, blog_title, cate_id, delete_time) '

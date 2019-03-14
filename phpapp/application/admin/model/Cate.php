@@ -33,24 +33,34 @@ class Cate extends Model
         $info = self::create($data,true);
         return $info;
     }
-    
+    // 编辑和标记删除
     public static function editCate($data)
     {
         $info = self::update($data);
         return $info;
     }
-    // 标记删除
-    public static function deleteCate($id)
-    {
-        $info = self::where('id', 1)
-            ->update(['name' => 'thinkphp']);
-        return ["data"=>""];
+
+    // 完全删除
+    public static function deleteCate(){
+
     }
-
-    // 硬删除
-    // 删除所有子分类
-    // 删除所有分类下的文章
-
+    // 获取子分类
+    public function getChildrenId($id){
+        $data = self::where('delete_time',null)
+            ->select();
+        return $this->_getChildrenId($data,$id);
+    }
+    // 获取子分类
+    public function _getChildrenId($data,$id){
+        static $arr = [];
+        foreach ($data as $k=>$v){
+            if($v['pid'] == $id){
+                $arr[]=$v['id'];
+                $this->_getChildrenId($data,$v['id']);
+            }
+        }
+        return $arr;
+    }
     // 查询分类
     public static function queryCate($id)
     {

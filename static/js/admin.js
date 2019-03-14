@@ -33,6 +33,7 @@ var layer = layui.layer,
             layer.msg('上传失败');
         }
     });
+
     // 文章列表
     articleIns = table.render({
         elem: '#article',
@@ -62,7 +63,6 @@ var layer = layui.layer,
         height: 400,
         url: '/admin/links/getLinksList', //数据接口
         page: true, //开启分页
-        toolbar: 'default', //开启工具栏
         totalRow: true, //开启合计行
         cols: [[ //表头
             {type: 'checkbox', fixed: 'left'},
@@ -76,13 +76,13 @@ var layer = layui.layer,
             {fixed: 'right', width: 165, align:'center', toolbar: '#bar'}
         ]]
     });
+
     // 留言列表
     massageIns = table.render({
         elem: '#massage-list',
         height: 400,
         url: '/admin/massage/getmassagelist', //数据接口
         page: true, //开启分页
-        toolbar: 'default', //开启工具栏
         cols: [[ //表头
             {type: 'checkbox', fixed: 'left'},
             {field: 'id', title: 'ID', width:80, sort: true, fixed: 'left'},
@@ -102,7 +102,6 @@ var layer = layui.layer,
         height: 400,
         url: '/admin/comments/getcommentslist', //数据接口
         page: true, //开启分页
-        toolbar: 'default', //开启工具栏
         cols: [[ //表头
             {type: 'checkbox', fixed: 'left'},
             {field: 'id', title: 'ID', wridth:80, sort: true, fixed: 'left'},
@@ -160,6 +159,7 @@ var layer = layui.layer,
             editBlog(data.id);
         }
     });
+
     //监听链接列表行工具事件
     table.on('tool(links)', function(obj){ //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
         var data = obj.data, //获得当前行数据
@@ -176,6 +176,7 @@ var layer = layui.layer,
                 editLink(data.id);
         }
     });
+
     //监听评论列表行工具事件
     table.on('tool(comments)', function(obj){ //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
         var data = obj.data, //获得当前行数据
@@ -336,6 +337,7 @@ function deleteComment(id){
 function emptyBlogData(){
     blogId.val("");
     blogTitle.val("");
+    blogUniqueTag.val("");
     $(".w-e-text").empty();
 }
 
@@ -343,6 +345,7 @@ function emptyBlogData(){
 function fillBlogData(data){
     blogId.val(data["data"]["id"]);
     blogTitle.val(data["data"]["blog_title"]);
+    blogUniqueTag.val(data["data"]["unique_tag"]);
     $(".w-e-text").append(data["data"]["blog_html"]);
 }
 
@@ -390,7 +393,7 @@ function getlocalData(){
     var tagData = new Array($('input[name="tag-origin"]:checked').val(),$('input[name="tag-level"]:checked').val());
     data["id"] = blogId.val();
     data["blog_title"] = blogTitle.val();
-    data["unqiue_tag"] = blogUniqueTag.val();
+    data["unique_tag"] = blogUniqueTag.val();
     data["cate_id"] =  $('input[name="blog-category"]:checked').val();
     data["blog_html"] = editor.txt.html();
     data["blog_text"] = editor.txt.text();
@@ -517,26 +520,13 @@ function getCateData(){
     layer.open({
         type: 2,
         skin: 'massageboard-class',
-        area: ['750px','500px'],
+        area: ['850px','500px'],
         title: '<div><b>分类管理</b></div>',
         content: ['/admin/cate/index','yes'],
-        btn: ['提交'],
+        btn: ['刷新父页面使修改生效'],
         yes: function(index, layero){
-            // 提交修改
             layer.close(index);
+            location.reload(true);
         }
     });
 }
-// 渲染分类面板
-
-// 添加分类
-function addCate(){
-    alert('a');
-}
-// 删除分类
-function deleteCate(){
-    
-}
-// 提交分类
-
-console.log("欢迎提交bug或建议，联系方式QQ10804842");

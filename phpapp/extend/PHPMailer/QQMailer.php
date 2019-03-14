@@ -8,7 +8,7 @@ class QQMailer
     public static $CHARSET = 'UTF-8'; // 设置发送的邮件的编码
 
     private static $USERNAME = 'imcaojiemail@163.com'; // 授权登录的账号
-    private static $PASSWORD = 'cptbtptp123'; // 授权登录的密码
+    private static $PASSWORD = ''; // 授权登录的密码
     private static $NICKNAME = 'Mailrobot'; // 发件人的昵称
 
     /**

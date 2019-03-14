@@ -53,6 +53,7 @@ class Blog extends Base
         if ($blogData['id']==1){
             $blog = Blogmodel::get(1);
             $blog -> blog_title = $blogData['blog_title'];
+            $blog -> unique_tag = $blogData['unique_tag'];
             $blog -> blog_text = $blogData['blog_text'];
             $blog -> blog_html = $blogData['blog_html'];
             $blog -> allowField(true) -> save();
