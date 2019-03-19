@@ -3,37 +3,53 @@ namespace app\admin\model;
 
 use think\Model;
 
-
 class AuthRule extends Model
 {
 
-    // 静态方法，查询所有数据
-    // sql:select * from _auth_rule;
     public static function getAuthRuleList()
     {
-        return self::select();
+        $data = self::select();
+        $authRuleData = sortTree($data, $pid=0, $level=0);
+        return $authRuleData;
     }
-    
+    // 创建规则
     public static function createAuthRule($data)
     {
-        self::create($data);
-        return ["data"=>""];
+        $info = self::create($data);
+        return $info;
     }
-    
+    // 编辑规则
     public static function editAuthRule($data)
     {
-        self::update($data);
-        return ["data"=>""];
+        $info = self::update($data);
+        return $info;
     }
-    
-    public static function deleteAuthRule($data)
+    // 删除规则
+    public static function deleteAuthRule($id)
     {
-        self::destroy($data);
-        return ["data"=>""];
+        // pass
     }
-    
+    // 根据id查询规则
     public static function queryAuthRule($data)
     {
-        //pass
+        // pass
+    }
+
+    // 获取子权限
+    public function getChildrenId($id){
+        $data = self::select();
+        return $this->_getChildrenId($data,$id);
+    }
+
+    // 获取子权限
+    public function _getChildrenId($data,$id){
+        static $arr = [];
+        foreach ($data as $k=>$v){
+            if($v['pid'] == $id){
+                $arr[]=$v['id'];
+                $this->_getChildrenId($data,$v['id']);
+            }
+        }
+        return $arr;
     }
 }

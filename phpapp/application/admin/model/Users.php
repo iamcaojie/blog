@@ -6,32 +6,35 @@ use think\Model;
 
 class Users extends Model
 {
-
-    // 静态方法，查询所有数据
-    // sql:select * from _users;
-    public static function getUsersList()
+    // 查询用户
+    public static function getUsersList($page, $limit)
     {
-        return self::select();
+        return self::limit(($page-1)*$limit,$limit)
+            -> select();
     }
-    
+
+    // 创建用户
     public static function createUsers($data)
     {
-        self::create($data);
-        return ["data"=>"创建用户成功"];
+        $info = self::create($data);
+        return $info;
     }
-    
+
+    // 编辑用户
     public static function editUsers($data)
     {
-        self::update($data,['username'=>$data['username']],true);
-        return ["data"=>""];
+        $info = self::update($data,['username'=>$data['username']],true);
+        return $info;
     }
-    
+
+    // 删除用户
     public static function deleteUsers($data)
     {
-        self::destroy($data);
-        return ["data"=>""];
+        $info = self::destroy($data);
+        return $info;
     }
-    
+
+    // 验证用户
     public static function validateUser($data)
     {
        $userData = self::where('username',$data["username"])
@@ -39,6 +42,8 @@ class Users extends Model
                -> find();
        return $userData;
     }
+
+    // 查询是否存在用户名
     public static function queryUser($data)
     {
         $userData = self::where('username',$data["username"])

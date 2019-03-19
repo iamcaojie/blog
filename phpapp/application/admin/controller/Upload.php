@@ -4,14 +4,19 @@ namespace app\admin\controller;
 use think\Controller;
 use think\Db;
 
-// 所有需登录的控制器继承此类
+// 所有上传文件通过此控制器管理
 class Upload extends Base
 {
 
-    // 轮播图上传
+    public function index()
+    {
+        // 图片管理
+    }
+
+    // 上传轮播图，id为1
     public function carousel()
     {
-        // 前端是单文件上传
+        // 前端layui是单文件多次上传
         $imageCount = Db::name('image')->where('imagecate_id','1') ->count();
         if($imageCount>=3){
             return json(['code' => 0, 'msg' => '轮播图已有3张']);
@@ -27,10 +32,11 @@ class Upload extends Base
                 if($info){
                     $ext = $info -> getExtension();
                     array_push($infoBox, $name);
-                    // 把图片路径入数据库
+                    // 查询图片是否重复
                     $ImageData =  Db::name('image')
                             -> where('imagecate_id',1)
                             -> where('address',$name)->find();
+                    // 如果没有就继续存入，有就是不存
                     if(!$ImageData){
                         Db::name('image')->insert([
                             'imagecate_id'=>1,
@@ -39,7 +45,7 @@ class Upload extends Base
                         ]);
                     }
                 }else{
-
+                    //pass
                 }
             }else{
                 $name = md5($file);
@@ -51,4 +57,15 @@ class Upload extends Base
             'data'=>$infoBox
         ]);
     }
+
+    // 上传主图，单文件上传
+    public function masterImage(){
+
+    }
+
+    // 编辑器上传详情图
+    public function datailImage(){
+
+    }
+
 }

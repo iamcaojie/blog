@@ -217,11 +217,16 @@ linkTitle = $('input[name="link_title"]'),
 linkAddress = $('input[name="link_address"]');
 
 // 所有数据前端不验证，后端验证数据合法性
-
 $(function(){
+    // 用户权限管理
+    $('#auth-manage').click(function(){
+        layer.msg('1');
+    });
+    // 分类管理
     $('#manage-classification').click(function(){
         getCateData();
     });
+    // 关闭网站显示信息
     $("#close-info").click(function() {
         var closeData = {'id':1,'close_info':$('#close-info-data').val()}
         postData('/admin/web/editweb','POST',closeData);
@@ -233,8 +238,9 @@ $(function(){
         postData('/admin/web/editweb','POST',webData);
         return false;
     });
+
     // 发布文章
-    // 捕获编辑器可能修改内容的事件，自动保存文章
+    // 自动保存
     $(".w-e-text").on('keyup click mouseleave',function(){
         autoSave();
     });
@@ -254,10 +260,13 @@ $(function(){
         });
         return false;
     });
+
+    // 显示编辑器文本
     $("#btn2").click(function(){
          alert(editor.txt.text());
          return false;
     });
+
     // 手动保存，获取保存状态
     $("#btn3").click(function(){
         if(check()){
@@ -265,6 +274,7 @@ $(function(){
         } 
         return false;
     });
+
     // 保存编辑博客
     $("#btn4").click(function(){
         postData('/admin/blog/editblog', 'POST', getlocalData());
@@ -272,11 +282,13 @@ $(function(){
         $("#btn3").show();
         return false;
     });
+
     // 提交链接数据
     $("#btn5").click(function(){
         postData('/admin/links/createlinks', 'POST',getLocalLinkData());
         return false;
     });
+
     // 修改链接数据
     $("#btn6").click(function(){
         postData('/admin/links/editlinks', 'POST',getLocalLinkData());
@@ -383,10 +395,12 @@ function check(){
     }
     return true;
 }
+
 // 获取网站信息数据
 function getWebData(){
     webDomain.val();
 }
+
 // 实时获取编辑数据,键与后台对应
 function getlocalData(){
     var data = {};
@@ -488,6 +502,7 @@ function deleteBlogData(url,method,data){
         }
     });
 }
+
 // 根据id删除链接
 function deleteLinkData(url,method,data){
     $.ajax({
@@ -501,6 +516,7 @@ function deleteLinkData(url,method,data){
         }
     });
 }
+
 // 根据id删除评论
 function deleteCommentData(url,method,data){
     $.ajax({
@@ -518,6 +534,22 @@ function deleteCommentData(url,method,data){
 // 获取分类框数据
 function getCateData(){
     layer.open({
+        type: 2,
+        skin: 'massageboard-class',
+        area: ['850px','500px'],
+        title: '<div><b>分类管理</b></div>',
+        content: ['/admin/cate/index','yes'],
+        btn: ['刷新父页面使修改生效'],
+        yes: function(index, layero){
+            layer.close(index);
+            location.reload(true);
+        }
+    });
+}
+
+// 获取分类框数据
+function getAuthData(){
+ layer.open({
         type: 2,
         skin: 'massageboard-class',
         area: ['850px','500px'],

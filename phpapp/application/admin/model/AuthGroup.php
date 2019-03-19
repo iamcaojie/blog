@@ -6,30 +6,30 @@ use think\Model;
 
 class AuthGroup extends Model
 {
- 
-    // 静态方法，查询所有数据
-    // sql:select * from _auth_group;
+
     public static function getAuthGroupList()
     {
-        return self::select();
+        $data = self::select();
+        $authGroupData = sortTree1($data, $pid=0, $level=0);
+        return $authGroupData;
     }
     
     public static function createAuthGroup($data)
     {
-        self::create($data);
-        return ["data"=>""];
+        $info = self::create($data);
+        return $info;
     }
     
     public static function editAuthGroup($data)
     {
-        self::update($data);
-        return ["data"=>""];
+        $info = self::update($data);
+        return $info;
     }
     
     public static function deleteAuthGroup($data)
     {
-        self::destroy($data);
-        return ["data"=>""];
+        $info = self::destroy($data);
+        return $info;
     }
     
     public static function queryAuthGroup($data)

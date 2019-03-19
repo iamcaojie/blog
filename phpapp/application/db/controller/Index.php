@@ -56,7 +56,7 @@ class Index
                 . 'delete_time int, '
                 . 'PRIMARY KEY(id)) '
                 . 'DEFAULT CHARSET=utf8; ',
-            // 图片地址表
+            // 图片地址表(管理全部图片)
             'CREATE TABLE think_image('
             . 'id int UNSIGNED NOT NULL AUTO_INCREMENT, '
             . 'name varchar(10), '
@@ -68,7 +68,7 @@ class Index
             . 'delete_time int, '
             . 'PRIMARY KEY(id)) '
             . 'DEFAULT CHARSET=utf8; ',
-            // 图片分类表（与uploads目录对应）<carousel轮播：1，masterimages主图：2，detailimages详情图：3>
+            // 图片分类表（与uploads目录对应）<carousel轮播：1，masterimages主图：2，detailimages详情图：3,>
             'CREATE TABLE think_imagecate('
             . 'id int UNSIGNED NOT NULL AUTO_INCREMENT, '
             . 'name varchar(10), '
@@ -88,6 +88,7 @@ class Index
                 . 'create_time int, '
                 . 'update_time int, '
                 . 'delete_time int, '
+                . 'UNIQUE(username),'
                 . 'PRIMARY KEY(id)) '
                 . 'ENGINE=MyISAM  DEFAULT CHARSET=utf8;',
             // 用户组表
@@ -99,19 +100,25 @@ class Index
                 . 'pid mediumint(1) NOT NULL DEFAULT 0, '
                 . 'level tinyint(1) NOT NULL DEFAULT 0, '
                 . 'sort int(5) NOT NULL DEFAULT 50, '
+                . 'create_time int, '
+                . 'update_time int, '
+                . 'delete_time int, '
                 . 'PRIMARY KEY(id)) '
                 . 'ENGINE=MyISAM  DEFAULT CHARSET=utf8;',
             // think_auth_rule，权限规则表
             'CREATE TABLE think_auth_rule('
                 . 'id int UNSIGNED NOT NULL AUTO_INCREMENT, '
-                . 'name char(80) NOT NULL DEFAULT "", '
-                . 'title varchar(30) NOT NULL DEFAULT "", '
-                . 'type tinyint(1) NOT NULL DEFAULT 1, '
-                . 'status tinyint(1) NOT NULL DEFAULT 1, '
-                . 'conditions char(100) NOT NULL DEFAULT "", '
+                . 'name char(80) NOT NULL DEFAULT "", '// 控制器方法
+                . 'title varchar(30) NOT NULL DEFAULT "", '// 权限名称
+                . 'type tinyint(1) NOT NULL DEFAULT 1, '// 认证方式
+                . 'status tinyint(1) NOT NULL DEFAULT 1, '// 是否开启认证
+                . 'conditions char(100) NOT NULL DEFAULT "", '// 规则表达式
                 . 'pid mediumint(1) NOT NULL DEFAULT 0, '
                 . 'level tinyint(1) NOT NULL DEFAULT 0, '
                 . 'sort int(5) NOT NULL DEFAULT 50, '
+                . 'create_time int, '
+                . 'update_time int, '
+                . 'delete_time int, '
                 . 'PRIMARY KEY (id), '
                 . 'UNIQUE(name))'
                 . 'ENGINE=MyISAM DEFAULT CHARSET=utf8;',
@@ -120,6 +127,9 @@ class Index
                 . 'id int UNSIGNED NOT NULL AUTO_INCREMENT,'
                 . 'uid mediumint(8) UNSIGNED NOT NULL,'
                 . 'group_id mediumint(8) UNSIGNED NOT NULL,'
+                . 'create_time int, '
+                . 'update_time int, '
+                . 'delete_time int, '
                 . 'PRIMARY KEY (id),'
                 . 'UNIQUE uid_group_id(uid,group_id),'
                 . 'KEY uid(uid),'

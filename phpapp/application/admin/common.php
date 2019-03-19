@@ -49,3 +49,23 @@ function sortTree($data, $pid=0, $level=0)
     }
     return $arr;
 }
+
+function sortTree1($data, $pid=0, $level=0)
+{
+    static $arr = []; // 静态数组
+    foreach($data as $k=>$v){
+        if($v['pid']==$pid){
+            $v['level'] = $level; // 给单条数据添加level字段
+            $arr[] = $v; // 首先把顶级分类添加到静态数组中
+            sortTree($data, $v['id'],$level+1); // 递归求解当前栏目的下一栏目
+        }
+    }
+    return $arr;
+}
+
+function passWordMd5($data)
+{
+    $salt = '3.141592654';
+    $data['password'] = md5($data['password'].$salt);
+    return $data;
+}

@@ -19,12 +19,11 @@
     <div class="layui-layout layui-layout-admin">
       <div class="layui-header">
         <div class="layui-logo">博客后台</div>
-        <!-- 头部区域（可配合layui已有的水平导航） -->
         <ul class="layui-nav layui-layout-left">
             <li class="layui-nav-item"><a href="http://{$webdata['domain']}">网站首页</a></li>
             <li class="layui-nav-item"><a href="/user">用户后台</a></li>
             <li class="layui-nav-item"><a href="https://iamcaojie.github.io" target="_blank">流量统计</a></li>
-            <li class="layui-nav-item"><a href="javascript:void(0);">用户管理</a></li>
+            <li id="auth-manage" class="layui-nav-item"><a href="javascript:void(0);">用户权限管理</a></li>
         </ul>
         <ul class="layui-nav layui-layout-right">
             <li class="layui-nav-item">
@@ -40,57 +39,11 @@
         </ul>
       </div>
       <div class="layui-side layui-bg-black" >
-          <div class="layui-side-scroll" >音乐播放</div>
-        <div class="layui-side-scroll" style="display: none;">
-          <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
-          <ul class="layui-nav layui-nav-tree">
-            <li class="layui-nav-item layui-nav-itemed">
-              <a class="" href="javascript:;">网站管理</a>
-              <dl class="layui-nav-child">
-                <dd><a href="javascript:;" >状态设置</a></dd>
-                <dd><a href="javascript:;" >信息设置</a></dd>
-                <dd><a href="javascript:;">下载设置</a></dd>
-              </dl>
-            </li>
-            <li class="layui-nav-item">
-              <a href="javascript:;">博客管理</a>
-              <dl class="layui-nav-child">
-                <dd><a id="createblog" href="javascript:;">发布文章</a></dd>
-                <dd><a href="javascript:;">文章列表</a></dd>
-              </dl>
-            </li>
-            <li class="layui-nav-item">
-              <a class="" href="javascript:;">链接管理</a>
-              <dl class="layui-nav-child">
-                <dd><a href="javascript:;">发布链接</a></dd>
-                <dd><a href="javascript:;">链接列表</a></dd>
-              </dl>
-            </li>
-            <li class="layui-nav-item">
-              <a href="javascript:;">留言管理</a>
-              <dl class="layui-nav-child">
-                <dd><a href="javascript:;">留言列表</a></dd>
-                <dd><a href="javascript:;">评论管理</a></dd>
-                <!-- <dd><a href="">超链接</a></dd> -->
-              </dl>
-            </li>
-            <li class="layui-nav-item">
-              <a href="javascript:;">数据管理</a>
-              <dl class="layui-nav-child">
-                <dd><a href="javascript:;">数据库信息</a></dd>
-                <dd><a href="javascript:;">数据导出</a></dd>
-                <dd><a href="javascript:;">数据查询</a></dd>
-                <dd><a href="javascript:;">相册管理</a></dd>
-                <dd><a href="javascript:;">回收站</a></dd>
-                <!-- <dd><a href="">超链接</a></dd> -->
-              </dl>
-            </li>
-            <!-- <li class="layui-nav-item"><a href="">云市场</a></li> -->
-            <!-- <li class="layui-nav-item"><a href="">发布商品</a></li> -->
-          </ul>
-        </div>
+          <div class="layui-side-scroll" >
+              <div>工具栏</div>
+              <div>音乐播放</div>
+          </div>
       </div>
-      
       <div class="layui-body">
         <!-- 内容主体区域 -->
         <div id="container" style="padding: 15px;">
