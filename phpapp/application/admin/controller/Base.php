@@ -32,7 +32,7 @@ class Base extends Controller
 //                exit;
 //            }
         }else{
-            $this->redirect('/login');
+//            $this->redirect('/login');
         }
     }
 }

@@ -1,3 +1,4 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:65:"D:\server\nginx\html/phpapp/application/admin\view\conf\conf.html";i:1553002572;}*/ ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
     <head>
@@ -24,6 +25,7 @@
                 <li>查看用户组</li>
                 <li>添加用户</li>
                 <li>查看用户</li>
+                <li>权限设置</li>
             </ul>
             <div class="layui-tab-content">
                 <!--添加权限-->
@@ -35,9 +37,9 @@
                                 <div class="layui-inline">
                                     <select name="pid">
                                         <option value="0">顶级权限</option>
-                                        {volist name='authrules' id='authrule'}
-                                            <option value="{$authrule['id']}">{$authrule['title']}</option>
-                                        {/volist}
+                                        <?php if(is_array($authrules) || $authrules instanceof \think\Collection || $authrules instanceof \think\Paginator): $i = 0; $__LIST__ = $authrules;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$authrule): $mod = ($i % 2 );++$i;?>
+                                            <option value="<?php echo $authrule['id']; ?>"><?php echo $authrule['title']; ?></option>
+                                        <?php endforeach; endif; else: echo "" ;endif; ?>
                                     </select>
                                 </div>
                             </div>
@@ -81,11 +83,11 @@
                     <div class="layui-input-block">
                         <label class="layui-form-label">上级用户组</label>
                         <div class="layui-inline">
-                            <select id="group-pid">
+                            <select name="pid">
                                 <option value="0">顶级用户组</option>
-                                {volist name='authgroups' id='authgroup'}
-                                <option value="{$authgroup['id']}">{$authgroup['title']}</option>
-                                {/volist}
+                                <?php if(is_array($authgroups) || $authgroups instanceof \think\Collection || $authgroups instanceof \think\Paginator): $i = 0; $__LIST__ = $authgroups;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$authgroup): $mod = ($i % 2 );++$i;?>
+                                <option value="<?php echo $authgroup['id']; ?>"><?php echo $authgroup['title']; ?></option>
+                                <?php endforeach; endif; else: echo "" ;endif; ?>
                             </select>
                         </div>
                     </div>
@@ -98,16 +100,15 @@
                     <div class="layui-input-block">
                         <label class="layui-form-label">用户组权限</label>
                         <div class="layui-inline">
-                            {volist name='authrules' id='authrule'}
-                                {if condition='$authrule["level"] eq 0'}
+                            <?php if(is_array($authrules) || $authrules instanceof \think\Collection || $authrules instanceof \think\Paginator): $i = 0; $__LIST__ = $authrules;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$authrule): $mod = ($i % 2 );++$i;if($authrule["level"] == 0): ?>
                                     <hr class="layui-bg-green">
-                                {/if}
+                                <?php endif; ?>
                                 <span>
-                                    {php}echo str_repeat('- - ',$authrule['level']);{/php}
+                                    <?php echo str_repeat('- - ',$authrule['level']); ?>
                                 </span>
-                                <input type="checkbox" name="group-rules" value="{$authrule['id']}" title="{$authrule['title']}" lay-skin="primary">
+                                <input type="checkbox" name="group-rules" value="<?php echo $authrule['id']; ?>" title="<?php echo $authrule['title']; ?>" lay-skin="primary">
                                 <br>
-                            {/volist}
+                            <?php endforeach; endif; else: echo "" ;endif; ?>
                         </div>
                     </div>
                     <div class="layui-input-block">
@@ -129,6 +130,16 @@
                 <div class="layui-tab-item">
                     <form class="layui-form">
                         <div class="layui-input-block">
+                            <label class="layui-form-label">所属用户组</label>
+                            <div class="layui-inline">
+                                <select name="user-group-id">
+                                    <?php if(is_array($authgroups) || $authgroups instanceof \think\Collection || $authgroups instanceof \think\Paginator): $i = 0; $__LIST__ = $authgroups;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$authgroup): $mod = ($i % 2 );++$i;?>
+                                    <option value="<?php echo $authgroup['id']; ?>"><?php echo $authgroup['title']; ?></option>
+                                    <?php endforeach; endif; else: echo "" ;endif; ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="layui-input-block">
                             <label class="layui-form-label">账号</label>
                             <div class="layui-inline">
                                 <input name="username" class="layui-input" autocomplete="off"/>
@@ -140,21 +151,6 @@
                                 <input name="password" class="layui-input" autocomplete="off"/>
                             </div>
                         </div>
-                        <div class="layui-input-block">
-                            <label class="layui-form-label">所属用户组</label>
-                            <div class="layui-inline">
-                                {volist name='authgroups' id='authgroup'}
-                                    {if condition='$authgroup["level"] eq 0'}
-                                        <hr class="layui-bg-green">
-                                    {/if}
-                                    <span>
-                                        {php}echo str_repeat('- - ',$authgroup['level']);{/php}
-                                    </span>
-                                    <input type="checkbox" name="groups" value="{$authgroup['id']}" title="{$authgroup['title']}" lay-skin="primary">
-                                    <br>
-                                {/volist}
-                            </div>
-                        </div>
                         <button id="add-user-btn" class="layui-btn">添加用户</button>
                     </form>
                 </div>
@@ -164,10 +160,10 @@
                     <table id="userbox" class="layui-table" lay-filter="userbox"></table>
                 </div>
                 <!--权限设置-->
-                <!--<div class="layui-tab-item">-->
-                    <!--<div>注册用户默认所属用户组</div>-->
-                    <!--<div>添加用户默认所属用户组</div>-->
-                <!--</div>-->
+                <div class="layui-tab-item">
+                    <div>注册用户默认所属用户组</div>
+                    <div>添加用户默认所属用户组</div>
+                </div>
             </div>
         </div>
     </body>

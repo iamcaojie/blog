@@ -36,4 +36,21 @@ class AuthGroup extends Model
     {
         //pass
     }
+
+    // 获取子分类
+    public function getChildrenId($id){
+        $data = self::select();
+        return $this->_getChildrenId($data,$id);
+    }
+    // 获取子分类
+    public function _getChildrenId($data,$id){
+        static $arr = [];
+        foreach ($data as $k=>$v){
+            if($v['pid'] == $id){
+                $arr[]=$v['id'];
+                $this->_getChildrenId($data,$v['id']);
+            }
+        }
+        return $arr;
+    }
 }

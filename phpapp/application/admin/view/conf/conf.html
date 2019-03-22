@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
     <head>
-        <title>用户权限管理</title>
+        <title>系统设置</title>
         <meta charset="utf-8">
         <meta name="author" content="caojie">
         <meta name="description" content="个人博客" />
@@ -24,6 +24,7 @@
                 <li>查看用户组</li>
                 <li>添加用户</li>
                 <li>查看用户</li>
+                <li>权限设置</li>
             </ul>
             <div class="layui-tab-content">
                 <!--添加权限-->
@@ -81,7 +82,7 @@
                     <div class="layui-input-block">
                         <label class="layui-form-label">上级用户组</label>
                         <div class="layui-inline">
-                            <select id="group-pid">
+                            <select name="pid">
                                 <option value="0">顶级用户组</option>
                                 {volist name='authgroups' id='authgroup'}
                                 <option value="{$authgroup['id']}">{$authgroup['title']}</option>
@@ -129,6 +130,16 @@
                 <div class="layui-tab-item">
                     <form class="layui-form">
                         <div class="layui-input-block">
+                            <label class="layui-form-label">所属用户组</label>
+                            <div class="layui-inline">
+                                <select name="user-group-id">
+                                    {volist name='authgroups' id='authgroup'}
+                                    <option value="{$authgroup['id']}">{$authgroup['title']}</option>
+                                    {/volist}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="layui-input-block">
                             <label class="layui-form-label">账号</label>
                             <div class="layui-inline">
                                 <input name="username" class="layui-input" autocomplete="off"/>
@@ -140,21 +151,6 @@
                                 <input name="password" class="layui-input" autocomplete="off"/>
                             </div>
                         </div>
-                        <div class="layui-input-block">
-                            <label class="layui-form-label">所属用户组</label>
-                            <div class="layui-inline">
-                                {volist name='authgroups' id='authgroup'}
-                                    {if condition='$authgroup["level"] eq 0'}
-                                        <hr class="layui-bg-green">
-                                    {/if}
-                                    <span>
-                                        {php}echo str_repeat('- - ',$authgroup['level']);{/php}
-                                    </span>
-                                    <input type="checkbox" name="groups" value="{$authgroup['id']}" title="{$authgroup['title']}" lay-skin="primary">
-                                    <br>
-                                {/volist}
-                            </div>
-                        </div>
                         <button id="add-user-btn" class="layui-btn">添加用户</button>
                     </form>
                 </div>
@@ -164,10 +160,10 @@
                     <table id="userbox" class="layui-table" lay-filter="userbox"></table>
                 </div>
                 <!--权限设置-->
-                <!--<div class="layui-tab-item">-->
-                    <!--<div>注册用户默认所属用户组</div>-->
-                    <!--<div>添加用户默认所属用户组</div>-->
-                <!--</div>-->
+                <div class="layui-tab-item">
+                    <div>注册用户默认所属用户组</div>
+                    <div>添加用户默认所属用户组</div>
+                </div>
             </div>
         </div>
     </body>

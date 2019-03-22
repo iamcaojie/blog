@@ -40,7 +40,11 @@ layui.use(['layer','form','element','table'], function() {
                 }
             });
         } else if(layEvent === 'del'){
-            layer.confirm('确定删除' + data.title + '权限吗？', function(index) {
+            layer.confirm('确定删除' + data.title + '权限吗？' +
+                '<span style="color:red;">此操作不可撤销</span>' +
+                '<br>1.删除权限数据' +
+                '<br>1.删除对应子权限数据' +
+                '<br>2.删除用户组中对应的权限', function(index) {
                 editAuthRule('/admin/auth/deleteAuthRule', 'POST', {'id': data.id});
                 layer.close(index);
             });
@@ -85,7 +89,11 @@ layui.use(['layer','form','element','table'], function() {
                 }
             });
         } else if(layEvent === 'del'){
-            layer.confirm('确定删除' + data.title + '用户组吗？', function(index) {
+            layer.confirm('确定删除' + data.title + '用户组吗？' +
+                '<span style="color:red;">此操作不可撤销</span>' +
+                '<br>1.删除用户组' +
+                '<br>2.删除对应子用户组' +
+                '<br>3.重置用户组下所有用户为默认用户组', function(index) {
                 editGroup('/admin/auth/deleteAuthGroup', 'POST', {'id': data.id});
                 layer.close(index);
             });
@@ -102,7 +110,7 @@ layui.use(['layer','form','element','table'], function() {
             {field: 'id', title: '用户ID', width:80, sort: true, fixed: 'left'},
             {field: 'nickname', title: '昵称', width:200, sort: true},
             {field: 'username', title: '账号', width:200, sort: true},
-            {field: 'pid', title: '所属用户组', width:100},
+            {field: 'group_title', title: '所属用户组', width:100},
             // {field: 'delete_time', title: '删除时间', width:80},
             // {field: 'update_time', title: '更新时间', width: 80, sort: true},
             // {field: 'create_time', title: '创建时间', width: 80, sort: true},
@@ -123,20 +131,31 @@ layui.use(['layer','form','element','table'], function() {
                 btn: ['修改'],
                 btnAlign: 'c',
                 yes:function(index, layero) {
-                    var editData = {'id':data.id, 'title':$('input[name="group-data"]').val()};
+                    var editData = {
+                        'id':data.id,
+                        'username':$('input[name="username-data"]').val(),
+                        'password':hex_md5($('input[name="password-data"]').val())
+                    };
                     editUser('/admin/auth/editUser', 'POST', editData);
                     layer.close(index);
                 }
             });
         } else if(layEvent === 'del'){
-            layer.confirm('确定删除' + data.username + '用户吗？', function(index) {
+            layer.confirm('确定删除' + data.username + '用户吗？' +
+                '<span style="color:red;">此操作不可撤销</span>' +
+                '<br>1.删除账号密码' +
+                '<br>2.将此用户移出所有用户组' +
+                '<br>3.文章重置为1号用户所有' +
+                '<br>4.删除此用户所有评论' +
+                '<br>5.立即清除此用户Session', function(index) {
                 editUser('/admin/auth/deleteUser', 'POST', {'id': data.id});
                 layer.close(index);
             });
         }
     });
 });
-var groupTitle = $('input[name="group-title"]'),
+var groupPid = $('input[name="group-pid"]'),
+    groupTitle = $('input[name="group-title"]'),
     userName = $('input[name="username"]'),
     passWord = $('input[name="password"]');
 
@@ -153,18 +172,18 @@ $(function() {
     });
 
     // 重载权限表格
-    $('#refresh-btn').click(function () {
-        location.reload(true);
+    $('#refresh-auth-btn').click(function () {
+        authRuleIns.reload();
     });
 
     // 重载用户组表格
-    $('#refresh-btn').click(function () {
-        location.reload(true);
+    $('#refresh-group-btn').click(function () {
+        groupIns.reload();
     });
 
     // 重载用户表格
-    $('#refresh-btn').click(function () {
-        location.reload(true);
+    $('#refresh-user-btn').click(function () {
+        userIns.reload();
     });
 
     // 添加用户权限
@@ -178,7 +197,7 @@ $(function() {
         }
     });
 
-    // 添加分组
+    // 添加用户组
     $('#add-group-btn').click(function () {
         editGroup('/admin/auth/addAuthGroup','POST',getGroupData());
         return false;
@@ -187,29 +206,39 @@ $(function() {
     // 添加用户
     $('#add-user-btn').click(function () {
         editUser('/admin/auth/addUser','POST',getUserData());
-        console.log(getUserData());
         return false;
     })
 });
 
 // 获取分组数据
 function getGroupData() {
+    var groupPidData = $('#group-pid option:selected').val();
     var groupTitleData = groupTitle.val();
     var groupRulesData = '';
-    $('input:checkbox:checked').each(function() {
+    $('input[name="group-rules"]:checkbox:checked').each(function() {
         // groupRulesData.push($(this).val()); // 数组用法
         groupRulesData = groupRulesData + ($(this).val()) + ',';
     });
     groupRulesData = groupRulesData.substr(0,groupRulesData.length-1);
     var groupStatusData = $('input[name="group-status"]:checked').val();
-    return {'title':groupTitleData,'rules':groupRulesData,'status':groupStatusData}
+    return {'pid':groupPidData,'title':groupTitleData,'rules':groupRulesData,'status':groupStatusData}
 }
 
 // 获取用户数据
 function getUserData(){
-    return {'username':userName.val(),'password':hex_md5(passWord.val())};
+    var userGroupPidData = $('#user-group-id option:selected').val();
+    var groupPid = "";
+    $('input[name="groups"]:checkbox:checked').each(function() {
+        // groupRulesData.push($(this).val()); // 数组用法
+        groupPid = groupPid + ($(this).val()) + ',';
+    });
+    groupPid = groupPid.substr(0,groupPid.length-1);
+    return {
+        'piddata':{'pid':groupPid},
+        'account':{'username':userName.val(),'password':hex_md5(passWord.val())}
+    };
 }
-
+// 编辑权限数据
 function editAuthRule(url, method, data) {
     $.ajax({
         type:method || 'POST',
@@ -242,13 +271,14 @@ function editGroup(url, method, data) {
                     groupIns.reload();
                 }else{
                     location.reload(true);
+                    // console.log(data.msg);
                 }
             }
         }
     });
 }
 
-// 编辑
+// 编辑用户数据
 function editUser(url, method, data) {
     $.ajax({
         type:method || 'POST',

@@ -218,13 +218,13 @@ linkAddress = $('input[name="link_address"]');
 
 // 所有数据前端不验证，后端验证数据合法性
 $(function(){
-    // 用户权限管理
-    $('#auth-manage').click(function(){
-        layer.msg('1');
-    });
     // 分类管理
     $('#manage-classification').click(function(){
         getCateData();
+    });
+    // 权限管理
+    $('#auth-manage').click(function(){
+        getAuthData();
     });
     // 关闭网站显示信息
     $("#close-info").click(function() {
@@ -547,14 +547,14 @@ function getCateData(){
     });
 }
 
-// 获取分类框数据
+// 获取权限数据
 function getAuthData(){
  layer.open({
         type: 2,
         skin: 'massageboard-class',
         area: ['850px','500px'],
-        title: '<div><b>分类管理</b></div>',
-        content: ['/admin/cate/index','yes'],
+        title: '<div><b>权限管理</b></div>',
+        content: ['/admin/auth/index','yes'],
         btn: ['刷新父页面使修改生效'],
         yes: function(index, layero){
             layer.close(index);

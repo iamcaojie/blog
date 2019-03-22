@@ -57,7 +57,7 @@ function sortTree1($data, $pid=0, $level=0)
         if($v['pid']==$pid){
             $v['level'] = $level; // 给单条数据添加level字段
             $arr[] = $v; // 首先把顶级分类添加到静态数组中
-            sortTree($data, $v['id'],$level+1); // 递归求解当前栏目的下一栏目
+            sortTree1($data, $v['id'],$level+1); // 递归求解当前栏目的下一栏目
         }
     }
     return $arr;
