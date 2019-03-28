@@ -18,10 +18,8 @@ class Contents extends Base
         }
         $blogList = Blogmodel::getBlogLists($cate,$page,$limit);
         $cateData = Catemodel::queryCate($cate);
-        $webData = Webmodel::get(1);
         $blogList['count']==0?$pageCount = 1:$pageCount =ceil($blogList['count']/$limit);
         return view("contents/contents",[
-            'webdata'=>$webData,
             'cate' => $cate,
             'pagenum' => $page,
             'limitnum'=> $limit,

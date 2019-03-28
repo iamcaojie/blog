@@ -251,7 +251,7 @@ class Index
             'insert into think_links(id, link_cate_id, link_title, link) '
             . 'value (1, 1, "我的博客", "http://www.imcaojie.com");',
             'insert into think_imagecate(id, name, dir)'
-            .'values (1,"轮播图","carousel"),(2,"主图","masterimage"),(3,"详情图","detailimage")'
+            .'values (1,"轮播图","banner"),(2,"主图","master"),(3,"详情图","detail")'
         ];
         foreach ($ddlsql as $value)
         {

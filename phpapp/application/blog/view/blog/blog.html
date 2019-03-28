@@ -1,260 +1,206 @@
 {extend name="public/base" /}
 {block name="header"}
-{__block__}
+    {__block__}
 {/block}
-{block name="title"}<title>我的网站</title>{/block}
+{block name="title"}
+    <title>我的网站</title>
+{/block}
 {block name="css"}
-{__block__}
-<link href="/static/layui/css/layui.css" rel="stylesheet"></link>
-<link href="/static/css/bootstrap.css" rel="stylesheet"></link>
-<link href="/static/css/font-awesome.css" rel="stylesheet"></link>
-<link href="/static/css/index.css" rel="stylesheet"></link>
-<!--[if lt IE 9]>
-<script src="/static/js/html5shiv.js"></script>
-<script src="/static/js/respond.src.js"></script>
-<![endif]-->
-</head>
+    {__block__}
+    <link href="/static/css/common.css" rel="stylesheet"/>
+    <link href="/static/css/index.css" rel="stylesheet"/>
+    <!--[if lt IE 9]>
+        <script src="/static/js/html5shiv.js"></script>
+        <script src="/static/js/respond.src.js"></script>
+    <![endif]-->
+    </head>
 {/block}
-{block name="body"}
-        <!-- 导航栏 -->
-        <nav class="navbar navbar-default navbar-fixed-top">
-          <div class="container-fluid">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-              <a class="navbar-brand" href="http://{$webdata['domain']}">{$webdata['domain']}</a>
-            </div>
-            <!-- 导航条链接 -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-              <ul class="nav navbar-nav">
-                  {volist name='cates' id='cate' offset='1' length='3'}
-                      {if condition='$cate["blog_category"] !== "无"'}
-                            <li class=""><a href="/blog/contents?cate={$cate['id']}&page=1">{$cate.blog_category}</a></li>
-                      {/if}
-                  {/volist}
-                <li class="dropdown">
-                  <a href="" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">其他<span class="caret"></span></a>
-                  <ul class="dropdown-menu">
-                      {volist name="cates" id="cate" offset='4' length='3'}
-                    <li><a href="/blog/contents?cate={$cate['id']}&page=1">{$cate["blog_category"]}</a></li>
-                      {/volist}
-                    <li role="separator" class="divider"></li>
-                      {volist name="cates" id="cate"  offset='7' length='3'}
-                      <li><a href="/blog/contents?cate={$cate['id']}&page=1">{$cate["blog_category"]}</a></li>
-                      {/volist}
-                  </ul>
-                </li>
-              </ul>
-              <form class="navbar-form navbar-left" action="search" method="get">
-                <div class="form-group">
-                  <input type="text" id="search_text" name="q" class="search-form" placeholder="请输入搜索内容">
-                </div>
-                <button type="submit" id="search" class="btn search-btn">搜索</button>
-              </form>
-              <ul class="nav navbar-nav navbar-right">
-                  <li><a id="login" href="/login">{$username?: '注册/登录'}</a></li>
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">相关链接<span class="caret"></span></a>
-                  <ul class="dropdown-menu">
-                    <li><a href="https://github.com/iamcaojie" target="_blank">Github</a></li>
-                    <li><a href="https://leetcode-cn.com/" target="_blank">LeetCode</a></li>
-                    <li><a href="https://dribbble.com/" target="_blank">dribbble</a></li>
-                    <li><a href="/api">Api</a></li>
-                    <li role="separator" class="divider"></li>
-                    <li><a href="/tools/index/online">在线工具</a></li>
-                    <li><a href="/tools/index/download">下载</a></li>
-                    <li><a href="/tools/index/doc">文档链接</a></li>
-                    <li><a href="/tools/index/web">实用网站</a></li>
-                  </ul>
-                </li>
-              </ul>
-            </div><!-- /.navbar-collapse -->
-          </div><!-- /.container-fluid -->
-        </nav>
-        <!--页面内容部分-->
-        <div class="container">
-            <!-- 轮播 -->
-            <div class="row" >
-                <div class="col-sm-8 col-md-8">
-                <!-- <img src="/static/img/contents.png" ></img> -->
-                    <div class="layui-carousel" id="carousel">
-                          <div carousel-item>
-                            <div><img class="carousel-img" src="/static/img/contents.png" ></img></div>
-                            <div><img class="carousel-img" src="/static/img/contents.png" ></img></div>
-                            <div><img class="carousel-img" src="/static/img/contents.png" ></img></div>
-                          </div>
+{block name="nav"}
+    {__block__}
+{/block}
+{block name="container"}
+    <!--页面内容部分-->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="layui-carousel" id="banner">
+                    <div carousel-item>
+                        {volist name="bannerImages" id="bannerImage"}
+                            <div><img class="carousel-img" src="/uploads/banner/{$bannerImage['address']}.{$bannerImage['ext']}">
+                            </div>
+                        {/volist}
                     </div>
                 </div>
-                <div class="col-sm-4 col-md-4 intro">
-                    <div id="introduction">
-                        <div id="avatar">
-                            <div>
-                                <a href="/temp/index/resume"><img src="/static/img/avatar.jpg"></img></a>
+                <div id="notice">
+                    <div>
+                        <div class="icon">不</div>
+                        <div class="icon">知</div>
+                        <div class="icon">道</div>
+                        <div class="icon">写</div>
+                        <div class="icon">什</div>
+                        <div class="icon">么</div>
+                    </div>
+                </div>
+                <div id="last-update">
+                    <a class="channel">最近更新</a>
+                    <div class="list">
+                        <div>
+                            <div class="img-box">
+                                <img class="article-img" src="/static/img/python.jpg"/>
+                            </div>
+                            <div class="article-box">
+                                <h1><a>python从入门到实践</a></h1>
+                                <div class="tags">
+                                    <span class="label label-primary">2018-11-11 00：00</span>
+                                    <span class="label label-default">个性标签</span>
+                                    <span class="label label-success">个性标签</span>
+                                    <span class="label label-info">原创</span>
+                                    <span class="label label-warning">Python</span>
+                                </div>
+                                <div class="article-detail">本书是一本针对所有层次的Python 读者而作的Python 入门书。全书分两部分：第一部分介绍用Python 编程所必须了解的基本概念，包括matplotlib、NumPy 和Pygal 等强大的Python 库和工具介绍，以及列表、字典、if 语句、类、文件与异常、代码测试等内容；第二部分将理论付诸实践，讲解如何开发三个项目，包括简单的Python 2D 游戏开发如何利用数据生成交互式的信息图，以及创建和定制简单的Web 应用，并帮读者解决常见编程问题和困惑。</div>
                             </div>
                         </div>
-                        <div id="introduction-box">
-                            <dl>
-                                <div>
-                                <dt>标题标题</dt>
-                                <dd>内容内容</dd>
-                                </div>
-                                <div>
-                                <dt>标题标题</dt>
-                                <dd>内容内容</dd>
-                                </div>
-                                <div>
-                                <dt>标题标题</dt>
-                                <dd>内容内容</dd>
-                                </div>
-                            </dl>
+                        <div class="article-like">
+                            <span>0人浏览</span>
+                            <span>0人评论</span>
+                            <span>0人点赞</span>
+                            <span style="float:right;">
+                                <a href="">阅读全文>>></a>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="list"></div>
+                    <div class="list"></div>
+                    <div class="list"></div>
+                    <div class="list"></div>
+                    <div class="list"></div>
+                    <div class="list"></div>
+                    <div class="list"></div>
+                    <div class="list"></div>
+                    <div class="list"></div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div id="about-me" class="channel-box">
+                    <a class="channel">关于我</a>
+                    <div>
+                        <a href="https://iamcaojie.github.io"><img id="avatar" src="/static/img/avatar.jpg"/></a>
+                    </div>
+                    <div id="info">
+                        <p>姓名：</p>
+                        <p>职业：</p>
+                        <p>年龄：</p>
+                    </div>
+                    <div id="contact">
+                        <a href="https://github.com/iamcaojie" target="_blank" title="Github-iamcaojie">
+                            <i class="fa fa-github"></i>
+                        </a>
+                        <a href="https://weibo.com/iamcaojie96" target="_blank" title="微博-入戏太深莫当真">
+                            <i class="fa fa-weibo"></i>
+                        </a>
+                        <a href="javascript:void(0);">
+                            <i class="fa fa-qq"></i>
+                        </a>
+                        <a href="javascript:void(0);">
+                            <i class="fa fa-wechat"></i>
+                        </a>
+                    </div>
+                </div>
+                <div id="music" class="channel-box">
+                    <a class="channel">音乐播放</a>
+                    <div id="play-box">
+                        <audio src="">
+                            <span>浏览器不支持audio标签</span>
+                        </audio>
+                        <div style="width:80px;margin: auto;">
+                            <img src="/static/img/python.jpg" style="width:80px;height:80px;border-radius: 50%;"/>
+                        </div>
+                        <div>
+                            <a id="play-model" href="javascript:void(0);">循环播放</a>
+                            <a id="prev" href="javascript:void(0);"><i class="fa fa-step-backward" style="font-size: 36px;"></i></a>
+                            <a id="play" href="javascript:void(0);"><i class="fa fa-play" style="font-size: 36px;"></i></a>
+                            <a id="next" href="javascript:void(0);"><i class="fa fa-step-forward" style="font-size: 36px;"></i></a>
+                            <a id="" href="javascript:void(0);">静音</a>
+                            <span id="voice-bar">
+                                <span id="voiced-bar" style="background:black;width:67px;height: 2px;"></span>
+                            </span>
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- 展示栏 -->
-            <div class="row" >
-                    <h1><i class="fa fa-rotate-left"></i><a href="http://www.baidu.com"> 最近更新</a></h1>
-                <div class="col-sm-6 col-md-4 col-lg-3 ">
-                    <div class="thumbnail">
-                        <div class="img-Placeholder">
-                            <a href="http://www.baidu.com">
-                                <img src="/static/img/img.jpg" style="width:300px; height:150px;"/>
-                            </a>
-                        </div>
-                        <div class="topic-contents">
-                            <a href="https://www.baidu.com">
-                               <span class="title">主题</span>
-                               <br/>
-                               <span class="content">文本内容</span> 
-                            </a>
-                        </div>
+                <div id="click" class="channel-box">
+                    <a class="channel">点击排行</a>
+                    <ul id="click-rank">
+                        <li>
+                            <p>
+                                <span class="number">1</span>
+                                <span>Python从入门到实践</span>
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                <span class="number">2</span>
+                                <span>
+                                    <a>Python从入门到实践实践实践实践实践实践实践实践实践实践实践实践实践实践实践</a>
+                                </span>
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+                <div id="tags-list" class="channel-box">
+                    <a class="channel">标签聚合</a>
+                    <div>
+                        <ul id="tag">
+                            <li><a>javascript权威指南</a></li>
+                            <li><a>javascript权威指南</a></li>
+                            <li><a>javascript权威指南</a></li>
+                        </ul>
                     </div>
                 </div>
-            </div>
-            <!-- 下一栏 -->
-            <div class="row" style="height:300px;">
-                <h1><i class="fa fa-star"></i> 热门点击</h1>
-            </div>
-            <!-- 下一栏 -->
-            <div class="row" style=>
-                <h1><i class="fa fa-sort"> 分类浏览</i></h1>
-                <div class="col-sm-8 col-md-4 col-lg-4">
-                    <div class="contents">
-                        <div class="contents-title">
-                            <h2>Python</h2>
-                            <div class="more">
-                                <div>
-                                    <a href="/blog/python"><span class="glyphicon glyphicon-plus-sign"></span>更多</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="contents-text">
-                            <ul>
-                                <li>
-                                    <span class="article-title">使用 Python 解释器</span>
-                                    <span class="article-date">2018-10-20</span>
-                                </li>
-                                <li>
-                                    <span class="article-title">使用 Python 解释器</span>
-                                    <span class="article-date">2018-10-20</span>
-                                </li>                                <li>
-                                    <span class="article-title">使用 Python 解释器</span>
-                                    <span class="article-date">2018-10-20</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>                
-                <div class="col-sm-8 col-md-4 col-lg-4">
-                    <div class="contents">
-                        <div class="contents-title">
-                            <h2>Python</h2>
-                            <div class="more">
-                                <div>
-                                    <a href="/blog/python"><span class="glyphicon glyphicon-plus-sign"></span>更多</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="contents-text">
-                            <ul>
-                                <li>
-                                    <span class="article-title">使用 Python 解释器</span>
-                                    <span class="article-date">2018-10-20</span>
-                                </li>
-                                <li>
-                                    <span class="article-title">使用 Python 解释器</span>
-                                    <span class="article-date">2018-10-20</span>
-                                </li>                                <li>
-                                    <span class="article-title">使用 Python 解释器</span>
-                                    <span class="article-date">2018-10-20</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>                
-                <div class="col-sm-8 col-md-4 col-lg-4">
-                    <div class="contents">
-                        <div class="contents-title">
-                            <h2>Python</h2>
-                            <div class="more">
-                                <div>
-                                    <a href="/blog/python"><span class="glyphicon glyphicon-plus-sign"></span>更多</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="contents-text">
-                            <ul>
-                                <li>
-                                    <span class="article-title">使用 Python 解释器</span>
-                                    <span class="article-date">2018-10-20</span>
-                                </li>
-                                <li>
-                                    <span class="article-title">使用 Python 解释器</span>
-                                    <span class="article-date">2018-10-20</span>
-                                </li>                                <li>
-                                    <span class="article-title">使用 Python 解释器</span>
-                                    <span class="article-date">2018-10-20</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+                <div id="wechatmp" class="channel-box">
+                    <a class="channel">小程序</a>
+                    <div>开发中...</div>
                 </div>
-
             </div>
-            <!-- 其他 -->
-            <div class="row">
-               
-            </div>
-            <!-- 侧边悬浮栏 -->
-            <div id="Sidebar">
-                <div id="Sidebar-box">
-                    <div id="massage-box"></div>
-                    <div id="wechat-box" style='display:none'>
-                        <img src="/static/img/wechat.png"/>
-                    </div>
-                </div>
-                <div id="Sidebar-display">
-                <div id="massage"></div>
-                <div id="wechat"></div>
-                <div id="toTop"></div>
-               </div>
-            </div>
-
         </div>
-        
-        <!-- 页面底栏 -->
-        <!-- <div class="container-fluid"> -->
-            <footer>
-                <div id="foot"></div>
-                <span id="copyright">COPYRIGHT 2019 CAOJIE. ALL RIGHTS RESERVED.</span><br>
-                <span><a href="http://www.miitbeian.gov.cn">{$webdata['beian_code']}</a></span>
-            </footer>
+    </div>
+    <!-- 页面底栏 -->
+    <footer>
+        <div id="foot">
+            <div id="foot-left">
+                <ul>
+                    <li><a href="http://www.bootcss.com/" target="_blank">Bootstrap中文网</a></li>
+                    <li><a href="http://www.bootcss.com/" target="_blank">Bootstrap中文网</a></li>
+                    <li><a href="http://www.bootcss.com/" target="_blank">Bootstrap中文网</a></li>
+                    <li><a href="http://www.bootcss.com/" target="_blank">Bootstrap中文网</a></li>
+                    <li><a href="http://www.bootcss.com/" target="_blank">Bootstrap中文网</a></li>
+                    <li><a href="http://www.bootcss.com/" target="_blank">Bootstrap中文网</a></li>
+                </ul>
+            </div>
+            <div id="foot-right">
+
+            </div>
+        </div>
+        <div id="web-info">
+            <span><a href="/api.html">Api</a></span>
+            <span><a href="/timeline.html">时间线</a></span>
+            <span><a href="/article.html">文章存档</a></span>
+            <span><a href="/tools/online">在线工具</a></span>
+            <span><a href="/about.html">在线文档</a></span>
+            <span><a href="/about.html">相关下载</a></span>
+            <span><a href="/about.html">实用网站</a></span>
+            <span><a href="/about.html">关于本站</a></span>
+        </div>
+        <span id="copyright">COPYRIGHT 2018-2019 CAOJIE. ALL RIGHTS RESERVED.</span><br>
+        <span><a href="http://www.miitbeian.gov.cn">{$webdata['beian_code']}</a></span>
+    </footer>
+{/block}
+{block name="sidebar"}
+    {__block__}
 {/block}
 {block name="js"}
-{__block__}
-        <script src="/static/js/index.js"></script>
+    {__block__}
+    <script src="/static/js/index.js"></script>
 {/block}
 {block name="footer"}
+    {__block__}
+{/block}

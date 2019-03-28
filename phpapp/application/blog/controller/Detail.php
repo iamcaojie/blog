@@ -4,7 +4,7 @@ namespace app\blog\controller;
 use app\admin\model\Blog as Blogmodel;
 use app\admin\model\Comments as Commentsmodel;
 
-class Detail
+class Detail extends Base
 {
     public function index($id)
     {

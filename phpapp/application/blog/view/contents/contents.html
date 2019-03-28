@@ -9,14 +9,17 @@
         <link href="/static/css/bootstrap.css" rel="stylesheet"></link>
         <link href="/static/css/font-awesome.css" rel="stylesheet"></link>
         <link href="/static/css/contents.css" rel="stylesheet"></link>
+        <!--<link href="/static/css/index.css" rel="stylesheet"></link>-->
         <!--[if lt IE 9]>
             <script src="/static/js/html5shiv.js"></script>
             <script src="/static/js/respond.src.js"></script>
         <![endif]-->
     </head>
 {/block}
-{block name="body"}
-        <h1><a href="javascript:void(0);">{$catedata['blog_category']}</a></h1>
+{block name="nav"}
+{__block__}
+{/block}
+{block name="container"}
         <ol class="breadcrumb">
             <li><a href="http://{$webdata['domain']}">首页</a></li>
             <li class="active">{$catedata['blog_category']}</li>
@@ -84,10 +87,11 @@
               </ul>
             </div>
         </nav>
-        {/block}
-        {block name="js"}
-        {__block__}
-        <script src="/static/js/toTop.js"></script>
-        <script src="/static/js/contents.js"></script>
-        {/block}
-        {block name="footer"}
+{/block}
+{block name="js"}
+    {__block__}
+    <script src="/static/js/toTop.js"></script>
+    <script src="/static/js/contents.js"></script>
+{/block}
+{block name="footer"}
+{/block}

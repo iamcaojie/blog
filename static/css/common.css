@@ -1,0 +1,171 @@
+@charset"utf-8";
+/*导航栏样式*/
+/*
+覆盖原始bootstrap样式
+*/
+.form-control{
+    border-radius: 0;
+}
+.btn{
+    border-radius: 0;
+}
+#quick-search{
+    position: absolute;
+    width:100px;
+    height:30px;
+    left:30px;
+    top:30px;
+}
+
+/* 修复平板状态 */
+@media (max-width: 1014px) and (min-width: 768px){
+    #sign{
+        display:none;
+    }
+}
+@media (max-width: 1014px) and (min-width: 768px){
+    #sign{
+        display:none;
+    }
+}
+/* 页面样式 */
+/* 显示所有元素边框 */
+/*body *:hover{*/
+    /*border:0.5px solid rgb(176,58,91);*/
+/*}*/
+body {
+    background:rgb(230,230,230);
+    padding-top: 70px !important;
+}
+@media (max-width:868px) and (min-width:758px){
+    body {
+        padding-top: 105px;
+    }
+}
+/*浏览器滚动条样式*/
+::-webkit-scrollbar {
+    width: 10px;
+    height: 4px;
+}
+::-webkit-scrollbar-track {
+    background: rgb(255, 255, 255);
+    border-radius: 8px;
+}
+::-webkit-scrollbar-thumb {
+    background: rgb(201, 201, 202);
+    border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: rgb(162, 162, 163);
+}
+
+/*全局选择样式*/
+::selection{
+    background:rgb(176,58,91);
+    /*background:rgb(52,83,145);*/
+    color:white;
+}
+::-moz-selection{
+    background:rgb(176,58,91);;
+    color:white;
+}
+/*::-webkit-selection{background:blue; color:white;}*/
+
+/* 全局a标签样式 */
+a:link{
+    /*color:white;*/
+    text-decoration:none;
+}
+a:visited{
+    color:white;
+    text-decoration:none;
+}
+a:hover{
+    color:rgb(176,58,91);
+    text-decoration:none;
+}
+a:active{
+    color:rgb(176,58,91);
+    text-decoration:none;
+}
+
+
+/* 全局标题样式 */
+h1{
+    font-size:20px;
+    text-align:center;
+}
+h2{
+    font-size:16px;
+    display: inline;
+}
+
+/*留言板*/
+#massage-board {
+    color:rgb(176,58,91);
+    padding:0 20px 0 20px;
+}
+#massage-board input{
+    border: 1px solid rgb(176,58,91);
+    padding: 4px;
+    width:100%;
+    height: 40px;
+}
+.massageboard-class .layui-layer-btn .layui-layer-btn0{
+    border-color: rgb(176,58,91);
+    background-color: rgb(176,58,91);
+}
+#massage-text{
+    width:100%;
+    height: 120px;
+    padding: 4px;
+    resize: none;
+    border: 1px solid rgb(176,58,91);
+}
+#Sidebar{
+    width: 162px;
+    height: 120px;
+    bottom: 80px;
+    right: 2%;
+    position: fixed;
+    cursor: pointer;
+    z-index: 10;
+}
+
+/*侧边悬浮栏*/
+@media (max-width: 800px){
+    #Sidebar{
+        display:none;
+    }
+}
+#Sidebar-box{
+    float:left;
+
+}
+#Sidebar-display{
+    width:40px;
+    height:120px;
+    float:right;
+}
+#Sidebar-display div{
+    width:40px;
+    height: 40px;
+}
+#massage{
+    background:gray;
+}
+#wechat{
+    background:blue;
+}
+#toTop{
+    background:green;
+}
+#wechat-box{
+    width: 120px;
+    height: 120px;
+    z-index: 10;
+}
+#Sidebar img{
+    width:100%;
+    height:100%;
+}

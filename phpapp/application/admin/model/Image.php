@@ -30,4 +30,12 @@ class Image extends Model
     {
         //pass
     }
+
+    // 获取轮播图
+    public static function getBannerImage()
+    {
+        return self::where('imagecate_id',1)
+            ->field('address,ext')
+            -> select();
+    }
 }

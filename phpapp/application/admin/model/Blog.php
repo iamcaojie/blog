@@ -27,6 +27,28 @@ class Blog extends Model
     {
         return $this->hasMany('comments',' ','tag_id');
     }
+    // 格式化博客数据
+    protected function formatData($data)
+    {
+        foreach ($data as $value){
+            // 写入简略博客详情
+            $value['blog_text_omit'] = sub_str(($value['blog_text']),200);
+            // 修改时间格式
+            $value['update_time_today'] = date('Y-m-s',strtotime($value['update_time']));
+            // 格式化个性标签
+            $value['unique_tag'] =
+                // 写入关联的分类
+            $value['cate'] = self::get($value['id']) -> cate -> blog_category;
+            $tag = [];
+            // 写入关联的标签
+            foreach(self::get($value['id']) -> tags as $temp)
+            {
+                array_push($tag, $temp['tag']);
+            }
+            $value['tag'] = $tag;
+        }
+        return $data;
+    }
 
     // 获取博客列表(后台layui调用)
     public static function getBlogList($page,$limit)
@@ -96,9 +118,9 @@ class Blog extends Model
     // 不删除关联数据
     public function deleteBlog($id)
     {
-        $deleteblog = self::get($id);
-        $deleteblog -> delete_time = strtotime('now');
-        $deleteblog -> save();
+        $deleteBlog = self::get($id);
+        $deleteBlog -> delete_time = strtotime('now');
+        $deleteBlog -> save();
         return ["code"=>0, "msg"=>"删除成功"];
     }   
     // 编辑关联数据，仅编辑关联的中间表数据
@@ -129,4 +151,32 @@ class Blog extends Model
         $blog['tags'] = $tag;
         return ["code"=>0,"msg"=>"查询完成","data"=>$blog];
     }
+
+    public static function getLastUpdate()
+    {
+        $LastUpdateData = self::where('detele_name',null)
+            ->order('update_time desc')
+            ->limit(10)
+            ->select();
+        // 查询原始分类数据 查询原始标签数据并添加
+        foreach ($LastUpdateData as $value){
+            // 写入简略博客详情
+            $value['blog_text_omit'] = sub_str(($value['blog_text']),200);
+            // 修改时间格式
+            $value['update_time_today'] = date('Y-m-s',strtotime($value['update_time']));
+            // 格式化个性标签
+            $value['unique_tag'] =
+            // 写入关联的分类
+            $value['cate'] = self::get($value['id']) -> cate -> blog_category;
+            $tag = [];
+            // 写入关联的标签
+            foreach(self::get($value['id']) -> tags as $temp)
+            {
+                array_push($tag, $temp['tag']);
+            }
+            $value['tag'] = $tag;
+        }
+        return $LastUpdateData;
+    }
+
 }
