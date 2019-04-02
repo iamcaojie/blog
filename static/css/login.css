@@ -21,78 +21,36 @@
         margin-top:50px;
     }
 }
+
 .notice{
-    font-size:20px;
+    font-size:16px;
+    margin:0 0 5px 0;
 }
 @media (max-width: 400px){
     .notice{
-        font-size:15px;
+        font-size:12px;
     }
 }
-label{
-    font-weight: normal;
+.input-group-addon{
+    width: 100px;
 }
-#user{
-    width:262.8px;
-    margin:auto;
-    font-size:17px;
-    margin-top:25px;
+.input-group{
+    width:400px;
+        margin: 10px 0 10px 0;
 }
-#user input{
-    width:75%;
-    height:30px;
-    color:rgb(176,58,91);
-    border:1px solid rgb(176,58,91);
-    padding-left:5px;
+.login-input{
+
 }
-/* #user input:focus{ */
-    /* border:1px solid rgb(176,58,91); */
-    /* color:white; */
-/* } */
-a:link{
-    color:rgb(176,58,91);
+.sendMail{
+    display: inline-block;
+    margin: 1px 1px 5px 1px;
 }
-a:visited{
-    text-decoration:none;
-    color:rgb(176,58,91);
-}
-a:hover{
-    text-decoration:none;
-    color:rgb(176,58,91);
-}
-a:active{
-    text-decoration:none;
-    color:rgb(176,58,91);
-}
-button{
-    display:block;
-    margin: auto;
-    margin-top:15px;
-    background-color: white; 
-    border: 1px solid rgb(176,58,91);
-    color: rgb(176,58,91);
-    padding: 8px 60px;
-    text-align: center;
-    text-decoration: none;
-    font-size: 18px;
-    transition-duration: 0.2s;
-    -webkit-transition-duration: 0.2s;
-}
-button:hover{
-    color:white;
-    background:rgb(176,58,91);
+.btn{
+    margin: 0 0 0 110px;
+    width: 200px;
 }
 
 .back{
-    margin-top:30px;
-}
-#edit-box{
-    display:block;
-    max-width:60%;
-    margin:auto;
-}
-#edit-box input{
-    width:150px;
-    border:1px solid rgb(176,58,91);
+    margin-top:10px;
 }
 

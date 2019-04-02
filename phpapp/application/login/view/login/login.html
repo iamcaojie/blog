@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
     <head>
-        <title>登录页面</title>
+        <title>登录页</title>
         <meta charset="utf-8">
         <meta name="author" content="caojie">
         <meta name="description" content="个人博客" />
@@ -9,52 +9,107 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="renderer" content="webkit" />
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-        <link href="/static/css/Normalize.css" rel="stylesheet"></link>
-        <link href="/static/layui/css/layui.css" rel="stylesheet"></link>
-        <link href="/static/css/bootstrap.css" rel="stylesheet"></link>
-        <link href="/static/css/font-awesome.css" rel="stylesheet"></link>
-        <link href="/static/css/login.css" rel="stylesheet"></link>
+        <link href="/static/css/Normalize.css" rel="stylesheet"/>
+        <link href="/static/layui/css/layui.css" rel="stylesheet"/>
+        <link href="/static/css/bootstrap.css" rel="stylesheet"/>
+        <link href="/static/css/font-awesome.css" rel="stylesheet"/>
+        <link href="/static/css/login.css" rel="stylesheet"/>
         <!--[if lt IE 9]>
             <script src="/static/js/html5shiv.js"></script>
             <script src="/static/js/respond.src.js"></script>
         <![endif]-->
     </head>
     <body>
-        <div id="login-box">
-            <form id="loginform" action="" method="post">
-                <div class="notice">请输入登录信息</div>
-                <div id="user">
-                    <label><span>账号</span></label> 
-                    <input type="text" name="username" autocomplete="off"/>
-                    <div style="height:5px;"></div>
-                    <div id="password-box">
-                        <label><span>密码</span></label> 
-                        <input type="password" name="password" autocomplete="off"/>
+        <div class="layui-tab layui-tab-brief">
+            <ul class="layui-tab-title">
+                <li class="layui-this">登录</li>
+                <li>注册</li>
+                <li>重置密码</li>
+                <li>测试登陆</li>
+            </ul>
+            <div class="layui-tab-content">
+                <!--登陆-->
+                <div class="layui-tab-item layui-show">
+                    <div class="notice">请输入登录信息</div>
+                    <div class="input-group">
+                        <span class="input-group-addon">邮  箱 </span>
+                        <input type="text" class="form-control login-input" name="username" autocomplete="off" placeholder="请输入邮箱"/>
                     </div>
-                    <div id="vcode-box" style="display:none;">
-                        <label><span>验证码</span></label> 
-                        <input type="text" name="vcode" autocomplete="off"/>
-                        <p>
-                            <a href="javascript:void(0);" id="sendMail">发送</a>
-                        </p>
+                    <div class="input-group">
+                        <span class="input-group-addon">密  码 </span>
+                        <input type="password" class="form-control login-input" name="password" autocomplete="off" placeholder="请输入密码"/>
                     </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">验证码</span>
+                        <input type="text" class="form-control login-input" name="vcode" autocomplete="off" />
+                    </div>
+                    <div>
+                        <img class="captcha" style="width:120px;cursor: pointer;" src="{:captcha_src()}" alt="验证码"/>
+                    </div>
+                    <botton class="btn btn-default btn-lg" id="login-btn">登陆</botton>
                 </div>
-                    <button id="submit-btn" type="submit" class="login" >登录</button>  
-            </form>
-            <div class="back">
-                <a href="http://{$webdata['domain']}">返回首页</a>
-                <a id="register-btn" href="javascript:void(0)">注册</a>
-                <a id="login-btn" href="javascript:void(0)" style="display:none;">登陆</a>
-                <a id="forget-btn" href="javascript:void(0)">重置密码</a>
+                <!--注册-->
+                <div class="layui-tab-item">
+                    <div class="notice">请输入注册信息</div>
+                    <div class="input-group">
+                        <span class="input-group-addon">邮  箱 </span>
+                        <input type="text" class="form-control login-input" name="rusername" autocomplete="off" placeholder="请输入邮箱"/>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">密  码 </span>
+                        <input type="password" class="form-control login-input" name="rpassword" autocomplete="off" placeholder="请输入密码"/>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">验证码</span>
+                        <input type="text" class="form-control login-input" name="rvcode" autocomplete="off" />
+                    </div>
+                    <img class="captcha" style="width:120px;cursor: pointer;" src="{:captcha_src()}" alt="验证码"/>
+                    <div class="input-group">
+                        <span class="input-group-addon">邮箱验证码</span>
+                        <input type="text" class="form-control login-input" name="rmailcode" autocomplete="off" />
+                    </div>
+                    <div>
+                        <a href="javascript:void(0);" data="register" class="sendMail">发送验证邮件</a>
+                    </div>
+                    <botton class="btn btn-default btn-lg" id="register-btn">注册</botton>
+                </div>
+                <!--重置密码-->
+                <div class="layui-tab-item">
+                    <div class="notice">重置密码</div>
+                    <div class="input-group">
+                        <span class="input-group-addon">邮  箱 </span>
+                        <input type="text" class="form-control login-input" name="musername" autocomplete="off" placeholder="请输入邮箱"/>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">密  码 </span>
+                        <input type="password" class="form-control login-input" name="mpassword" autocomplete="off" placeholder="请输入新密码"/>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">验证码</span>
+                        <input type="text" class="form-control login-input" name="mvcode" autocomplete="off" />
+                    </div>
+                    <img class="captcha" style="width:120px;cursor: pointer;" src="{:captcha_src()}" alt="验证码"/>
+                    <div class="input-group">
+                        <span class="input-group-addon">邮箱验证码</span>
+                        <input type="text" class="form-control login-input" name="mmailcode" autocomplete="off" />
+                    </div>
+                    <div>
+                        <a href="javascript:void(0);" data="reset" class="sendMail">发送验证邮件</a>
+                    </div>
+                    <botton class="btn btn-default btn-lg" id="reset-btn">重置密码</botton>
+                </div>
+                <div class="layui-tab-item">
+                    <div class="notice">测试登陆</div>
+                    <div>账号：demo</div>
+                    <div>密码：demo123</div>
+                </div>
             </div>
-        </div>
         </div>
         <script src="/static/js/jquery3.3.1.js"></script>
         <script src="/static/js/bootstrap.js"></script>
         <script src="/static/layui/layui.js"></script>
         <script src="/static/js/canvas-particle.js"></script>
         <script src="/static/js/md5.js"></script>
-        <script src="/static/js/toTop.js"></script>
         <script src="/static/js/login.js"></script>
         <script type="text/javascript">
             window.onload = function(){
@@ -72,7 +127,7 @@
                             max_conn: 10//点到点最大连接数
                     }
                     //调用
-                    CanvasParticle(config);
+//                    CanvasParticle(config);
             };
         </script>
     <canvas width="0px" height="0px;" style="top: 0px; left: 0px;"></canvas>

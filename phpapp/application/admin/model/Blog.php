@@ -25,27 +25,43 @@ class Blog extends Model
     // 博客与评论一对多关联
     public function comments()
     {
-        return $this->hasMany('comments',' ','tag_id');
+        return $this->hasMany('comments','id','tag_id');
     }
     // 格式化博客数据
-    protected function formatData($data)
+    protected static function formatData($data)
     {
         foreach ($data as $value){
+
             // 写入简略博客详情
-            $value['blog_text_omit'] = sub_str(($value['blog_text']),200);
-            // 修改时间格式
-            $value['update_time_today'] = date('Y-m-s',strtotime($value['update_time']));
-            // 格式化个性标签
-            $value['unique_tag'] =
-                // 写入关联的分类
-            $value['cate'] = self::get($value['id']) -> cate -> blog_category;
-            $tag = [];
-            // 写入关联的标签
-            foreach(self::get($value['id']) -> tags as $temp)
-            {
-                array_push($tag, $temp['tag']);
+            if(isset($value['blog_text'])){
+                $value['blog_text_omit'] = sub_str(($value['blog_text']),200);
             }
-            $value['tag'] = $tag;
+
+            // 修改时间格式
+            $value['f_update_time'] = date('Y-m-s',strtotime($value['update_time']));
+
+            // 格式化个性标签
+            if(isset($value['unique_tag'])){
+                if(strpos($value['unique_tag'],',') === false){
+                    $value['f_unique_tag'] = '';
+                }else{
+                    $value['f_unique_tag'] = explode(',',$value['unique_tag']);
+                }
+            }
+
+            // 写入关联的分类
+            if(isset($value['cate'])){
+                $value['f_cate'] = self::get($value['id'])
+                    -> cate
+                    -> blog_category;
+                // 写入关联的标签
+                $tag = [];
+                foreach(self::get($value['id']) -> tags as $temp)
+                {
+                    array_push($tag, $temp['tag']);
+                }
+                $value['tag'] = $tag;
+            }
         }
         return $data;
     }
@@ -53,61 +69,31 @@ class Blog extends Model
     // 获取博客列表(后台layui调用)
     public static function getBlogList($page,$limit)
     {
-        $pagelist = self::where('delete_time',null)
+        $blogData = self::where('delete_time',null)
             -> limit(($page-1)*$limit,$limit)
             -> select();
-        $blogcount = self::where('delete_time',null)
+        $blogCount = self::where('delete_time',null)
             -> count();
-
-        // 查询原始分类数据 查询原始标签数据并添加
-        foreach ($pagelist as $value){
-
-            // 写入关联的分类
-            $value['cate'] = self::get($value['id']) -> cate -> blog_category;
-            $tag = [];
-            // 写入关联的标签
-            foreach(self::get($value['id']) -> tags as $temp)
-            {
-                array_push($tag, $temp['tag']);
-            }
-            $value['tag'] = $tag;
-        }
-        return ["code"=>0,"msg"=>"列表查询完成","count"=>$blogcount,"data"=>$pagelist];
+        $blogData = self::formatData($blogData);
+        return ["code"=>0,"msg"=>"列表查询完成","count"=>$blogCount,"data"=>$blogData];
     }
 
     // 获取博客列表(目录页调用）
     public static function getBlogLists($cate,$page,$limit)
     {
-        $pagelist = self::where('delete_time',null)
+        $blogData = self::where('delete_time',null)
             -> where('cate_id',$cate)
             -> limit(($page-1)*$limit,$limit)
             -> select();
-        $blogcount = self::where('delete_time',null)
+        $blogCount = self::where('delete_time',null)
             -> where('cate_id',$cate)
             -> count();
-
-        // 查询原始分类数据 查询原始标签数据并添加
-        foreach ($pagelist as $value){
-            // 写入简略博客详情
-            $value['blog_text_omit'] = sub_str(($value['blog_text']),200);
-            // 修改时间格式
-            $value['update_time_today'] = date('Y-m-s',strtotime($value['update_time']));
-            // 写入关联的分类
-            $value['cate'] = self::get($value['id']) -> cate -> blog_category;
-            $tag = [];
-            // 写入关联的标签
-            foreach(self::get($value['id']) -> tags as $temp)
-            {
-                array_push($tag, $temp['tag']);
-            }
-            $value['tag'] = $tag;
-        }
-        return ["code"=>0,"msg"=>"列表查询完成","count"=>$blogcount,"data"=>$pagelist];
+        $blogData = self::formatData($blogData);
+        return ['blogData' => $blogData,'blogCount' => $blogCount];
     }
 
     public static function createBlog($data)
     {
-
         self::create($data["blogdata"]);
         // 新增博客的标签数据,tag_data要与前台一致，只能增加关联的中间表数据
         self::get(self::getLastInsID()) -> tags() -> saveAll($data["tagdata"]);
@@ -129,11 +115,12 @@ class Blog extends Model
         // 更新数据
         $blog = self::update($data["blogdata"]);
         //  删除所有关联，再添加新的关联
-        $editblog = self::get($data["blogdata"]['id']);
-        $editblog -> tags() -> detach();
-        $editblog-> tags() -> saveAll($data["tagdata"]);
+        $editBlog = self::get($data["blogdata"]['id']);
+        $editBlog -> tags() -> detach();
+        $editBlog-> tags() -> saveAll($data["tagdata"]);
         return ["code"=>0, "msg"=>"修改成功"];
     }
+
     // 查询表数据，返回关联表的标签id
     public static function queryBlog($id)
     {
@@ -143,40 +130,44 @@ class Blog extends Model
         if(!$blog){
             return ["code"=>-1,"msg"=>"文章不存在"];
         }
-        $tag = [];
-        foreach($blog -> tags as $temp)
-        {
-            array_push($tag,$temp['id']);
-        }
-        $blog['tags'] = $tag;
-        return ["code"=>0,"msg"=>"查询完成","data"=>$blog];
+        $blog = self::formatData([$blog]);
+        return ["code"=>0,"msg"=>"查询完成","data"=>$blog[0]];
     }
 
-    public static function getLastUpdate()
+    public static function getLastUpdate($count)
     {
-        $LastUpdateData = self::where('detele_name',null)
-            ->order('update_time desc')
-            ->limit(10)
+        $LastUpdateData = self::where('delete_time',null)
+            -> order('update_time desc')
+            ->limit($count)
             ->select();
-        // 查询原始分类数据 查询原始标签数据并添加
-        foreach ($LastUpdateData as $value){
-            // 写入简略博客详情
-            $value['blog_text_omit'] = sub_str(($value['blog_text']),200);
-            // 修改时间格式
-            $value['update_time_today'] = date('Y-m-s',strtotime($value['update_time']));
-            // 格式化个性标签
-            $value['unique_tag'] =
-            // 写入关联的分类
-            $value['cate'] = self::get($value['id']) -> cate -> blog_category;
-            $tag = [];
-            // 写入关联的标签
-            foreach(self::get($value['id']) -> tags as $temp)
-            {
-                array_push($tag, $temp['tag']);
-            }
-            $value['tag'] = $tag;
-        }
+        $LastUpdateData = self::formatData($LastUpdateData);
         return $LastUpdateData;
     }
 
+    public static function getBlogRank($count)
+    {
+        $blogRankData = self::where('delete_time',null)
+            -> order('read_count desc')
+            -> field('blog_title,read_count')
+            -> limit($count)
+            -> select();
+        $blogRankData = self::formatData($blogRankData);
+        return $blogRankData;
+    }
+
+    public static function getTag()
+    {
+        $tagData = self::where('delete_time',null)
+            -> column('unique_tag');
+        $tagArrData = [];
+        foreach ($tagData as $value){
+            if(strpos($value,',') === false){
+                // pass
+            }else {
+                $tempTagArr = explode(',',$value);
+                $tagArrData = array_merge($tagArrData,$tempTagArr);
+            }
+        }
+        return $tagArrData;
+    }
 }

@@ -4,6 +4,7 @@ namespace app\blog\controller;
 use app\admin\model\Massage as MassageModel;
 use app\admin\model\Image as ImageModel;
 use app\admin\model\Blog as BlogModel;
+use app\admin\model\Links as LinkModel;
 
 class Index extends Base
 {
@@ -11,14 +12,19 @@ class Index extends Base
     {
         // 获取轮播图
         $bannerImageData = ImageModel::getBannerImage();
-        $this->assign('bannerImages',$bannerImageData);
+        $this->assign('bannerImagesData',$bannerImageData);
         // 获取最近更新
-        $lastUpdateData = BlogModel::getLastUpdate();
+        $lastUpdateData = BlogModel::getLastUpdate(10);
         $this->assign('lastUpdateData',$lastUpdateData);
         // 获取点击排行
-
+        $blogRankData = BlogModel::getBlogRank(10);
+        $this->assign('blogRankData',$blogRankData);
         // 获取标签聚合
-
+        $tagData = BlogModel::getTag();
+        $this->assign('tagData',$tagData);
+        // 获取实用网站，友情链接
+        $linkData = LinkModel::getLink(3);
+        $this->assign('linkData',$linkData);
         return view("blog/blog");
     }
     

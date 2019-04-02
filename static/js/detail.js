@@ -1,11 +1,8 @@
-//初始化layui
-layui.use(['layer'], function(){
-var layer = layui.layer;
-});
-var eQrcode = $("#qrcode");
-var commentText = $('#comment_text');
-var textCount = $('#text-count');
-var maxCount = 200;
+var eQrcode = $("#qrcode"),
+    commentText = $('#comment_text'),
+    textCount = $('#text-count'),
+    maxCount = 500,
+    commentBox = $('#show-comment-box');
 
 
 $(function(){ 
@@ -26,6 +23,7 @@ $(function(){
     });
     $("#comment_text").on('keyup click mouseleave',function(){
         checkComment();
+        makeHtml();
     });
 
 //    提交评论
@@ -54,7 +52,14 @@ function checkComment(){
         commentText.val(commentText.val().substr(0,maxCount));
     }
 }
-    
+// 预览评论
+function makeHtml() {
+    var converter = new showdown.Converter();
+    var text = commentText.val();
+    var html = converter.makeHtml(text);
+    commentBox.html(html);
+}
+
 function postCheck(){
     var count = commentText.val().length;
     if(count < 1){
@@ -105,4 +110,3 @@ function makeCode(){
     qrcode.makeCode(window.location.href);
 }
 makeCode();
-console.log("欢迎提交bug或建议，联系方式QQ10804842")

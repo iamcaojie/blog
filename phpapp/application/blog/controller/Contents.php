@@ -8,24 +8,18 @@ class Contents extends Base
 {
     public function index($cate=1,$page=1,$limit=10)
     {
-        if(is_numeric($cate)&&($cate<=10)&&($cate>=2)){
-        }else{
-            $cate = 2;
-        }
-        if(is_numeric($page)&&($page<=0)){
-        }else{
-            $page = 1;
-        }
-        $blogList = Blogmodel::getBlogLists($cate,$page,$limit);
+        // 分类下的文章数据
+        $data = Blogmodel::getBlogLists($cate,$page,$limit);
+        $this->assign('blogData',$data['blogData']);
+        // 分类数据
         $cateData = Catemodel::queryCate($cate);
-        $blogList['count']==0?$pageCount = 1:$pageCount =ceil($blogList['count']/$limit);
+        $data['blogCount']==0?$pageCount = 1:$pageCount =ceil($data['blogCount']/$limit);
         return view("contents/contents",[
             'cate' => $cate,
-            'pagenum' => $page,
-            'limitnum'=> $limit,
-            'catedata' => $cateData,
-            'bloglist'=>$blogList['data'],
-            'pagecount'=>$pageCount
+            'pageNum' => $page,
+            'limitNum'=> $limit,
+            'cateData' => $cateData,
+            'pageCount'=>$pageCount
         ]);
     }
 }

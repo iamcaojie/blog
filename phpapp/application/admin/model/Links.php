@@ -46,12 +46,19 @@ class Links extends Model
     public static function deleteLink($data)
     {
         $info = self::destroy($data);
-            return $info;
+        return $info;
     }
     
     public static function queryLink($id)
     {
         $linkData = self::get($id);
         return $linkData;
+    }
+    public static function getLink($cateID)
+    {
+        $LinkData = self::where('link_cate_id',$cateID)
+            -> field('link_title,link')
+            -> select();
+        return $LinkData;
     }
 }

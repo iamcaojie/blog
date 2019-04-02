@@ -5,6 +5,11 @@
 */
 .form-control{
     border-radius: 0;
+    transition: width 2s;
+    -webkit-transition: width 2s;
+}
+.form-control:focus{
+    width:240px;
 }
 .btn{
     border-radius: 0;
@@ -31,7 +36,7 @@
 /* 页面样式 */
 /* 显示所有元素边框 */
 /*body *:hover{*/
-    /*border:0.5px solid rgb(176,58,91);*/
+/*border:0.5px solid rgb(176,58,91);*/
 /*}*/
 body {
     background:rgb(230,230,230);

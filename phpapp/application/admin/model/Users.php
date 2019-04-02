@@ -44,9 +44,9 @@ class Users extends Model
     }
 
     // 查询是否存在用户名
-    public static function queryUser($data)
+    public static function queryUser($username)
     {
-        $userData = self::where('username',$data["username"])
+        $userData = self::where('username',$username)
                -> find();
        return $userData;
     }

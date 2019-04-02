@@ -1,92 +1,86 @@
 //初始化layui
-layui.use(['layer'], function(){
-    var layer = layui.layer;
+layui.use(['layer','element'], function(){
+    var layer = layui.layer,
+        element = layui.element;
 });
-
-var userName = $("input[name='username']"),
-    passWord = $("input[name='password']"),
-    vCode = $("input[name='vcode']"),
-    loginBtn = $("#login-btn"),
-    registerBtn = $("#register-btn"),
-    passwordBox = $("#password-box"),
-    vcodeBox = $("#vcode-box"),
-    sendMailBtn = $("#sendmail-btn"),
-    submitBtn = $("#submit-btn");
+// 登陆
+var loginUserName = $("input[name='username']"),
+    loginPassWord = $("input[name='password']"),
+    loginvCode = $("input[name='vcode']"),
+    loginBtn = $("#login-btn");
+// 注册
+var regUserName = $("input[name='rusername']"),
+    regPassWord = $("input[name='rpassword']"),
+    regvCode = $("input[name='rvcode']"),
+    regMailCode = $("input[name='rmailcode']"),
+    regBtn = $("#register-btn");
+// 重置
+var mUserName = $("input[name='musername']"),
+    mPassWord = $("input[name='mpassword']"),
+    mvCode = $("input[name='mvcode']"),
+    mMailCode = $("input[name='mmailcode']"),
+    resetBtn = $("#reset-btn");
     
-$(function(){ 
-    // 注册/登录/重置密码切换
-    registerBtn.click(function(){
-        submitBtn.text("注册");
-        passwordBox.show();
-        vcodeBox.show();
-        loginBtn.show();
-        registerBtn.hide();
-    });
-    loginBtn.click(function(){
-        submitBtn.text("登录");
-        passwordBox.show();
-        vcodeBox.hide();
-        loginBtn.hide();
-        vcodeBox.hide();
-        registerBtn.show();
-    });
-    $("#forget-btn").click(function(){
-        submitBtn.text("重置密码");
-        passwordBox.show();
-        vcodeBox.show();
-        loginBtn.show();
-        registerBtn.show();
+$(function(){
+    // 切换验证码
+    $(".captcha").click(function () {
+        $(this).attr('src','/captcha.html?r='+Math.random());
     });
     // 发送邮件
-    $("#sendMail").click(function(){
-        if(check()){
-            sendMail('POST', '/login/index/sendMail', getData()); 
+    $(".sendMail").click(function(){
+        if($(this).attr('data') === 'register'){
+            postInfo('POST', '/login/index/sendMail', getRegData());
+        }else if($(this).attr('data') === 'reset'){
+            postInfo('POST', '/login/index/sendMail', getResetData());
         }
         return false;
     });
-    // 注册，登录，重置密码
-    submitBtn.click(function(){
-        if(check()){
-            if(submitBtn.text() == "登录"){
-                valiDate('POST', '/login/index/validatelogin', getData());
-            }else if(submitBtn.text() === "注册"){
-                register('POST', '/login/index/register', getData());
-            }else if(submitBtn.text() === "重置密码"){
-                resetPassword('POST', '/login/index/resetpassword', getData());
-            }else{
-                layer.msg("参数错误");
-            }
-            return false;
-        }
+    // 登录
+    loginBtn.click(function(){
+        postInfo('POST', '/login/index/validateLogin', getLoginData());
+        return false;
+    });
+    // 注册
+    regBtn.click(function(){
+        postInfo('POST', '/login/index/register', getRegData());
+        return false;
+    });
+    // 重置
+    resetBtn.click(function () {
+        postInfo('POST', '/login/index/resetPassword', getResetData());
+        return false;
     });
 });
 
-function getData(){
-    var data = {
-        "username":userName.val(),
-        "password":hex_md5(passWord.val())
+function getLoginData(){
+    var loginData = {
+        "username":loginUserName.val(),
+        "password":hex_md5(loginPassWord.val()),
+        "vcode":loginvCode.val()
     };
-    if(submitBtn.text() === "注册"){
-        data["action"] = "注册账号";
-        data["vcode"] = vCode.val();
-    }else if(submitBtn.text() === "重置密码"){
-        data["action"] = "重置密码";
-        data["vcode"] = vCode.val();
-    }
-    return data;
+    return loginData;
 }
-function check(){
-    if(userName.val() == "") {
-        layer.msg("用户名不能为空");
-        return false;
-    }else if(passWord.val() == ""){
-        layer.msg("密码不能为空");
-        return false;
-    }
-    return true;
-};
 
-function valiDate(method, url, data){
+function getRegData(){
+    var regData = {
+        "username":regUserName.val(),
+        "password":hex_md5(regPassWord.val()),
+        "vcode":regvCode.val(),
+        "mcode":regMailCode.val()
+    };
+    return regData;
+}
+function getResetData(){
+    var resetData = {
+        "username":mUserName.val(),
+        "password":hex_md5(mPassWord.val()),
+        "vcode":mvCode.val(),
+        "mcode":mMailCode.val()
+    };
+    return resetData;
+}
+
+function postInfo(method, url, data){
       $(function(){ 
         $.ajax({
             type:method || 'POST',
@@ -95,57 +89,14 @@ function valiDate(method, url, data){
             dataType:'json',
             success: function(data){
                 layer.msg(data.msg);
-                if(data.code == 0){
-                    location.assign(data.url);
+                if(data.msg == '登录成功'){
+                    // 刷新父级窗口
+                    // location.assign(data.url);
                 }
+                $(".captcha").attr('src','/captcha.html?r='+Math.random());
             },error:function(data){
                 layer.msg("请求失败");
-            }
-        });
-    });
-}
-
-function register(method, url, data){
-      $(function(){ 
-        $.ajax({
-            type:method || 'POST',
-            url:url,
-            data:data,
-            dataType:'json',
-            success: function(data){
-                layer.msg(data.msg);
-            },error:function(data){
-                layer.msg("请求失败");
-            }
-        });
-    });
-}
-function resetPassword(method, url, data){
-      $(function(){ 
-        $.ajax({
-            type:method || 'POST',
-            url:url,
-            data:data,
-            dataType:'json',
-            success: function(data){
-                layer.msg(data.msg);
-            },error:function(data){
-                layer.msg("请求失败");
-            }
-        });
-    });
-}
-function sendMail(method, url, data){
-      $(function(){ 
-        $.ajax({
-            type:method || 'POST',
-            url:url,
-            data:data,
-            dataType:'json',
-            success: function(data){
-                layer.msg(data.msg);
-            },error:function(data){
-                layer.msg("请求失败");
+                $(".captcha").attr('src','/captcha.html?r='+Math.random());
             }
         });
     });

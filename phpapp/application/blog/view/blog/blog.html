@@ -25,7 +25,7 @@
             <div class="col-md-8">
                 <div class="layui-carousel" id="banner">
                     <div carousel-item>
-                        {volist name="bannerImages" id="bannerImage"}
+                        {volist name="bannerImagesData" id="bannerImage"}
                             <div><img class="carousel-img" src="/uploads/banner/{$bannerImage['address']}.{$bannerImage['ext']}">
                             </div>
                         {/volist}
@@ -33,51 +33,45 @@
                 </div>
                 <div id="notice">
                     <div>
-                        <div class="icon">不</div>
-                        <div class="icon">知</div>
-                        <div class="icon">道</div>
-                        <div class="icon">写</div>
-                        <div class="icon">什</div>
-                        <div class="icon">么</div>
+                        <div class="icon">Api</div>
+                        <div class="icon">时间线</div>
+                        <div class="icon">文章归档</div>
+                        <div class="icon">在线工具</div>
+                        <div class="icon">在线文档</div>
+                        <div class="icon">相关下载</div>
                     </div>
                 </div>
                 <div id="last-update">
                     <a class="channel">最近更新</a>
+                    {volist name="lastUpdateData" id="lastUpdate"}
                     <div class="list">
                         <div>
                             <div class="img-box">
                                 <img class="article-img" src="/static/img/python.jpg"/>
                             </div>
                             <div class="article-box">
-                                <h1><a>python从入门到实践</a></h1>
+                                <h1><a href="/blog/detail/index/id/{$lastUpdate['id']}">{$lastUpdate['blog_title']}</a></h1>
                                 <div class="tags">
-                                    <span class="label label-primary">2018-11-11 00：00</span>
-                                    <span class="label label-default">个性标签</span>
-                                    <span class="label label-success">个性标签</span>
-                                    <span class="label label-info">原创</span>
-                                    <span class="label label-warning">Python</span>
+                                    <span class="label label-primary">{$lastUpdate['f_update_time']}</span>
+                                    <span class="label label-default">{$lastUpdate['tag'][0]}</span>
+                                    <span class="label label-success">{$lastUpdate['tag'][1]}</span>
+                                    {volist name="$lastUpdate['f_unique_tag']" id="f_tag"}
+                                        <span class="label label-info">{$f_tag}</span>
+                                    {/volist}
                                 </div>
-                                <div class="article-detail">本书是一本针对所有层次的Python 读者而作的Python 入门书。全书分两部分：第一部分介绍用Python 编程所必须了解的基本概念，包括matplotlib、NumPy 和Pygal 等强大的Python 库和工具介绍，以及列表、字典、if 语句、类、文件与异常、代码测试等内容；第二部分将理论付诸实践，讲解如何开发三个项目，包括简单的Python 2D 游戏开发如何利用数据生成交互式的信息图，以及创建和定制简单的Web 应用，并帮读者解决常见编程问题和困惑。</div>
+                                <div class="article-detail">{$lastUpdate['blog_text_omit']}</div>
                             </div>
                         </div>
                         <div class="article-like">
-                            <span>0人浏览</span>
+                            <span>{$lastUpdate['read_count']}人阅读</span>
+                            <span>{$lastUpdate['read_like']}人点赞</span>
                             <span>0人评论</span>
-                            <span>0人点赞</span>
                             <span style="float:right;">
                                 <a href="">阅读全文>>></a>
                             </span>
                         </div>
                     </div>
-                    <div class="list"></div>
-                    <div class="list"></div>
-                    <div class="list"></div>
-                    <div class="list"></div>
-                    <div class="list"></div>
-                    <div class="list"></div>
-                    <div class="list"></div>
-                    <div class="list"></div>
-                    <div class="list"></div>
+                    {/volist}
                 </div>
             </div>
             <div class="col-md-4">
@@ -130,29 +124,23 @@
                 <div id="click" class="channel-box">
                     <a class="channel">点击排行</a>
                     <ul id="click-rank">
-                        <li>
-                            <p>
-                                <span class="number">1</span>
-                                <span>Python从入门到实践</span>
-                            </p>
-                        </li>
-                        <li>
-                            <p>
-                                <span class="number">2</span>
-                                <span>
-                                    <a>Python从入门到实践实践实践实践实践实践实践实践实践实践实践实践实践实践实践</a>
-                                </span>
-                            </p>
-                        </li>
+                        {volist name="blogRankData" id="blogRank"}
+                            <li>
+                                <p>
+                                    <span class="number">{$blogRank['read_count']}</span>
+                                    <span>{$blogRank['blog_title']}</span>
+                                </p>
+                            </li>
+                        {/volist}
                     </ul>
                 </div>
                 <div id="tags-list" class="channel-box">
-                    <a class="channel">标签聚合</a>
+                    <a class="channel">个性标签聚合</a>
                     <div>
                         <ul id="tag">
-                            <li><a>javascript权威指南</a></li>
-                            <li><a>javascript权威指南</a></li>
-                            <li><a>javascript权威指南</a></li>
+                            {volist name="tagData" id="tag"}
+                                <li><a>{$tag}</a></li>
+                            {/volist}
                         </ul>
                     </div>
                 </div>
@@ -168,12 +156,9 @@
         <div id="foot">
             <div id="foot-left">
                 <ul>
-                    <li><a href="http://www.bootcss.com/" target="_blank">Bootstrap中文网</a></li>
-                    <li><a href="http://www.bootcss.com/" target="_blank">Bootstrap中文网</a></li>
-                    <li><a href="http://www.bootcss.com/" target="_blank">Bootstrap中文网</a></li>
-                    <li><a href="http://www.bootcss.com/" target="_blank">Bootstrap中文网</a></li>
-                    <li><a href="http://www.bootcss.com/" target="_blank">Bootstrap中文网</a></li>
-                    <li><a href="http://www.bootcss.com/" target="_blank">Bootstrap中文网</a></li>
+                    {volist name="linkData" id="link"}
+                        <li><a href="{$link['link']}" target="_blank">{$link['link_title']}</a></li>
+                    {/volist}
                 </ul>
             </div>
             <div id="foot-right">
@@ -181,17 +166,11 @@
             </div>
         </div>
         <div id="web-info">
-            <span><a href="/api.html">Api</a></span>
-            <span><a href="/timeline.html">时间线</a></span>
-            <span><a href="/article.html">文章存档</a></span>
-            <span><a href="/tools/online">在线工具</a></span>
-            <span><a href="/about.html">在线文档</a></span>
-            <span><a href="/about.html">相关下载</a></span>
-            <span><a href="/about.html">实用网站</a></span>
-            <span><a href="/about.html">关于本站</a></span>
+            <span style="display:none;"><a href=""></a></span>
         </div>
         <span id="copyright">COPYRIGHT 2018-2019 CAOJIE. ALL RIGHTS RESERVED.</span><br>
         <span><a href="http://www.miitbeian.gov.cn">{$webdata['beian_code']}</a></span>
+        <span>今日pv </span><span>总pv </span>
     </footer>
 {/block}
 {block name="sidebar"}

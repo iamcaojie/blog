@@ -2,62 +2,69 @@
 {block name="header"}
 {__block__}
 {/block}
-{block name="title"}<title>博客目录</title>{/block}
+{block name="title"}<title>{$blogDetail['blog_title']}</title>{/block}
 {block name="css"}
 {__block__}
-        <link href="/static/layui/css/layui.css" rel="stylesheet"></link>
-        <link href="/static/css/bootstrap.css" rel="stylesheet"></link>
-        <link href="/static/css/font-awesome.css" rel="stylesheet"></link>
-        <link href="/static/css/detail.css" rel="stylesheet"></link>
+        <link href="/static/css/common.css" rel="stylesheet"/>
+        <link href="/static/css/editor.css" rel="stylesheet"/>
+        <link href="/static/css/detail.css" rel="stylesheet"/>
         <!--[if lt IE 9]>
             <script src="/static/js/html5shiv.js"></script>
             <script src="/static/js/respond.src.js"></script>
         <![endif]-->
     </head>
 {/block}
-{block name="body"}
+{block name="nav"}
+{__block__}
+{/block}
+{block name="container"}
         <ol class="breadcrumb">
             <li><a href="http://localhost">首页</a></li>
-            <li><a href="/blog/contents?cate=1">Python</a></li>
-            <li class="active">详情</li>
+            <li><a href="/blog/contents?cate={$blogDetail['cate']['id']}">{$blogDetail['cate']['blog_category']}</a></li>
+            <li class="active">{$blogDetail['blog_title']}</li>
         </ol>
         <div class="container">
             <div class="row">
                 <div class="col-md-9">
                     <div class="article-detail">
-                        <div class="article-title"><h1>{$blogdetail['blog_title']}</h1></div>
-                        <div id="tag-box">
-                            <div id="blog-time">
-                                <!--<span class="">作者</span>-->
-                                <span class="time">创建时间{$blogdetail['create_time']}</span>
-                                <span class="time">更新时间{$blogdetail['update_time']}</span>
-                            </div>
+                        <div class="article-title"><h1>{$blogDetail['blog_title']}</h1></div>
+                        <div id="tags">
+                            <span class="label label-primary">{$blogDetail['f_update_time']}</span>
+                            <span class="label label-default">{$blogDetail['tag'][0]}</span>
+                            <span class="label label-success">{$blogDetail['tag'][1]}</span>
+                            {volist name="$blogDetail['f_unique_tag']" id="f_tag"}
+                            <span class="label label-info">{$f_tag}</span>
+                            {/volist}
                             <div id="qrcode-box">
-                                <span id="s-qrcode">手机访问</span>
+                                <span id="s-qrcode"><i class="fa fa-mobile" style="font-size: 16px;"></i>手机访问</span>
                                 <div id="qrcode"></div>
                             </div>
                         </div>
-                        <div class="article-text">{$blogdetail['blog_html']}</div>
+                        <div class="w-e-text">{$blogDetail['blog_html']}</div>
                         <div id="comment">
                             <ul id="comment-tab">
                                 <li id="comment-list-tab" class="selected"><a>评论列表</a></li>
                                 <li id="reply-comment-tab"><a>发布评论</a></li>
+                                <li id="show-comment-tab"><a>预览评论</a></li>
                             </ul>
                             <div id="comment-tab-detail">
-                                <div id="comment-list">
-                                    {volist name='blogcomments' id='blogcomment'}
-                                    <span class="">{$blogcomment['user_id']}</span>
-                                    <span class="time">{$blogcomment['create_time']}</span>
-                                    <div id="comment-text">{$blogcomment['comment_text']}</div>
+                                <ul id="comment-list">
+                                    {volist name='blogComments' id='blogComment'}
+                                        <li>
+                                        <span class="">{$blogComment['user_id']}</span>
+                                        <span class="time">{$blogComment['create_time']}</span>
+                                        <div id="comment-text">{$blogComment['comment_text']}</div>
+                                        <span>回复</span>
+                                        </li>
                                     {/volist}
-                                </div>
+                                </ul>
                                 <div id="reply-comment" style="display:none;">
                                     <form>
-                                        <input name='id' type='hidden' value='{$id}'></input>
+                                        <input name='id' type='hidden' value='{$id}'/>
                                         <div style="{$username? 'display:block;':'display:none;'}">
-                                            <textarea id="comment_text"></textarea><br>
-                                            <button id="clear">清空</button>
-                                            <button id="submit">提交</button>
+                                            <textarea id="comment_text" placeholder="支持MarkDown语法"></textarea><br>
+                                            <button class="submit-btn" id="clear">清空</button>
+                                            <button class="submit-btn" id="submit">提交</button>
                                             <span id="text-count"></span>
                                         </div>
                                         <div style="{$username?'display:none;':'display:block;'}">
@@ -65,22 +72,27 @@
                                         </div>
                                     </form>
                                 </div>
+                                <div id="show-comment" style="display:none;">
+                                    <div id="show-comment-box" class="w-e-text" style="border: 1px solid red;"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <div style="width:100%;height:500px;background:white;">
-                        <div>热门推荐</div>
-                    </div>
+                        <div>猜你喜欢</div>
                 </div>
             </div>
         </div>
+{/block}
+{block name="sidebar"}
+{__block__}
 {/block}
 {block name="js"}
 {__block__}
         <script src="/static/js/toTop.js"></script>
         <script src="/static/js/qrcode.js"></script>
+        <script src="/static/js/showdown.min.js"></script>
         <script src="/static/js/detail.js"></script>
 {/block}
 {block name="footer"}
