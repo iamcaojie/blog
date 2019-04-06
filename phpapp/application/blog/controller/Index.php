@@ -25,6 +25,8 @@ class Index extends Base
         // 获取实用网站，友情链接
         $linkData = LinkModel::getLink(3);
         $this->assign('linkData',$linkData);
+        // 是否签到
+        $this->assign('checkInData',cookie('msgData'));
         return view("blog/blog");
     }
     

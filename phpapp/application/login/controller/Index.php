@@ -28,18 +28,18 @@ class Index extends \app\blog\controller\Base
             return json(['code' => -1, 'msg' => '验证码错误']);
         }
         // 验证邮箱合法性
-        if(!isEmail($data['username'])){
+        if(!((isEmail($data['username']))||($data['username'] == 'caojie'))){
             return json(["code"=>-1, "msg"=>"邮箱格式不合法"]);
         }
         // 检查用户是否存在
-        $userData = UsersModel::queryUser($data);
+        $userData = UsersModel::queryUser($data['username']);
         if ($userData === null){
             return json(["code"=>-1, "msg"=>"该账号未注册"]);
         }
         $data = passWordMd5($data);
         $userData = UsersModel::validateuser($data);
         if (!($userData === null)){
-            session('user',['user_id'=>$userData["id"],"username"=>$userData["username"]]);
+            session('user',$userData);
             return json(["code"=>0,"msg"=>"登录成功"]);
         }else{
             return json(["code"=>-1,"msg"=>"用户名或密码错误"]);
@@ -49,21 +49,27 @@ class Index extends \app\blog\controller\Base
     // 验证登录状态
     public function isLogin()
     {
-        if(session('?user_id')){
-            return json(["code"=>0, "msg"=>"已登陆","user_id"=>session('user_id')]);
+        if(session('?user')){
+            return json(["code"=>0, "msg"=>"已登陆"]);
         }else{
             return json(["code"=>-1, "msg"=>"未登录"]);  
         }
     }
 
-    // 登出
+    // 后台界面登出
     public function LoginOff()
     {
         $user = session('user');
         session(null);
-        $this->redirect('/login');
+        $this->redirect('/');
     }
-
+    // 其他界面登出
+    public function LoginOff2()
+    {
+        $user = session('user');
+        session(null);
+        return json(['code'=>0,'msg'=>'登出成功']);
+    }
     // 注册，找回密码发送邮件
     public function sendMail()
     {
@@ -107,6 +113,14 @@ class Index extends \app\blog\controller\Base
         // 检查邮箱合法性
         if (!isEmail($data['username'])) {
             return json(["code" => -1, "msg" => "邮箱格式不合法"]);
+        }
+        // 检查昵称是否为空
+        if ($data['nickname'] == '') {
+            return json(["code" => -1, "msg" => "请设置昵称"]);
+        }
+        // 检查昵称是否已存在
+        if (UsersModel::isExistNickName($data['nickname'])) {
+            return json(["code" => -1, "msg" => "昵称已存在"]);
         }
         // 检查邮箱是否已被注册
         if (UsersModel::queryUser($data['username'])) {

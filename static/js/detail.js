@@ -16,7 +16,39 @@ $(function(){
     $("#s-qrcode").hover(function(){
         eQrcode.toggle();
     });
-//    清空评论
+    // 显示回复详情
+    $(".display-reply").click(function () {
+        if($(this).text() === '显示回复详情'){
+            $(this).text('隐藏回复详情');
+            $(this).parent().parent().parent().find(".reply-box").show();
+        }else{
+            $(this).text('显示回复详情');
+            $(this).parent().parent().parent().find(".reply-box").hide();
+        }
+    });
+    // 回复评论
+    $(".reply-comment").click(function(){
+        $(this).parent().parent().parent().find(".reply-input").show();
+        $(this).parent().parent().hide();
+    });
+    // 显示评论控制
+    $(".display-reply-control").click(function() {
+        $(this).parent().hide();
+        $(this).parent().parent().find('.reply-control').show();
+    });
+    // 提交回复
+    $(".reply-btn").click(function() {
+        var commentId = $(this).prevAll().eq(1).val();
+        var replyText = $(this).prevAll().eq(0).val();
+        if(replyText === ""){
+            layer.msg('请输入回复');
+            return false;
+        }
+        postReply('/blog/detail/replyComment','POST',{'comment_id':commentId,'reply_text':replyText});
+        $(this).parent().hide();
+        $(this).parent().parent().find('.reply-control').show();
+    });
+    // 清空评论
     $("#clear").click(function(){
         commentText.val("");
         return false;
@@ -26,21 +58,16 @@ $(function(){
         makeHtml();
     });
 
-//    提交评论
+    // 提交评论
     $("#submit").click(function(){
         if(postCheck()){
             var data = {"blog_id":$('input[name="id"]').val(),"comment_text":commentText.val()};
-            console.log(data);
             postComment('/blog/detail/comment','POST',data);
         }
         return false;
     });
 });
 
-// 检测登录状态
-function checkLogin(){
-    
-}
 // 实时检测评论内容，后台也需检测
 function checkComment(){
     var count = commentText.val().length;
@@ -52,6 +79,7 @@ function checkComment(){
         commentText.val(commentText.val().substr(0,maxCount));
     }
 }
+
 // 预览评论
 function makeHtml() {
     var converter = new showdown.Converter();
@@ -70,9 +98,7 @@ function postCheck(){
         return false;
     }else{
         return true;
-}
-// 敏感词
-// 黑客攻击词
+    }
 }
 // 提交评论
 function postComment(url,method,data){
@@ -84,18 +110,37 @@ function postComment(url,method,data){
             dataType:'json',
             success: function(data){
                 layer.msg(data.msg);
-                $('#comment_text').val("");
-                
+                console.log(data.data);
+                //清空评论
+                $("#comment_text").val("");
+                // 把评论添加到页面中
+                $('#comment-list').append('<li>新评论</li>');
             },error:function(data){
                 layer.msg("评论失败");
-                
             }
         });
     });
 }
-//获取最新评论
-function getNewComments(){
-    
+
+// 提交回复
+function postReply(url,method,data){
+    $(function(){
+        $.ajax({
+            type:method || 'POST',
+            url:url,
+            data:data,
+            dataType:'json',
+            success: function(data){
+                layer.msg(data.msg);
+                //清空回复
+                // $("#comment_text").val("");
+                // 把回复添加到页面中
+                // $('#comment-list').append('<li>新评论</li>');
+            },error:function(data){
+                layer.msg("评论失败");
+            }
+        });
+    });
 }
 
 //生成网址二维码
@@ -103,7 +148,7 @@ function makeCode(){
     var qrcode = new QRCode("qrcode",{
         width: 128,
         height: 128,
-        colorDark : "rgb(176,58,91)",
+        colorDark : "#333",
         colorLight : "#ffffff",
         correctLevel : QRCode.CorrectLevel.H
     });

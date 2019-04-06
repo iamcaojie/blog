@@ -62,6 +62,14 @@ class Blog extends Model
                 }
                 $value['tag'] = $tag;
             }
+            // 写入作者
+            $value['user'] = db('users')
+                ->where('id',$value['user_id'])
+                ->find();
+            // 写入评论数
+            $value['commentsCount'] = db('comments')
+                -> where('blog_id',$value['id'])
+                ->count();
         }
         return $data;
     }
@@ -148,13 +156,13 @@ class Blog extends Model
     {
         $blogRankData = self::where('delete_time',null)
             -> order('read_count desc')
-            -> field('blog_title,read_count')
+            // -> field('blog_title,read_count')
             -> limit($count)
             -> select();
         $blogRankData = self::formatData($blogRankData);
         return $blogRankData;
     }
-
+    // 获取聚合标签
     public static function getTag()
     {
         $tagData = self::where('delete_time',null)
@@ -169,5 +177,10 @@ class Blog extends Model
             }
         }
         return $tagArrData;
+    }
+    // 点赞，取消点赞
+    public static function likeBlog($blogId)
+    {
+        // 判断文章是否存在
     }
 }

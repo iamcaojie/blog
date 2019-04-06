@@ -48,50 +48,51 @@
                         <div class="article-like">
                             <span>{$blog['read_count']}人阅读</span>
                             <span>{$blog['read_like']}人点赞</span>
-                            <span>0人评论</span>
+                            <span>{$blog['commentsCount']}人评论</span>
                             <span style="float:right;">
-                                <a href="">阅读全文>>></a>
+                                <a href="/blog/detail/index/id/{$blog['id']}">阅读全文>>></a>
                             </span>
                         </div>
                     </div>
                     {/volist}
-                    <nav aria-label="Page navigation">
-                        <div class="page-box">
+                    <div style="width:100%;">
+                        <nav aria-label="Page navigation" style="margin: 0 auto;width:300px;">
                             <ul class="pagination">
                                 <li>
-                                    <a href="/blog/contents?cate={$cate}&page=1" aria-label="Previous">
+                                    <a href="/blog/contents?cate={$cateData['id']}&page=1" aria-label="Previous">
                                         <span aria-hidden="true">&laquo;</span>
                                     </a>
                                 </li>
                                 {for start='$pageNum-2' end='$pageNum+3'}
-                                {egt name='$pageCount' value='$i'}
-                                {gt name='$i' value='0'}
-                                {eq name='$i' value='$pageNum'}
-                                <li class="active"><a href="#">{$i}</a></li>
-                                {else/}
-                                <li><a href="/blog/contents?cate={$cate}&page={$i}">{$i}</a></li>
-                                {/eq}
-                                {/gt}
-                                {/egt}
+                                    {egt name='$pageCount' value='$i'}
+                                        {gt name='$i' value='0'}
+                                            {eq name='$i' value='$pageNum'}
+                                                <li class="active"><a href="#">{$i}</a></li>
+                                            {else/}
+                                                <li><a href="/blog/contents?cate={$cateData['id']}&page={$i}">{$i}</a></li>
+                                            {/eq}
+                                        {/gt}
+                                    {/egt}
                                 {/for}
                                 <li>
-                                    <a href="/blog/contents?cate={$cate}&page={$pageCount}" aria-label="Next">
+                                    <a href="/blog/contents?cate={$cateData['id']}&page={$pageCount}" aria-label="Next">
                                         <input name="page-max" type="hidden" value="{$pageCount}"/>
                                         <span aria-hidden="true">&raquo;</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <input name="go-page"  class="form-control"  style="display:inline;width:40px;height:33.5px;float: left;"/>
+                                    <input name="go-page"  class="form-control"  style="display:inline;width:55px;height:33.5px;float: left;margin: 0 1px 0 1px;"/>
                                     <a onclick="goPage();" ria-label="Next" style="cursor:pointer;">
                                         <span aria-hidden="true">Go</span>
                                     </a>
                                 </li>
                             </ul>
-                        </div>
-                    </nav>
+                        </nav>
+                    </div>
                 </div>
+
                 <div class="col-md-4">
-                    <div style="border:1px solid red;">
+                    <div class="box">
                         空白页
                     </div>
                 </div>

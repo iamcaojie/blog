@@ -31,15 +31,13 @@
                         {/volist}
                     </div>
                 </div>
-                <div id="notice">
-                    <div>
-                        <div class="icon">Api</div>
-                        <div class="icon">时间线</div>
-                        <div class="icon">文章归档</div>
-                        <div class="icon">在线工具</div>
-                        <div class="icon">在线文档</div>
-                        <div class="icon">相关下载</div>
-                    </div>
+                <div id="notice" style="text-align: center;">
+                        <a class="icon" href="/">时间线</a>
+                        <a class="icon" href="/">API接口</a>
+                        <a class="icon" href="/">文章归档</a>
+                        <a class="icon" href="/">在线工具</a>
+                        <a class="icon" href="/">在线文档</a>
+                        <a class="icon" href="/">资源下载</a>
                 </div>
                 <div id="last-update">
                     <a class="channel">最近更新</a>
@@ -65,7 +63,7 @@
                         <div class="article-like">
                             <span>{$lastUpdate['read_count']}人阅读</span>
                             <span>{$lastUpdate['read_like']}人点赞</span>
-                            <span>0人评论</span>
+                            <span>{$lastUpdate['commentsCount']}人评论</span>
                             <span style="float:right;">
                                 <a href="">阅读全文>>></a>
                             </span>
@@ -80,27 +78,42 @@
                     <div>
                         <a href="https://iamcaojie.github.io"><img id="avatar" src="/static/img/avatar.jpg"/></a>
                     </div>
-                    <div id="info">
-                        <p>姓名：</p>
-                        <p>职业：</p>
-                        <p>年龄：</p>
+                    <div id="info" style="text-align: center;">
+                        <p style="text-align: center;margin: 5px 0 5px 0">CaoJie</p>
+                        <botton class="btn btn-default">加关注</botton>
                     </div>
-                    <div id="contact">
-                        <a href="https://github.com/iamcaojie" target="_blank" title="Github-iamcaojie">
-                            <i class="fa fa-github"></i>
-                        </a>
-                        <a href="https://weibo.com/iamcaojie96" target="_blank" title="微博-入戏太深莫当真">
-                            <i class="fa fa-weibo"></i>
-                        </a>
-                        <a href="javascript:void(0);">
-                            <i class="fa fa-qq"></i>
-                        </a>
-                        <a href="javascript:void(0);">
-                            <i class="fa fa-wechat"></i>
-                        </a>
+                    <ul id="contact" style="text-align: center;">
+                        <li>
+                            <a href="https://github.com/iamcaojie" target="_blank" title="Github-iamcaojie">
+                                <i class="fa fa-github"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://weibo.com/iamcaojie96" target="_blank" title="微博-入戏太深莫当真">
+                                <i class="fa fa-weibo"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://wpa.qq.com/msgrd?v=3&uin=1041973277&site=qq&menu=yes" target="_blank" title="QQ-1041973277">
+                                <i class="fa fa-qq"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);">
+                                <i class="fa fa-wechat"></i>
+                            </a>
+                            <div><img src="/static/img/wechat.png" style="display:none;"/></div>
+                        </li>
+                    </ul>
+                    <div id="check-in-box" style="text-align: center;margin-top: 20px;">
+                        {if condition = "$checkInData"}
+                            <div>{$checkInData}</div>
+                        {else /}
+                            <botton id="check-in" class="btn btn-default btn-lg" style="width: 70%;">每日一签</botton>
+                        {/if}
                     </div>
                 </div>
-                <div id="music" class="channel-box">
+                <div id="music" class="channel-box" style="display: none;">
                     <a class="channel">音乐播放</a>
                     <div id="play-box">
                         <audio src="">
@@ -128,7 +141,7 @@
                             <li>
                                 <p>
                                     <span class="number">{$blogRank['read_count']}</span>
-                                    <span>{$blogRank['blog_title']}</span>
+                                    <a href="/blog/detail/index/id/{$blogRank['id']}">{$blogRank['blog_title']}</a>
                                 </p>
                             </li>
                         {/volist}
@@ -139,7 +152,7 @@
                     <div>
                         <ul id="tag">
                             {volist name="tagData" id="tag"}
-                                <li><a>{$tag}</a></li>
+                                <li><a href="/search?category=tag&q={$tag}">{$tag}</a></li>
                             {/volist}
                         </ul>
                     </div>

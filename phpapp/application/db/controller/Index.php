@@ -29,8 +29,10 @@ class Index
             'DROP TABLE IF EXISTS think_linkcate;',
             'DROP TABLE IF EXISTS think_massage;',
             'DROP TABLE IF EXISTS think_comments;',
+            'DROP TABLE IF EXISTS think_reply_comment;',
             'DROP TABLE IF EXISTS think_download;',
             'DROP TABLE IF EXISTS think_ip;',
+            'DROP TABLE IF EXISTS think_follow;',
             // 网站状态表
             'CREATE TABLE think_web('
                 . 'id int UNSIGNED NOT NULL AUTO_INCREMENT, '
@@ -58,33 +60,34 @@ class Index
                 . 'DEFAULT CHARSET=utf8; ',
             // 图片地址表(管理全部图片)
             'CREATE TABLE think_image('
-            . 'id int UNSIGNED NOT NULL AUTO_INCREMENT, '
-            . 'name varchar(10), '
-            . 'imagecate_id varchar(10), '
-            . 'address varchar(100), '
-            . 'ext varchar(5), '
-            . 'create_time int, '
-            . 'update_time int, '
-            . 'delete_time int, '
-            . 'PRIMARY KEY(id)) '
-            . 'DEFAULT CHARSET=utf8; ',
-            // 图片分类表（与uploads目录对应）<carousel轮播：1，masterimages主图：2，detailimages详情图：3,>
+                . 'id int UNSIGNED NOT NULL AUTO_INCREMENT, '
+                . 'name varchar(10), '
+                . 'imagecate_id varchar(10), '
+                . 'address varchar(100), '
+                . 'ext varchar(5), '
+                . 'create_time int, '
+                . 'update_time int, '
+                . 'delete_time int, '
+                . 'PRIMARY KEY(id)) '
+                . 'DEFAULT CHARSET=utf8; ',
+            // 图片分类表（与uploads目录对应）<banner轮播：1，master主图：2，detail详情图：3>
             'CREATE TABLE think_imagecate('
-            . 'id int UNSIGNED NOT NULL AUTO_INCREMENT, '
-            . 'name varchar(10), '
-            . 'dir varchar(20), '
-            . 'create_time int, '
-            . 'update_time int, '
-            . 'delete_time int, '
-            . 'PRIMARY KEY(id)) '
-            . 'DEFAULT CHARSET=utf8; ',
+                . 'id int UNSIGNED NOT NULL AUTO_INCREMENT, '
+                . 'name varchar(10), '
+                . 'dir varchar(20), '
+                . 'create_time int, '
+                . 'update_time int, '
+                . 'delete_time int, '
+                . 'PRIMARY KEY(id)) '
+                . 'DEFAULT CHARSET=utf8; ',
             // 网站用户表
             'CREATE TABLE think_users('
                 . 'id int UNSIGNED NOT NULL AUTO_INCREMENT, '
-                .' nickname varchar(20), '
+                . 'nickname varchar(20), '
                 . 'username varchar(50), '
                 . 'password varchar(50), '
                 . 'gender tinyint(1), '
+                . 'avatar vachar(100), '
                 . 'create_time int, '
                 . 'update_time int, '
                 . 'delete_time int, '
@@ -223,6 +226,17 @@ class Index
                 . 'delete_time int,'
                 . 'PRIMARY KEY(id)) '
                 . 'DEFAULT CHARSET=utf8;',
+            // 评论回复表(n)(blog_id) -- 评论表(1)
+            'CREATE TABLE think_reply('
+                . 'id int UNSIGNED NOT NULL AUTO_INCREMENT, '
+                . 'user_id int UNSIGNED NOT NULL, '
+                . 'comment_id int UNSIGNED NOT NULL, '
+                . 'reply_text varchar(200),'
+                . 'create_time int,'
+                . 'update_time int,'
+                . 'delete_time int,'
+                . 'PRIMARY KEY(id)) '
+                . 'DEFAULT CHARSET=utf8;',
             // ip地址表
             'CREATE TABLE think_ip('
                 . 'id int UNSIGNED NOT NULL AUTO_INCREMENT, '
@@ -232,6 +246,17 @@ class Index
                 . 'delete_time int,'
                 . 'PRIMARY KEY(id)) '
                 . 'DEFAULT CHARSET=utf8;',
+            // 用户关注表
+            'CREATE TABLE think_follow('
+                . 'id int UNSIGNED NOT NULL AUTO_INCREMENT, '
+                . ' user_id int UNSIGNED NOT NULL, '// 用户
+                . 'followed_user int UNSIGNED NOT NULL, '// 关注用户id
+                . 'status smallint UNSIGNED NOT NULL DEFAULT 1, '// 状态(1,已关注；互相关注；)
+                . 'create_time int, '
+                . 'update_time int, '
+                . 'delete_time int, '
+                . 'PRIMARY KEY(id)) '
+                . 'ENGINE=MyISAM  DEFAULT CHARSET=utf8;',
         ];
 
         $dmlsql = [
@@ -242,7 +267,7 @@ class Index
             'insert into think_blog(id, blog_title, cate_id, delete_time) '
             . 'values (1, "临时缓存内容", 1, 1);',
             'insert into think_cate(id, blog_category,pid) '
-            . 'values (1,"无",0),(2,"Python",0),(3,"PHP",0),(4,"Java",0),(5,"Web前端",0),
+            . 'values (1,"默认分类",0),(2,"Python",0),(3,"PHP",0),(4,"Java",0),(5,"Web前端",0),
                 (6,"编程基础",0),(7,"C/C++",0),(8,"服务器",0),(9,"数据库",0),(10,"Linux",0);',
             'insert into think_tags(id, tag) '
             . 'values (1,"原创"),(2,"转载"),(3,"基础"),(4,"技巧"),(5,"重点"),(6,"难点");',

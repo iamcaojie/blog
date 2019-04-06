@@ -1,41 +1,43 @@
 <?php
 namespace app\admin\controller;
 
-use app\admin\model\Comments as Commentsmodel;
+use app\admin\model\Comments as CommentsModel;
+use app\admin\model\Reply as ReplyModel;
 
 class Comments extends Base
 {
     // 获取所有评论
-    // /admin/comments/getcommentslist
     public function getCommentsList($page,$limit)
     {
-        return json(Commentsmodel::getCommentsList($page,$limit));
+        return json(CommentsModel::getCommentsList($page,$limit));
     }
 
     // 编辑评论
-    // /admin/comments/editcomments
     public function editComments()
     {
         $data = input('post.');
         // 验证数据合法性
-        $data = Commentsmodel::editComments($data);
+        $data = CommentsModel::editComments($data);
         return json(["code"=>0,"msg"=>"编辑评论成功"]);
     }
     
-    // 查询博客
+    // 查询评论
     public function queryComments()
     {
         //pass
     }
     
-    // 删除评论
-    // 对博客文章无影响
-    // /admin/comments/deletecomments
+    // 删除评论，同时删除评论下的回复
     public function deleteComments()
     {
         $id = input('post.');
         // 验证数据合法性
-        $data = Commentsmodel::deleteComments($id);
-        return json(["code"=>0,"msg"=>"删除评论成功"]);
+        $info = CommentsModel::deleteComments($id);
+        // 删除所有回复
+        if($info){
+            return json(["code"=>0,"msg"=>"删除评论成功"]);
+        }else{
+            return json(["code"=>0,"msg"=>"删除评论失败"]);
+        }
     }
 }

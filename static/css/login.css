@@ -32,12 +32,19 @@
     }
 }
 .input-group-addon{
-    width: 100px;
+    width: 110px;
 }
 .input-group{
-    width:400px;
-        margin: 10px 0 10px 0;
+    width:360px;
+    margin: 10px 0 10px 0;
 }
+.captcha{
+    width:120px;
+    cursor: pointer;
+    float: left;
+    margin: 5px 0 0 2px;
+}
+
 .login-input{
 
 }
@@ -45,8 +52,8 @@
     display: inline-block;
     margin: 1px 1px 5px 1px;
 }
-.btn{
-    margin: 0 0 0 110px;
+.btn-lg{
+    margin: 0 0 0 85px;
     width: 200px;
 }
 

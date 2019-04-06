@@ -27,8 +27,8 @@ class Base extends Controller
     // 获取当前登录用户
     public function getLoginName()
     {
-        $userName = session('user')['username'];
-        $this->assign("username",$userName);
+        $nickName = session('user')['nickname'];
+        $this->assign("nickname",$nickName);
     }
     // 获取导航数据
     public function getNavCates()

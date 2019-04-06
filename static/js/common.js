@@ -11,12 +11,20 @@ $(function(){
             return false;
         }
     });
-    // 微信小程序
-    $('#wechat').hover(function(){
-        $('#wechat-box').show();
+    // 登录注册
+    $(".login").click(function () {
+        if(!isLogin()){
+            getLogin();
+        }else{
+            window.location.reload();
+        }
     });
-    $('#wechat-box').hover(function(){
-        $('#wechat-box').show();
+    $(".loginoff").click(function () {
+        $.get('/login/index/loginoff2',function (data) {
+            if(data.code == 0){
+                window.location.reload();
+            }
+        });
     });
     // 留言
     $('#massage').click(function(){
@@ -37,11 +45,30 @@ $(function(){
         });
     });
 });
-
-// 检测留言内容，提交时后台也需检测
-function checkMassage(){
-
+function isLogin() {
+    $.get('/login/index/isLogin',function (data) {
+        if(data.code === 0){
+            return true;
+        }else if(data.code === -1){
+            return false;
+        }
+    });
 }
+// 登录框
+function getLogin(){
+    layer.open({
+        type: 2,
+        title: '登录/注册',
+        area: ['390px', '550px'],
+        content: '/login',
+        shadeClose:true,
+        btn: ['关闭'],
+        yes: function(index, layero){
+            layer.close(index);
+        }
+    });
+}
+
 
 // 提交留言
 function postMassage(){

@@ -34,10 +34,10 @@
             <a class="navbar-brand" href="http://{$webdata['domain']}">{$webdata['domain']}</a>
         </div>
         <!-- 导航条链接 -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <span class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 {volist name='cates' id='cate' offset='1' length='3'}
-                    {if condition='$cate["blog_category"] !== "无"'}
+                    {if condition='$cate["blog_category"] !== "默认分类"'}
                         <li class=""><a href="/blog/contents?cate={$cate['id']}&page=1">{$cate.blog_category}</a></li>
                     {/if}
                 {/volist}
@@ -56,7 +56,14 @@
                 </li>
             </ul>
             <!--搜索栏-->
-            <form class="navbar-form navbar-left" action="search" method="GET">
+            <form class="navbar-form navbar-left" action="/search" method="GET">
+                <div class="form-group">
+                    <select name="category" class="form-control">
+                        <option value="blog">文章</option>
+                        <option value="tag">标签</option>
+                        <option value="user">用户</option>
+                    </select>
+                </div>
                 <div class="form-group">
                     <input type="text" name="q" class="form-control" autocomplete="off" placeholder="请输入搜索内容">
                 </div>
@@ -64,7 +71,14 @@
             </form>
             <!--登陆注册栏-->
             <ul class="nav navbar-nav navbar-right">
-                <li><a id="login" href="/login">{$username?: '注册/登录'}</a></li>
+                {if condition = "$nickname"}
+                    <li><a class="{$nickname}" href="/admin" title="后台管理">{$nickname}</a></li>
+                    <li><a class="loginoff" href="javascript:void(0);" title="退出登录"><i class="fa fa-close"></i></a></li>
+                {else /}
+                     <li>
+                         <a class="login" href="javascript:void(0);">注册/登录</a>
+                     </li>
+                {/if}
             </ul>
         </div>
     </div>
@@ -73,19 +87,10 @@
 {block name="container"}
 {/block}
 {block name="sidebar"}
-<div id="Sidebar">
-    <div id="Sidebar-box">
-        <div id="massage-box"></div>
-        <div id="wechat-box" style='display:none'>
-            <img src="/static/img/wechat.png"/>
-        </div>
-    </div>
-    <div id="Sidebar-display">
+    <div id="sidebar">
         <div id="massage"></div>
-        <div id="wechat"></div>
         <div id="toTop"></div>
     </div>
-</div>
 </body>
 {/block}
 {block name="js"}

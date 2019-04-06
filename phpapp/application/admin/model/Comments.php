@@ -5,48 +5,54 @@ use think\Model;
 
 class Comments extends Model
 {
-    // 查询所有数据
-    // sql:select * from _comments;
+    public static function formatComment($data)
+    {
+        foreach ($data as $value)
+        {
+            // 根据id查询用户昵称数据
+            $value['user'] = db('users')
+                ->where('id',$value['user_id'])
+                ->field('nickname') ->find();
+        }
+        return $data;
+    }
+    // 查询所有评论
     public static function getCommentsList($page,$limit)
     {
-        $list = self::where('delete_time',null) -> limit(($page-1)*$limit,$limit) -> select();
+        $commentList = self::where('delete_time',null)
+            -> limit(($page-1)*$limit,$limit)
+            -> select();
         $count = self::where('delete_time',null) -> count();
-        return ["code"=>0,"msg"=>"列表查询完成","count"=>$count,"data"=>$list];
+        return ["code"=>0,"msg"=>"列表查询完成","count"=>$count,"data"=>$commentList];
     }
+
     // 创建评论，只能在评论页调用
     public static function createComments($data)
     {
         $info = self::create($data, true);
-        if($info){
-            return ["code"=>0, "msg"=>"评论已发布"];
-        }else{
-            return ["code"=>-1, "msg"=>"评论发布失败"];
-        }
+        return $info;
     }
+
     //  编辑评论，暂无需求
     public static function editComments($data)
     {
         // self::update($data);
         // return ["data"=>""];
     }
+
     // 删除评论
     public static function deleteComments($id)
     {
-        $deleteComment = self::get($id);
-        $deleteComment -> delete_time = strtotime('now');
-        $deleteComment -> save();
-        return ["code"=>0, "msg"=>"删除成功"];
+        $info = self::destroy(['id'=>$id]);
+        return $info;
     }
+
     // 根据博客id查询博客评论
     public static function queryComments($id)
     {
-      $data = self::where('delete_time',null)
-          ->where('blog_id',$id)
+      $data = self::where('blog_id',$id)
           ->select();
-      if($data){
-          return ["code"=>0, "msg"=>"评论查询完成", "data"=>$data];
-      }else{
-          return ["code"=>-1, "msg"=>"暂无评论", "data"=>$data];
-      }
+      $data = self::formatComment($data);
+      return $data;
     }
 }

@@ -50,4 +50,13 @@ class Users extends Model
                -> find();
        return $userData;
     }
+
+    // 查询昵称
+    public static function isExistNickName($nickname)
+    {
+        $isExist = self::where('nickname',$nickname)
+            -> find();
+        return $isExist;
+    }
+
 }

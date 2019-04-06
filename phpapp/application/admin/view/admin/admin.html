@@ -146,7 +146,7 @@
                         <label class="layui-form-label">笔记分类</label>
                         <div class="layui-input-block">
                             {volist name='catelist' id='cate'}
-                             {if condition='$cate["blog_category"] == "无"'}
+                             {if condition='$cate["blog_category"] == "默认分类"'}
                                  <input type="radio" lay-filter="blog-category" name="blog-category" value="{$cate['id']}" title="{$cate['blog_category']}" checked>
                              {else /}
                                 {eq name="$cate['id']" value='6'}<br>{/eq}

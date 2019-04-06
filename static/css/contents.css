@@ -1,15 +1,16 @@
 @charset"utf-8";
-
+body{
+    padding-top: 50px !important;
+}
 
 .list{
-    margin:10px 0 10px 10px;
-    /*width:95%;*/
-    height:165px;
-    border: 0.5px solid rgb(1,1,1);
+    margin:0 0 10px 10px;
+    height:170px;
     background: white;
 }
 .list div{
-    margin: 6px 0 0 0;
+    margin: 0 0 0 0;
+    padding: 5px 2px 2px 2px;
 }
 .img-box{
     float: left;
@@ -29,6 +30,7 @@
     text-align:left;
     display:inline-block;
 }
+
 .article-detail{
     overflow: hidden;
     text-overflow: ellipsis;
@@ -38,28 +40,21 @@
     font-size: 14px;
 }
 .article-like{
-    clear: both;
-    padding: 6px 0 0 0;
-    border: 1px solid red;
+    clear: left;
+    padding: 6px 10px 2px 10px !important;
+    margin: 0 0 5px 0 !important;
 }
-.pagination{
-    margin: auto;
-    display: block;
+.box{
+    background: white;
+    height: 200px;
+    margin: 0 0 10px 0;
+    padding: 5px 5px 5px 5px;
 }
-/* 重写bootstrap样式 */
-/*.pagination > li > a{*/
-    /*color: rgb(176,58,91);*/
-/*}*/
-/*.pagination > li > a:hover{*/
-    /*color: rgb(176,58,91);*/
-    /*font-weight:bold;*/
-/*}*/
-/*.pagination > .active > a{*/
-    /*background:rgb(176,58,91);*/
-    /*border-color:rgb(176,58,91);*/
-/*}*/
-/*.pagination > .active > a:hover{*/
-    /*background:rgb(176,58,91);*/
-    /*border-color:rgb(176,58,91);*/
-    /*font-weight:normal;*/
-/*}*/
+@media (max-width:1200px){
+    .img-box{
+        display: none;
+    }
+    .article-box{
+        width:100%;
+    }
+}

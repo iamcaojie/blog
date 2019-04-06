@@ -19,7 +19,7 @@ class Base extends Controller
 //            $this->redirect('/login');
 //        }
         // 登陆用户
-        $userID = session('user')['user_id'];
+        $userID = session('user')['id'];
         if ($userID){
             $auth = new Auth();
             $module = strtolower(request()->module());
@@ -32,7 +32,7 @@ class Base extends Controller
 //                exit;
 //            }
         }else{
-//            $this->redirect('/login');
+            $this->redirect('/');
         }
     }
 }

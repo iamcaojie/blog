@@ -63,7 +63,7 @@ class Blog extends Base
         }
     }
     
-    // 软删除博客->
+    // 软删除博客
     // post /admin/blog/deleteblog
     public function deleteblog($id)
     {   
