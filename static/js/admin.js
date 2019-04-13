@@ -9,7 +9,7 @@ var layer = layui.layer,
     var uploadInst = upload.render({
         elem: '#imguploadbtn', //绑定元素
         bindAction: '#uploadaction', //指向一个按钮触发上传
-        url: '/admin/upload/carousel', //上传接口
+        url: '/admin/upload/banner', //上传接口
         auto: false,
         accept: 'images',
         multiple: true,
@@ -104,9 +104,9 @@ var layer = layui.layer,
         page: true, //开启分页
         cols: [[ //表头
             {type: 'checkbox', fixed: 'left'},
-            {field: 'id', title: 'ID', wridth:80, sort: true, fixed: 'left'},
-            {field: 'user_id', title: '用户id', width:80},
-            {field: 'blog_id', title: '博客id', width: 80},
+            {field: 'id', title: 'ID', width:80, sort: true, fixed: 'left'},
+            {field: 'nickname', title: '用户id', width:80},
+            {field: 'blog_title', title: '博客标题', width: 80},
             // {field: 'tag', title: '标签', width: 80},
             {field: 'comment_text', title: '内容', width:240},
             // {field: 'delete_time', title: '软删除时间', width:80} ,
@@ -150,12 +150,13 @@ var layer = layui.layer,
         if(layEvent === 'detail'){
             window.open('/blog/detail/index/id/'+data.id);
         } else if(layEvent === 'del'){
-            layer.confirm('真的删除行么', function(index){
+            layer.confirm('真的删除文章吗', function(index){
                 obj.del(); //删除对应行（tr）的DOM结构
                 layer.close(index);
                 deleteBlog(data.id);
             });
         }else if(layEvent === 'edit'){
+            element.tabChange('tab-list','fabuwenzhang');
             editBlog(data.id);
         }
     });
@@ -173,6 +174,7 @@ var layer = layui.layer,
                 deleteLink(data.id);
             });
         }else if(layEvent === 'edit'){
+                element.tabChange('tab-list','fabulianjie');
                 editLink(data.id);
         }
     });
@@ -184,7 +186,7 @@ var layer = layui.layer,
         if(layEvent === 'detail'){
             layer.msg(data.comment_text);
         } else if(layEvent === 'del'){
-            layer.confirm('确定删除此评论？', function(index){
+            layer.confirm('确定删除此评论？<br>同时会删除所有此评论下所有回复', function(index){
                 obj.del();
                 layer.close(index);
                 deleteComment(data.id);
@@ -204,6 +206,24 @@ var layer = layui.layer,
 // 初始化wangEditor
 var E = window.wangEditor;
 var editor = new E('#editor');
+editor.customConfig.uploadImgServer = '/admin/Upload/detail';
+editor.customConfig.uploadImgHooks = {
+    before: function (xhr, editor, files) {},
+    // 图片上传并返回结果，图片插入成功之后触发
+    success: function (xhr, editor, result) {},
+    // 图片上传并返回结果，但图片插入错误时触发
+    fail: function (xhr, editor, result) {
+        layer.msg('图片载入失败');
+    },
+    // 图片上传出错时触发
+    error: function (xhr, editor) {
+        layer.msg('图片上传失败');
+    },
+    // 图片上传超时时触发
+    timeout: function (xhr, editor) {
+        layer.msg('图片上传超时');
+    }
+};
 editor.create();
 
 var domain = $('input[name="domain"]'),
@@ -212,9 +232,69 @@ beiAn = $('input[name="beian"]'),
 blogId = $('input[name="id"]'),
 blogTitle = $('input[name="blog_title"]'),
 blogUniqueTag = $('input[name="unique_tag"]'),
+masterImage = $('input[name="master_image"]'),
 linkId = $('input[name="link_id"]'),
 linkTitle = $('input[name="link_title"]'),
 linkAddress = $('input[name="link_address"]');
+
+$(function(){
+    //uploader插件，上传轮播图
+    var $bannerUpload = $('#bannerUpload').diyUpload({
+        url:'/admin/Upload/banner',
+        success:function( data ) {
+            layer.msg(data.msg);
+        },
+        error:function( err ) {
+            layer.msg('上传失败');
+        },
+        buttonText : '',
+        accept: {
+            title: "Images",
+            extensions: 'gif,jpg,jpeg,bmp,png'
+        },
+        thumb:{
+            width:120,
+            height:90,
+            quality:100,
+            allowMagnify:true,
+            crop:true,
+            type:"image/jpeg"
+        }
+    });
+    $("#banner-upload-btn").click(function () {
+        $bannerUpload.upload();reset();
+    });
+
+    //上传主图
+    var $masterUpload = $('#masterUpload').diyUpload({
+        url:'/admin/Upload/master',
+        success:function( data ) {
+            console.log(data);
+            layer.msg(data.msg);
+            // 把图片id加到input中
+            masterImage.val(masterImage.val() + data['data'][0]['id'] + ',');
+        },
+        error:function( err ) {
+            layer.msg('上传失败');
+        },
+        buttonText : '',
+        accept: {
+            title: "Images",
+            extensions: 'gif,jpg,jpeg,bmp,png'
+        },
+        thumb:{
+            width:120,
+            height:90,
+            quality:100,
+            allowMagnify:true,
+            crop:true,
+            type:"image/jpeg"
+        }
+    });
+    $("#master-upload-btn").click(function () {
+        $masterUpload.upload();
+    });
+});
 
 // 所有数据前端不验证，后端验证数据合法性
 $(function(){
@@ -222,9 +302,17 @@ $(function(){
     $('#manage-classification').click(function(){
         getCateData();
     });
+    // 系统设置
+    $('#conf').click(function(){
+        getConfData();
+    });
     // 权限管理
     $('#auth-manage').click(function(){
         getAuthData();
+    });
+    // 图片管理
+    $('#image-manage').click(function(){
+        getImageData();
     });
     // 关闭网站显示信息
     $("#close-info").click(function() {
@@ -270,7 +358,7 @@ $(function(){
     // 手动保存，获取保存状态
     $("#btn3").click(function(){
         if(check()){
-        postData('/admin/blog/createblog','POST',getlocalData());
+            postData('/admin/blog/createblog','POST',getlocalData());
         } 
         return false;
     });
@@ -350,6 +438,9 @@ function emptyBlogData(){
     blogId.val("");
     blogTitle.val("");
     blogUniqueTag.val("");
+    masterImage.val("");
+    // 初始化diyUpload
+    // $masterUpload.reset();
     $(".w-e-text").empty();
 }
 
@@ -358,6 +449,7 @@ function fillBlogData(data){
     blogId.val(data["data"]["id"]);
     blogTitle.val(data["data"]["blog_title"]);
     blogUniqueTag.val(data["data"]["unique_tag"]);
+    masterImage.val(data["data"]["image_id"]);
     $(".w-e-text").append(data["data"]["blog_html"]);
 }
 
@@ -404,15 +496,20 @@ function getWebData(){
 // 实时获取编辑数据,键与后台对应
 function getlocalData(){
     var data = {};
+    var str= masterImage.val();
     var tagData = new Array($('input[name="tag-origin"]:checked').val(),$('input[name="tag-level"]:checked').val());
     data["id"] = blogId.val();
     data["blog_title"] = blogTitle.val();
     data["unique_tag"] = blogUniqueTag.val();
     data["cate_id"] =  $('input[name="blog-category"]:checked').val();
+    if(str.substr(-1) == ','){
+        data['image_id'] = str.substring(0,str.length-1);
+    }else{
+        data['image_id'] = str;
+    }
     data["blog_html"] = editor.txt.html();
     data["blog_text"] = editor.txt.text();
     var blogData = {"blogdata":data, "tagdata":tagData};
-    console.log(blogData);
     return blogData;
 }
 
@@ -546,6 +643,21 @@ function getCateData(){
         }
     });
 }
+// 获取设置数据
+function getConfData(){
+    layer.open({
+        type: 2,
+        skin: 'massageboard-class',
+        area: ['850px','500px'],
+        title: '<div><b>系统设置</b></div>',
+        content: ['/admin/conf/index','yes'],
+        btn: ['刷新父页面使修改生效'],
+        yes: function(index, layero){
+            layer.close(index);
+            location.reload(true);
+        }
+    });
+}
 
 // 获取权限数据
 function getAuthData(){
@@ -555,6 +667,21 @@ function getAuthData(){
         area: ['850px','500px'],
         title: '<div><b>权限管理</b></div>',
         content: ['/admin/auth/index','yes'],
+        btn: ['刷新父页面使修改生效'],
+        yes: function(index, layero){
+            layer.close(index);
+            location.reload(true);
+        }
+    });
+}
+// 获取图片数据
+function getImageData(){
+    layer.open({
+        type: 2,
+        skin: 'massageboard-class',
+        area: ['850px','500px'],
+        title: '<div><b>图片管理</b></div>',
+        content: ['/admin/image/index','yes'],
         btn: ['刷新父页面使修改生效'],
         yes: function(index, layero){
             layer.close(index);

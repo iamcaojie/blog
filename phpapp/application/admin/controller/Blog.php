@@ -30,21 +30,24 @@ class Blog extends Base
     }
     
     // 新增博客(分类直接写入对应cate_id,只能向中间表添加已有标签数据)
-    // post /admin/blog/createblog
-    public function createblog()
+    // post /admin/blog/createBlog
+    public function createBlog()
     {
         $data = input('post.');
-        $userID = session('user')['user_id'];
+        $userID = session('user')['id'];
         if(!$userID){
             return json(["code"=>-1, "msg"=>"非法操作"]);
         }
         $data["blogdata"]['user_id'] = $userID;
-        Blogmodel::createBlog($data);
-        return json(["code"=>0, "msg"=>"保存成功"]);
+        $info = Blogmodel::createBlog($data);
+        if($info){
+            return json(["code"=>0, "msg"=>"保存成功"]);
+        }else{
+            return json(["code"=>0, "msg"=>"保存失败"]);
+        }
     }
     
     // 编辑博客 -> 编辑已有分类 -> 向中间表修改标签数据
-    // post /admin/blog/editblog
     public function editblog()
     {
         // 可修改表单字段，避免和数据库一致，不用保存关联数据

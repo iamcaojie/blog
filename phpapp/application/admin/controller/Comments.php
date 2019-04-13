@@ -30,10 +30,9 @@ class Comments extends Base
     // 删除评论，同时删除评论下的回复
     public function deleteComments()
     {
-        $id = input('post.');
+        $id = input('post.')['id'];
         // 验证数据合法性
         $info = CommentsModel::deleteComments($id);
-        // 删除所有回复
         if($info){
             return json(["code"=>0,"msg"=>"删除评论成功"]);
         }else{

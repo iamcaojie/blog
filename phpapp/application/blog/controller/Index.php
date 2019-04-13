@@ -27,6 +27,8 @@ class Index extends Base
         $this->assign('linkData',$linkData);
         // 是否签到
         $this->assign('checkInData',cookie('msgData'));
+        // redis统计
+        // pass
         return view("blog/blog");
     }
     
@@ -34,15 +36,14 @@ class Index extends Base
     {
         $massage = new MassageModel;
         $data = input('post.');
-        $massage -> massage_title = $data['massage_title'];
-        $massage -> contact = $data['contact'];
-        $massage -> massage_text = $data['massage_text'];
+        $massage -> massage_title = htmlentities($data['massage_title']);
+        $massage -> contact = htmlentities($data['contact']);
+        $massage -> massage_text = htmlentities($data['massage_text']);
         $info = $massage -> save();
         if($info){
-            return ["code"=>0, "msg"=>"提交成功"];
+            return ["code"=>0, "msg"=>"留言已提交"];
         }else{
-            return ["code"=>-1, "msg"=>"提交失败"];
+            return ["code"=>-1, "msg"=>"留言失败"];
         }
-
     }
 }

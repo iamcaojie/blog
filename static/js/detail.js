@@ -28,6 +28,11 @@ $(function(){
     });
     // 回复评论
     $(".reply-comment").click(function(){
+        if(!isLogin()){
+            getLogin();
+            layer.msg('请登录后回复');
+            return false;
+        }
         $(this).parent().parent().parent().find(".reply-input").show();
         $(this).parent().parent().hide();
     });
@@ -38,6 +43,11 @@ $(function(){
     });
     // 提交回复
     $(".reply-btn").click(function() {
+        if(!isLogin()){
+            getLogin();
+            layer.msg('请登录后回复');
+            return false;
+        }
         var commentId = $(this).prevAll().eq(1).val();
         var replyText = $(this).prevAll().eq(0).val();
         if(replyText === ""){

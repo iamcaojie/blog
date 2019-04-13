@@ -21,7 +21,6 @@
         <ol class="breadcrumb">
             <li><a href="http://{$webdata['domain']}">首页</a></li>
             <li class="active">{$cateData['blog_category']}</li>
-            <!-- <li class="active">Data</li> -->
         </ol>
         <div class="container">
             <div class="row">
@@ -30,7 +29,7 @@
                     <div class="list">
                         <div>
                             <div class="img-box">
-                                <img class="article-img" src="/static/img/python.jpg"/>
+                                <img class="article-img" src="{$blog['masterimageurl']}"/>
                             </div>
                             <div class="article-box">
                                 <h1><a href="/blog/detail/index/id/{$blog['id']}">{$blog['blog_title']}</a></h1>

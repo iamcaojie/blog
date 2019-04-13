@@ -100,43 +100,54 @@ h2{
     font-size:16px;
     display: inline;
 }
-
+#massage{
+    width:50px;
+    height:50px;
+    text-align: center;
+}
+#toTop{
+    width:50px;
+    height:50px;
+    text-align: center;
+}
 /*留言板*/
 #massage-board {
-    color:rgb(176,58,91);
+    color:#337ab7;
     padding:0 20px 0 20px;
 }
 #massage-board input{
-    border: 1px solid rgb(176,58,91);
+    border: 1px solid #337ab7;;
     padding: 4px;
     width:100%;
     height: 40px;
 }
 .massageboard-class .layui-layer-btn .layui-layer-btn0{
-    border-color: rgb(176,58,91);
-    background-color: rgb(176,58,91);
+    border-color: #337ab7;
+    background-color: #337ab7;;
 }
 #massage-text{
     width:100%;
     height: 120px;
     padding: 4px;
     resize: none;
-    border: 1px solid rgb(176,58,91);
+    border: 1px solid #337ab7;
 }
 /*侧边栏*/
 #sidebar{
-    width: 162px;
-    height: 120px;
-    bottom: 80px;
+    width: 50px;
+    height: 100px;
+    bottom: 60px;
     right: 2%;
     position: fixed;
     cursor: pointer;
     z-index: 10;
 }
-
-/*侧边悬浮栏*/
+#sidebar i{
+    font-size: 36px;
+    color:#337ab7;
+}
 @media (max-width: 800px){
     #sidebar{
-        display:none;
+        bottom: 40px;
     }
 }

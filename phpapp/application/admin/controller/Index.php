@@ -15,10 +15,17 @@ class Index extends Base
     {
         $request = request();
         $ip = $request -> ip();
+        // 获取网站数据
         $webData = Web::get(1);
+        // 获取轮播数据
+
+        // 获取分类数据
         $cateList = Cate::getCateList();
+        // 获取链接分类数据
         $linkCateList = Linkcate::getLinkcateList();
+        // 获取用户数据
         $userName = session('user')['username'];
+
         return view("admin/admin",
             ['username' => $userName,
                 'webdata' => $webData,

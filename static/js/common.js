@@ -31,28 +31,58 @@ $(function(){
         layer.open({
             type: 1,
             skin: 'massageboard-class',
-            area: ['500px', '400px'],
-            title: '<div style="color: rgb(176,58,91);"><b>有什么想说的，在这里畅所欲言^_^</b></div>',
+            area: ['360px', '400px'],
+            title: '<b style="color:#337ab7;">留言板</b>',
             content: '<div id="massage-board"><form >留言主题\n\
             <br><input placeholder="必填，25字以内" name="massage_title"/>\n\
             <br>联系方式<br><input placeholder="选填，最多20字" name="contact"/>\n\
-            <br>留言内容<br><textarea id="massage-text" placeholder="选填，最多200字" name="massage_text"></textarea></form><span id="text-count"></span></div>'
-            ,btn: ['提交']
-            ,yes: function(index, layero){
+            <br>留言内容<br><textarea id="massage-text" placeholder="选填，最多200字" name="massage_text"></textarea></form>\
+            <span id="text-count"></span></div>',
+            btn: ['提交'],
+            yes: function(index, layero){
                 postMassage();
                 layer.close(index);
             }
         });
     });
 });
-function isLogin() {
-    $.get('/login/index/isLogin',function (data) {
-        if(data.code === 0){
-            return true;
-        }else if(data.code === -1){
-            return false;
+jQuery(document).ready(function($) {
+    if($(this).scrollTop() <= 600){
+        $("#toTop").hide();
+    }
+    $(window).scroll(function() {
+        if($(this).scrollTop() <= 600){
+            $("#toTop").hide();
+        }
+        if($(this).scrollTop() > 600){
+            $("#toTop").show();
         }
     });
+    $("#toTop").click(function() {
+        $("html,body").animate({
+            scrollTop:"0px"},500)
+        });
+});
+// 是否登录
+function isLogin() {
+    var loginStatus = false;
+    $.ajax({
+        url: '/login/index/isLogin',
+        type: 'GET',
+        async:false,
+        dataType: 'json',
+        success: function (data) {
+            if(data.code === 0){
+                loginStatus = true;
+            }else{
+                loginStatus = false;
+            }
+        },
+        error: function () {
+            layer.msg('服务器错误');
+        }
+    });
+    return loginStatus;
 }
 // 登录框
 function getLogin(){
@@ -76,10 +106,11 @@ function postMassage(){
         var massageTitle = $('input[name="massage_title"]'),
             contact = $('input[name="contact"]'),
             massageText = $('#massage-text');
-        var massageData = {"massage_title":massageTitle.val(),"contact":contact.val(),"massage_text":massageText.val()};
-        console.log(massageData);
+        var massageData = {"massage_title":massageTitle.val(),
+            "contact":contact.val(),
+            "massage_text":massageText.val()};
         $.ajax({
-            url:'/blog/index/getmassage',
+            url:'/blog/index/getMassage',
             type:'POST',
             data:massageData,
             dataType: 'json',
@@ -93,6 +124,7 @@ function postMassage(){
         });
     });
 }
+
 
 // 检测是否为IE
 function IEVersion() {

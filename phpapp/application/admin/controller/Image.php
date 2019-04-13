@@ -1,14 +1,15 @@
 <?php
 namespace app\admin\controller;
 
-use app\admin\model\Image as Imagemodel;
-
-// 每个方法为同名模型的函数
+use app\admin\model\Image as ImageModel;
 
 class Image extends Base
 {
-    // 获取所有图片
-    // /admin/image/getimagelist
+    public function index()
+    {
+        // 获取所有图片（轮播，主图，详情图）
+    }
+        // 获取所有图片
     public function getImageList($page,$limit)
     {
         return json(Imagemodel::getImageList($page,$limit));
@@ -19,7 +20,6 @@ class Image extends Base
     public function editImage()
     {
         $data = input('post.');
-        // 验证数据合法性
         $data = Imagemodel::editImage($data);
         return json(["code"=>0,"msg"=>"编辑图片成功"]);
     }

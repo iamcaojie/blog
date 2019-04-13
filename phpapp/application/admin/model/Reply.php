@@ -2,12 +2,13 @@
 namespace app\admin\model;
 
 use think\Model;
-class Reply
+class Reply extends Model
 {
     // 回复评论
     public static function reply($data)
     {
-
+        $info = self::create($data);
+        return $info;
     }
 
     // 查询回复

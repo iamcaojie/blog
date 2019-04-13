@@ -2,6 +2,7 @@
 namespace app\blog\controller;
 
 use think\Controller;
+use think\Cache;
 use app\admin\model\Cate as CateModel;
 use app\admin\model\Web as WebModel;
 class Base extends Controller 
@@ -29,6 +30,8 @@ class Base extends Controller
     {
         $nickName = session('user')['nickname'];
         $this->assign("nickname",$nickName);
+        $userName = session('user')['username'];
+        $this->assign("username",$userName);
     }
     // 获取导航数据
     public function getNavCates()
@@ -52,5 +55,10 @@ class Base extends Controller
     public function getLocation()
     {
 
+    }
+    // redis缓存，在配置文件中进行配置
+    public function cache()
+    {
+        Cache::connect();
     }
 }

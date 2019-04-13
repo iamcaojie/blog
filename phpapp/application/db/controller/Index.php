@@ -8,8 +8,6 @@ class Index
     public function index()
     {
         // 初始化数据库
-        print_r(Db::query('show TABLES'));
-
         echo '初始化数据库...<br>';
 
         $ddlsql = [
@@ -33,6 +31,8 @@ class Index
             'DROP TABLE IF EXISTS think_download;',
             'DROP TABLE IF EXISTS think_ip;',
             'DROP TABLE IF EXISTS think_follow;',
+            'DROP TABLE IF EXISTS think_account;',
+            'DROP TABLE IF EXISTS think_reply;',
             // 网站状态表
             'CREATE TABLE think_web('
                 . 'id int UNSIGNED NOT NULL AUTO_INCREMENT, '
@@ -53,6 +53,17 @@ class Index
             'CREATE TABLE think_info('
                 . 'id int UNSIGNED NOT NULL AUTO_INCREMENT, '
                 . 'name varchar(10), '
+                . 'create_time int, '
+                . 'update_time int, '
+                . 'delete_time int, '
+                . 'PRIMARY KEY(id)) '
+                . 'DEFAULT CHARSET=utf8; ',
+            // 账号表
+            'CREATE TABLE think_account('
+                . 'id int UNSIGNED NOT NULL AUTO_INCREMENT, '
+                . 'title varchar(50), '
+                . 'username varchar(50), '
+                . 'password varchar(50), '
                 . 'create_time int, '
                 . 'update_time int, '
                 . 'delete_time int, '
@@ -87,7 +98,7 @@ class Index
                 . 'username varchar(50), '
                 . 'password varchar(50), '
                 . 'gender tinyint(1), '
-                . 'avatar vachar(100), '
+                . 'avatar_image_id int, '
                 . 'create_time int, '
                 . 'update_time int, '
                 . 'delete_time int, '
@@ -144,6 +155,7 @@ class Index
                 . 'blog_title varchar(30), '
                 . 'user_id int,'
                 . 'cate_id tinyint(1), '
+                . 'image_id varchar(50), '
                 . 'unique_tag varchar(50) DEFAULT "",'
                 . 'blog_html text, '
                 . 'blog_text text, '
@@ -262,8 +274,8 @@ class Index
         $dmlsql = [
             'insert into think_web(id, name, web_status, domain, ip, beian_code,today_views,all_views) '
             . 'values (1,"blog", 1,"localhost","00.000.00.000", "鄂ICP备19004169号",0,0);',
-            'insert into think_users(id,username,password) '
-            . 'values (1,"caojie","d226d500e7899a09458559bf2661a62b")',
+            'insert into think_users(id,nickname,username,password) '
+            . 'values (1,"李白","caojie","d226d500e7899a09458559bf2661a62b")',
             'insert into think_blog(id, blog_title, cate_id, delete_time) '
             . 'values (1, "临时缓存内容", 1, 1);',
             'insert into think_cate(id, blog_category,pid) '

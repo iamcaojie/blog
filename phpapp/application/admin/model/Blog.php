@@ -38,7 +38,7 @@ class Blog extends Model
             }
 
             // 修改时间格式
-            $value['f_update_time'] = date('Y-m-s',strtotime($value['update_time']));
+            $value['f_update_time'] = date('Y-m-d',strtotime($value['update_time']));
 
             // 格式化个性标签
             if(isset($value['unique_tag'])){
@@ -70,6 +70,18 @@ class Blog extends Model
             $value['commentsCount'] = db('comments')
                 -> where('blog_id',$value['id'])
                 ->count();
+            // 写入图片数据
+            $imageData = db('image')
+                -> where('id',$value['image_id'])
+                -> find();
+            $imageCateData = db('imagecate')
+                -> where('id',2)
+                -> find();
+            if($imageData){
+                $value['masterimageurl'] = '/uploads/'.$imageCateData['dir'].'/'.$imageData['address'].'.'.$imageData['ext'];
+            }else{
+                $value['masterimageurl'] = '/uploads/'.$imageCateData['dir'].'/'.'default.jpg';
+            }
         }
         return $data;
     }

@@ -20,6 +20,7 @@ class Detail extends Base
         // pass
         // 获取评论
         $blogCommentData = CommentsModel::queryComments($id);
+//        dump(json($blogCommentData));die;
         return view("detail/detail",[
             'id' => $id,
             'blogDetail' => $blogDetail['data'],
@@ -78,13 +79,23 @@ class Detail extends Base
     {
         $data = input('post.');
         // 判断用户是否登录
+        if(!session('user')){
+            return json(['code'=>-1,'msg'=>'未登录']);
+        }
         $userId = session('user')['id'];
-
         // 判断评论是否存在
         $commentData = CommentsModel::get($data['comment_id']);
         if(!$commentData){
             return json(['code'=>-1,'msg'=>'评论不存在']);
         }
         // 写入回复数据
+        $data['user_id'] = $userId;
+        $data['reply_text'] = htmlentities($data['reply_text']);
+        $info = ReplyModel::reply($data);
+        if($info){
+            return json(['code'=> 0, 'msg'=>'回复成功','data'=>$info]);
+        }else{
+            return json(['code'=> -1, 'msg'=>'回复失败']);
+        }
     }
 }
