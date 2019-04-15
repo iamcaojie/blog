@@ -200,6 +200,7 @@ class Auth extends Base
     {
         $data = UsersModel::getUsersList($page,$limit);
         // 添加显示用户的所属用户组
+        // 查出用户组id-title对应值
         $authGroupData = db('auth_group')
                         -> column('title','id');
         // 查询用户-用户组关联表，寻找此用户所有用户组id
@@ -210,7 +211,12 @@ class Auth extends Base
             // 查出用户组id后再查出用户组title
             $groupTitle = '';
             foreach ($groupAccessData as $group){
-                $groupTitle = $groupTitle.$authGroupData[$group['group_id']].' | ';
+                // 出现为0的情况是添加用户时没有用户组供选择
+                if($group['group_id'] == 0){
+                    $groupTitle = '添加此用户时没有用户组';
+                }else {
+                    $groupTitle = $groupTitle.$authGroupData[$group['group_id']].' | ';
+                }
             }
             $value['group_title'] = $groupTitle;
         }

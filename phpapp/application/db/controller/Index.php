@@ -275,7 +275,7 @@ class Index
             'insert into think_web(id, name, web_status, domain, ip, beian_code,today_views,all_views) '
             . 'values (1,"blog", 1,"localhost","00.000.00.000", "鄂ICP备19004169号",0,0);',
             'insert into think_users(id,nickname,username,password) '
-            . 'values (1,"李白","caojie","d226d500e7899a09458559bf2661a62b")',
+            . 'values (1,"入戏太深","caojie","d226d500e7899a09458559bf2661a62b")',
             'insert into think_blog(id, blog_title, cate_id, delete_time) '
             . 'values (1, "临时缓存内容", 1, 1);',
             'insert into think_cate(id, blog_category,pid) '
@@ -288,7 +288,7 @@ class Index
             'insert into think_links(id, link_cate_id, link_title, link) '
             . 'value (1, 1, "我的博客", "http://www.imcaojie.com");',
             'insert into think_imagecate(id, name, dir)'
-            .'values (1,"轮播图","banner"),(2,"主图","master"),(3,"详情图","detail")'
+            .'values (1,"轮播图","banner"),(2,"主图","master"),(3,"详情图","detail"),(4,"头像","avatar")'
         ];
         foreach ($ddlsql as $value)
         {

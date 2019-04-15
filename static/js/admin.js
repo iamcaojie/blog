@@ -306,6 +306,10 @@ $(function(){
     $('#conf').click(function(){
         getConfData();
     });
+    // 账户设置
+    $('#account-manage').click(function(){
+        getAccountData();
+    });
     // 权限管理
     $('#auth-manage').click(function(){
         getAuthData();
@@ -651,6 +655,21 @@ function getConfData(){
         area: ['850px','500px'],
         title: '<div><b>系统设置</b></div>',
         content: ['/admin/conf/index','yes'],
+        btn: ['刷新父页面使修改生效'],
+        yes: function(index, layero){
+            layer.close(index);
+            location.reload(true);
+        }
+    });
+}
+// 获取账户数据
+function getAccountData(){
+    layer.open({
+        type: 2,
+        skin: 'massageboard-class',
+        area: ['850px','500px'],
+        title: '<div><b>账户管理</b></div>',
+        content: ['/admin/account/index','yes'],
         btn: ['刷新父页面使修改生效'],
         yes: function(index, layero){
             layer.close(index);

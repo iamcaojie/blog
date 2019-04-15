@@ -82,4 +82,12 @@ class Comments extends Model
           $data = self::formatComment($data);
           return $data;
     }
+
+    // 根据用户查询评论
+    public static function getUserComments($userId)
+    {
+        $data = self::where('user_id',$userId)
+            ->select();
+        return $data;
+    }
 }

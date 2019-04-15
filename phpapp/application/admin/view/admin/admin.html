@@ -24,17 +24,18 @@
         <div class="layui-logo">博客后台</div>
         <ul class="layui-nav layui-layout-left">
             <li class="layui-nav-item"><a href="/">网站首页</a></li>
-            <li class="layui-nav-item"><a href="https://iamcaojie.github.io" target="_blank">流量统计</a></li>
+            <li class="layui-nav-item"><a href="https://iamcaojie.github.io" target="_blank">数据统计</a></li>
             <li id="conf" class="layui-nav-item"><a href="javascript:void(0);">系统设置</a></li>
-            <li id="auth-manage" class="layui-nav-item"><a href="javascript:void(0);">用户权限管理</a></li>
+            <li id="auth-manage" class="layui-nav-item"><a href="javascript:void(0);">权限管理</a></li>
+            <li id="account-manage" class="layui-nav-item"><a href="javascript:void(0);">账户管理</a></li>
             <li id="image-manage" class="layui-nav-item"><a href="javascript:void(0);">图片管理</a></li>
-            <li class="layui-nav-item"><a href="/user?id=1">用户后台</a></li>
+            <li class="layui-nav-item"><a href="/user?id={$username['id']}">用户后台</a></li>
         </ul>
         <ul class="layui-nav layui-layout-right">
             <li class="layui-nav-item">
                 <a href="javascript:void(0);">
                     <img src="/static/img/avatar.jpg" class="layui-nav-img">
-                    {$username}
+                    {$username['username']}
                 </a>
                 <dl class="layui-nav-child">
                   <dd><a href="">基本资料</a></dd>
@@ -71,11 +72,19 @@
                                 <div class="layui-form-item" id="web-switch">
                                     <label class="layui-form-label">是否开启</label>
                                     <div class="layui-input-block">
+                                        {if condition='$webdata["web_status"]'}
                                         <input type="checkbox" lay-filter="web-status" id="switch" checked name="switch" lay-skin="switch" lay-text="开启|关闭">
+                                        {else/}
+                                        <input type="checkbox" lay-filter="web-status" id="switch" name="switch" lay-skin="switch" lay-text="开启|关闭">
+                                        {/if}
                                     </div>
                                 </div>
                             </form>
-                            <div id="close-web" style="display: none;">
+                            {if condition='$webdata["web_status"]'}
+                                <div id="close-web" style="display: none;">
+                            {else/}
+                                <div id="close-web" style="display: block;">
+                            {/if}
                                 <div>关闭网站时对外显示的内容(或html页面)</div>
                                 <form>
                                     <textarea id="close-info-data" class="layui-input" style="min-height: 100px;max-height: 200px;padding:5px;resize: vertical;">{$webdata["close_info"]}</textarea>
@@ -214,21 +223,21 @@
                                     <input name="link_id" value="">
                                     <label class="layui-form-label">链接主题</label>
                                     <div class="layui-input-block">
-                                        <input type="text" name="link_title" placeholder="请输入链接主题" class="layui-input"/>
+                                        <input type="text" name="link_title" placeholder="请输入链接主题" autocomplete="off" class="layui-input"/>
                                     </div>
                                 </div>
                                 <div class="layui-form-item">
                                     <label class="layui-form-label">链接分类</label>
                                     <div class="layui-input-block">
                                         {volist name='linkcatelist' id='linkcate'}
-                                        <input type="radio" lay-filter="blog-category" name="link_cate" value="{$linkcate['id']}" title="{$linkcate['link_cate_title']}">
+                                        <input type="radio" lay-filter="blog-category" name="link_cate"  value="{$linkcate['id']}" title="{$linkcate['link_cate_title']}">
                                         {/volist}
                                     </div>
                                 </div>
                                 <div class="layui-form-item">
                                     <label class="layui-form-label">链接地址</label>
                                     <div class="layui-input-block">
-                                        <input type="text" name="link_address" placeholder="请输入链接地址" class="layui-input"/>
+                                        <input type="text" name="link_address" placeholder="请输入链接地址" autocomplete="off" class="layui-input"/>
                                     </div>
                                 </div>
                                 <button class="layui-btn my-btn" id="btn5">提交</button>

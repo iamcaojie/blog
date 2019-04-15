@@ -6,26 +6,38 @@ use think\Model;
 
 class Image extends Model
 {
-    // sql:select * from _image;
-    public static function getImageList($page,$limit)
+    protected static function formatImage($data)
     {
-        $list = self::where('delete_time',null) -> limit(($page-1)*$limit,$limit) -> select();
-        $count = self::where('delete_time',null) -> count();
-        return ["code"=>0,"msg"=>"列表查询完成","count"=>$count,"data"=>$list];
+        $imageCateData = db('imagecate')->column('dir','id');
+        foreach ($data as $key => $value)
+        {
+            $value['image_url'] = '/uploads/'.$imageCateData[$value['imagecate_id']].'/'.$value['address'].'.'.$value['ext'];
+        }
+        return $data;
     }
-    
+    // 获取图片列表
+    public static function getImageList($imageCate)
+    {
+        $imageList = self::where('imagecate_id',$imageCate)->select();
+        $imageList = self::formatImage($imageList);
+        return $imageList;
+    }
+
+    // 编辑图片
     public static function editImage($data)
     {
         self::update($data);
         return ["data"=>""];
     }
-    
-    public static function deleteImage($data)
+
+    // 删除图片
+    public static function deleteImage($id)
     {
-        self::destroy($data);
-        return ["data"=>""];
+        $info = self::destroy(['id'=>$id]);
+        return $info;
     }
-    
+
+    // 查询图片
     public static function queryImage($data)
     {
         //pass
@@ -35,7 +47,7 @@ class Image extends Model
     public static function getBannerImage()
     {
         return self::where('imagecate_id',1)
-            ->field('address,ext')
+            -> field('address,ext')
             -> select();
     }
 }

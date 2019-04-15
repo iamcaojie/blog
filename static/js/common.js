@@ -26,6 +26,20 @@ $(function(){
             }
         });
     });
+    // 关注，取消关注，后端渲染必须要有data属性，值为用户id
+    $(".follow").click(function () {
+        if(isLogin()){
+            var userID = $(this).attr('data');
+            var info = follow(userID);
+            if(info.status === 0){
+                $(this).text(info.data);
+            }
+        }else{
+            getLogin();
+            layer.msg('请登录后关注');
+        }
+        return false;
+    });
     // 留言
     $('#massage').click(function(){
         layer.open({
@@ -63,6 +77,7 @@ jQuery(document).ready(function($) {
             scrollTop:"0px"},500)
         });
 });
+
 // 是否登录
 function isLogin() {
     var loginStatus = false;
@@ -99,6 +114,30 @@ function getLogin(){
     });
 }
 
+// 关注
+function follow(userID) {
+    var info = {};
+    $.ajax({
+        url:'/user/index/follow',
+        type:'POST',
+        async:false,
+        data:{'follow_user_id':userID},
+        dataType: 'json',
+        success:function(data){
+            if(data.code == -1){
+                layer.msg(data.msg);
+                info.status = -1;
+            }else{
+                info.status = 0;
+                info.data = data.msg;
+            }
+        },
+        error:function(){
+            info.status = -1;
+        }
+    });
+    return info;
+}
 
 // 提交留言
 function postMassage(){

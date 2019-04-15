@@ -190,9 +190,19 @@ class Blog extends Model
         }
         return $tagArrData;
     }
+
     // 点赞，取消点赞
     public static function likeBlog($blogId)
     {
         // 判断文章是否存在
+    }
+
+    // 获取某个用户的文章
+    public static function getUserBlog($userId)
+    {
+        $blogData = self::where('user_id',$userId)
+            ->select();
+        $blogData = self::formatData($blogData);
+        return $blogData;
     }
 }

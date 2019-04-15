@@ -9,27 +9,98 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="renderer" content="webkit" />
         <!-- <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"> -->
-        <link href="/static/css/Normalize.css" rel="stylesheet"></link>
-        <link href="/static/layui/css/layui.css" rel="stylesheet"></link>
+        <link href="/static/css/Normalize.css" rel="stylesheet"/>
+        <link href="/static/layui/css/layui.css" rel="stylesheet"/>
          <!--<link href="/static/css/bootstrap.css" rel="stylesheet"></link>-->
-        <!--<link href="/static/css/font-awesome.css" rel="stylesheet"></link>-->
-        <link href="/static/css/auth.css" rel="stylesheet"></link>
+        <link href="/static/css/font-awesome.css" rel="stylesheet"/>
+        <style>
+            .img-box{
+                float: left;
+                width:200px;
+                margin: 10px;
+            }
+            .image{
+                cursor:zoom-in;
+                width:200px;
+            }
+            .bigimage{
+                display: block;
+                width:550px;
+                cursor:zoom-out;
+                margin: auto;
+            }
+            .operate{
+                display: none;
+                position: relative;
+                text-align: center;
+                width: 200px;
+                height: 25px;
+                background: rgba(0,0,0,0.5);
+                top:-30px;
+            }
+            .operate-big{
+                display: none;
+                position: relative;
+                text-align: center;
+                width: 550px;
+                height: 25px;
+                background: rgba(0,0,0,0.5);
+                top:-30px;
+            }
+            .avatar-image{
+                width:50px;
+                height: 50px;
+            }
+            i{
+                font-size: 25px;
+                color: white;
+                cursor: pointer;
+            }
+        </style>
     </head>
     <body>
         <div class="layui-tab layui-tab-brief" lay-filter="cate-manage">
             <ul class="layui-tab-title">
-                <li class="layui-this">添加权限</li>
-                <li>查看权限</li>
-                <li>添加用户组</li>
-                <li>查看用户组</li>
-                <li>添加用户</li>
-                <li>查看用户</li>
-                <li>权限设置</li>
+                <li class="layui-this">轮播图</li>
+                <li>主图</li>
+                <li>详情图</li>
+                <li>头像</li>
             </ul>
             <div class="layui-tab-content">
-                <!--添加权限-->
+                <!--轮播图-->
                 <div class="layui-tab-item layui-show">
-
+                    {volist name="bannerData" id="banner"}
+                    <div class="img-box">
+                        <img class="image banner-image" src="{$banner['image_url']}"/>
+                        <div data="{$banner['id']}" class="operate">
+                            <i class="delete-btn fa fa-close"></i>
+                        </div>
+                    </div>
+                    {/volist}
+                </div>
+                <!--主图-->
+                <div class="layui-tab-item">
+                    {volist name="masterData" id="master"}
+                        <div class="img-box">
+                            <img class="image master-image" src="{$master['image_url']}"/>
+                        </div>
+                    {/volist}
+                </div>
+                <!--详情图-->
+                <div class="layui-tab-item">
+                    {volist name="detailData" id="detail"}
+                        <div class="img-box">
+                            <img class="image detail-image" src="{$detail['image_url']}"/>
+                        </div>
+                    {/volist}
+                </div>
+                <!--头像-->
+                <div class="layui-tab-item">
+                    {volist name="avatarData" id="avatar"}
+                        <div class="img-box">
+                            <img class="image avatar-image" src="{$avatar['image_url']}"/>
+                        </div>
+                    {/volist}
                 </div>
             </div>
         </div>
@@ -42,6 +113,6 @@
         <!--</script>-->
         <script src="/static/js/jquery3.3.1.js"></script>
         <script src="/static/layui/layui.js"></script>
-        <script src="/static/js/conf.js"></script>
+        <script src="/static/js/image.js"></script>
     </body>
 </html>

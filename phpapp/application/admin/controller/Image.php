@@ -7,21 +7,23 @@ class Image extends Base
 {
     public function index()
     {
-        // 获取所有图片（轮播，主图，详情图）
-    }
-        // 获取所有图片
-    public function getImageList($page,$limit)
-    {
-        return json(Imagemodel::getImageList($page,$limit));
+        // 获取所有图片（轮播，主图，详情图，头像）
+        $bannerImage = ImageModel::getImageList(1);
+        $masterImage = ImageModel::getImageList(2);
+        $detailImage = ImageModel::getImageList(3);
+        $avatarImage = ImageModel::getImageList(4);
+        return view('image/image',
+            ['bannerData'=>$bannerImage,
+            'masterData'=>$masterImage,
+            'detailData'=>$detailImage,
+            'avatarData'=>$avatarImage]
+        );
     }
 
     // 编辑图片
-    // /admin/image/editimage
     public function editImage()
     {
-        $data = input('post.');
-        $data = Imagemodel::editImage($data);
-        return json(["code"=>0,"msg"=>"编辑图片成功"]);
+        // pass
     }
     
     // 查询图片
@@ -31,13 +33,12 @@ class Image extends Base
     }
     
     // 删除图片
-    // /admin/image/deleteimage
     public function deleteImage()
     {
-        $data = input('post.');
-        // 验证数据合法性
-        $data = Imagemodel::deleteImage($data);
-        return json(["code"=>0,"msg"=>"删除图片成功"]);
+        $id = input('post.')['id'];
+        $info = Imagemodel::deleteImage($id);
+        if($info){
+            return json(["code"=>0,"msg"=>"删除图片成功"]);
+        }
     }
-
 }

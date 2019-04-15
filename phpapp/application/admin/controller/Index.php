@@ -24,8 +24,7 @@ class Index extends Base
         // 获取链接分类数据
         $linkCateList = Linkcate::getLinkcateList();
         // 获取用户数据
-        $userName = session('user')['username'];
-
+        $userName = session('user');
         return view("admin/admin",
             ['username' => $userName,
                 'webdata' => $webData,
@@ -34,5 +33,4 @@ class Index extends Base
                 'ip' => $ip
             ]);
     }
-    
 }
