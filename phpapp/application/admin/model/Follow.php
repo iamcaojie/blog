@@ -9,7 +9,29 @@ class Follow extends Model
     protected static $FUstatus = [0=>'互相关注',1=>'对方已关注'];
 
     // 格式化列表数据，加入详细用户数据，加入访问者与列表中每个用户的关系
-    protected static function formatData($viewerId,$data)
+    protected static function formatData($viewerId,$data,$param=0)
+    {
+        foreach ($data as $key=>$value)
+        {
+            $value['user'] = db('users')
+                ->where('id',$value['user_id'])
+                ->find();
+            $value['follow'] = db('users')
+                ->where('id',$value['followed_user'])
+            ->find();
+            if($param){
+                // 获取访问者与页面上显示的关注列表中用户关系
+                $value['status'] = self::queryStatus($viewerId,$value['followed_user']);
+            }else{
+                // 获取访问者与页面上显示的粉丝列表中用户关系
+                $value['status'] = self::queryStatus($viewerId,$value['user_id']);
+            }
+        }
+        return $data;
+    }
+
+    // 格式化列表数据，加入详细用户数据
+    protected static function formatData2($data)
     {
         foreach ($data as $key=>$value)
         {
@@ -19,7 +41,6 @@ class Follow extends Model
             $value['follow'] = db('users')
                 ->where('id',$value['followed_user'])
                 ->find();
-            $value['status'] = self::queryStatus($viewerId,$value['user_id']);
         }
         return $data;
     }
@@ -86,12 +107,25 @@ class Follow extends Model
             }
         }
     }
-
+    // 查询用户关注列表
+    public static function getFollower($userId)
+    {
+        $followerList = self::where('user_id',$userId)->select();
+        $followerList = self::formatData2($followerList);
+        return $followerList;
+    }
+    // 查询用户粉丝列表
+    public static function getFans($userId)
+    {
+        $fansList = self::where('followed_user',$userId)->select();
+        $fansList = self::formatData2($fansList);
+        return $fansList;
+    }
     // 查询用户关注列表，并显示访问者与列表中的状态
     public static function queryFollower($viewerId,$userId)
     {
         $followerList = self::where('user_id',$userId)->select();
-        $followerList = self::formatData($viewerId,$followerList);
+        $followerList = self::formatData($viewerId,$followerList,1);
         return $followerList;
     }
 

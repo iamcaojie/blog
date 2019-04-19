@@ -98,7 +98,7 @@ class Index
                 . 'username varchar(50), '
                 . 'password varchar(50), '
                 . 'gender tinyint(1), '
-                . 'avatar_image_id int, '
+                . 'avatar_image_id int DEFAULT 1, '
                 . 'create_time int, '
                 . 'update_time int, '
                 . 'delete_time int, '
@@ -274,21 +274,31 @@ class Index
         $dmlsql = [
             'insert into think_web(id, name, web_status, domain, ip, beian_code,today_views,all_views) '
             . 'values (1,"blog", 1,"localhost","00.000.00.000", "鄂ICP备19004169号",0,0);',
+
             'insert into think_users(id,nickname,username,password) '
-            . 'values (1,"入戏太深","caojie","d226d500e7899a09458559bf2661a62b")',
+            . 'values (1,"入戏太深","caojie","d226d500e7899a09458559bf2661a62b");',
+
             'insert into think_blog(id, blog_title, cate_id, delete_time) '
             . 'values (1, "临时缓存内容", 1, 1);',
+
             'insert into think_cate(id, blog_category,pid) '
-            . 'values (1,"默认分类",0),(2,"Python",0),(3,"PHP",0),(4,"Java",0),(5,"Web前端",0),
-                (6,"编程基础",0),(7,"C/C++",0),(8,"服务器",0),(9,"数据库",0),(10,"Linux",0);',
+            . 'values (1,"默认分类",0),(2,"Python",0),(3,"PHP",0),(4,"Java",0),(5,"Web前端",0),'
+            . '(6,"编程基础",0),(7,"C/C++",0),(8,"服务器",0),(9,"数据库",0),(10,"Linux",0);',
+
             'insert into think_tags(id, tag) '
             . 'values (1,"原创"),(2,"转载"),(3,"基础"),(4,"技巧"),(5,"重点"),(6,"难点");',
+
             'insert into think_linkcate(id, link_cate_title) '
             . 'values (1,"主页链接"),(2,"文档链接"),(3,"网站链接"),(4,"友情链接");',
+
             'insert into think_links(id, link_cate_id, link_title, link) '
-            . 'value (1, 1, "我的博客", "http://www.imcaojie.com");',
+            . 'values (1, 1, "我的博客", "http://www.imcaojie.com");',
+
             'insert into think_imagecate(id, name, dir)'
-            .'values (1,"轮播图","banner"),(2,"主图","master"),(3,"详情图","detail"),(4,"头像","avatar")'
+            . 'values (1,"轮播图","banner"),(2,"主图","master"),(3,"详情图","detail"),(4,"头像","avatar");',
+
+            'insert into think_image(id, imagecate_id,address,ext)'
+            . 'values (1,4,"avatar","jpg");'
         ];
         foreach ($ddlsql as $value)
         {

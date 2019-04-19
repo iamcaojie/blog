@@ -15,10 +15,10 @@ class Comments extends Model
                 -> find();
             $value['nickname'] = $value['user']['nickname'];
             // 查询评论对应博客文章标题
-            $value['blog_title'] = db('blog')
+            $value['blog'] = db('blog')
                 ->where('id',$value['blog_id'])
                 ->field('blog_title')
-                ->find()['blog_title'];
+                ->find();
             // 查询评论是否有回复
             $replyData = db('reply')
                 -> where('comment_id',$value['id'])
@@ -88,6 +88,7 @@ class Comments extends Model
     {
         $data = self::where('user_id',$userId)
             ->select();
+        $data = self::formatComment($data);
         return $data;
     }
 }

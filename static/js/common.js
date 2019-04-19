@@ -21,7 +21,7 @@ $(function(){
     });
     $(".loginoff").click(function () {
         $.get('/login/index/loginoff2',function (data) {
-            if(data.code == 0){
+            if(data.code === 0){
                 window.location.reload();
             }
         });

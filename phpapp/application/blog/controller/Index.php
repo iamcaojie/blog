@@ -6,6 +6,7 @@ use app\admin\model\Image as ImageModel;
 use app\admin\model\Blog as BlogModel;
 use app\admin\model\Links as LinkModel;
 use app\admin\model\Follow as FollowModel;
+use app\admin\model\Users as UsersModel;
 
 class Index extends Base
 {
@@ -26,6 +27,9 @@ class Index extends Base
         // 获取实用网站，友情链接
         $linkData = LinkModel::getLink(3);
         $this->assign('linkData',$linkData);
+        // 获取头像
+        $userImageUrl = UsersModel::getAvatar(1);
+        $this->assign(['userImageUrlData'=>$userImageUrl]);
         // 是否签到
         $this->assign('checkInData',cookie('msgData'));
         // 获取访问者和我的关系

@@ -71,14 +71,18 @@ class Blog extends Model
                 -> where('blog_id',$value['id'])
                 ->count();
             // 写入图片数据
-            $imageData = db('image')
-                -> where('id',$value['image_id'])
-                -> find();
             $imageCateData = db('imagecate')
                 -> where('id',2)
                 -> find();
-            if($imageData){
-                $value['masterimageurl'] = '/uploads/'.$imageCateData['dir'].'/'.$imageData['address'].'.'.$imageData['ext'];
+            if(isset($value['image_id'])){
+                // 如果上传多张图只显示第一张
+                $imageId = explode(',',$value['image_id'])[0];
+                $imageData = db('image')
+                    -> where('id',$imageId)
+                    -> find();
+                if($imageData){
+                    $value['masterimageurl'] = '/uploads/'.$imageCateData['dir'].'/'.$imageData['address'].'.'.$imageData['ext'];
+                }
             }else{
                 $value['masterimageurl'] = '/uploads/'.$imageCateData['dir'].'/'.'default.jpg';
             }
@@ -181,8 +185,8 @@ class Blog extends Model
             -> column('unique_tag');
         $tagArrData = [];
         foreach ($tagData as $value){
-            if(strpos($value,',') === false){
-                // pass
+            if(strpos($value,',') == false){
+                $tagArrData = array_merge($tagArrData,[$value]);
             }else {
                 $tempTagArr = explode(',',$value);
                 $tagArrData = array_merge($tagArrData,$tempTagArr);

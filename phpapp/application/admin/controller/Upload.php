@@ -143,46 +143,4 @@ class Upload extends Base
         }
         return json(['errno' => 0,'data'=>$imageUrl]);
     }
-
-    // 用户上传头像
-    public function avatar()
-    {
-        $files = request()->file();
-        $infoBox = [];
-        $imageCateData = db('imagecate')->where('id', 4)->find();
-        $address = $imageCateData['dir'];
-        foreach ($files as $file) {
-            if ($file->validate(['ext' => 'jpg,png,gif'])) {
-                $name = md5($file);
-                $info = $file->rule('md5')->move(IMAGE_PATH . $address, $name);
-                // 判断图片是否存储成功
-                if ($info) {
-                    $ext = $info->getExtension();
-                    // 查询图片是否重复
-                    $imageInfo = db('image')
-                        ->where('imagecate_id', 4)
-                        ->where('address', $name)->find();
-                    // 如果没有就继续存入数据库，有就是不存
-                    if (!$imageInfo) {
-                        $imageId = db('image')->insertGetId([
-                            'imagecate_id' => 4,
-                            'address' => $name,
-                            'ext' => $ext
-                        ]);
-                        $imageInfo = db('image')
-                            ->where('id', $imageId)
-                            ->find();
-                    }
-                    array_push($infoBox, $imageInfo);
-                } else {
-                    // 上传失败
-                    return json(['code' => -1, 'msg' => '头像上传失败']);
-                }
-            } else {
-                // 不是图片文件
-                return json(['code' => -1, 'msg' => '非法文件']);
-            }
-        }
-        return json(['code' => 0, 'msg' => '头像上传成功', 'data' => $infoBox]);
-    }
 }

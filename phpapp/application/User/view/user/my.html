@@ -13,20 +13,172 @@
         <link href="/static/layui/css/layui.css" rel="stylesheet"/>
         <link href="/static/css/bootstrap.css" rel="stylesheet"/>
         <link href="/static/css/font-awesome.css" rel="stylesheet"/>
-        <link href="/static/css/my.css" rel="stylesheet"/>
+        <link href="/static/css/cropper.min.css" rel="stylesheet"/>
+        <link href="/static/css/sitelogo.css" rel="stylesheet"/>
+        <link href="/static/css/common.css" rel="stylesheet"/>
+        <link href="/static/css/user.css" rel="stylesheet"/>
     </head>
     <body>
-        <div>
-            <div>发布文章</div>
-            <div>我的文章</div>
-            <div>我的评论</div>
-            <div>我的关注</div>
-            <div>我的粉丝</div>
+        <div id="container">
+            <div id="operate-box">
+                <a href="/" title="返回首页">
+                    <i class="fa fa-home"></i>
+                </a>
+                <a href="/user?id={$userData['id']}" title="转到我的主页">
+                    <i class="fa fa-user" style="font-size: 32px;"></i>
+                </a>
+            </div>
+            <div id="img-box">
+                <img id="avatar" src="{$userImageUrlData}"/>
+                <i class="fa fa-edit edit-avatar"></i>
+            </div>
+            <div style="height: 30px;">
+                <span id="nickname" title="点击修改昵称">入戏太深</span>
+                <input name="nickname" class="form-control" type="hidden" value="入戏太深"/>
+            </div>
+            <div id="edit">
+                <div class="edit-item">
+                    <div class="ibox-content">
+                        <div class="row">
+                            <div id="crop-avatar" class="col-md-6">
+                                <div class="avatar-view" title="修改头像">
+                                    <img id="edit-avatar-img" src="{$userImageUrlData}" alt="Logo">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal fade" id="avatar-modal" aria-hidden="true" aria-labelledby="avatar-modal-label" role="dialog" tabindex="-1">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <form class="avatar-form" action="/user/index/avatar" enctype="multipart/form-data" method="post">
+                                    <div class="modal-header">
+                                        <button class="close" data-dismiss="modal" type="button">&times;</button>
+                                        <h4 class="modal-title" id="avatar-modal-label">修改头像</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="avatar-body">
+                                            <div class="avatar-upload">
+                                                <input class="avatar-src" name="avatar_src" type="hidden">
+                                                <input class="avatar-data" name="avatar_data" type="hidden">
+                                                <label for="avatarInput">图片上传</label>
+                                                <input class="avatar-input" id="avatarInput" name="avatar_file" type="file"></div>
+                                            <div class="row">
+                                                <div class="col-md-9">
+                                                    <div class="avatar-wrapper"></div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="avatar-preview preview-lg"></div>
+                                                    <div class="avatar-preview preview-md"></div>
+                                                    <div class="avatar-preview preview-sm"></div>
+                                                </div>
+                                            </div>
+                                            <div class="row avatar-btns">
+                                                <div class="col-md-9">
+                                                    <div class="btn-group">
+                                                        <button class="btn" data-method="rotate" data-option="-90" type="button" title="Rotate -90 degrees"><i class="fa fa-undo"></i> 向左旋转</button>
+                                                    </div>
+                                                    <div class="btn-group">
+                                                        <button class="btn" data-method="rotate" data-option="90" type="button" title="Rotate 90 degrees"><i class="fa fa-repeat"></i> 向右旋转</button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <button class="btn btn-success btn-block avatar-save" type="submit"><i class="fa fa-save"></i> 保存修改</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="loading" aria-label="Loading" role="img" tabindex="-1"></div>
+                </div>
+            </div>
+            <div id="channel">
+                <div class="item">我的文章<br><span class="num">{$userBlogCountData}</span></div>
+                <div class="item">我的评论<br><span class="num">{$userCommentsCountData}</span></div>
+                <div class="item">我的关注<br><span class="num">{$userFollowCountData}</span></div>
+                <div class="item">我的粉丝<br><span class="num">{$userFansCountData}</span></div>
+            </div>
+            <div id="content">
+                <div class="item-box">
+                    <div class="item-title">我的文章
+                        <a href="/user/blog?action=add" target="_blank" title="发布文章">
+                            <i class="fa fa-edit" style="padding: 4px 0 0 5px;"></i>
+                        </a>
+                    </div>
+                    <div class="item-content">
+                        {volist name="userBlogData" id="userBlog"}
+                            <div class="list">
+                                <a href="">{$userBlog['blog_title']}</a>
+                            </div>
+                        {/volist}
+                    </div>
+                </div>
+                <div class="item-box" style="display: none;">
+                    <div class="item-title">我的评论</div>
+                    {volist name="userCommentsData" id="userComments"}
+                        <div class="list">
+                            <div>
+                                <span>评论文章：</span><a href="">{$userComments['blog']['blog_title']}</a>
+                                <br>
+                                <span>评论内容： </span><span>{$userComments['comment_text']}</span>
+                            </div>
+                        </div>
+                    {/volist}
+                </div>
+                <div class="item-box" style="display: none;">
+                    <div class="item-title">我的关注</div>
+                    <div class="item-content">
+                        {volist name="userFollowData" id="userFollow"}
+                            <div class="g-list">
+                                <div class="follow-user"><a href="/user?id={$userFollow['follow']['id']}">{$userFollow['follow']['nickname']}</a></div>
+                                <div class="follow-btn"><botton class="btn btn-default follow" data="{$userFollow['follow']['id']}">{$userFollow['status']}</botton></div>
+                            </div>
+                        {/volist}
+                    </div>
+                </div>
+                <div class="item-box" style="display: none;">
+                    <div class="item-title">我的粉丝</div>
+                    <div class="item-content">
+                        {volist name="userFansData" id="userFans"}
+                            <div class="g-list">
+                                <div class="fans-user"><a href="/user?id={$userFans['user']['id']}">{$userFans['user']['nickname']}</a></div>
+                                <div class="fans-btn"><botton class="btn btn-default follow" data="{$userFans['user']['id']}">{$userFans['status']}</botton></div>
+                            </div>
+                        {/volist}
+                    </div>
+                </div>
+            </div>
         </div>
         <script src="/static/js/jquery3.3.1.js"></script>
         <script src="/static/js/bootstrap.js"></script>
         <script src="/static/layui/layui.js"></script>
-        <script src="/static/js/toTop.js"></script>
-        <script src="/static/js/user.js"></script>
+        <script src="/static/js/wangEditor.min.js"></script>
+        <script src="/static/js/cropper.min.js"></script>
+        <script src="/static/js/sitelogo.js"></script>
+        <script src="/static/js/common.js"></script>
+        <script src="/static/js/my.js"></script>
+        <script src="/static/js/canvas-particle.js"></script>
+        <script type="text/javascript">
+            window.onload = function(){
+                //配置
+                var config = {
+                    vx: 4,//点x轴速度,正为右，负为左
+                    vy:  4,//点y轴速度
+                    height: 6,//点高宽，其实为正方形，所以不宜太大
+                    width: 6,
+                    count: 120,//点个数
+                    color: "0,146,238",//点颜色
+                    stroke: "0,146,238",//线条颜色
+                    dist: 2000,//点吸附距离
+                    e_dist: 10000,//鼠标吸附加速距离
+                    max_conn: 10//点到点最大连接数
+                }
+                //调用
+                CanvasParticle(config);
+            };
+        </script>
+        <canvas width="0px" height="0px;" style="top: 0px; left: 0px;"></canvas>
     </body>
 </html>

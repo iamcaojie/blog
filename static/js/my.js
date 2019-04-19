@@ -182,27 +182,41 @@ blogTitle = $('input[name="blog_title"]');
 
 // 所有数据前端不验证，后端验证数据合法性
 
-$(function(){ 
-    // 网站状态切换
-    $("#web-switch").click(function(){
-        if(webStatus){
-            var webData={'switch':'on'};
-        }else{
-            var webData={'switch':'off'};
-        }
-        postData('/admin/index/webStatus','POST', webData);
-        return false;
-    }); 
-    $('#manage-classification').click(function(){
-        getCateData();
+$(function(){
+    // 修改头像
+    $(".edit-avatar").click(function () {
+        $("#edit").toggle();
+        var imgSrc = $("#edit-avatar-img").attr('src');
+        console.log(imgSrc);
+        $("#avatar").attr('src',imgSrc);
     });
-    $('.layui-upload-img').hover(function () {
-        layer.msg('a');
-    });
-    // 修改网站信息
-     $("#info-btn").click(function(){
-         
+    // 点击修改昵称
+     $("#nickname").click(function(){
+         $(this).hide();
+         $(this).next().attr('type','text');
+         $(this).next().focus();
+         $(this).next().select();
      });
+     // 移出修改完成
+    $('input[name="nickname"]').blur(function () {
+        $(this).attr('type','hidden');
+        $(this).prev().show();
+        var nickName = $(this).val();
+        // 修改昵称
+        $.post('/user/index/nickname',{'nickname':nickName},function (data,status) {
+            if(data.code === 0){
+                $("#nickname").text(data.msg);
+            }else{
+                layer.msg(data.msg);
+            }
+        });
+    });
+    // 切换
+    $("#channel .item").click(function(){
+        var index = $(this).index();
+        console.log(index);
+        $('#content').children().eq(index).show().siblings().hide();
+    });
     // 发布文章
     // 捕获编辑器可能修改内容的事件，自动保存文章
     $(".w-e-text").on('keyup click mouseleave',function(){
@@ -447,12 +461,3 @@ function viewitem(url){
         }
     });
 }
-// 提交分类
-
-// 查看留言
-
-// 查看评论
-
-// 删除评论
-
-console.log("欢迎提交bug或建议，联系方式QQ10804842");

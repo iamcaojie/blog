@@ -59,4 +59,24 @@ class Users extends Model
         return $isExist;
     }
 
+    // 修改昵称
+    public static function editNickName($useId,$nickName)
+    {
+        $info = self::update(['id'=>$useId,'nickname'=>$nickName]);
+        return $info;
+    }
+
+    // 查询头像地址
+    public static function getAvatar($userId)
+    {
+        $userData = self::get($userId);
+        $userImage = db('image')
+            ->where('id',$userData['avatar_image_id'])
+            ->find();
+        $address = db('imagecate')
+            ->where('id',$userImage['imagecate_id'])
+            ->find()['dir'];
+        $imageUrl = '/uploads/'.$address.'/'. $userImage['address'].'.'.$userImage['ext'];
+        return $imageUrl;
+    }
 }
