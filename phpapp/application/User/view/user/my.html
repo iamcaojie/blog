@@ -24,17 +24,18 @@
                 <a href="/" title="返回首页">
                     <i class="fa fa-home"></i>
                 </a>
-                <a href="/user?id={$userData['id']}" title="转到我的主页">
-                    <i class="fa fa-user" style="font-size: 32px;"></i>
-                </a>
             </div>
             <div id="img-box">
                 <img id="avatar" src="{$userImageUrlData}"/>
                 <i class="fa fa-edit edit-avatar"></i>
             </div>
             <div style="height: 30px;">
-                <span id="nickname" title="点击修改昵称">入戏太深</span>
-                <input name="nickname" class="form-control" type="hidden" value="入戏太深"/>
+                {if condition="$displayUserData['nickname']"}
+                <span id="nickname" title="点击修改昵称">{$displayUserData['nickname']}</span>
+                {else /}
+                <span id="nickname" title="点击修改昵称">点击修改昵称</span>
+                {/if}
+                <input name="nickname" class="form-control" type="hidden" value="{$displayUserData['nickname']}"/>
             </div>
             <div id="edit">
                 <div class="edit-item">
@@ -96,6 +97,7 @@
             </div>
             <div id="channel">
                 <div class="item">我的文章<br><span class="num">{$userBlogCountData}</span></div>
+                <div class="item">我的收藏<br><span class="num">{$favoriteListCountData}</span></div>
                 <div class="item">我的评论<br><span class="num">{$userCommentsCountData}</span></div>
                 <div class="item">我的关注<br><span class="num">{$userFollowCountData}</span></div>
                 <div class="item">我的粉丝<br><span class="num">{$userFansCountData}</span></div>
@@ -103,7 +105,7 @@
             <div id="content">
                 <div class="item-box">
                     <div class="item-title">我的文章
-                        <a href="/user/blog?action=add" target="_blank" title="发布文章">
+                        <a href="/user/action/add" title="发布文章">
                             <i class="fa fa-edit" style="padding: 4px 0 0 5px;"></i>
                         </a>
                     </div>
@@ -111,7 +113,22 @@
                         {volist name="userBlogData" id="userBlog"}
                             <div class="list">
                                 <a href="">{$userBlog['blog_title']}</a>
+                                <a href="/user/action/edit?id={$userBlog['id']}">编辑</a>
+                                <a href="javascript:void(0);" class="delete delete-blog" data="{$userBlog['id']}">删除</a>
                             </div>
+                        {/volist}
+                    </div>
+                </div>
+                <div class="item-box" style="display: none;">
+                    <div class="item-title">我的收藏</div>
+                    <div class="item-content">
+                        {volist name="favoriteData" id="favorite"}
+                        <div class="g-list">
+                            <div class="">
+                                <a href="">{$favorite['blog']['blog_title']}</a>
+                                <i class="fa fa-star favorite favorite-btn" data="{$favorite['blog']['id']}"></i>
+                            </div>
+                        </div>
                         {/volist}
                     </div>
                 </div>
@@ -119,11 +136,10 @@
                     <div class="item-title">我的评论</div>
                     {volist name="userCommentsData" id="userComments"}
                         <div class="list">
-                            <div>
-                                <span>评论文章：</span><a href="">{$userComments['blog']['blog_title']}</a>
-                                <br>
-                                <span>评论内容： </span><span>{$userComments['comment_text']}</span>
-                            </div>
+                            <span>评论文章：</span><a href="">{$userComments['blog']['blog_title']}</a>
+                            <br>
+                            <span>评论内容： </span><span>{$userComments['comment_text']}</span>
+                            <a href="javascript:void(0);" class="delete delete-comment" data="{$userComments['id']}">删除</a>
                         </div>
                     {/volist}
                 </div>

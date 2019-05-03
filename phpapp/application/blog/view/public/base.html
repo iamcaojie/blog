@@ -73,11 +73,11 @@
             <ul class="nav navbar-nav navbar-right">
                 {if condition = "$nickname"}
                     <li><a class="{$nickname}" href="/admin" title="后台管理">{$nickname}</a></li>
-                    <li><a class="loginoff" href="javascript:void(0);" title="退出登录"><i class="fa fa-close"></i></a></li>
+                    <li><a class="loginoff" href="javascript:void(0);" title="退出登录"><i class="fa fa-sign-out"></i></a></li>
                 {else /}
                     {if condition = "$username"}
                          <li><a class="{$username}" href="/admin" title="后台管理">{$username}</a></li>
-                         <li><a class="loginoff" href="javascript:void(0);" title="退出登录"><i class="fa fa-close"></i></a></li>
+                         <li><a class="loginoff" href="javascript:void(0);" title="退出登录"><i class="fa fa-sign-out"></i></a></li>
                     {else /}
                         <li>
                              <a class="login" href="javascript:void(0);">注册/登录</a>

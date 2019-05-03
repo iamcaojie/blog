@@ -39,6 +39,7 @@ class Blog extends Base
             return json(["code"=>-1, "msg"=>"非法操作"]);
         }
         $data["blogdata"]['user_id'] = $userID;
+        $data["blogdata"]['blog_status'] = 1;
         $info = Blogmodel::createBlog($data);
         if($info){
             return json(["code"=>0, "msg"=>"保存成功"]);

@@ -9,7 +9,7 @@ h1{
     /* text-align:center; */
     margin:0;
     padding:20px 0 5px 30px;
-    color: #337ab7;
+    color: #0092ee;
 }
 #tags{
     margin: 0 0 0 30px;
@@ -49,7 +49,7 @@ h1{
     float: left;
     cursor:pointer;
     padding: 5px 20px 5px 20px;
-    border: 1px solid #337ab7;
+    border: 1px solid #0092ee;
 }
 .comment-avatar{
     float:left;width: 5%;
@@ -86,24 +86,24 @@ h1{
     margin: 5px 0 5px 0;
 }
 .reply-input input{
-    border: 1px solid #337ab7;
+    border: 1px solid #0092ee;
     width:75%;
     height: 30px;
     padding: 2px 5px 2px 5px;
 
 }
 .reply-input botton{
-    border: 1px solid #337ab7;
+    border: 1px solid #0092ee;
     padding: 6px 10px 6px 10px;
     height: 30px;
-    color: #337ab7;
+    color: #0092ee;
     cursor: pointer;
 }
 .selected{
-    background: #337ab7
+    background: #0092ee
 }
 .selected a{
-    /*border-top: 1px solid #337ab7*/
+    /*border-top: 1px solid #0092ee*/
     color: white;
 }
 textarea{
@@ -112,23 +112,23 @@ textarea{
     max-height: 200px;
     padding:5px;
     resize: vertical;
-    border: 1px solid #337ab7
+    border: 1px solid #0092ee
 }
 @media (max-width: 768px){
     textarea{width:100%;}
 }
 .submit-btn{
     background: white;
-    color:#337ab7;
+    color:#0092ee;
     width: 75px;
     height: 30px;
-    border: 1px solid #337ab7;
+    border: 1px solid #0092ee;
     transition: 0.5s ;
     -webkit-transition: 0.5s ;
 }
 .submit-btn:hover{
     color:white;
-    background: #337ab7;
+    background: #0092ee;
 }
 
 .box{

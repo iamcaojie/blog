@@ -66,6 +66,19 @@ class Blog extends Model
             $value['user'] = db('users')
                 ->where('id',$value['user_id'])
                 ->find();
+            // 写入图片数据
+            $avatarImageCateData = db('imagecate')
+                -> where('id',4)
+                -> find();
+            // 写入作者头像图片地址
+//            $value['avatarImageUrl'] = db('image')
+//                -> alias('i')
+//                -> join('__USERS__ u','i.id=u.avatar_image_id')
+//                -> find();
+            $avatarImage = db('image')
+                -> where('id',$value['user']['avatar_image_id'])
+                -> find();
+            $value['avatarImageUrl'] = '/uploads/'.$avatarImageCateData['dir'].'/'.$avatarImage['address'].'.'.$avatarImage['ext'];
             // 写入评论数
             $value['commentsCount'] = db('comments')
                 -> where('blog_id',$value['id'])
@@ -74,7 +87,7 @@ class Blog extends Model
             $imageCateData = db('imagecate')
                 -> where('id',2)
                 -> find();
-            if(isset($value['image_id'])){
+            if($value['image_id'] != ''){
                 // 如果上传多张图只显示第一张
                 $imageId = explode(',',$value['image_id'])[0];
                 $imageData = db('image')
@@ -84,7 +97,7 @@ class Blog extends Model
                     $value['masterimageurl'] = '/uploads/'.$imageCateData['dir'].'/'.$imageData['address'].'.'.$imageData['ext'];
                 }
             }else{
-                $value['masterimageurl'] = '/uploads/'.$imageCateData['dir'].'/'.'default.jpg';
+                $value['masterimageurl'] = '/uploads/'.$imageCateData['dir'].'/'.'default.png';
             }
         }
         return $data;
@@ -118,10 +131,10 @@ class Blog extends Model
 
     public static function createBlog($data)
     {
-        self::create($data["blogdata"]);
+        $info = self::create($data["blogdata"]);
         // 新增博客的标签数据,tag_data要与前台一致，只能增加关联的中间表数据
         self::get(self::getLastInsID()) -> tags() -> saveAll($data["tagdata"]);
-        return["code"=>0, "msg"=>"保存成功"];
+        return $info;
     }
     
     // 只标记删除，记录delete_time,int类型
@@ -137,12 +150,16 @@ class Blog extends Model
     public static function editBlog($data)
     {
         // 更新数据
-        $blog = self::update($data["blogdata"]);
+        $info = self::update($data["blogdata"]);
         //  删除所有关联，再添加新的关联
         $editBlog = self::get($data["blogdata"]['id']);
         $editBlog -> tags() -> detach();
         $editBlog-> tags() -> saveAll($data["tagdata"]);
-        return ["code"=>0, "msg"=>"修改成功"];
+        if($info){
+            return ["code"=>0, "msg"=>"修改成功"];
+        }else{
+            return ["code"=>0, "msg"=>"修改成功"];
+        }
     }
 
     // 查询表数据，返回关联表的标签id

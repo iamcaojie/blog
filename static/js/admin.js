@@ -203,10 +203,21 @@ var layer = layui.layer,
     });
 });
 
+$.ajax({
+    type: "get",
+    url: "/static/img/bqb/emoji.json",
+    dataType: "json",
+    async: false,
+    success: function (data) {
+        emojiData = data;
+    }
+});
+
 // 初始化wangEditor
 var E = window.wangEditor;
 var editor = new E('#editor');
 editor.customConfig.uploadImgServer = '/admin/Upload/detail';
+editor.customConfig.emotions = emojiData;
 editor.customConfig.uploadImgHooks = {
     before: function (xhr, editor, files) {},
     // 图片上传并返回结果，图片插入成功之后触发

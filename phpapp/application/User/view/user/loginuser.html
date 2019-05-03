@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <title>用户界面</title>
+        <meta charset="utf-8">
+        <meta name="author" content="caojie">
+        <meta name="description" content="个人博客" />
+        <meta name="keywords" content="个人博客" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="renderer" content="webkit" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <link href="/static/css/Normalize.css" rel="stylesheet"/>
+        <link href="/static/layui/css/layui.css" rel="stylesheet"/>
+        <link href="/static/css/bootstrap.css" rel="stylesheet"/>
+        <link href="/static/css/font-awesome.css" rel="stylesheet"/>
+        <link href="/static/css/cropper.min.css" rel="stylesheet"/>
+        <link href="/static/css/sitelogo.css" rel="stylesheet"/>
+        <link href="/static/css/common.css" rel="stylesheet"/>
+        <link href="/static/css/user.css" rel="stylesheet"/>
+    </head>
+    <body>
+        <div id="container">
+            <div id="operate-box">
+                <a href="/" title="返回首页">
+                    <i class="fa fa-home"></i>
+                </a>
+                <a href="/user?id={$userData['id']}" title="转到我的主页">
+                    <i class="fa fa-user" style="font-size: 32px;"></i>
+                </a>
+            </div>
+            <div id="img-box">
+                <img id="avatar" src="{$userImageUrlData}"/>
+            </div>
+            <div style="height: 30px;">
+                <span id="nickname">{$displayUserData['nickname']}</span>
+            </div>
+            <div id="channel">
+                <div class="item">TA的文章<br><span class="num">{$userBlogCountData}</span></div>
+                <div class="item">TA的评论<br><span class="num">{$userCommentsCountData}</span></div>
+                <div class="item">TA的关注<br><span class="num">{$userFollowCountData}</span></div>
+                <div class="item">TA的粉丝<br><span class="num">{$userFansCountData}</span></div>
+            </div>
+            <div id="content">
+                <div class="item-box">
+                    <div class="item-title">TA的文章</div>
+                    <div class="item-content">
+                        {volist name="userBlogData" id="userBlog"}
+                            <div class="list">
+                                <a href="">{$userBlog['blog_title']}</a>
+                            </div>
+                        {/volist}
+                    </div>
+                </div>
+                <div class="item-box" style="display: none;">
+                    <div class="item-title">TA的评论</div>
+                    {volist name="userCommentsData" id="userComments"}
+                        <div class="list">
+                            <div>
+                                <span>评论文章：</span><a href="">{$userComments['blog']['blog_title']}</a>
+                                <br>
+                                <span>评论内容： </span><span>{$userComments['comment_text']}</span>
+                            </div>
+                        </div>
+                    {/volist}
+                </div>
+                <div class="item-box" style="display: none;">
+                    <div class="item-title">TA的关注</div>
+                    <div class="item-content">
+                        {volist name="userFollowData" id="userFollow"}
+                            <div class="g-list">
+                                <div class="follow-user"><a href="/user?id={$userFollow['follow']['id']}">{$userFollow['follow']['nickname']}</a></div>
+                                <div class="follow-btn"><botton class="btn btn-default follow" data="{$userFollow['follow']['id']}">{$userFollow['status']}</botton></div>
+                            </div>
+                        {/volist}
+                    </div>
+                </div>
+                <div class="item-box" style="display: none;">
+                    <div class="item-title">TA的粉丝</div>
+                    <div class="item-content">
+                        {volist name="userFansData" id="userFans"}
+                            <div class="g-list">
+                                <div class="fans-user"><a href="/user?id={$userFans['user']['id']}">{$userFans['user']['nickname']}</a></div>
+                                <div class="fans-btn"><botton class="btn btn-default follow" data="{$userFans['user']['id']}">{$userFans['status']}</botton></div>
+                            </div>
+                        {/volist}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="/static/js/jquery3.3.1.js"></script>
+        <script src="/static/js/bootstrap.js"></script>
+        <script src="/static/layui/layui.js"></script>
+        <script src="/static/js/common.js"></script>
+        <script src="/static/js/user.js"></script>
+        <script src="/static/js/canvas-particle.js"></script>
+        <script type="text/javascript">
+            window.onload = function(){
+                //配置
+                var config = {
+                    vx: 4,//点x轴速度,正为右，负为左
+                    vy:  4,//点y轴速度
+                    height: 6,//点高宽，其实为正方形，所以不宜太大
+                    width: 6,
+                    count: 120,//点个数
+                    color: "0,146,238",//点颜色
+                    stroke: "0,146,238",//线条颜色
+                    dist: 2000,//点吸附距离
+                    e_dist: 10000,//鼠标吸附加速距离
+                    max_conn: 10//点到点最大连接数
+                }
+                //调用
+                CanvasParticle(config);
+            };
+        </script>
+        <canvas width="0px" height="0px;" style="top: 0px; left: 0px;"></canvas>
+    </body>
+</html>

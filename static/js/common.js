@@ -40,6 +40,26 @@ $(function(){
         }
         return false;
     });
+    // 收藏
+    $(".favorite").click(function () {
+        if(isLogin()){
+            var favoriteBlogID = $(this).attr('data');
+            var info = favorite(favoriteBlogID);
+            if(info.status === 0){
+                if(info.data == '已收藏'){
+                    $(this).addClass('favorite-btn');
+                    $(this).removeClass('no-favorite-btn');
+                }else{
+                    $(this).addClass('no-favorite-btn');
+                    $(this).removeClass('favorite-btn');
+                }
+            }
+        }else{
+            getLogin();
+            layer.msg('请登录后收藏');
+        }
+        return false;
+    });
     // 留言
     $('#massage').click(function(){
         layer.open({
@@ -138,7 +158,30 @@ function follow(userID) {
     });
     return info;
 }
-
+// 收藏
+function favorite(blogID){
+    var info = {};
+    $.ajax({
+        url:'/user/index/favorite',
+        type:'POST',
+        async:false,
+        data:{'blog_id':blogID},
+        dataType: 'json',
+        success:function(data){
+            if(data.code == -1){
+                layer.msg(data.msg);
+                info.status = -1;
+            }else{
+                info.status = 0;
+                info['data'] = data.msg;
+            }
+        },
+        error:function(){
+            info.status = -1;
+        }
+    });
+    return info;
+}
 // 提交留言
 function postMassage(){
     $(function(){

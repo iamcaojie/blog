@@ -2,31 +2,50 @@
 namespace app\blog\controller;
 
 use app\admin\model\Blog as BlogModel;
-use app\admin\model\Follow;
 use app\admin\model\Users as UsersModel;
 use app\admin\model\Comments as CommentsModel;
 use app\admin\model\Reply as ReplyModel;
 use app\admin\model\Follow as FollowModel;
+use app\admin\model\Favorite as FavoriteModel;
 
 class Detail extends Base
 {
-    public function index($id)
+    public function index($id=1)
     {
         $blogDetail = BlogModel::queryBlog($id);
         if($blogDetail['code']<0){
             return json(['code'=>-1,'msg'=>'文章不存在']);
         }
-        // 统计访问量
-        // pass
+        //当前用户是否收藏，与作者的关注关系
+        if(!session('?user')){
+            $this->assign('favoriteStatus',0);
+            $this->assign('followStatus','未关注');
+        }else{
+            $authorId = $blogDetail['data']['user']['id'];
+            $userId = session('user')['id'];
+            $followStatus = FollowModel::queryStatus($userId,$authorId);
+            $this->assign('followStatus',$followStatus);
+            $favoriteStatus = FavoriteModel::getFavorite(session('user')['id'],$blogDetail['data']['id']);
+            $this->assign('favoriteStatus',$favoriteStatus);
+        }
+
         // 获取评论
         $blogCommentData = CommentsModel::queryComments($id);
-//        dump(json($blogCommentData));die;
         return view("detail/detail",[
             'id' => $id,
             'blogDetail' => $blogDetail['data'],
             'blogComments' => $blogCommentData
         ]);
     }
+
+    // 收藏，取消收藏
+    public function favorite()
+    {
+        $blogId = input("post.")['id'];
+        $userID = session('user')['id'];
+
+    }
+
     // 提交评论
     public function comment()
     {

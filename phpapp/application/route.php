@@ -9,14 +9,24 @@
 // | Author: liu21st <liu21st@gmail.com>
 // +----------------------------------------------------------------------
 // 注册路由
-//注册路由到index模块的Index控制器的hello操作
+/*
+ * /blog/index/index
+ * /blog/contents/index
+ * /blog/detail/index/id/{n}
+ *
+ * /user?id={n}
+ * /user/index/index/id/{n}
+ *
+ * /admin
+ *
+ */
 
- use think\Route;
-// Route::rule('index/','index/Index/index');
-// Route::rule('json/','index/Index/jsondata');
-// Route::rule('xml/','index/Index/xmldata');
-// Route::rule('baidu/','https://www.baidu.com');
- Route::rule('blog/python/detail/:id','index/Index/hello',"GET",['ext'=>'html']);
+use think\Route;
+
+//Route::rule('index','blog/Index/index');
+//Route::rule('blog/contents/:cate/:page','blog/Contents/index','GET');
+//Route::rule('blog/detail/:id','blog/Detail/index','GET');
+//Route::rule('user/:id','user/Index/index','GET');
 
 // 正则限制变量规则
 // Route::pattern([

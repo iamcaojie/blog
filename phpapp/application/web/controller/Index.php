@@ -25,7 +25,7 @@ class Index
     }
     public function doc()
     {
-        return '在线文档。开发中';
+//        return view('doc/doc');
     }
     public function download()
     {

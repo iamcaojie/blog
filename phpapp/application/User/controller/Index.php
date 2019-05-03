@@ -1,14 +1,14 @@
 <?php
 namespace app\user\controller;
 
-use app\blog\controller\Base;
 use app\admin\model\Users as UsersModel;
 use app\admin\model\Image as ImageModel;
 use app\admin\model\Blog as BlogModel;
 use app\admin\model\Comments as CommentsModel;
 use app\admin\model\Follow as FollowModel;
+use app\admin\model\Favorite as FavoriteModel;
 
-class Index extends Base
+class Index extends UserBase
 {
     // 用户显示页面
     public function index($id = 1)
@@ -17,6 +17,9 @@ class Index extends Base
         if(!UsersModel::get($id)){
             $this->redirect('/');
         }
+        // 获取用户详情
+        $displayUser = UsersModel::get($id);
+        $this->assign(['displayUserData'=>$displayUser]);
         // 获取用户头像
         $userImageUrl = UsersModel::getAvatar($id);
         $this->assign(['userImageUrlData'=>$userImageUrl]);
@@ -28,7 +31,8 @@ class Index extends Base
         $userComments = CommentsModel::getUserComments($id);
         $this ->assign(['userCommentsData'=>$userComments]);
         $this ->assign(['userCommentsCountData'=>count($userComments)]);
-        // 未登录，全部显示'加关注'
+
+        // 1.未登录，全部显示'加关注'
         if(!session('?user')){
             // 获取用户关注
             $userFollow = FollowModel::getFollower($id);
@@ -40,7 +44,8 @@ class Index extends Base
             $this ->assign(['userFansCountData'=>count($userFans)]);
             return view('user/user');
         }
-        // 已登录
+
+        // 2.已登录
         $userId = session('user')['id'];
         $this ->assign(['userData'=>session('user')]);
         // 不是本人，显示'加关注','已关注','互相关注',用户界面
@@ -54,12 +59,14 @@ class Index extends Base
         $this ->assign(['userFansCountData'=>count($userFans)]);
         if(session('user')['id'] != $id){
             // 用户界面
-
-            return view('user/user');
+            return view('user/loginuser');
         }
 
-        // 已登录，是本人，显示'加关注','已关注','互相关注',用户管理后台
+        // 3.已登录，是本人，显示'加关注','已关注','互相关注',用户管理后台
         if(session('user')['id'] == $id){
+            $favoriteList = FavoriteModel::queryFavorite($id);
+            $this ->assign(['favoriteData'=>$favoriteList]);
+            $this ->assign(['favoriteListCountData'=>count($favoriteList)]);
             // 用户后台（文章发布，修改，删除，仅能修改自己的，关注，取消关注）
             return view('user/my');
         }
@@ -165,4 +172,15 @@ class Index extends Base
         return $info;
     }
 
+    // 用户收藏
+    public function favorite()
+    {
+        if(!session('?user')){
+            return json(['code'=>-1,'msg'=>'请登录后修改']);
+        }
+        $blogId = input('post.')['blog_id'];
+        $userId = session('user')['id'];
+        $info = FavoriteModel::favorite($userId,$blogId);
+        return json($info);
+    }
 }

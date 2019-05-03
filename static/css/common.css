@@ -151,3 +151,13 @@ h2{
         bottom: 40px;
     }
 }
+
+/*收藏按钮*/
+.no-favorite-btn{
+    cursor: pointer;
+    color:gray;
+}
+.favorite-btn{
+    cursor: pointer;
+    color:#0092ee;
+}

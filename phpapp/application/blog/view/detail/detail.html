@@ -6,7 +6,7 @@
 {block name="css"}
 {__block__}
         <link href="/static/css/common.css" rel="stylesheet"/>
-        <link href="/static/css/editor.css" rel="stylesheet"/>
+        <link href="/static/css/wangEditor.min.css" rel="stylesheet"/>
         <link href="/static/css/detail.css" rel="stylesheet"/>
         <!--[if lt IE 9]>
             <script src="/static/js/html5shiv.js"></script>
@@ -35,6 +35,11 @@
                             {volist name="$blogDetail['f_unique_tag']" id="f_tag"}
                             <span class="label label-info">{$f_tag}</span>
                             {/volist}
+                            {if condition="$favoriteStatus"}
+                            <i class="fa fa-star favorite favorite-btn" data="{$blogDetail['id']}"></i>
+                            {else/}
+                            <i class="fa fa-star favorite no-favorite-btn" data="{$blogDetail['id']}"></i>
+                            {/if}
                             <div id="qrcode-box">
                                 <span id="s-qrcode">
                                     <i class="fa fa-mobile" style="font-size: 16px;"></i>手机访问
@@ -116,7 +121,7 @@
                                     </form>
                                 </div>
                                 <div id="show-comment" style="display:none;">
-                                    <div id="show-comment-box" class="w-e-text" style="border: 1px solid #337ab7;"></div>
+                                    <div id="show-comment-box" class="w-e-text" style="border: 1px solid #0092ee;"></div>
                                 </div>
                             </div>
                         </div>
@@ -126,9 +131,13 @@
                         <div class="box">
                             <a href="javascript:void(0);">发布者</a>
                             <div style="text-align: center; padding: 10px 0 0 0;">
-                                <a href="javascript:void(0);"><img id="avatar" src="/static/img/avatar.jpg"></a>
-                                <div style="margin:5px 0 5px 0;"><a href="javascript:void(0);">{$blogDetail['user']['nickname']}</a></div>
-                                <botton class="btn btn-default">加关注</botton>
+                                <a href="/user?id={$blogDetail['user']['id']}"><img id="avatar" src="{$blogDetail['avatarImageUrl']}"></a>
+                                {if condition="$blogDetail['user']['nickname']"}
+                                <div style="margin:5px 0 5px 0;"><a href="/user?id={$blogDetail['user']['id']}">{$blogDetail['user']['nickname']}</a></div>
+                                {else /}
+                                <div style="margin:5px 0 5px 0;"><a href="/user?id={$blogDetail['user']['id']}">该用户未设置昵称</a></div>
+                                {/if}
+                                <botton class="btn btn-default follow" data="{$blogDetail['user']['id']}">{$followStatus}</botton>
                             </div>
                         </div>
                         <div class="box">

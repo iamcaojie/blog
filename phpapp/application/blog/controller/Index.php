@@ -41,7 +41,7 @@ class Index extends Base
             $this ->assign('btnTextData','加关注');
         }
         // redis统计
-        // pass
+
         return view("blog/blog");
     }
 

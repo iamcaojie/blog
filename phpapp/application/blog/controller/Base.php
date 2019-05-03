@@ -9,13 +9,17 @@ class Base extends Controller
 {
     public function _initialize()
     {
+        // 判断网站是否开启
+        $web = WebModel::get(1);
+        if(!$web['web_status']){
+            echo $web['close_info'];
+            die;
+        }
         // 初始化页面数据
         $this->getLoginName();
         $this->getNavCates();
         $this->getWebData();
         $this->getAllCate();
-        // 判断网站是否开启
-        // 判断是否为post提交
         // 过滤输入数据
     }
 

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <title>编辑文章</title>
+    <meta charset="utf-8">
+    <meta name="author" content="caojie">
+    <meta name="description" content="个人博客" />
+    <meta name="keywords" content="个人博客" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="renderer" content="webkit" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link href="/static/css/Normalize.css" rel="stylesheet"/>
+    <link href="/static/css/bootstrap.css" rel="stylesheet"/>
+    <link href="/static/css/font-awesome.css" rel="stylesheet"/>
+    <link href="/static/css/uploader.css" rel="stylesheet"/>
+    <link href="/static/css/build.css" rel="stylesheet"/>
+    <link href="/static/css/common.css" rel="stylesheet"/>
+    <link href="/static/css/wangEditor.min.css" rel="stylesheet"/>
+    <style>
+        .input-box
+        {
+            margin: 10px 0 10px 0;
+        }
+        .input-title
+        {
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+<div style="background:white; padding: 10px 20px 50px 20px;">
+    <div style="max-width:850px;margin: auto;">
+        <div style="font-size: 20px;">编辑文章</div>
+        <form  method="POST">
+            <input name="id" type="hidden" value="{$blogData['id']}"/>
+            <div class="input-box">
+                <div class="input-title">标题</div>
+                <input class="form-control" required type="text" name="blog_title" value="{$blogData['blog_title']}" placeholder="请输入标题" autocomplete="off" />
+            </div>
+            <div class="input-box">
+                <div class="input-title">个性标签</div>
+                <input class="form-control" type="text" name="unique_tag" value="{$blogData['unique_tag']}" autocomplete="off" placeholder="请输入此文章的个性标签，以“,”分隔"/>
+            </div>
+            <div class="input-box" style="display: none;">
+                <div class="input-title">主图</div>
+                <input class="form-control" type="text" name="master_image" value="{$blogData['image_id']}" readonly placeholder="文章主图id"/>
+            </div>
+            <div id="master-image-box" class="input-box">
+                <div class="input-title">主图</div>
+                <img src="{$blogData['masterimageurl']}" title="上传多张主图只会显示第一张" style="width:120px;height:90px;"/>
+            </div>
+            <!--上传图片-->
+            <ul class="upload-ul clearfix" style="margin: 10px 0 0 0;padding: 0;">
+                <li class="upload-pick">
+                    <div class="webuploader-container clearfix" id="masterUpload"></div>
+                </li>
+            </ul>
+            <div>
+                <botton class="btn btn-default upload-btn" id="master-upload-btn" href="javascript:void(0);">上传主图</botton>
+                <botton class="btn btn-default" id="clear-upload-btn" href="javascript:void(0);">清除主图</botton>
+            </div>
+            <div class="input-box">
+                <div class="input-title">分类</div>
+                {volist name="cateData" id="cate"}
+                {if condition="$cate['id'] eq $blogData['cate_id']"}
+                <div class="radio radio-info radio-inline">
+                    <input type="radio" value="{$cate['id']}" name="cate" checked>
+                    <label >{$cate['blog_category']}</label>
+                </div>
+                {else/}
+                <div class="radio radio-info radio-inline">
+                    <input type="radio" value="{$cate['id']}" name="cate">
+                    <label >{$cate['blog_category']}</label>
+                </div>
+                {/if}
+                {/volist}
+            </div>
+            <div class="input-box">
+                <div class="input-title">标签</div>
+                <div class="radio radio-info radio-inline">
+                    {if condition="$blogData['tag'][0] eq '原创'"}
+                        <input type="radio" value="1" name="tag-origin" checked>
+                    {else/}
+                        <input type="radio" value="1" name="tag-origin">
+                    {/if}
+                    <label>原创</label>
+                </div>
+                <div class="radio radio-info radio-inline">
+                    {if condition="$blogData['tag'][0] eq '转载'"}
+                    <input type="radio" value="2" name="tag-origin" checked>
+                    {else/}
+                    <input type="radio" value="2" name="tag-origin">
+                    {/if}
+                    <label >转载</label>
+                </div>
+            </div>
+            <div class="input-box">
+                <div class="radio radio-info radio-inline">
+                    {if condition="$blogData['tag'][1] eq '基础'"}
+                    <input type="radio" value="3" name="tag-level" checked>
+                    {else/}
+                    <input type="radio" value="3" name="tag-level">
+                    {/if}
+                    <label >基础</label>
+                </div>
+                <div class="radio radio-info radio-inline">
+                    {if condition="$blogData['tag'][1] eq '技巧'"}
+                    <input type="radio" value="4" name="tag-level" checked>
+                    {else/}
+                    <input type="radio" value="4" name="tag-level">
+                    {/if}
+                    <label >技巧</label>
+                </div>
+                <div class="radio radio-info radio-inline">
+                    {if condition="$blogData['tag'][1] eq '重点'"}
+                    <input type="radio" value="5" name="tag-level" checked>
+                    {else/}
+                    <input type="radio" value="5" name="tag-level">
+                    {/if}
+                    <label >重点</label>
+                </div>
+                <div class="radio radio-info radio-inline">
+                    {if condition="$blogData['tag'][1] eq '难点'"}
+                    <input type="radio" value="6" name="tag-level" checked>
+                    {else/}
+                    <input type="radio" value="6" name="tag-level">
+                    {/if}
+                    <label >难点</label>
+                </div>
+            </div>
+            <div>
+                <div id="editor-box">
+                    <div id="editor">
+                        {$blogData['blog_html']}
+                    </div>
+                </div>
+                <input type="hidden" name="edit-html" value="{$blogData['blog_html']}"/>
+                <input type="hidden" name="edit-text" value="{$blogData['blog_text']}"/>
+            </div>
+            <button class="btn btn-default" style="display:block;margin: auto;margin-top:20px;">编辑文章</button>
+        </form>
+    </div>
+</div>
+<script src="/static/js/jquery3.3.1.js"></script>
+<script src="/static/js/bootstrap.js"></script>
+<script src="/static/layui/layui.js"></script>
+<script src="/static/js/wangEditor.min.js"></script>
+<script src="/static/js/webuploader.min.js"></script>
+<script src="/static/js/diyUpload.js"></script>
+<script src="/static/js/common.js"></script>
+<script src="/static/js/userEdit.js"></script>
+</body>
+</html>
