@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <title>搜索结果</title>
+    <link href="/static/css/bootstrap.css" rel="stylesheet"/>
+    <link href="/static/css/bootstrap-datetimepicker.min.css" rel="stylesheet"/>
+    <link href="/static/css/common.css" rel="stylesheet"/>
+    <link href="/static/css/search.css" rel="stylesheet"/>
+    <!--<script src="/static/js/vue.min.js"></script>-->
+</head>
+<body>
+<!--<div id="app">-->
+<!--类目-->
+<div style="width:80%;margin: auto;background: white;padding: 20px 10px;">
+    <a href="/">返回首页</a>
+    <div>
+        <form>
+            <span>当前搜索关键词为：</span>
+            <input class="form-control" name="q" value="{$q}" placeholder="请输入搜索关键词" autocomplete="off"/>
+        </form>
+    </div>
+    <div>
+        <a id="article" class="search-item" href="/search?c=1&q=">文章</a>
+        <a class="search-item" href="/search?c=2&q=">标签</a>
+        <a class="search-item selected" href="/search?c=3&q=">用户</a>
+    </div>
+    <div>
+        {if condition="$searchUsersData"}
+        <hr>
+        <div style="margin: 10px 0 0 0;">共搜索到{$searchUsersCountData}条结果。</div>
+        {else /}
+        <div style="margin: 10px 0 0 0;">暂未搜索到任何结果</div>
+        {/if}
+        {volist name="searchUsersData" id="searchUser"}
+            <div class="g-list">
+                <div class="follow-user"><a href="/user?id={$searchUser['id']}">{$searchUser['nickname']}</a></div>
+                <div class="follow-btn"><botton class="btn btn-default follow" data="{$searchUser['id']}">
+                    {if condition="$userLoginStatusData"}
+                        {$searchUser['follow_status']}
+                    {else /}
+                        加关注
+                    {/if}
+                </botton></div>
+            </div>
+            <hr>
+        {/volist}
+    </div>
+</div>
+<!--</div>-->
+<script src="/static/js/jquery3.3.1.js" ></script>
+<script src="/static/js/bootstrap.js" ></script>
+<script src="/static/layui/layui.js"></script>
+<script src="/static/js/bootstrap-datetimepicker.min.js" ></script>
+<script src="/static/js/bootstrap-datetimepicker.zh-CN.js" ></script>
+<script src="/static/js/common.js" ></script>
+<script src="/static/js/search.js" ></script>
+<!--<script>-->
+<!--var app = new Vue({-->
+<!--el: '#app',-->
+<!--data: {-->
+<!--message: 'Hello!'-->
+<!--}-->
+<!--});-->
+<!--</script>-->
+</body>
+</html>

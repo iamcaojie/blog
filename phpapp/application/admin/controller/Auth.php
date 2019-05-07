@@ -285,8 +285,8 @@ class Auth extends Base
     public function deleteUser()
     {
         $id = input('post.')['id'];
-        if(session('user')['user_id'] == $id){
-            return json(["code"=>-1,"msg"=>"无法删除本身"]);
+        if((session('user')['id'] == $id) || ($id == 1)){
+            return json(["code"=>-1,"msg"=>"无法删除本身或管理员"]);
         }
         $info = UsersModel::deleteUsers($id);
         // 删除用户-用户组表数据，删除评论，重置文章

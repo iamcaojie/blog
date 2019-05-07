@@ -59,7 +59,9 @@ h1{
     float: left;
     width: 95%;
 }
-
+.nickname{
+    margin:0 5px 0 0;
+}
 .divid-line{
     height: 1px;
     width: 100%;

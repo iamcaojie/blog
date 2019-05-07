@@ -112,7 +112,7 @@
                     <div class="item-content">
                         {volist name="userBlogData" id="userBlog"}
                             <div class="list">
-                                <a href="">{$userBlog['blog_title']}</a>
+                                <a href="/blog/detail?id={$userBlog['id']}">{$userBlog['blog_title']}</a>
                                 <a href="/user/action/edit?id={$userBlog['id']}">编辑</a>
                                 <a href="javascript:void(0);" class="delete delete-blog" data="{$userBlog['id']}">删除</a>
                             </div>
@@ -125,7 +125,7 @@
                         {volist name="favoriteData" id="favorite"}
                         <div class="g-list">
                             <div class="">
-                                <a href="">{$favorite['blog']['blog_title']}</a>
+                                <a href="/blog/detail?id={$favorite['blog']['id']}">{$favorite['blog']['blog_title']}</a>
                                 <i class="fa fa-star favorite favorite-btn" data="{$favorite['blog']['id']}"></i>
                             </div>
                         </div>
@@ -136,7 +136,7 @@
                     <div class="item-title">我的评论</div>
                     {volist name="userCommentsData" id="userComments"}
                         <div class="list">
-                            <span>评论文章：</span><a href="">{$userComments['blog']['blog_title']}</a>
+                            <span>评论文章：</span><a href="/blog/detail?id={$userComments['blog']['id']}">{$userComments['blog']['blog_title']}</a>
                             <br>
                             <span>评论内容： </span><span>{$userComments['comment_text']}</span>
                             <a href="javascript:void(0);" class="delete delete-comment" data="{$userComments['id']}">删除</a>

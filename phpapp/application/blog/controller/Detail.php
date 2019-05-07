@@ -111,6 +111,8 @@ class Detail extends Base
         $data['user_id'] = $userId;
         $data['reply_text'] = htmlentities($data['reply_text']);
         $info = ReplyModel::reply($data);
+        $info['user_id'] = $userId;
+        $info['nickname'] = UsersModel::get($userId)['nickname'];
         if($info){
             return json(['code'=> 0, 'msg'=>'回复成功','data'=>$info]);
         }else{

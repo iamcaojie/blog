@@ -9,15 +9,23 @@ class Comments extends Model
     {
         foreach ($data as $value)
         {
-            // 根据评论user_id查询用户数据
+            // 根据评论user_id查询用户数据，用户头像
             $value['user'] = db('users')
                 -> where('id',$value['user_id'])
+                ->field('username,password',true)
                 -> find();
             $value['nickname'] = $value['user']['nickname'];
+            $avatarImageCateData = db('imagecate')
+                -> where('id',4)
+                -> find();
+            $avatarImage = db('image')
+                -> where('id',$value['user']['avatar_image_id'])
+                -> find();
+            $value['commentUserImageUrl'] = '/uploads/'.$avatarImageCateData['dir'].'/'.$avatarImage['address'].'.'.$avatarImage['ext'];
             // 查询评论对应博客文章标题
             $value['blog'] = db('blog')
                 ->where('id',$value['blog_id'])
-                ->field('blog_title')
+                ->field('id,blog_title')
                 ->find();
             // 查询评论是否有回复
             $replyData = db('reply')
@@ -27,7 +35,7 @@ class Comments extends Model
             $formatReplyData = [];
             foreach ($replyData as $replyValue){
                 // 格式化回复时间
-                $replyValue['create_time'] = date('Y-m-d H:m:s',$replyValue['create_time']);
+                $replyValue['f_create_time'] = date('Y-m-d H:m:s',$replyValue['create_time']);
                 // 写入回复人
                 $replyValue['user'] = db('users')
                     -> where('id',$replyValue['user_id'])

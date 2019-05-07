@@ -79,4 +79,12 @@ class Users extends Model
         $imageUrl = '/uploads/'.$address.'/'. $userImage['address'].'.'.$userImage['ext'];
         return $imageUrl;
     }
+
+    // 搜索用户
+    public static function searchUsers($k)
+    {
+        $userData = self::where('nickname','like','%'.$k.'%')
+            ->select();
+        return $userData;
+    }
 }

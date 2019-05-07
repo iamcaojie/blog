@@ -31,8 +31,11 @@
             <div id="img-box">
                 <img id="avatar" src="{$userImageUrlData}"/>
             </div>
-            <div style="height: 30px;">
+            <div style="height: 50px;">
                 <span id="nickname">{$displayUserData['nickname']}</span>
+                <div>
+                    <botton class="btn btn-default follow" data="{$displayUserData['id']}">{$viewUserStatus}</botton>
+                </div>
             </div>
             <div id="channel">
                 <div class="item">TA的文章<br><span class="num">{$userBlogCountData}</span></div>
@@ -46,7 +49,7 @@
                     <div class="item-content">
                         {volist name="userBlogData" id="userBlog"}
                             <div class="list">
-                                <a href="">{$userBlog['blog_title']}</a>
+                                <a href="/blog/detail?id={$userBlog['id']}">{$userBlog['blog_title']}</a>
                             </div>
                         {/volist}
                     </div>
@@ -56,7 +59,7 @@
                     {volist name="userCommentsData" id="userComments"}
                         <div class="list">
                             <div>
-                                <span>评论文章：</span><a href="">{$userComments['blog']['blog_title']}</a>
+                                <span>评论文章：</span><a href="/blog/detail?id={$userComments['blog']['id']}">{$userComments['blog']['blog_title']}</a>
                                 <br>
                                 <span>评论内容： </span><span>{$userComments['comment_text']}</span>
                             </div>

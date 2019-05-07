@@ -43,7 +43,8 @@ class Blog extends Model
             // 格式化个性标签
             if(isset($value['unique_tag'])){
                 if(strpos($value['unique_tag'],',') === false){
-                    $value['f_unique_tag'] = '';
+                    // 此时标签只有一个，前端要循环所以加[]
+                    $value['f_unique_tag'] = [$value['unique_tag']];
                 }else{
                     $value['f_unique_tag'] = explode(',',$value['unique_tag']);
                 }
@@ -222,6 +223,41 @@ class Blog extends Model
     public static function getUserBlog($userId)
     {
         $blogData = self::where('user_id',$userId)
+            ->where('delete_time','null')
+            ->select();
+        $blogData = self::formatData($blogData);
+        return $blogData;
+    }
+    // 文章搜索
+    public static function searchBlog($keyWord)
+    {
+        $blogData = self::where('blog_title|blog_text','like','%'.$keyWord.'%')
+            ->where('delete_time','null')
+            ->order('update_time desc')
+            ->select();
+        $blogData = self::formatData($blogData);
+        return $blogData;
+    }
+
+    // 文章搜索
+    public static function searchTimeBlog($keyWord,$start,$end)
+    {
+        $blogData = self::where('blog_title|blog_text','like','%'.$keyWord.'%')
+            ->where('delete_time','null')
+            ->where('update_time','>',$start)
+            ->where('update_time','<',$end)
+            ->order('update_time desc')
+            ->select();
+        $blogData = self::formatData($blogData);
+        return $blogData;
+    }
+
+    // 标签搜索
+    public static function searchTag($tag)
+    {
+        $blogData = self::where('unique_tag','like','%'.$tag.'%')
+            ->where('delete_time','null')
+            ->order('update_time desc')
             ->select();
         $blogData = self::formatData($blogData);
         return $blogData;

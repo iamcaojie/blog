@@ -21,7 +21,7 @@ $(function(){
         if($(this).text() === '显示回复详情'){
             $(this).text('隐藏回复详情');
             $(this).parent().parent().parent().find(".reply-box").show();
-        }else{
+        }else if($(this).text() === '隐藏回复详情'){
             $(this).text('显示回复详情');
             $(this).parent().parent().parent().find(".reply-box").hide();
         }
@@ -54,9 +54,18 @@ $(function(){
             layer.msg('请输入回复');
             return false;
         }
-        postReply('/blog/detail/replyComment','POST',{'comment_id':commentId,'reply_text':replyText});
+        var info = postReply('/blog/detail/replyComment','POST',{'comment_id':commentId,'reply_text':replyText});
+        var replyData = info.data;
+        if(info.status === 0) {
+            $(this).parent().parent().find('.reply-box').append('<div class="reply-content"><a href="/user?id='+replyData['user_id']+'"><span class="nickname">'
+                +replyData['nickname']+'</span></a><span class="time">'
+                +replyData['create_time']+'</span><div class="reply-text">'
+                +replyData['reply_text']+'</div></div>');
+        }
         $(this).parent().hide();
         $(this).parent().parent().find('.reply-control').show();
+        $(this).parent().parent().find('.display-reply').text('显示回复详情');
+        $(this).prevAll().eq(0).val('');
     });
     // 清空评论
     $("#clear").click(function(){
@@ -120,11 +129,18 @@ function postComment(url,method,data){
             dataType:'json',
             success: function(data){
                 layer.msg(data.msg);
-                console.log(data.data);
                 //清空评论
                 $("#comment_text").val("");
                 // 把评论添加到页面中
-                $('#comment-list').append('<li>新评论</li>');
+                var commentData = data.data[0];
+                $('#comment-list').append('<li><div class="comment-avatar"><a href="/user?id='+commentData['user_id']+'"> <img style="width:100%;border-radius: 50%;" src="'+commentData['commentUserImageUrl']+'"/>' +
+                    '</a> </div><div class="comment-content"><div><a href="/user?id='+commentData['user_id']+'"><span class="nickname">'+commentData['nickname']+'</span></a><span class="time">'+commentData['create_time']+'</span' +
+                    '></div> <div class="comment-text">'+commentData['comment_text']+'</div><div class="reply-control" style="clear: both;">' +
+                    '<span style="float: right;display:inline-block;"><a class="reply-comment" href="javascript:void(0);">回复</a></span> ' +
+                    '<span style="float: right;display:inline-block;margin-right: 10px;"><a href="javascript:void(0);">暂无回复</a></span> ' +
+                    '</div><div class="reply-input"><input type="hidden" value="'+commentData['id']+'"/> ' +
+                    '<input type="text"/> <botton class="reply-btn">回复</botton> <a class="display-reply-control" href="javascript:void(0);"><i class="fa fa-close" ></i></a' +
+                    '> </div><div class="reply-box"> </div></div> <div class="divid-line"></div></li>');
             },error:function(data){
                 layer.msg("评论失败");
             }
@@ -134,23 +150,24 @@ function postComment(url,method,data){
 
 // 提交回复
 function postReply(url,method,data){
-    $(function(){
-        $.ajax({
-            type:method || 'POST',
-            url:url,
-            data:data,
-            dataType:'json',
-            success: function(data){
-                layer.msg(data.msg);
-                //清空回复
-                // $("#comment_text").val("");
-                // 把回复添加到页面中
-                // $('#comment-list').append('<li>新评论</li>');
-            },error:function(data){
-                layer.msg("评论失败");
-            }
-        });
+    var info = {};
+    $.ajax({
+        type:method || 'POST',
+        url:url,
+        data:data,
+        async:false,
+        dataType:'json',
+        success: function(data){
+            layer.msg(data.msg);
+            // 把回复添加到页面中
+            info['status'] = data.code;
+            info['data'] = data.data;
+        },error:function(data){
+            info['status'] = -1;
+            layer.msg("评论失败");
+        }
     });
+    return info;
 }
 
 //生成网址二维码

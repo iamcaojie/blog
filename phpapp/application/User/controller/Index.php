@@ -49,11 +49,14 @@ class Index extends UserBase
         $userId = session('user')['id'];
         $this ->assign(['userData'=>session('user')]);
         // 不是本人，显示'加关注','已关注','互相关注',用户界面
-        // 获取用户关注
+        // 获取访问者与用户的关注关系
+        $viewUserStatus = FollowModel::queryStatus($userId,$id);
+        $this ->assign(['viewUserStatus'=>$viewUserStatus]);
+        // 获取用户的关注
         $userFollow = FollowModel::queryFollower($userId,$id);
         $this ->assign(['userFollowData'=>$userFollow]);
         $this ->assign(['userFollowCountData'=>count($userFollow)]);
-        // 获取用户粉丝
+        // 获取用户的粉丝
         $userFans = FollowModel::queryFans($userId,$id);
         $this ->assign(['userFansData'=>$userFans]);
         $this ->assign(['userFansCountData'=>count($userFans)]);

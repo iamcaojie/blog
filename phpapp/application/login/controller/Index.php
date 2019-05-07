@@ -5,11 +5,12 @@ use think\Controller;
 use think\Db;
 use app\admin\model\Users as UsersModel;
 use app\admin\model\Web as WebModel;
+use app\blog\controller\Base;
 use PHPMailer\QQMailer;
 use think\captcha\Captcha;
 
 // 一切登陆相关操作
-class Index extends \app\blog\controller\Base
+class Index extends Base
 {
     public function index()
     {

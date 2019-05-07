@@ -1,0 +1,53 @@
+.search-item{
+    display: inline-block;
+    margin: 10px;
+}
+.form-control{
+    width:300px;
+}
+#click-time{
+    width:300px;
+}
+.selected{
+    padding: 4px 10px;
+    background: #0092ee;
+    color: white !important;
+}
+.img-box{
+    float: left;
+    width:20%;
+    margin:0;
+    overflow: hidden;
+}
+.article-box{
+    float: left;
+    width:80%;
+    margin:0;
+}
+@media (max-width:1200px){
+    .img-box{
+        display: none;
+    }
+    .article-box{
+        width:100%;
+    }
+    #contact .fa{
+        font-size: 24px;
+    }
+}
+@media (max-width:600px) {
+    #notice {
+        height: 135px;
+    }
+    #contact .fa{
+        font-size: 36px;
+    }
+}
+.g-list{
+    padding: 10px;
+}
+.follow-user{
+    float:left;
+    height: 34px;
+    margin:6px 10px 0 0;
+}

@@ -19,7 +19,7 @@
 {/block}
 {block name="container"}
         <ol class="breadcrumb">
-            <li><a href="http://{$webdata['domain']}">首页</a></li>
+            <li><a href="/">首页</a></li>
             <li><a href="/blog/contents?cate={$blogDetail['cate']['id']}">{$blogDetail['cate']['blog_category']}</a></li>
             <li class="active">{$blogDetail['blog_title']}</li>
         </ol>
@@ -61,15 +61,15 @@
                                         <li>
                                             <!--头像-->
                                             <div class="comment-avatar">
-                                                <a href="javascript:void(0);">
-                                                    <img style="width:100%;border-radius: 50%;" src="/static/img/avatar.jpg"/>
+                                                <a href="/user?id={$blogComment['user']['id']}">
+                                                    <img style="width:100%;border-radius: 50%;" src="{$blogComment['commentUserImageUrl']}"/>
                                                 </a>
                                             </div>
                                             <!--评论-->
                                             <div class="comment-content">
                                                 <!--评论详情-->
                                                 <div>
-                                                    <span class="nickname">{$blogComment['user']['nickname']}</span>
+                                                    <a href="/user?id={$blogComment['user']['id']}"><span class="nickname">{$blogComment['user']['nickname']}</span></a>
                                                     <span class="time">{$blogComment['create_time']}</span>
                                                 </div>
                                                 <div class="comment-text">{$blogComment['comment_text']}</div>
@@ -77,7 +77,7 @@
                                                 <div class="reply-control" style="clear: both;">
                                                     <span style="float: right;display:inline-block;"><a class="reply-comment" href="javascript:void(0);">回复</a></span>
                                                     {if condition="!$blogComment['reply']"}
-                                                    <span style="float: right;display:inline-block;margin-right: 10px;"><a href="javascript:void(0);">暂无回复</a></span>
+                                                    <span style="float: right;display:inline-block;margin-right: 10px;"><a class="display-reply" href="javascript:void(0);">暂无回复</a></span>
                                                     {else /}
                                                     <span style="float: right;display:inline-block;margin-right: 10px;"><a class="display-reply" href="javascript:void(0);">显示回复详情</a></span>
                                                     {/if}
@@ -95,8 +95,8 @@
                                                     {volist name="$blogComment['reply']" id="reply"}
                                                     <!--回复详情-->
                                                     <div class="reply-content">
-                                                        <span class="nickname">{$reply['user']['nickname']}</span>
-                                                        <span class="time">{$reply['create_time']}</span>
+                                                        <a href="/user?id={$reply['user']['id']}"><span class="nickname">{$reply['user']['nickname']}</span></a>
+                                                        <span class="time">{$reply['f_create_time']}</span>
                                                         <div class="reply-text">{$reply['reply_text']}</div>
                                                     </div>
                                                     {/volist}

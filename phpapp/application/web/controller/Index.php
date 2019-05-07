@@ -25,7 +25,7 @@ class Index
     }
     public function doc()
     {
-//        return view('doc/doc');
+        return view('doc/doc2');
     }
     public function download()
     {

@@ -82,8 +82,8 @@ CREATE TABLE [prefix_]imagecate(
 
 CREATE TABLE [prefix_]users(
     id int UNSIGNED NOT NULL AUTO_INCREMENT, 
-    nickname varchar(20) NOT NULL DEFAULT '', 
-    username varchar(50) NOT NULL, 
+    nickname varchar(20) NOT NULL DEFAULT '',
+    username varchar(50) NOT NULL,
     password varchar(50) NOT NULL, 
     gender tinyint(1) NOT NULL DEFAULT 3,
     avatar_image_id int DEFAULT 1, 
@@ -270,11 +270,14 @@ CREATE TABLE [prefix_]favorite(
     PRIMARY KEY(id)
 ) ENGINE=INNODB DEFAULT CHARSET=utf8 COMMENT '用户收藏表';
 
-insert into [prefix_]web(id, name, web_status, domain, ip, beian_code,today_views,all_views) 
-    values (1,'blog', 1,'localhost','127.0.0.1', '鄂ICP备19004169号',0,0);
+insert into [prefix_]web(id, name, web_status, domain, ip, beian_code,today_views,all_views,close_info)
+    values (1,'blog', 0,'localhost','127.0.0.1', '鄂ICP备19004169号',0,0,'<div style="text-align:center"><h1>网站维护中</h1><div><a href="https://github.com/iamcaojie">Github</a></div></div>');
 
 insert into [prefix_]users(id,nickname,username,password) 
-    values (1,'入戏太深','caojie','d226d500e7899a09458559bf2661a62b');
+    values (1,'入戏太深','caojie','d226d500e7899a09458559bf2661a62b'),
+    (2,'测试账号1','demo1@qq.com','43da34d87d7c36746917008be5a891e8'),
+    (3,'测试账号2','demo2@qq.com','43da34d87d7c36746917008be5a891e8'),
+    (4,'测试账号3','demo3@qq.com','43da34d87d7c36746917008be5a891e8');
 
 insert into [prefix_]blog(id, blog_title, cate_id, delete_time) 
     values (1, '临时缓存内容', 1, 1);

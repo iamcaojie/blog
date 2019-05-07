@@ -32,12 +32,12 @@
                     </div>
                 </div>
                 <div id="notice" style="text-align: center;">
-                        <a class="icon" href="/">时间线</a>
-                        <a class="icon" href="/">API接口</a>
-                        <a class="icon" href="/">文章归档</a>
-                        <a class="icon" href="/">在线工具</a>
-                        <a class="icon" href="/web/index/doc">在线文档</a>
-                        <a class="icon" href="/">资源下载</a>
+                        <a class="icon" href="/">时间线<br>开发中</a>
+                        <a class="icon" href="/">API接口<br>开发中</a>
+                        <a class="icon" href="/">文章归档<br>开发中</a>
+                        <a class="icon" href="/">在线工具<br>开发中</a>
+                        <a class="icon" href="/web/doc.html">在线文档<br>完成</a>
+                        <a class="icon" href="/">资源下载<br>开发中</a>
                 </div>
                 <div id="last-update">
                     <a class="channel">最近更新</a>
@@ -45,10 +45,10 @@
                     <div class="list">
                         <div>
                             <div class="img-box">
-                                <img class="article-img" src="{$lastUpdate['masterimageurl']}"/>
+                                <a href="/blog/detail?id={$lastUpdate['id']}"><img class="article-img" src="{$lastUpdate['masterimageurl']}"/></a>
                             </div>
                             <div class="article-box">
-                                <h1><a href="/blog/detail/index/id/{$lastUpdate['id']}">{$lastUpdate['blog_title']}</a></h1>
+                                <h1><a href="/blog/detail?id={$lastUpdate['id']}">{$lastUpdate['blog_title']}</a></h1>
                                 <div class="tags">
                                     <span class="label label-primary">{$lastUpdate['f_update_time']}</span>
                                     <span class="label label-default">{$lastUpdate['tag'][0]}</span>
@@ -65,7 +65,7 @@
                             <span>{$lastUpdate['read_like']}人点赞</span>
                             <span>{$lastUpdate['commentsCount']}人评论</span>
                             <span style="float:right;">
-                                <a href="">阅读全文>>></a>
+                                <a href="/blog/detail?id={$lastUpdate['id']}">阅读全文>>></a>
                             </span>
                         </div>
                     </div>

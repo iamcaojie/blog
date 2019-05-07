@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <title>搜索结果</title>
+    <link href="/static/css/bootstrap.css" rel="stylesheet"/>
+    <link href="/static/css/bootstrap-datetimepicker.min.css" rel="stylesheet"/>
+    <link href="/static/css/common.css" rel="stylesheet"/>
+    <link href="/static/css/search.css" rel="stylesheet"/>
+    <!--<script src="/static/js/vue.min.js"></script>-->
+</head>
+<body>
+<!--<div id="app">-->
+<!--类目-->
+<div style="width:80%;margin: auto;background: white;padding: 20px 10px;">
+    <a href="/">返回首页</a>
+    <div>
+        <form>
+            <span>当前搜索关键词为：</span>
+            <input class="form-control" name="q" value="{$q}" placeholder="请输入搜索关键词" autocomplete="off"/>
+        </form>
+    </div>
+    <div>
+        <a id="article" class="search-item selected" href="/search?c=1&q=">文章</a>
+        <a class="search-item" href="/search?c=2&q=">标签</a>
+        <a class="search-item" href="/search?c=3&q=">用户</a>
+    </div>
+    <!--时间-->
+    <div id="click-time">
+        <div class="form-group">
+            <div>开始时间</div>
+            <div class="input-group date form_datetime" data-date="2019-01-01T00:00:00Z" data-date-format="yyyy-mm-dd HH:ii:ss p" data-link-field="start-time">
+                <input class="form-control" type="text" value="" readonly>
+                <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+            </div>
+            <input  id="start-time" value="" /><br/>
+        </div>
+        <div class="form-group">
+            <div>结束时间</div>
+            <div class="input-group date form_datetime" data-date="2019-01-01T00:00:00Z" data-date-format="yyyy-mm-dd HH:ii:ss p" data-link-field="end-time">
+                <input class="form-control" type="text" value="" readonly>
+                <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+            </div>
+            <input  id="end-time" value="" /><br/>
+        </div>
+        <a id="s-t-a" href="javascript:void(0);">按日期搜索文章</a>
+    </div>
+    <div>
+        {if condition="$searchBlogData"}
+            <hr>
+            <div style="margin: 10px 0 0 0;">共搜索到{$searchBlogCountData}条结果</div>
+        {else /}
+            <div style="margin: 10px 0 0 0;">暂未搜索到任何结果</div>
+        {/if}
+        {volist name="searchBlogData" id="searchBlog"}
+        <div class="list">
+            <div>
+                <div class="img-box">
+                    <a href="/blog/detail?id={$searchBlog['id']}"><img class="article-img" src="{$searchBlog['masterimageurl']}"/></a>
+                </div>
+                <div class="article-box">
+                    <h1 style="margin:0"><a href="/blog/detail?id={$searchBlog['id']}">{$searchBlog['blog_title']}</a></h1>
+                    <div class="tags">
+                        <span class="label label-primary">{$searchBlog['f_update_time']}</span>
+                        <span class="label label-default">{$searchBlog['tag'][0]}</span>
+                        <span class="label label-success">{$searchBlog['tag'][1]}</span>
+                        {volist name="$searchBlog['f_unique_tag']" id="f_tag"}
+                        <span class="label label-info">{$f_tag}</span>
+                        {/volist}
+                    </div>
+                    <div class="article-detail">{$searchBlog['blog_text_omit']}</div>
+                </div>
+            </div>
+            <div class="article-like">
+                <span>{$searchBlog['read_count']}人阅读</span>
+                <span>{$searchBlog['read_like']}人点赞</span>
+                <span>{$searchBlog['commentsCount']}人评论</span>
+                <span style="float:right;">
+                    <a href="/blog/detail?id={$searchBlog['id']}">阅读全文>>></a>
+                </span>
+            </div>
+        </div>
+        {/volist}
+    </div>
+</div>
+<!--</div>-->
+<script src="/static/js/jquery3.3.1.js" ></script>
+<script src="/static/js/bootstrap.js" ></script>
+<script src="/static/layui/layui.js"></script>
+<script src="/static/js/bootstrap-datetimepicker.min.js" ></script>
+<script src="/static/js/bootstrap-datetimepicker.zh-CN.js" ></script>
+<script src="/static/js/common.js" ></script>
+<script src="/static/js/search.js" ></script>
+<!--<script>-->
+    <!--var app = new Vue({-->
+        <!--el: '#app',-->
+        <!--data: {-->
+            <!--message: 'Hello!'-->
+        <!--}-->
+    <!--});-->
+<!--</script>-->
+</body>
+</html>
