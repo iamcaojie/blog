@@ -19,13 +19,16 @@
             <script src="/static/js/respond.src.js"></script>
         <![endif]-->
         <script>
-            // 禁止直接访问
+            {if condition="$webData['web_status']"}
+            // 禁止直接访问页面
             function forbidden() {
                 if(top.location === window.location){
                     window.location.href = '/';
                 }
             }
             forbidden();
+            {else /}
+            {/if}
         </script>
     </head>
     <body>
@@ -113,12 +116,20 @@
                 <div class="layui-tab-item">
                     <div class="notice">测试登陆</div>
                     <div style="margin:0 0 10px 0;">
-                        账号：<span>demo@qq.com</span>
-                        <!--<botton class="btn btn-default copy">点击复制</botton>-->
+                        后台测试账号：demo1@qq.com
+                        密码：demo123
                     </div>
-                    <div>
-                        密码：<span>demo123</span>
-                        <!--<botton class="btn btn-default copy">点击复制</botton>-->
+                    <div style="margin:0 0 10px 0;">
+                        用户测试账号：demo2@qq.com
+                        密码：demo123
+                    </div>
+                    <div style="margin:0 0 10px 0;">
+                        用户测试账号：demo3@qq.com
+                        密码：demo123
+                    </div>
+                    <div style="margin:0 0 10px 0;">
+                        用户测试账号：demo4@qq.com
+                        密码：demo123
                     </div>
                 </div>
             </div>

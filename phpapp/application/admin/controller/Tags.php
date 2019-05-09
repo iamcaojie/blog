@@ -14,13 +14,14 @@ class Tags extends Base
     }
     
     // 创建标签
-    // /admin/tags/createtags
     public function createTags()
     {
         $data = input('post.');
         // 验证数据合法性
-        $data = Tagsmodel::createTags($data);
-        return json(["code"=>0,"msg"=>"创建标签成功"]);
+        $info = Tagsmodel::createTags($data);
+        if($info){
+            return json(["code"=>0,"msg"=>"创建标签成功"]);
+        }
     }
     
     // 编辑标签
@@ -41,7 +42,6 @@ class Tags extends Base
     
     // 删除标签
     // 已有博客的重置为默认标签
-    // /admin/tags/deletetags
     public function deleteTags()
     {
         $data = input('post.');

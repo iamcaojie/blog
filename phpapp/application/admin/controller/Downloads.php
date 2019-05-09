@@ -1,7 +1,7 @@
 <?php
 namespace app\admin\controller;
 
-use app\admin\model\Downloads as Downloadsmodel;
+use app\admin\model\Downloads as DownloadsModel;
 
 // 每个方法为同名模型的函数
 
@@ -33,12 +33,6 @@ class Downloads extends Base
         // 验证数据合法性
         $data = Downloadsmodel::editsDownloads($data);
         return json(["code"=>0,"msg"=>"编辑下载链接成功"]);
-    }
-    
-    // 查询下载链接
-    public function queryDownloads()
-    {
-        //pass
     }
     
     // 删除下载链接

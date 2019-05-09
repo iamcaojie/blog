@@ -103,6 +103,7 @@
 }
 .g-list{
     padding: 10px;
+    height: 50px;
 }
 .g-list a{
     display: inline-block;

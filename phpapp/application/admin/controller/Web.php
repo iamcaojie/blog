@@ -7,8 +7,13 @@ use app\admin\model\Web as Webmodel;
 
 class Web extends Base
 {
-    // 获取所有网站状态
-    // /admin/web/getweblist
+    // 显示系统设置
+    public function index()
+    {
+        return view('web/web');
+    }
+
+    // 获取所有系统设置
     public function getWebList()
     {
         $data = Webmodel::getWebList();
@@ -30,7 +35,6 @@ class Web extends Base
     }
 
     // 编辑网站信息
-    // /admin/web/editweb
     public function editWeb()
     {
         $data = input('post.');

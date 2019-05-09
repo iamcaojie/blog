@@ -15,7 +15,6 @@ class Massage extends Base
     }
     
     // 创建留言消息
-    // /admin/massage/createmassage
     public function createMassage()
     {
         $data = input('post.');

@@ -19,18 +19,6 @@ class Image extends Base
             'avatarData'=>$avatarImage]
         );
     }
-
-    // 编辑图片
-    public function editImage()
-    {
-        // pass
-    }
-    
-    // 查询图片
-    public function queryImage()
-    {
-        //pass
-    }
     
     // 删除图片
     public function deleteImage()

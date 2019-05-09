@@ -7,11 +7,6 @@ use think\Db;
 class Upload extends Base
 {
 
-    public function index()
-    {
-        // 图片管理
-    }
-
     // 上传轮播图，id为1
     public function banner()
     {

@@ -19,9 +19,4 @@ class Web extends Model
         $info = self::update($data);
         return $info;
     }
-
-    public static function queryWeb($data)
-    {
-        //pass
-    }
 }

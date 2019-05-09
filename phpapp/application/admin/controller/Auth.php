@@ -5,7 +5,6 @@ use think\Db;
 use app\admin\model\Users as UsersModel;
 use app\admin\model\AuthGroup as AuthGroupModel;
 use app\admin\model\AuthRule as AuthRuleModel;
-use app\admin\model\AuthGroupAccess as AuthGroupAccessModel;
 
 class Auth extends Base
 {

@@ -9,6 +9,7 @@ class Cate extends Base
     protected $cate;
     protected $count;
     protected $beforeActionList = [
+        // 必须全部小写才能生效
         'checkid'  =>
             ['only'=>'signdeletecate,deletecate,createcate,editcate'],
     ];

@@ -151,7 +151,6 @@ var layer = layui.layer,
             window.open('/blog/detail/index/id/'+data.id);
         } else if(layEvent === 'del'){
             layer.confirm('真的删除文章吗', function(index){
-                obj.del(); //删除对应行（tr）的DOM结构
                 layer.close(index);
                 deleteBlog(data.id);
             });
@@ -169,7 +168,6 @@ var layer = layui.layer,
             window.open(data.link);
         } else if(layEvent === 'del'){
             layer.confirm('确定删除此链接？', function(index){
-                obj.del(); //删除对应行（tr）的DOM结构
                 layer.close(index);
                 deleteLink(data.id);
             });
@@ -187,7 +185,6 @@ var layer = layui.layer,
             layer.msg(data.comment_text);
         } else if(layEvent === 'del'){
             layer.confirm('确定删除此评论？<br>同时会删除所有此评论下所有回复', function(index){
-                obj.del();
                 layer.close(index);
                 deleteComment(data.id);
             });
@@ -579,8 +576,12 @@ function getBlogData(url,method,data){
         data:data,
         dataType:'json',
         success: function(data){
-            emptyBlogData();
-            fillBlogData(data);
+            if(data.code == 0){
+                emptyBlogData();
+                fillBlogData(data);
+            }else{
+                layer.msg(data.msg);
+            }
         }
     });
 }
@@ -593,10 +594,13 @@ function getLinkData(url,method,data){
         data:data,
         dataType:'json',
         success: function(data){
-            // 填充数据到编辑器
-            emptyLinkData();
-            console.log(data);
-            fillLinkData(data);
+            if(data.code == 0){
+                // 填充数据到编辑器
+                emptyLinkData();
+                fillLinkData(data);
+            }else{
+                layer.msg(data.msg);
+            }
         }
     });
 }
@@ -665,7 +669,7 @@ function getConfData(){
         skin: 'massageboard-class',
         area: ['850px','500px'],
         title: '<div><b>系统设置</b></div>',
-        content: ['/admin/conf/index','yes'],
+        content: ['/admin/web/index','yes'],
         btn: ['刷新父页面使修改生效'],
         yes: function(index, layero){
             layer.close(index);

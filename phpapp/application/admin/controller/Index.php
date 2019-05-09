@@ -33,4 +33,11 @@ class Index extends Base
                 'ip' => $ip
             ]);
     }
+
+    // 获取所有权限
+    public function a()
+    {
+        print_r(get_class_methods('Index'));
+    }
+
 }

@@ -13,7 +13,6 @@ class Base extends Controller
         $web = WebModel::get(1);
         if(!$web['web_status']){
             echo $web['close_info'];
-            // 关闭后仍然可以登录
             die;
         }
         // 初始化页面数据

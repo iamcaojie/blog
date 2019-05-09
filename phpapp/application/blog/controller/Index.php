@@ -24,7 +24,7 @@ class Index extends Base
         // 获取标签聚合
         $tagData = BlogModel::getTag();
         $this->assign('tagData',$tagData);
-        // 获取实用网站，友情链接
+        // 获取实用网站链接
         $linkData = LinkModel::getLink(3);
         $this->assign('linkData',$linkData);
         // 获取头像

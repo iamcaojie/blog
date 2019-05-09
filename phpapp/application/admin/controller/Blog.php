@@ -7,10 +7,8 @@ use app\admin\model\Cate as Catemodel;
 
 class Blog extends Base
 {
-    // 查询博客 
-    // get /admin/blog/queryblog/action/getbloglist/page/1/limit/10
-    // get /admin/blog/queryblog/action/queryblog/id/1
-    public function queryblog($action='query',$id=1,$page=1,$limit=10)
+    // 查询博客
+    public function queryBlog($action='query',$id=1,$page=1,$limit=10)
     {   
         // 根据关键字调用模型方法
         switch ($action)
@@ -30,7 +28,6 @@ class Blog extends Base
     }
     
     // 新增博客(分类直接写入对应cate_id,只能向中间表添加已有标签数据)
-    // post /admin/blog/createBlog
     public function createBlog()
     {
         $data = input('post.');
@@ -49,7 +46,7 @@ class Blog extends Base
     }
     
     // 编辑博客 -> 编辑已有分类 -> 向中间表修改标签数据
-    public function editblog()
+    public function editBlog()
     {
         // 可修改表单字段，避免和数据库一致，不用保存关联数据
         $data = input('post.');
@@ -68,8 +65,7 @@ class Blog extends Base
     }
     
     // 软删除博客
-    // post /admin/blog/deleteblog
-    public function deleteblog($id)
+    public function deleteBlog($id)
     {   
         $blog = New Blogmodel;
         return json($blog->deleteBlog($id));

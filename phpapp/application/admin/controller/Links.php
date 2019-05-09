@@ -8,7 +8,6 @@ use app\admin\model\Links as Linksmodel;
 class Links extends Base
 {
     // 获取所有链接
-    // /admin/inks/getlinkslist
     public function getLinksList($page=1,$limit=10)
     {
         $data = Linksmodel::getLinksList($page,$limit);
@@ -40,7 +39,7 @@ class Links extends Base
     }
     
     // 查询链接
-    public function querylink($id)
+    public function queryLink($id)
     {
         $data = Linksmodel::queryLink($id);
         return json(['code'=>0, 'msg'=>'查询完成','data'=> $data]);

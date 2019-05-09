@@ -10,14 +10,16 @@ use PHPMailer\QQMailer;
 use think\captcha\Captcha;
 
 // 一切登陆相关操作
-class Index extends Base
+class Index extends Controller
 {
     public function index()
     {
         if(session('user')){
             $this ->redirect('/admin');
         }
-        return view('login/login');
+        // 判断网站状态以确定是否让页面在iFrame中显示
+        $web = WebModel::get(1);
+        return view('login/login',['webData'=>$web]);
     }
     // 验证登录
     public function validateLogin()
@@ -29,7 +31,7 @@ class Index extends Base
             return json(['code' => -1, 'msg' => '验证码错误']);
         }
         // 验证邮箱合法性
-        if(!((isEmail($data['username']))||($data['username'] == 'caojie'))){
+        if(!(isEmail($data['username']))){
             return json(["code"=>-1, "msg"=>"邮箱格式不合法"]);
         }
         // 检查用户是否存在

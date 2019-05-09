@@ -2,7 +2,6 @@
 namespace app\admin\controller;
 
 use app\admin\model\Comments as CommentsModel;
-use app\admin\model\Reply as ReplyModel;
 
 class Comments extends Base
 {
