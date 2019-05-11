@@ -51,7 +51,7 @@ var layer = layui.layer,
             {field: 'blog_text', title: '内容', width:240},
             // {field: 'delete_time', title: '删除时间', width:80},
             {field: 'update_time', title: '更新时间', width: 80, sort: true},
-            {field: 'create_time', title: '创建时间', width: 80, sort: true},
+            // {field: 'create_time', title: '创建时间', width: 80, sort: true},
             {field: 'read_count', title: '阅读量', width: 80, sort: true},
             {fixed: 'right', width: 165, align:'center', toolbar: '#bar'}
         ]]
@@ -67,12 +67,12 @@ var layer = layui.layer,
         cols: [[ //表头
             {type: 'checkbox', fixed: 'left'},
             {field: 'id', title: '链接ID', width:80, sort: true, fixed: 'left'},
-            {field: 'link_cate_title', title: '分类', width:80},
-            {field: 'link_title', title: '名称', width: 100},
-            {field: 'link', title: '链接地址', width: 240},
+            {field: 'link_cate_title', title: '分类', width:100},
+            {field: 'link_title', title: '名称', width: 150},
+            {field: 'link', title: '链接地址', width: 300},
             //,{field: 'delete_time', title: '软删除时间', width:80},
-            {field: 'update_time', title: '更新时间', width: 120, sort: true},
-            {field: 'create_time', title: '创建时间', width: 120, sort: true},
+            // {field: 'update_time', title: '更新时间', width: 120, sort: true},
+            // {field: 'create_time', title: '创建时间', width: 120, sort: true},
             {fixed: 'right', width: 165, align:'center', toolbar: '#bar'}
         ]]
     });
@@ -90,7 +90,7 @@ var layer = layui.layer,
             {field: 'massage_text', title: '内容', width: 400},
             {field: 'contact', title: '联系方式', width: 400},
             // ,{field: 'delete_time', title: '删除时间', width:80},
-            {field: 'update_time', title: '更新时间', width: 80, sort: true},
+            // {field: 'update_time', title: '更新时间', width: 80, sort: true},
             {field: 'create_time', title: '创建时间', width: 80, sort: true},
             {fixed: 'right', width: 165, align:'center', toolbar: '#bar'}
         ]]
@@ -106,12 +106,12 @@ var layer = layui.layer,
             {type: 'checkbox', fixed: 'left'},
             {field: 'id', title: 'ID', width:80, sort: true, fixed: 'left'},
             {field: 'nickname', title: '用户id', width:80},
-            {field: 'blog_title', title: '博客标题', width: 80},
+            {field: 'blog_title', title: '博客标题', width: 200},
             // {field: 'tag', title: '标签', width: 80},
-            {field: 'comment_text', title: '内容', width:240},
+            {field: 'comment_text', title: '内容', width:450},
             // {field: 'delete_time', title: '软删除时间', width:80} ,
             // {field: 'update_time', title: '更新时间', width: 80, sort: true},
-            {field: 'create_time', title: '创建时间', width: 80, sort: true},
+            {field: 'create_time', title: '创建时间', width: 120, sort: true},
             // {field: 'operate', title: '操作', width: 150},
             {fixed: 'right', width: 165, align:'center', toolbar: '#bar'}
         ]]

@@ -10,9 +10,9 @@
         <meta name="renderer" content="webkit" />
         <!-- <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"> -->
         <link href="/static/css/Normalize.css" rel="stylesheet"/>
-        <link href="/static/layui/css/layui.css" rel="stylesheet"/>
-        <!-- <link href="/static/css/bootstrap.css" rel="stylesheet"></link> -->
-        <link href="/static/css/font-awesome.css" rel="stylesheet"/>
+        <link href="https://layui.hcwl520.com.cn/layui-v2.4.5/css/layui.css?v=201811010202" rel="stylesheet"/>
+        <!-- <link href="https://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet"></link> -->
+        <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
         <link href="/static/css/wangEditor.min.css" rel="stylesheet"/>
         <!--<link href="/static/css/webuploader.css" rel="stylesheet"/>-->
         <link href="/static/css/uploader.css" rel="stylesheet"/>
@@ -139,7 +139,7 @@
                         <div id="create-blog-tab">
                         <form class="layui-form">
                           <div class="layui-form-item">
-                            <input name="id" value="">
+                            <input name="id" type="hidden" value="">
                             <label class="layui-form-label">标题</label>
                             <div class="layui-input-block">
                               <input type="text" name="blog_title" placeholder="请输入标题" autocomplete="off" class="layui-input"/>
@@ -196,7 +196,7 @@
                             </div>
                             <div>
                                 <div id="editor-box">
-                                    <div id="editor"></div>
+                                    <div id="editor" spellcheck="false"></div>
                                 </div>
                             </div>
                             <button class="layui-btn my-btn" id="btn1">编辑html数据</button>
@@ -220,7 +220,7 @@
                             <div>发布链接</div>
                             <form class="layui-form">
                                 <div class="layui-form-item">
-                                    <input name="link_id" value="">
+                                    <input name="link_id" type="hidden" value="">
                                     <label class="layui-form-label">链接主题</label>
                                     <div class="layui-input-block">
                                         <input type="text" name="link_title" placeholder="请输入链接主题" autocomplete="off" class="layui-input"/>
@@ -230,7 +230,11 @@
                                     <label class="layui-form-label">链接分类</label>
                                     <div class="layui-input-block">
                                         {volist name='linkcatelist' id='linkcate'}
-                                        <input type="radio" lay-filter="blog-category" name="link_cate"  value="{$linkcate['id']}" title="{$linkcate['link_cate_title']}">
+                                            {if condition="$linkcate['id'] eq 1"}
+                                                <input type="radio" lay-filter="blog-category" name="link_cate"  checked value="{$linkcate['id']}" title="{$linkcate['link_cate_title']}">
+                                            {else/}
+                                                <input type="radio" lay-filter="blog-category" name="link_cate"  value="{$linkcate['id']}" title="{$linkcate['link_cate_title']}">
+                                            {/if}
                                         {/volist}
                                     </div>
                                 </div>
@@ -278,9 +282,9 @@
         <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
         <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
     </script>
-    <script src="/static/js/jquery3.3.1.js"></script>
-    <!-- <script src="/static/js/bootstrap.js"></script> -->
-    <script src="/static/layui/layui.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <!-- <script src="https://cdn.bootcss.com/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+    <script src="https://layui.hcwl520.com.cn/layui-v2.4.5/layui.js?v=201811010202"></script>
     <script src="/static/js/wangEditor.min.js"></script>
     <script src="/static/js/webuploader.min.js"></script>
     <script src="/static/js/diyUpload.js"></script>

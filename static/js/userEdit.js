@@ -90,11 +90,7 @@ $(function () {
         return true;
     });
 });
-// 单选按钮所需函数
-function changeState(el) {
-    if (el.readOnly) el.checked=el.readOnly=false;
-    else if (!el.checked) el.readOnly=el.indeterminate=true;
-}
+
 // 检查
 function check() {
     if(editor.txt.text() == ""){

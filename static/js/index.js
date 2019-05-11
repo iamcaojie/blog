@@ -12,11 +12,14 @@ var carousel = layui.carousel;
     });
 });
 
-var timeoutId = setInterval(function() {
-    console.log(Math.round(new Date().getTime()/1000));
-}, 1000);
+// var timeoutId = setInterval(function() {
+//     console.log(Math.round(new Date().getTime()/1000));
+// }, 1000);
 
 $(function(){
+    $('.fa-wechat').hover(function(){
+        $('#wechat-img').toggle();
+    });
     $(window).resize(function() {
         $('#banner').css("height", reSizeBanner());
     });
@@ -38,13 +41,14 @@ $(function(){
         })
     });
 });
-// 重置banner高度
+// 重置banner高度，响应式
 function reSizeBanner() {
     var windowWidth = $(window).width();
     if ( windowWidth > 1200) {return '350px'};
     if ( windowWidth >=990 && windowWidth <= 1200) {return '350px'};
     if ( windowWidth >=600 && windowWidth < 990) {return '360px'};
-    if ( windowWidth < 600) {return '250px'};
+    if ( windowWidth >=437 && windowWidth < 660) {return '230px'};
+    if ( windowWidth < 437) {return '220px'};
 }
 // 音乐播放器对象
 function MusicPlayer(box) {

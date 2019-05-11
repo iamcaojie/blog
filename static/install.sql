@@ -1,3 +1,11 @@
+set character_set_server=utf8;
+set character_set_database=utf8;
+set character_set_client=utf8;
+set character_set_connection=utf8;
+set character_set_database=utf8;
+set character_set_results=utf8;
+set character_set_server=utf8;
+
 DROP TABLE IF EXISTS [prefix_]web;
 DROP TABLE IF EXISTS [prefix_]image;
 DROP TABLE IF EXISTS [prefix_]imagecate;
@@ -30,7 +38,7 @@ CREATE TABLE [prefix_]web(
     beian_code varchar(50) NOT NULL DEFAULT '' COMMENT '备案号', 
     today_views int NOT NULL DEFAULT 0 COMMENT '今日访问', 
     all_views int NOT NULL DEFAULT 0 COMMENT '总访问',  
-    close_info text NOT NULL DEFAULT '' COMMENT '关闭时显示的页面',
+    close_info text NOT NULL COMMENT '关闭时显示的页面',
     create_time int NOT NULL DEFAULT 0,
     update_time int NOT NULL DEFAULT 0,
     delete_time int NOT NULL DEFAULT 0,
@@ -54,7 +62,7 @@ CREATE TABLE [prefix_]image(
     imagecate_id varchar(10), 
     address varchar(100), 
     ext varchar(5), 
-    create_time int, 
+    create_time int,
     update_time int, 
     delete_time int, 
     PRIMARY KEY(id)
@@ -135,8 +143,8 @@ CREATE TABLE [prefix_]blog(
     cate_id tinyint(1) NOT NULL DEFAULT 1, 
     image_id varchar(50) NOT NULL DEFAULT 1 COMMENT '多个主图', 
     unique_tag varchar(50) DEFAULT '',
-    blog_html text DEFAULT '', 
-    blog_text text DEFAULT '', 
+    blog_html text,
+    blog_text text,
     create_time int, 
     update_time int, 
     delete_time int, 
@@ -148,7 +156,7 @@ CREATE TABLE [prefix_]blog(
 
 CREATE TABLE [prefix_]cate(
     id int UNSIGNED NOT NULL AUTO_INCREMENT,
-    blog_category varchar(10) NOT NULL DEFAULT '',
+    blog_category varchar(40) NOT NULL DEFAULT '',
     cate_detail varchar(100) DEFAULT '',
     create_time int,
     update_time int,
@@ -160,7 +168,7 @@ CREATE TABLE [prefix_]cate(
 
 CREATE TABLE [prefix_]tags(
     id int UNSIGNED NOT NULL AUTO_INCREMENT, 
-    tag varchar(10) NOT NULL DEFAULT '未设置分类', 
+    tag varchar(20) NOT NULL DEFAULT '未设置分类',
     create_time int, 
     update_time int, 
     delete_time int,
@@ -190,7 +198,7 @@ CREATE TABLE [prefix_]links(
 
 CREATE TABLE [prefix_]linkcate(
     id int UNSIGNED NOT NULL AUTO_INCREMENT, 
-    link_cate_title varchar(10) NOT NULL DEFAULT '', 
+    link_cate_title varchar(50) NOT NULL DEFAULT '',
     create_time int,
     update_time int,
     delete_time int,
@@ -261,14 +269,14 @@ CREATE TABLE [prefix_]favorite(
 ) ENGINE=INNODB DEFAULT CHARSET=utf8 COMMENT '用户收藏表';
 
 insert into [prefix_]web(id, name, web_status, domain, ip, beian_code,today_views,all_views,close_info)
-    values (1,'blog', 1,'localhost','127.0.0.1', '鄂ICP备19004169号-1',0,0,'<div style="text-align:center"><h1>网站维护中</h1><div><a href="https://github.com/iamcaojie">Github</a></div></div>');
+    values (1,'blog', 1,'imcaojie.com','127.0.0.1', '鄂ICP备19004169号-1',0,0,'<div style="text-align:center"><h1>网站维护中</h1><div><a href="https://github.com/iamcaojie">Github</a></div></div>');
 
 insert into [prefix_]users(id,nickname,username,password) 
     values (1,'入戏太深','imcaojie@qq.com','d226d500e7899a09458559bf2661a62b'),
-    (2,'后台测试账号1','demo1@qq.com','43da34d87d7c36746917008be5a891e8'),
-    (3,'用户测试账号2','demo2@qq.com','43da34d87d7c36746917008be5a891e8'),
-    (4,'用户测试账号3','demo3@qq.com','43da34d87d7c36746917008be5a891e8'),
-    (5,'用户测试账号4','demo4@qq.com','43da34d87d7c36746917008be5a891e8');
+    (2,'后台测试账号','demo1@qq.com','43da34d87d7c36746917008be5a891e8'),
+    (3,'用户测试账号1','demo2@qq.com','43da34d87d7c36746917008be5a891e8'),
+    (4,'用户测试账号2','demo3@qq.com','43da34d87d7c36746917008be5a891e8'),
+    (5,'用户测试账号3','demo4@qq.com','43da34d87d7c36746917008be5a891e8');
 
 insert into [prefix_]blog(id, blog_title, cate_id, delete_time) 
     values (1, '临时缓存内容', 1, 1);
@@ -289,8 +297,8 @@ insert into [prefix_]imagecate(id, name, dir)
 insert into [prefix_]image(id, imagecate_id,address,ext)
     values (1,4,'avatar','jpg'),
       (2,1,'banner1','jpg'),
-      (2,1,'banner2','jpg'),
-      (3,1,'banner3','jpg');
+      (3,1,'banner2','jpg'),
+      (4,1,'banner3','jpg');
 
 insert into [prefix_]links(id,link_cate_id,link_title,link)
   values(1,3,'Git','https://github.com/'),
@@ -340,7 +348,7 @@ insert into [prefix_]auth_rule(id,name,title,type,status,conditions,pid,level,so
   (10,'blog/deleteBlog','删除文章',1,1,'',6,1,50),
 
   (11,'cate/index','显示分类列表',1,1,'',0,0,50),
-  (12,'cate/getCateList','获取所有分类',1,1,'',11,1,50),
+  (12,'cate/getCateTreeList','获取所有分类',1,1,'',11,1,50),
   (13,'cate/createcate','创建分类',1,1,'',11,1,50),
   (14,'cate/editcate','编辑分类',1,1,'',11,1,50),
   (15,'cate/signdeletecate','隐藏分类',1,1,'',11,1,50),
@@ -396,10 +404,10 @@ insert into [prefix_]auth_rule(id,name,title,type,status,conditions,pid,level,so
 
 insert into [prefix_]auth_group(id,title,status,rules,pid,level,sort)
   values(1,'管理员组',1,'',0,0,50),
-    (2,'超级管理员',1,'1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,46,46,47,48,49,50,51,52,53,53,55,56',1,1,50),
-    (3,'测试管理员',1,'1,2,3,6,7,11,12,18,22,25,27,29,31,34,36,41,42,45,49,53',1,1,50),
+    (2,'超级管理员',1,'1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,53,55,56',1,1,50),
+    (3,'测试管理员',1,'1,2,3,6,7,11,12,18,25,27,29,31,34,36,38,39,40,41,42,45,49,53',1,1,50),
     (4,'用户组',1,'',0,0,50),
-    (5,'普通用户',1,'',4,1,50);
+    (5,'普通用户',1,'38,39,40',4,1,50);
 
 insert into [prefix_]auth_group_access(id,uid,group_id)
   values(1,1,2),(2,2,3),(3,3,5),(4,4,5),(5,5,5);

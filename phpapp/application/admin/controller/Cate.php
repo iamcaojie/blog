@@ -39,11 +39,11 @@ class Cate extends Base
         return view('cate/cate',['cates'=>$data]);
     }
     // 获取所有分类
-    public function getCateList()
-    {
-        $data = CateModel::getCateList();
-        return json(["code"=>0, "msg"=>"查询成功", "data"=>$data]);
-    }
+//    public function getCateList()
+//    {
+//        $data = CateModel::getCateList();
+//        return json(["code"=>0, "msg"=>"查询成功", "data"=>$data]);
+//    }
     // 排序显示所有分类
     public function getCateTreeList($page=1,$limit=10)
     {

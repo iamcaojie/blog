@@ -96,7 +96,7 @@ class Index extends Controller
             . '<p align="right">5分钟内有效</p>'
             . '<p align="right">如非本人操作请忽略</p>';
         $mailer = new QQMailer();
-        $info = $mailer->send('1041973277@qq.com', $title, $content);
+        $info = $mailer->send($data['username'], $title, $content);
         if($info){
             return json(['code'=>0, 'msg'=>'验证码已发送,请查收']);
         }else{
@@ -138,6 +138,8 @@ class Index extends Controller
         $data = passWordMd5($data);
         $info = UsersModel::create($data,true);
         if($info){
+            // 把用户加入到普通用户组,测试->id或者['id']都可以使用
+            db('auth_group_access')->insert(['uid'=>$info['id'],'group_id'=>5]);
             return json(["code"=>0, "msg"=>"注册成功"]);
         }else{
             return json(["code"=>0, "msg"=>"注册失败"]);

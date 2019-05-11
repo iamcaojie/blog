@@ -55,7 +55,7 @@
                     </div>
                     {/volist}
                     <div style="width:100%;">
-                        <nav aria-label="Page navigation" style="margin: 0 auto;width:300px;">
+                        <nav aria-label="Page navigation" style="margin: 0 auto;">
                             <ul class="pagination">
                                 <li>
                                     <a href="/blog/contents?cate={$cateData['id']}&page=1" aria-label="Previous">
@@ -66,7 +66,7 @@
                                     {egt name='$pageCount' value='$i'}
                                         {gt name='$i' value='0'}
                                             {eq name='$i' value='$pageNum'}
-                                                <li class="active"><a href="#">{$i}</a></li>
+                                                <li class="active"><a href="javascript:void(0);">{$i}</a></li>
                                             {else/}
                                                 <li><a href="/blog/contents?cate={$cateData['id']}&page={$i}">{$i}</a></li>
                                             {/eq}
@@ -79,19 +79,19 @@
                                         <span aria-hidden="true">&raquo;</span>
                                     </a>
                                 </li>
-                                <li>
-                                    <input name="go-page"  class="form-control"  style="display:inline;width:55px;height:33.5px;float: left;margin: 0 1px 0 1px;"/>
-                                    <a onclick="goPage();" ria-label="Next" style="cursor:pointer;">
-                                        <span aria-hidden="true">Go</span>
-                                    </a>
-                                </li>
+                                <!--<li>-->
+                                    <!--<input name="go-page"  class="form-control"  style="display:inline;width:55px;height:33.5px;float: left;margin: 0 1px 0 1px;"/>-->
+                                    <!--<a onclick="goPage();" ria-label="Next" style="cursor:pointer;">-->
+                                        <!--<span aria-hidden="true">Go</span>-->
+                                    <!--</a>-->
+                                <!--</li>-->
                             </ul>
                         </nav>
                     </div>
                 </div>
 
                 <div class="col-md-4">
-                    <div class="box">
+                    <div class="box" style="margin-top: 10px;">
                         空白页
                     </div>
                 </div>

@@ -164,13 +164,17 @@ h2{
 
 /*文章列表样式*/
 .list{
-    margin:10px 0 10px 10px;
-    height:172px;
+    margin:10px 0 0 0;
+    height:165px;
     background: white;
+    padding: 0 0 2px 0;
 }
 .list div{
     margin: 6px 0 0 0;
     padding: 2px 2px 2px 2px;
+}
+.tags{
+    margin-top: 2px !important;
 }
 .img-box{
     float: left;
@@ -207,6 +211,13 @@ h2{
 }
 .article-like{
     clear: left;
-    padding: 6px 10px 2px 10px !important;
+    padding: 6px 10px 5px 10px !important;
     margin: 0 0 5px 0 !important;
+}
+/*文章详情*/
+.w-e-text code{
+    display: block;
+    overflow-y: scroll;
+    color:#0092ee;
+    font-size: 18px;
 }
