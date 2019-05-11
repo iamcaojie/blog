@@ -89,14 +89,10 @@ class Index extends Controller
         $mcode = mt_rand(1000,9999);
         session('mcode',['username'=>$data['username'],'mcode'=>$mcode]);
         $title = '验证码';
-        $content = '<p>您的账号为</p>'
-            . '<p>'.$data['username'].'</p>'
-            . '<p>您的验证码为</p>'
-            . '<p align="center"><b>'.$mcode.'</b></p>'
-            . '<p align="right">5分钟内有效</p>'
-            . '<p align="right">如非本人操作请忽略</p>';
+        $content = '验证码为'.$mcode;
         $mailer = new QQMailer();
         $info = $mailer->send($data['username'], $title, $content);
+        dump($info);
         if($info){
             return json(['code'=>0, 'msg'=>'验证码已发送,请查收']);
         }else{
@@ -108,11 +104,10 @@ class Index extends Controller
     public function register()
     {
         $data = input('post.');
-        // 检查验证码是否正确
-//        $captcha = new Captcha();
-//        if(!($captcha->check($data['vcode']))) {
-//            return json(['code' => -1, 'msg' => '验证码错误']);
-//        }
+        // 检查邮箱验证码是否正确
+        if(session('mcode') != ['username'=>$data['username'],'mcode'=>$data['mcode']]){
+            return json(["code"=>-1,"msg"=>"邮箱验证码错误"]);
+        }
         // 检查邮箱合法性
         if (!isEmail($data['username'])) {
             return json(["code" => -1, "msg" => "邮箱格式不合法"]);
@@ -129,10 +124,7 @@ class Index extends Controller
         if (UsersModel::queryUser($data['username'])) {
             return json(["code" => -1, "msg" => "邮箱已被注册"]);
         }
-        // 检查邮箱验证码是否正确
-        if(session('mcode') != ['username'=>$data['username'],'code'=>$data['mcode']]){
-            return json(["code"=>-1,"msg"=>"邮箱验证码错误"]);
-        }
+       
         // 所有验证完成，写入注册数据
         session('code',null);
         $data = passWordMd5($data);
