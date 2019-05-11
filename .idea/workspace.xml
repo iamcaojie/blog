@@ -2,42 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2e667448-84e3-4e99-9e7e-30478f1d6ae8" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/img/wechat.png" afterPath="$PROJECT_DIR$/static/img/wechat.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/uploads/avatar/avatar.jpg" afterPath="$PROJECT_DIR$/uploads/avatar/avatar.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/uploads/banner/default.png" afterPath="$PROJECT_DIR$/uploads/banner/default.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/uploads/master/default.png" afterPath="$PROJECT_DIR$/uploads/master/default.png" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/phpapp/runtime/log/201905/11.log" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/phpapp/runtime/temp/d08e27f7d4a620e966ec1fbecd213880.php" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gitpush.py" afterPath="$PROJECT_DIR$/gitpush.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/phpapp/application/admin/controller/Base.php" afterPath="$PROJECT_DIR$/phpapp/application/admin/controller/Base.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/phpapp/application/admin/controller/Cate.php" afterPath="$PROJECT_DIR$/phpapp/application/admin/controller/Cate.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/phpapp/application/admin/view/account/account.html" afterPath="$PROJECT_DIR$/phpapp/application/admin/view/account/account.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/phpapp/application/admin/view/admin/admin.html" afterPath="$PROJECT_DIR$/phpapp/application/admin/view/admin/admin.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/phpapp/application/admin/view/auth/auth.html" afterPath="$PROJECT_DIR$/phpapp/application/admin/view/auth/auth.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/phpapp/application/admin/view/cate/cate.html" afterPath="$PROJECT_DIR$/phpapp/application/admin/view/cate/cate.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/phpapp/application/admin/view/image/image.html" afterPath="$PROJECT_DIR$/phpapp/application/admin/view/image/image.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/phpapp/application/admin/view/web/web.html" afterPath="$PROJECT_DIR$/phpapp/application/admin/view/web/web.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/phpapp/application/blog/view/blog/blog.html" afterPath="$PROJECT_DIR$/phpapp/application/blog/view/blog/blog.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/phpapp/application/blog/view/contents/contents.html" afterPath="$PROJECT_DIR$/phpapp/application/blog/view/contents/contents.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/phpapp/application/blog/view/detail/detail.html" afterPath="$PROJECT_DIR$/phpapp/application/blog/view/detail/detail.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/phpapp/application/blog/view/public/base.html" afterPath="$PROJECT_DIR$/phpapp/application/blog/view/public/base.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/phpapp/application/login/controller/Index.php" afterPath="$PROJECT_DIR$/phpapp/application/login/controller/Index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/phpapp/application/login/view/login/login.html" afterPath="$PROJECT_DIR$/phpapp/application/login/view/login/login.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/phpapp/application/search/view/index/article.html" afterPath="$PROJECT_DIR$/phpapp/application/search/view/index/article.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/phpapp/application/search/view/index/tag.html" afterPath="$PROJECT_DIR$/phpapp/application/search/view/index/tag.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/phpapp/application/search/view/index/user.html" afterPath="$PROJECT_DIR$/phpapp/application/search/view/index/user.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/phpapp/application/web/view/doc/doc.html" afterPath="$PROJECT_DIR$/phpapp/application/web/view/doc/doc.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/css/cate.css" afterPath="$PROJECT_DIR$/static/css/cate.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/css/common.css" afterPath="$PROJECT_DIR$/static/css/common.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/css/contents.css" afterPath="$PROJECT_DIR$/static/css/contents.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/css/detail.css" afterPath="$PROJECT_DIR$/static/css/detail.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/css/index.css" afterPath="$PROJECT_DIR$/static/css/index.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/css/user.css" afterPath="$PROJECT_DIR$/static/css/user.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/install.sql" afterPath="$PROJECT_DIR$/static/install.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/js/admin.js" afterPath="$PROJECT_DIR$/static/js/admin.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/js/contents.js" afterPath="$PROJECT_DIR$/static/js/contents.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/js/index.js" afterPath="$PROJECT_DIR$/static/js/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/js/userEdit.js" afterPath="$PROJECT_DIR$/static/js/userEdit.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -629,7 +596,7 @@
       <workItem from="1556941274512" duration="22314000" />
       <workItem from="1557055455625" duration="44232000" />
       <workItem from="1557403353287" duration="16396000" />
-      <workItem from="1557462197613" duration="34694000" />
+      <workItem from="1557462197613" duration="35153000" />
     </task>
     <servers />
   </component>
@@ -648,7 +615,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="828188000" />
+    <option name="totallyTimeSpent" value="828647000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
