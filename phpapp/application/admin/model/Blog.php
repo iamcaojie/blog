@@ -204,7 +204,9 @@ class Blog extends Model
         $tagArrData = [];
         foreach ($tagData as $value){
             if(strpos($value,',') == false){
-                $tagArrData = array_merge($tagArrData,[$value]);
+                if(!empty($value)){
+                    $tagArrData = array_merge($tagArrData,[$value]);
+                }
             }else {
                 $tempTagArr = explode(',',$value);
                 $tagArrData = array_merge($tagArrData,$tempTagArr);

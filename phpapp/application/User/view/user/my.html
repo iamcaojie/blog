@@ -111,7 +111,7 @@
                     </div>
                     <div class="item-content">
                         {volist name="userBlogData" id="userBlog"}
-                            <div class="list">
+                            <div class="b-list">
                                 <a href="/blog/detail?id={$userBlog['id']}">{$userBlog['blog_title']}</a>
                                 <a href="/user/action/edit?id={$userBlog['id']}">编辑</a>
                                 <a href="javascript:void(0);" class="delete delete-blog" data="{$userBlog['id']}">删除</a>

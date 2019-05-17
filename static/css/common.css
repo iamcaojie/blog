@@ -198,8 +198,17 @@ h2{
     margin:0;
 }
 .article-box h1{
+    overflow:hidden;
     text-align:left;
     display:inline-block;
+}
+h1 a{
+    overflow:hidden;
+    text-align:left;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
 }
 .article-detail{
     overflow: hidden;

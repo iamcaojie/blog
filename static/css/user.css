@@ -46,6 +46,9 @@
     height: 100px;
     border-radius: 50%;
 }
+.modal-dialog{
+    width:70%;
+}
 #nickname{
     cursor: pointer;
 }
@@ -81,11 +84,10 @@
     font-size:20px;
     border-bottom:1px solid #0092ee;
 }
-.list {
+.b-list {
     margin: 10px;
     width: 95%;
     padding:10px;
-    border: 1px solid #0092ee;
 }
 #edit{
     display:none;
@@ -133,4 +135,8 @@
     #operate-box{
         left:30px;
     }
+    .modal-dialog{
+        width:100%;
+    }
+}
 }

@@ -1,3 +1,4 @@
+SET FOREIGN_KEY_CHECKS=0;
 set character_set_server=utf8;
 set character_set_database=utf8;
 set character_set_client=utf8;

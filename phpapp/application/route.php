@@ -29,8 +29,8 @@ Route::get(['web/doc'=>'web/Index/doc']);
 Route::rule('index','blog/Index/index');
 //Route::rule('blog/contents/:cate/:page','blog/Contents/index','GET');
 // 路由无法生效 TODO
-//Route::rule('blog/detail','blog/Detail/index','GET');
-//Route::rule('user/:id','user/Index/index','GET');
+// Route::rule('blog/detail/:id','blog/Detail/index','GET');
+// Route::rule('user/:id','user/Index/index','GET');
 
 
 // 正则限制变量规则

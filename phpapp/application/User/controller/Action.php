@@ -33,7 +33,15 @@ class Action extends UserBase
             $blogdata['blog_title'] =$data['blog_title'];
             $blogdata['cate_id'] =$data['cate'];
             // 处理主图id
-            $blogdata['image_id'] =substr($data['master_image'], 0, -1);
+            if(empty($data['master_image'])){
+                $blogdata['image_id'] = '';
+            }else{
+                if(strpos(',',$data['master_image'])){
+                    $blogdata['image_id'] = substr($data['master_image'], 0, -1);
+                }else{
+                    $blogdata['image_id'] = $data['master_image'];
+                }
+            }
             $blogdata['unique_tag'] =$data['unique_tag'];
             $blogdata['blog_html'] =$data['edit-html'];
             $blogdata['blog_text'] =$data['edit-text'];
@@ -92,7 +100,15 @@ class Action extends UserBase
             $blogdata['blog_title'] = $data['blog_title'];
             $blogdata['cate_id'] = $data['cate'];
             // 处理主图id
-            $blogdata['image_id'] = substr($data['master_image'], 0, -1);
+            if(empty($data['master_image'])){
+                $blogdata['image_id'] = '';
+            }else{
+                if(strpos(',',$data['master_image'])){
+                    $blogdata['image_id'] = substr($data['master_image'], 0, -1);
+                }else{
+                    $blogdata['image_id'] = $data['master_image'];
+                }
+            }
             $blogdata['unique_tag'] = $data['unique_tag'];
             $blogdata['blog_html'] = $data['edit-html'];
             $blogdata['blog_text'] = $data['edit-text'];
